@@ -1,0 +1,77 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color_default"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context="${relativePackage}.${activityClass}">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_color_default"
+        android:orientation="vertical">
+
+    <include layout="@layout/include_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.19"
+            android:gravity="center"
+            android:text="ID"
+            android:textSize="@dimen/x50"
+            android:textColor="@color/text_color_default"
+            android:id="@+id/tv_id"/>
+        <View
+            style="@style/v_divider"
+            android:layout_marginLeft="@dimen/x3"
+            android:layout_marginRight="@dimen/x3"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            android:gravity="center"
+            android:text="Value"
+            android:textColor="@color/text_color_default"
+            android:textSize="@dimen/x50"
+            android:id="@+id/tv_value"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:gravity="center"
+            android:text="0/0"
+            android:textColor="@color/text_color_default"
+            android:textSize="@dimen/x50"
+            android:id="@+id/tv_page"/>
+
+    </LinearLayout>
+
+    <com.vispect.android.vispect_g2_app.ui.widget.RefreshableView
+        android:id="@+id/list_obdvalue"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="@dimen/y40"
+        android:divider="@null"
+        android:scrollbars="none"
+        android:dividerHeight="0dp">
+    </com.vispect.android.vispect_g2_app.ui.widget.RefreshableView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_mask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/bg_setting_volume_out"
+        android:orientation="vertical"
+        android:visibility="gone">
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,1000 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_new">
+
+    <include layout="@layout/include_title">
+
+    </include>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:padding="@dimen/x50"
+                android:layout_marginTop="@dimen/y50">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/driving_behavior_configurtion_tips"
+                    android:textSize="@dimen/x42"
+                    android:textColor="@color/table_check"/>
+
+
+                <!--  急加速-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="@dimen/x40"
+                        android:layout_height="@dimen/y40"
+                        android:src="@mipmap/img_dot_bllue"
+                        android:layout_marginTop="@dimen/y20"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x50"
+                        android:textColor="@color/text_color_default"
+                        android:text="@string/rapid_acceleration_parameter_title"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x40"
+                        android:text="@string/rapid_acceleration_parameter_cache_time"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_acceleration_cache_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x40"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x35"
+                            android:text="[3~15s]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x40"
+                        android:text="@string/rapid_acceleration_parameter_start_up_speed"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_acceleration_start_up_speed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x40"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x35"
+                            android:text="[1~20m/s]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x40"
+                        android:text="@string/rapid_acceleration_parameter_start_up_time"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_acceleration_start_up_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x40"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x35"
+                            android:text="[1~10s]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x40"
+                        android:text="@string/rapid_acceleration_parameter_way_of_speed_got"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_acceleration_way_of_speed_got"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x40"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x35"
+                            android:text="[0:sensor 1:OBD]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <!--  急减速-->
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:padding="@dimen/x50"
+                android:layout_marginTop="@dimen/y50">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="@dimen/x40"
+                        android:layout_height="@dimen/y40"
+                        android:src="@mipmap/img_dot_bllue"
+                        android:layout_marginTop="@dimen/y20"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x50"
+                        android:textColor="@color/text_color_default"
+                        android:text="@string/rapid_deceleration_parameter_title"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x40"
+                        android:text="@string/rapid_deceleration_parameter_cache_time"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_deceleration_cache_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x40"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x35"
+                            android:text="[3~15s]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x40"
+                        android:text="@string/rapid_deceleration_parameter_start_up_speed"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_deceleration_start_up_speed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x40"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x35"
+                            android:text="[1~20m/s]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x40"
+                        android:text="@string/rapid_deceleration_parameter_start_up_time"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_deceleration_start_up_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x40"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x35"
+                            android:text="[1~10s]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x40"
+                        android:text="@string/rapid_deceleration_parameter_way_of_speed_got"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_deceleration_way_of_speed_got"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x40"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x35"
+                            android:text="[0:sensor 1:OBD]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+           <!-- 急转弯-->
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:padding="@dimen/x50"
+                android:layout_marginTop="@dimen/y50">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="@dimen/x40"
+                        android:layout_height="@dimen/y40"
+                        android:src="@mipmap/img_dot_bllue"
+                        android:layout_marginTop="@dimen/y20"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x50"
+                        android:textColor="@color/text_color_default"
+                        android:text="@string/rapid_turn_parameter_title"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x40"
+                        android:text="@string/rapid_turn_parameter_trigger_angular_velocity"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_turn_trigger_angular_velocity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x40"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="4"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x35"
+                            android:text="[100~1000dps]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x40"
+                        android:text="@string/rapid_turn_parameter_cache_time_of_before"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_turn_cache_time_of_before"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x40"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x35"
+                            android:text="[0~5s]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x40"
+                        android:text="@string/rapid_turn_parameter_cache_time_of_last"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_turn_cache_time_of_last"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x40"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x35"
+                            android:text="[0~5s]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x40"
+                        android:text="@string/rapid_turn_parameter_interval_time"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_turn_interval_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x40"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x35"
+                            android:text="[2~20s]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--侧翻-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:padding="@dimen/x50"
+                android:layout_marginTop="@dimen/y50">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="@dimen/x40"
+                        android:layout_height="@dimen/y40"
+                        android:src="@mipmap/img_dot_bllue"
+                        android:layout_marginTop="@dimen/y20"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x50"
+                        android:textColor="@color/text_color_default"
+                        android:text="@string/rapid_rollover_parameter_title"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x40"
+                        android:text="@string/rapid_rollover_parameter_trigger_angular_velocity"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_rollover_trigger_angular_velocity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x40"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="4"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x35"
+                            android:text="[100~1000dps]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x40"
+                        android:text="@string/rapid_rollover_parameter_cache_time_of_before"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_rollover_cache_time_of_before"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x40"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x35"
+                            android:text="[0~5s]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x40"
+                        android:text="@string/rapid_rollover_parameter_cache_time_of_last"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_rollover_cache_time_of_last"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x40"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x35"
+                            android:text="[0~5s]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x40"
+                        android:text="@string/rapid_rollover_parameter_interval_time"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_rollover_interval_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x40"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x35"
+                            android:text="[2~20s]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+           <!-- 碰撞-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:padding="@dimen/x50"
+                android:layout_marginTop="@dimen/y50">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="@dimen/x40"
+                        android:layout_height="@dimen/y40"
+                        android:src="@mipmap/img_dot_bllue"
+                        android:layout_marginTop="@dimen/y20"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x50"
+                        android:textColor="@color/text_color_default"
+                        android:text="@string/rapid_collision_parameter_title"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x40"
+                        android:text="@string/rapid_collision_parameter_threshold_of_accelerationX"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_collision__threshold_of_accelerationX"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x40"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="4"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x35"
+                            android:text="[100~3000mg]"
+                            android:layout_marginBottom="@dimen/y50"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x40"
+                        android:text="@string/rapid_collision_parameter_threshold_of_accelerationY"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_collision__threshold_of_accelerationY"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x40"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="4"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x35"
+                            android:text="[100~3000mg]"
+                            android:layout_marginBottom="@dimen/y50"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x40"
+                        android:text="@string/rapid_collision_parameter_threshold_of_accelerationZ"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_collision__threshold_of_accelerationZ"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x40"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="4"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x35"
+                            android:text="[100~3000mg]"
+                            android:layout_marginBottom="@dimen/y50"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x40"
+                        android:text="@string/rapid_collision_parameter_cache_time_before"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_collision_cache_time_before"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x40"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x35"
+                            android:text="[1~10s]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x40"
+                        android:text="@string/rapid_collision_parameter_cache_time_last"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_collision_cache_time_last"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x40"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x35"
+                            android:text="[1~10s]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x40"
+                        android:text="@string/rapid_collision_parameter_upload_image"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_collision_cache_upload_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x40"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x35"
+                            android:text="[0:none 1:picture 2:video]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll_buttom"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:orientation="vertical"></LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+
+</LinearLayout>

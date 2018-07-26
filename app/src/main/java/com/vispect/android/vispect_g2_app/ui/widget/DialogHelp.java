@@ -1,0 +1,164 @@
+package com.vispect.android.vispect_g2_app.ui.widget;
+
+import android.app.Activity;
+import android.graphics.Color;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.GravityEnum;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.vispect.android.vispect_g2_app.R;
+import com.vispect.android.vispect_g2_app.app.AppContext;
+import com.vispect.android.vispect_g2_app.interf.DialogClickListener;
+
+import java.util.ArrayList;
+
+/**
+ * Created by mo on 2018/7/3.
+ */
+
+public class DialogHelp {
+
+    private MaterialDialog.Builder mBuilder;
+    private static MaterialDialog mMaterialDialog;
+    private static DialogHelp dialogHelp;
+    private Activity ac;
+    private static ArrayList<MaterialDialog> dialoglist = new ArrayList<>();
+
+    public void hideDialog() {
+        if (mMaterialDialog!=null&&!ac.isFinishing()){
+            mMaterialDialog.dismiss();
+            mMaterialDialog = null;
+        }else if(dialoglist.size()>0){
+            dialoglist.get(dialoglist.size()-1).dismiss();
+            dialoglist.remove(dialoglist.size()-1);
+        }
+    }
+
+    public static DialogHelp getInstance() {
+        if (dialogHelp == null) {
+            dialogHelp = new DialogHelp();
+        }
+        if (mMaterialDialog != null){
+            dialoglist.add(mMaterialDialog);
+        }
+        return dialogHelp;
+    }
+
+
+
+
+    public void loginDialog(final Activity ac) {
+        this.ac = ac;
+        mBuilder = new MaterialDialog.Builder(ac);
+        mMaterialDialog = mBuilder.title("Logging in")
+                .canceledOnTouchOutside(false)
+                .content(AppContext.getInstance().getResources().getString(R.string.waitting))
+                .progress(true, 0)
+                .show();
+
+    }
+
+    public MaterialDialog editDialog(final Activity ac, String title, final DialogClickListener listener) {
+        this.ac = ac;
+        mBuilder = new MaterialDialog.Builder(ac);
+        mMaterialDialog = new MaterialDialog.Builder(ac)
+                .customView(R.layout.editdialog,false)
+                .show();
+        final EditText et = (EditText) mMaterialDialog.findViewById(R.id.et_phone);
+        TextView titleDialog = (TextView) mMaterialDialog.findViewById(R.id.tv_title_dialog);
+        titleDialog.setText(title);
+        Button btnOk = (Button) mMaterialDialog.findViewById(R.id.btn_ok);
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.clickYes(et.getText().toString());
+            }
+        });
+        Button btnCancle = (Button) mMaterialDialog.findViewById(R.id.btn_cancel);
+        btnCancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mMaterialDialog.dismiss();
+            }
+        });
+        return mMaterialDialog;
+    }
+
+    public void connectDialog(Activity ac,String title) {
+        this.ac = ac;
+        mBuilder = new MaterialDialog.Builder(ac);
+        mMaterialDialog =  mBuilder.title(title)
+                .canceledOnTouchOutside(false)
+                .content(ac.getResources().getString(R.string.waitting))
+                .progress(true, 0)
+                .show();
+    }
+
+    public MaterialDialog connectDialog(Activity ac,String title,String context) {
+        this.ac = ac;
+        mBuilder = new MaterialDialog.Builder(ac);
+        mMaterialDialog =  mBuilder.title(title)
+                .canceledOnTouchOutside(false)
+                .content(context)
+                .progress(true, 0)
+                .show();
+        return mMaterialDialog;
+    }
+
+    public void chooesDialog(Activity ac,String title) {
+        this.ac = ac;
+        mBuilder = new MaterialDialog.Builder(ac);
+        mMaterialDialog =  mBuilder.title(title)
+                .canceledOnTouchOutside(false)
+                .content(ac.getResources().getString(R.string.waitting))
+                .progress(true, 0)
+                .show();
+    }
+
+    public void sexDialog(final Activity ac, final DialogClickListener listener){
+        this.ac = ac;
+        mBuilder = new MaterialDialog.Builder(ac);
+        mMaterialDialog = new MaterialDialog.Builder(ac)
+                .customView(R.layout.dialog_sex,false)
+                .show();
+        final RadioGroup rg = (RadioGroup) mMaterialDialog.findViewById(R.id.ra_sex);
+        Button btnOk = (Button) mMaterialDialog.findViewById(R.id.btn_ok);
+        Button btnCancle = (Button) mMaterialDialog.findViewById(R.id.btn_cancel);
+        btnCancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mMaterialDialog.dismiss();
+            }
+        });
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (rg.getCheckedRadioButtonId() == R.id.male){
+                    listener.clickYes("0");
+                }else{
+                    listener.clickYes("1");
+                }
+
+            }
+        });
+    }
+
+    public void loopDialog(final Activity ac,View view){
+        this.ac = ac;
+        mBuilder = new MaterialDialog.Builder(ac);
+        mMaterialDialog = new MaterialDialog.Builder(ac)
+                .customView(R.layout.dialog_loop,false)
+                .show();
+    }
+
+
+}

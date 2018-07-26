@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00ffffff"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/popupwindow_top" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_popupwindow_connect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/popupwindow_connect_bg"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="@dimen/x80"
+            android:layout_height="@dimen/y80"
+            android:src="@mipmap/ico_popupwindow_connect" />
+
+        <TextView
+            style="@style/text_style"
+            android:text="@string/road_live_connectdrive"
+            android:textSize="@dimen/x60" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_popupwindow_disconnect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/popupwindow_connect_bg"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="@dimen/x80"
+            android:layout_height="@dimen/y80"
+            android:src="@mipmap/ico_popupwindow_disonnect" />
+
+        <TextView
+            style="@style/text_style"
+            android:text="@string/road_live_unconnect"
+            android:textSize="@dimen/x60" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_popupwindow_mode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/popupwindow_connect_bg"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="@dimen/x80"
+            android:layout_height="@dimen/y80"
+            android:src="@mipmap/ico_popupwindow_mode" />
+
+        <TextView
+            style="@style/text_style"
+            android:text="@string/road_live_live_action_mode"
+            android:textSize="@dimen/x60" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/popupwindow_bottom" >
+    </LinearLayout>
+
+</LinearLayout>

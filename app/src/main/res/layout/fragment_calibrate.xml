@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/main_background"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/y25"
+        android:text="@string/choose_camera"
+        android:textColor="@color/white"
+        android:textSize="@dimen/y45"
+        />
+
+    <com.vispect.android.vispect_g2_app.ui.widget.MoScroller
+        android:background="@color/main_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <com.vispect.android.vispect_g2_app.ui.widget.MoListview
+        android:id="@+id/list_select_camera"
+        android:divider="@null"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    </com.vispect.android.vispect_g2_app.ui.widget.MoScroller>
+
+
+</LinearLayout>

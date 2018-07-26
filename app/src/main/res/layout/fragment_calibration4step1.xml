@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/calibration4fragment"
+    android:background="@color/main_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.vispect.android.vispect_g2_app.ui.widget.MoScroller
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_marginBottom="@dimen/y55"
+            android:layout_marginTop="@dimen/y25"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y50"
+                android:background="@color/background"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/x50"
+                android:paddingRight="@dimen/x50">
+
+                <TextView
+                    android:id="@+id/tv_mine_userifo_tips1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y30"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center"
+                    android:text="@string/user_info_edit_tips1"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/x40" />
+                <!--必填项的标题-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y30"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/bg_calibration_small_title_new"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="@string/required"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/x50" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+
+                <!--国家省份城市-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:textSize="@dimen/y35"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/x20"
+                        android:gravity="left"
+                        android:minWidth="@dimen/x350"
+                        android:text="@string/region"
+                        android:textColor="@color/white"
+                          />
+
+                    <TextView
+                        android:id="@+id/tv_region"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/x20"
+                        android:background="@mipmap/textfield_focused_holo_light"
+                        android:minWidth="@dimen/x500"
+                        android:textColor="@color/text_color_default"
+                        android:textSize="@dimen/y35" />
+                </LinearLayout>
+
+                <!--车的年份-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/x20"
+                        android:gravity="left"
+                        android:minWidth="@dimen/x350"
+                        android:text="@string/car_year"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/y35"/>
+
+                    <TextView
+                        android:id="@+id/tv_car_year"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/x20"
+                        android:background="@mipmap/textfield_focused_holo_light"
+                        android:maxLength="4"
+                        android:minWidth="@dimen/x500"
+                        android:textColor="@color/text_color_default"
+                        android:textSize="@dimen/y35"/>
+                </LinearLayout>
+
+                <!--车的品牌-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/x20"
+                        android:gravity="left"
+                        android:minWidth="@dimen/x350"
+                        android:text="@string/select_brand_title"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/y35"/>
+
+                    <EditText
+                        android:id="@+id/edt_car_brand"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/x20"
+                        android:background="@mipmap/textfield_focused_holo_light"
+                        android:editable="false"
+                        android:minWidth="@dimen/x500"
+                        android:textColor="@color/text_color_default"
+                        android:textSize="@dimen/y35"/>
+                </LinearLayout>
+
+                <!--   车的型号-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/x20"
+                        android:gravity="left"
+                        android:minWidth="@dimen/x350"
+                        android:text="@string/select_model_title"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/y35"/>
+
+                    <EditText
+                        android:id="@+id/edt_car_model"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/x20"
+                        android:background="@mipmap/textfield_focused_holo_light"
+                        android:editable="false"
+                        android:minWidth="@dimen/x500"
+                        android:textColor="@color/text_color_default"
+                        android:textSize="@dimen/y35"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:background="@color/background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y75"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/x50"
+                android:paddingRight="@dimen/x50">
+
+
+                <!--选填项的标题-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/bg_calibration_small_title_new"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="@string/optional"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/x50" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/y20"
+                    android:layout_marginTop="@dimen/y50"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/x20"
+                        android:drawableBottom="@color/textColor"
+                        android:text="@string/calibration4list_step1_context"
+                        android:textSize="@dimen/y35"/>
+
+                    <TextView
+                        android:id="@+id/select_install"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x170"
+                        android:background="@mipmap/textfield_focused_holo_light"
+                        android:drawableBottom="@color/textColor"
+                        android:minWidth="@dimen/x500"
+                        android:text="@string/calibration4list_step1_context3"
+                        android:textColor="@color/text_color_default"
+                        android:textSize="@dimen/y35"/>
+
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </com.vispect.android.vispect_g2_app.ui.widget.MoScroller>
+
+
+    <LinearLayout
+        android:id="@+id/ll_mask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#55ffffff"
+        android:orientation="vertical"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
+        android:id="@+id/select_year"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/black"
+            />
+
+        <RelativeLayout
+            android:paddingBottom="@dimen/y50"
+            android:layout_marginTop="@dimen/y50"
+            android:paddingLeft="@dimen/y50"
+            android:paddingRight="@dimen/y50"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:textSize="@dimen/x40"
+                android:id="@+id/btn_cancle"
+                android:background="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="cancle" />
+
+            <Button
+                android:textSize="@dimen/x40"
+                android:id="@+id/btn_get"
+                android:background="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="confirm"
+                android:textColor="@color/color_title_bar" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/black"
+            />
+
+        <com.weigan.loopview.LoopView
+            android:id="@+id/loopView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="bottom"
+            app:awv_centerTextColor="@color/color_title_bar"
+            app:awv_outerTextColor="@color/black"
+            app:awv_textsize="20" />
+
+    </LinearLayout>
+
+</FrameLayout>

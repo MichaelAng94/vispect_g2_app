@@ -1,0 +1,951 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_new">
+
+    <include layout="@layout/include_title">
+
+    </include>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:padding="@dimen/x50"
+                android:layout_marginTop="@dimen/y50">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/driving_behavior_configurtion_tips"
+                    android:textSize="@dimen/x42"
+                    android:textColor="@color/table_check"/>
+
+
+                <!--  DVR参数配置 -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="@dimen/x40"
+                        android:layout_height="@dimen/y40"
+                        android:src="@mipmap/img_dot_bllue"
+                        android:layout_marginTop="@dimen/y20"/>
+                    <TextView
+                        android:id="@+id/tv_engineering_model_dvr_configuration_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x50"
+                        android:textColor="@color/text_color_default"
+                        android:text="@string/engineering_model_dvr_configuration_title"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x48"
+                        android:text="@string/engineering_model_dvr_configuration_draw_adas"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_dvr_configuration_draw_adas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x48"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x48"
+                            android:text="[0:no 1:yes]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x48"
+                        android:text="@string/engineering_model_dvr_configuration_condense_level"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_dvr_configuration_condense_level"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x48"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x48"
+                            android:text="[1~5]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_color_default"
+                    android:textSize="@dimen/x42"
+                    android:text="(1:64Kb/s 2:256Kb/s 3:512Kb/s 4:1Mb 5:2Mb/s)"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x48"
+                        android:text="@string/engineering_model_dvr_configuration_recording_ldw"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_dvr_configuration_recording_ldw"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x48"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x48"
+                            android:text="[0:no 1:yes]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x48"
+                        android:text="@string/engineering_model_dvr_configuration_recording_hmw"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_dvr_configuration_recording_hmw"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x48"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x48"
+                            android:text="[0:no 1:yes]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x48"
+                        android:text="@string/engineering_model_dvr_configuration_recording_fcw"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_dvr_configuration_recording_fcw"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x48"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x48"
+                            android:text="[0:no 1:yes]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x48"
+                        android:text="@string/engineering_model_dvr_configuration_recording_pdw"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_dvr_configuration_recording_pdw"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x48"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x48"
+                            android:text="[0:no 1:yes]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+          <!--  GPS和SENSER参数配置-->
+
+                      <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:padding="@dimen/x50"
+                android:layout_marginTop="@dimen/y50">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="@dimen/x40"
+                        android:layout_height="@dimen/y40"
+                        android:src="@mipmap/img_dot_bllue"
+                        android:layout_marginTop="@dimen/y20"/>
+                    <TextView
+                        android:id="@+id/tv_engineering_model_gps_and_senser_configuration_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x50"
+                        android:textColor="@color/text_color_default"
+                        android:text="@string/engineering_model_gps_and_senser_configuration_title"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x48"
+                        android:text="@string/engineering_model_gps_and_senser_configuration_sensor_sampling_frequency"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_gps_and_senser_configuration_sensor_sampling_frequency"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x48"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="5"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x48"
+                            android:text="[0~100]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:visibility="gone">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x48"
+                        android:text="@string/engineering_model_gps_and_senser_configuration_gps_sampling_frequency"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_gps_and_senser_configuration_gps_sampling_frequency"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x48"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="5"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x48"
+                            android:text="[0~100]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x48"
+                        android:text="@string/engineering_model_gps_and_senser_configuration_gps_upload_interva"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_gps_and_senser_configuration_gps_upload_interva"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x48"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="5"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x48"
+                            android:text="[0~65535]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_color_default"
+                    android:textSize="@dimen/x42"
+                    android:text="@string/gps_upload_interva_tips"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x48"
+                        android:text="@string/engineering_model_gps_and_senser_configuration_senser_upload_interva"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_gps_and_senser_configuration_senser_upload_interva"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x48"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="5"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x48"
+                            android:text="[0~65535]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+                          <TextView
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:textColor="@color/text_color_default"
+                              android:textSize="@dimen/x42"
+                              android:text="@string/sensor_upload_interva_tips"/>
+
+            </LinearLayout>
+
+
+         <!--  ADAS提醒参数配置-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:padding="@dimen/x50"
+                android:layout_marginTop="@dimen/y50">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="@dimen/x40"
+                        android:layout_height="@dimen/y40"
+                        android:src="@mipmap/img_dot_bllue"
+                        android:layout_marginTop="@dimen/y20"/>
+                    <TextView
+                        android:id="@+id/tv_engineering_model_adas_alarm_configuration_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x50"
+                        android:textColor="@color/text_color_default"
+                        android:text="@string/engineering_model_adas_alarm_configuration_title"/>
+
+                </LinearLayout>
+
+
+                <!--TTC时间设置-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x48"
+                        android:text="@string/engineering_model_adas_alarm_configuration_ttc_war_time_valve"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_adas_alarm_ttc_war_time_valve"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x48"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x48"
+                            android:text="[10~50]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_color_default"
+                    android:textSize="@dimen/x42"
+                    android:text="@string/ttc_war_time_valve_tips"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x48"
+                        android:text="@string/engineering_model_adas_alarm_configuration_car_slide_back_level"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_adas_alarm_car_slide_back_level"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x48"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x48"
+                            android:text="[0~5]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_color_default"
+                    android:textSize="@dimen/x42"
+                    android:text="@string/car_slide_back_level_tips"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x48"
+                        android:text="@string/engineering_model_adas_alarm_configuration_before_car_start_up_level"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_adas_alarm_before_car_start_up_level"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x48"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x48"
+                            android:text="[0~5]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_color_default"
+                    android:textSize="@dimen/x42"
+                    android:text="@string/car_start_up_level_tips"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x48"
+                        android:text="@string/engineering_model_adas_alarm_configuration_hmw_model"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_adas_alarm_hmw_model"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x48"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x48"
+                            android:text="[0~1]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_color_default"
+                    android:textSize="@dimen/x42"
+                    android:text="@string/hmw_model_tips"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x48"
+                        android:text="@string/engineering_model_adas_alarm_configuration_left_car_model"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_adas_alarm_left_car_model"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x48"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x48"
+                            android:text="[0~1]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_color_default"
+                    android:textSize="@dimen/x42"
+                    android:text="@string/left_car_model_tips"/>
+
+            </LinearLayout>
+
+
+            <!--驾驶行为参数配置-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:padding="@dimen/x50"
+                android:layout_marginTop="@dimen/y50">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="@dimen/x40"
+                        android:layout_height="@dimen/y40"
+                        android:src="@mipmap/img_dot_bllue"
+                        android:layout_marginTop="@dimen/y20"/>
+                    <TextView
+                        android:id="@+id/tv_engineering_model_driving_behavior_configuration_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x50"
+                        android:textColor="@color/text_color_default"
+                        android:text="@string/engineering_model_driving_behavior_configuration_title"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x48"
+                        android:text="@string/engineering_model_driving_behavior_configuration_event_input_model"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_driving_behavior_event_input_model"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x48"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x48"
+                            android:text="[0~3]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_color_default"
+                    android:textSize="@dimen/x42"
+                    android:text="@string/event_input_model_tips"/>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x48"
+                        android:text="@string/engineering_model_driving_behavior_configuration_senser_input_model"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_driving_behavior_senser_input_model"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x48"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x48"
+                            android:text="[0~3]"
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_color_default"
+                    android:textSize="@dimen/x42"
+                    android:text="@string/senser_input_model_tips"/>
+
+            </LinearLayout>
+
+            <!--UUID配置-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:padding="@dimen/x50"
+                android:layout_marginTop="@dimen/y50">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="@dimen/x40"
+                        android:layout_height="@dimen/y40"
+                        android:src="@mipmap/img_dot_bllue"
+                        android:layout_marginTop="@dimen/y20"/>
+                    <TextView
+                        android:id="@+id/tv_engineering_model_uuid_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x50"
+                        android:textColor="@color/text_color_default"
+                        android:text="UUID"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x48"
+                        android:text="UUID:"
+                        android:textColor="@color/text_color_default"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edit_uuid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:clickable="false"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:textSize="@dimen/x48"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="10"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/x48"
+                            android:text=""
+                            android:textColor="@color/text_color_default"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_buttom"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:orientation="vertical"></LinearLayout>
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+</LinearLayout>

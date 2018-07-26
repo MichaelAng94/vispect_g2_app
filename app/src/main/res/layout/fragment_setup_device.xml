@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_new">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+           <!-- 设备名称和密码-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/y50">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="@dimen/x20"
+                    android:layout_marginLeft="@dimen/x50"
+                    android:layout_marginTop="@dimen/y50"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="@dimen/x30"
+                        android:layout_height="@dimen/y30"
+                        android:src="@mipmap/img_dot_bllue"
+                        android:layout_marginTop="@dimen/y20"
+                        android:layout_marginRight="@dimen/x20"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x50"
+                        android:textColor="@color/text_color_calendar_number"
+                        android:text="@string/setting_parmater_edit_ble_name"/>
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/edit_parameters_ble_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y150"
+                    android:layout_marginLeft="@dimen/x50"
+                    android:layout_marginRight="@dimen/x50"
+                    android:hint="@string/setting_drive_setting_hint"
+                    android:background="@null"
+                    android:maxLines="1"
+                    android:textSize="@dimen/x48"
+                    android:textColor="@color/text_color_default"
+                    android:maxLength="24"/>
+                <View style="@style/h_divider"
+                    android:layout_marginBottom="1px"
+                    android:layout_marginLeft="@dimen/x50"/>
+
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/y50"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/x50"
+                    android:paddingRight="@dimen/x20"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="@dimen/x30"
+                        android:layout_height="@dimen/y30"
+                        android:src="@mipmap/img_dot_bllue"
+                        android:layout_marginTop="@dimen/y20"
+                        android:layout_marginRight="@dimen/x20"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/x50"
+                        android:textColor="@color/text_color_calendar_number"
+                        android:text="@string/setting_parmater_edit_ble_pas"/>
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/edit_parameters_ble_pas"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y150"
+                    android:layout_marginLeft="@dimen/x50"
+                    android:layout_marginRight="@dimen/x50"
+                    android:hint="@string/setting_drive_setting_hint"
+                    android:maxLines="1"
+                    android:textColor="@color/text_color_default"
+                    android:textSize="@dimen/x48"
+                    android:background="@null" />
+                <View style="@style/h_divider"
+                    android:layout_marginBottom="1px"
+                    android:layout_marginLeft="@dimen/x50"/>
+
+            </LinearLayout>
+
+
+
+       <!--     wifi名称和密码-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:layout_marginTop="@dimen/y50">
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/y50"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/x50"
+                android:paddingRight="@dimen/x20"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="@dimen/x30"
+                    android:layout_height="@dimen/y30"
+                    android:src="@mipmap/img_dot_bllue"
+                    android:layout_marginTop="@dimen/y20"
+                    android:layout_marginRight="@dimen/x20"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/x50"
+                    android:textColor="@color/text_color_calendar_number"
+                    android:text="@string/setting_parmater_edit_wifi_name"/>
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/edit_parameters_wifi_name"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y150"
+                android:layout_marginLeft="@dimen/x50"
+                android:layout_marginRight="@dimen/x50"
+                android:hint="@string/setting_drive_setting_hint"
+                android:textColor="@color/text_color_default"
+                android:textSize="@dimen/x48"
+                android:background="@null"
+                android:maxLines="1"
+                android:maxLength="24"/>
+
+            <View style="@style/h_divider"
+                android:layout_marginBottom="1px"
+                android:layout_marginLeft="@dimen/x50"/>
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/y50"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/x50"
+                android:paddingRight="@dimen/x20"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="@dimen/x30"
+                    android:layout_height="@dimen/y30"
+                    android:src="@mipmap/img_dot_bllue"
+                    android:layout_marginTop="@dimen/y20"
+                    android:layout_marginRight="@dimen/x20"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/x50"
+                    android:textColor="@color/text_color_calendar_number"
+                    android:text="@string/setting_parmater_edit_wifi_pas"/>
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/edit_parameters_wifi_pas"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y150"
+                android:layout_marginLeft="@dimen/x50"
+                android:layout_marginRight="@dimen/x50"
+                android:hint="@string/setting_drive_setting_hint"
+                android:background="@null"
+                android:textColor="@color/text_color_default"
+                android:textSize="@dimen/x48"
+                android:maxLines="1"/>
+            <View style="@style/h_divider"
+                android:layout_marginBottom="1px"
+                android:layout_marginLeft="@dimen/x50"/>
+        </LinearLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/ll_buttom"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:orientation="vertical"></LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

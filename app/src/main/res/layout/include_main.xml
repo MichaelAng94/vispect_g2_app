@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.vispect.android.vispect_g2_app.ui.widget.MoRelative
+            android:id="@+id/menu_user_guide"
+            android:clickable="true"
+            android:background="@drawable/ripple_bg"
+            android:layout_margin="@dimen/x30"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/x450"
+            android:layout_weight="1"
+            >
+
+            <RelativeLayout
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/img_user_guide"
+                    android:layout_width="@dimen/x135"
+                    android:layout_height="@dimen/y135"
+                    android:src="@mipmap/user_guide"
+                    />
+
+                <TextView
+                    android:layout_below="@id/img_user_guide"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/user_guide"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/x50"
+                    />
+
+            </RelativeLayout>
+
+        </com.vispect.android.vispect_g2_app.ui.widget.MoRelative>
+
+        <com.vispect.android.vispect_g2_app.ui.widget.MoRelative
+            android:clickable="true"
+            android:id="@+id/menu_installation"
+            android:background="@drawable/ripple_bg"
+            android:layout_margin="@dimen/x30"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/x450"
+            android:layout_weight="1"
+            >
+
+            <RelativeLayout
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/img_installation"
+                    android:layout_width="@dimen/x135"
+                    android:layout_height="@dimen/y135"
+                    android:src="@mipmap/installation"
+                    />
+
+                <TextView
+                    android:layout_below="@id/img_installation"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/insatllation"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/x50"
+                    />
+
+            </RelativeLayout>
+
+        </com.vispect.android.vispect_g2_app.ui.widget.MoRelative>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.vispect.android.vispect_g2_app.ui.widget.MoRelative
+            android:clickable="true"
+            android:background="@drawable/ripple_bg"
+            android:layout_margin="@dimen/x30"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/x450"
+            android:layout_weight="1"
+            android:id="@+id/menu_settings"
+            >
+
+            <RelativeLayout
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/img_setting"
+                    android:layout_width="@dimen/x135"
+                    android:layout_height="@dimen/y135"
+                    android:src="@mipmap/settings"
+                    />
+
+                <TextView
+                    android:layout_below="@id/img_setting"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/x50"
+                    />
+
+            </RelativeLayout>
+
+        </com.vispect.android.vispect_g2_app.ui.widget.MoRelative>
+
+        <com.vispect.android.vispect_g2_app.ui.widget.MoRelative
+            android:id="@+id/menu_live"
+            android:clickable="true"
+            android:background="@drawable/ripple_bg"
+            android:layout_margin="@dimen/x30"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/x450"
+            android:layout_weight="1"
+            >
+
+            <RelativeLayout
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/img_live"
+                    android:layout_width="@dimen/x115"
+                    android:layout_height="@dimen/y115"
+                    android:src="@mipmap/live"
+                    />
+
+                <TextView
+                    android:layout_below="@id/img_live"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/live"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/x50"
+                    />
+
+            </RelativeLayout>
+
+        </com.vispect.android.vispect_g2_app.ui.widget.MoRelative>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.vispect.android.vispect_g2_app.ui.widget.MoRelative
+            android:clickable="true"
+            android:background="@drawable/ripple_bg"
+            android:layout_margin="@dimen/x30"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/x450"
+            android:layout_weight="1"
+            android:id="@+id/menu_video"
+            >
+
+            <RelativeLayout
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/img_video"
+                    android:layout_width="@dimen/x135"
+                    android:layout_height="@dimen/y135"
+                    android:src="@mipmap/video_archil"
+                    />
+
+                <TextView
+                    android:layout_below="@id/img_video"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/video_archivews"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/x50"
+                    />
+
+            </RelativeLayout>
+
+        </com.vispect.android.vispect_g2_app.ui.widget.MoRelative>
+
+        <com.vispect.android.vispect_g2_app.ui.widget.MoRelative
+            android:clickable="true"
+            android:visibility="invisible"
+            android:background="@drawable/ripple_bg"
+            android:layout_margin="@dimen/x30"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/x450"
+            android:layout_weight="1"
+            >
+
+            <TextView
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="13511"
+                />
+
+        </com.vispect.android.vispect_g2_app.ui.widget.MoRelative>
+
+    </LinearLayout>
+
+</LinearLayout>

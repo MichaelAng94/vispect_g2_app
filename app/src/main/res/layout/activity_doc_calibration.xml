@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        app:contentInsetStart="5dp"
+        android:padding="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y115"
+        android:background="@color/background">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_margin="0dp"
+                android:layout_centerVertical="true"
+                android:id="@+id/img_back_main"
+                android:layout_width="@dimen/x60"
+                android:layout_height="@dimen/y60"
+                android:layout_alignParentLeft="true"
+                android:src="@mipmap/ico_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="G2"
+                android:id="@+id/tv_title"
+                android:textColor="@color/white"
+                android:textSize="@dimen/y45" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <com.github.barteksc.pdfviewer.PDFView
+        android:id="@+id/pdfView"
+        android:background="@color/hintColor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+
+
+
+</LinearLayout>

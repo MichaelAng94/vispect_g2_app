@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y151"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/x50" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y150"
+            android:gravity="center_vertical" >
+
+            <CheckBox
+                android:id="@+id/checkischeck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:button="@mipmap/radio" />
+
+            <TextView
+                android:id="@+id/tv_item_video_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_toRightOf="@id/checkischeck"
+                android:text="2016-03-21-11:37"
+                android:textColor="@color/text_color_default"
+                android:textSize="@dimen/x48" />
+             <ImageView
+                 android:id="@+id/iv_item_video_lock"
+                android:layout_width="@dimen/x60"
+                android:layout_height="@dimen/y60"
+                android:layout_toRightOf="@id/tv_item_video_time"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x40"
+                android:src="@mipmap/ico_lock" />
+
+            <ImageView
+                android:id="@+id/iv_video_play"
+                android:layout_width="@dimen/x100"
+                android:layout_height="@dimen/y100"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x80"
+                android:src="@mipmap/ico_play_videos" />
+        </RelativeLayout>
+
+        <View
+            style="@style/h_divider" />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/downloadr_progress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_alignParentBottom="true"
+        android:max="100"
+        android:progressDrawable="@mipmap/volume_seekbar"
+        android:visibility="gone"/>
+
+</LinearLayout>

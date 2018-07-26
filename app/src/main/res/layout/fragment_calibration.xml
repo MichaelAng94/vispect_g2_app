@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_new">
+
+    <include
+        android:id="@+id/calibratione_new_title"
+        layout="@layout/include_title" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y728"
+                    android:src="@mipmap/ico_goto" />
+            </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y50"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_center_calibrationing_bigtips"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/x48"
+                android:textColor="@color/text_color_default"
+                android:text="@string/calibration_stop9_1"
+                android:paddingLeft="@dimen/x50"
+                android:paddingRight="@dimen/x50"/>
+
+            <RelativeLayout
+                android:id="@+id/rel_correcting_progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/x50"
+                android:layout_marginBottom="@dimen/x30"
+                android:paddingLeft="@dimen/x50"
+                android:paddingRight="@dimen/x50"
+                android:visibility="gone">
+
+
+                <TextView
+                    android:id="@+id/tv_correcting_progress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/table_check"
+                    android:textSize="@dimen/x30"/>
+                <ProgressBar
+                    android:id="@+id/correcting_progress"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp"
+                    android:layout_alignParentBottom="true"
+                    android:max="100"
+                    android:progressDrawable="@mipmap/volume_seekbar"
+                    android:layout_below="@id/tv_correcting_progress"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_center_calibrationing_tips"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/x50"
+                android:textColor="@color/table_check"
+                android:text="@string/center_calibrationing_tips"
+                android:gravity="center"
+                android:visibility="gone"/>
+
+
+            <Button
+                android:id="@+id/btn_start_correcting"
+                android:layout_width="@dimen/x1000"
+                android:layout_height="@dimen/y150"
+                android:layout_marginTop="@dimen/y50"
+                android:layout_marginBottom="@dimen/y10"
+                android:layout_gravity="center_horizontal"
+                android:textSize="@dimen/x50"
+                android:background="@mipmap/btn_sign_out"
+                android:text="@string/calibration_start_correcting"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</LinearLayout>

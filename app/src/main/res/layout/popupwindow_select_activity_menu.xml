@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/x2"
+    android:paddingRight="@dimen/x2">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y150"
+        android:background="@mipmap/bg_updata_avatar_1"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mine_show_activity_titile"
+            android:gravity="center"
+            android:textSize="@dimen/x50"
+            android:textColor="@color/text_color_calendar_number" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y3"
+        android:background="@color/text_color_default"
+        android:gravity="center" >
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_menua"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y150"
+        android:background="@mipmap/bg_updata_avatar_2"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_menua"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mine_show_activity_v"
+            android:gravity="center"
+            android:textColor="@color/text_color_default"
+            android:textSize="@dimen/x48"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y3"
+        android:background="@color/text_color_default"
+        android:gravity="center" >
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_menub"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y150"
+        android:background="@mipmap/bg_updata_avatar_2"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_menub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mine_show_activity_v"
+            android:gravity="center"
+            android:textColor="@color/text_color_default"
+            android:textSize="@dimen/x48"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linb"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y3"
+        android:background="@color/text_color_default"
+        android:gravity="center" />
+
+    <LinearLayout
+        android:id="@+id/ll_menuc"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y150"
+        android:background="@mipmap/bg_updata_avatar_2"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/tv_menuc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/mine_show_activity_s"
+            android:textColor="@color/text_color_default"
+            android:gravity="center"
+            android:textSize="@dimen/x48" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y3"
+        android:background="@color/text_color_default"
+        android:gravity="center" >
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_menud"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y150"
+        android:background="@mipmap/bg_updata_avatar_2"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/tv_menud"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/mine_show_activity_s"
+            android:textColor="@color/text_color_default"
+            android:gravity="center"
+            android:textSize="@dimen/x48" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y20"
+        android:background="@color/text_color_default"
+        android:gravity="center" >
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_popuwindow_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y150"
+        android:background="@mipmap/bg_updata_avatar_last"
+        android:gravity="center" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            android:textColor="@color/text_color_calendar_number"
+            android:gravity="center"
+            android:textSize="@dimen/x50" />
+    </LinearLayout>
+
+</LinearLayout>

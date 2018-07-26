@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.vispect.android.vispect_g2_app.ui.widget.MoScroller
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        >
+
+        <LinearLayout
+            android:paddingLeft="@dimen/y50"
+            android:paddingRight="@dimen/y50"
+            android:paddingTop="@dimen/y70"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/x50"
+                android:textColor="@color/black"
+                android:text="@string/calibration4_step9_context2"
+                android:layout_centerInParent="true"/>
+
+            <TextView
+                android:textSize="@dimen/y35"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColor"
+                android:text="@string/calibration4_step9_context3"
+                android:layout_centerInParent="true"/>
+
+            <Button
+                android:textColor="@color/white"
+                android:textSize="@dimen/x50"
+                android:layout_marginTop="@dimen/y60"
+                android:background="@mipmap/btn_check"
+                android:id="@+id/btn_angle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y140"
+                android:text="@string/calibration4_step9_context4"
+                />
+
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/speedlin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@color/black"
+                    android:layout_marginTop="@dimen/y60"
+                    android:layout_marginBottom="@dimen/y40"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/x50"
+                    android:textColor="@color/black"
+                    android:text="@string/calibration4_step9_context5"
+                    />
+
+
+                <TextView
+                    android:layout_marginBottom="@dimen/y50"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_title_bar"
+                    android:text="@string/calibration4_step9_context6"
+                    />
+
+                <TextView
+                    android:textSize="@dimen/y35"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColor"
+                    android:text="@string/calibration4_step9_context7"
+                    android:layout_centerInParent="true"/>
+
+                <Button
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/x50"
+                    android:layout_marginTop="@dimen/y60"
+                    android:background="@mipmap/btn_check"
+                    android:id="@+id/btn_speed"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y140"
+                    android:text="@string/calibration4_step9_context8"
+                    />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+    </com.vispect.android.vispect_g2_app.ui.widget.MoScroller>
+</FrameLayout>

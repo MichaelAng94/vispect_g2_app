@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawerlayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_background"
+        android:orientation="vertical"
+       >
+
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y115"
+            android:background="@color/background">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/img_useredit"
+                    android:layout_width="@dimen/x60"
+                    android:layout_height="@dimen/y60"
+                    android:layout_alignParentLeft="true"
+                    android:src="@mipmap/user_edit" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="G2"
+                    android:id="@+id/tv_title"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/y45" />
+
+                <ImageView
+                    android:tint="@color/white"
+                    android:id="@+id/img_connect"
+                    android:layout_width="@dimen/x60"
+                    android:layout_height="@dimen/y60"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/x50"
+                    android:src="@drawable/disconnect" />
+
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+        <com.vispect.android.vispect_g2_app.ui.widget.MoScroller
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include layout="@layout/include_main" />
+
+        </com.vispect.android.vispect_g2_app.ui.widget.MoScroller>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:clickable="true"
+        android:id="@+id/re_side"
+        android:layout_width="@dimen/x710"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:background="@color/hintColor"
+        android:choiceMode="singleChoice"
+        android:orientation="vertical"
+        android:focusable="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y580"
+            android:background="@color/background">
+
+            <ImageView
+                android:id="@+id/img_head"
+                android:layout_width="@dimen/x330"
+                android:layout_height="@dimen/y330"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="@dimen/y20"
+                android:src="@drawable/ico_mine_avatar" />
+
+            <TextView
+                android:id="@+id/tv_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/img_head"
+                android:layout_centerHorizontal="true"
+                android:text="User_name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/y60" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:clickable="true"
+            android:background="@drawable/ripple_bg2"
+            android:layout_marginTop="@dimen/y40"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y160">
+
+            <ImageView
+                android:layout_marginLeft="@dimen/x35"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_width="@dimen/x65"
+                android:layout_height="@dimen/y65"
+                android:src="@drawable/phone"
+                />
+
+            <TextView
+                android:id="@+id/tv_tel"
+                android:layout_marginRight="@dimen/x35"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/textColor"
+                android:text="13859022862"
+                android:textSize="@dimen/y50"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:clickable="true"
+            android:background="@drawable/ripple_bg2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y160">
+
+            <ImageView
+                android:layout_marginLeft="@dimen/x35"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_width="@dimen/x65"
+                android:layout_height="@dimen/y65"
+                android:src="@drawable/email"
+                />
+
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_marginRight="@dimen/x35"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/textColor"
+                android:text="email"
+                android:textSize="@dimen/y50"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:clickable="true"
+            android:background="@drawable/ripple_bg2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y160">
+
+            <ImageView
+                android:layout_marginLeft="@dimen/x35"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_width="@dimen/x65"
+                android:layout_height="@dimen/y65"
+                android:src="@drawable/sex"
+                />
+
+            <TextView
+                android:id="@+id/tv_sex"
+                android:layout_marginRight="@dimen/x35"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/textColor"
+                android:text="Male"
+                android:textSize="@dimen/y50"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/y40"
+            android:clickable="true"
+            android:background="@drawable/ripple_bg2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y160">
+
+            <TextView
+                android:layout_marginLeft="@dimen/x35"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="App"
+                android:textSize="@dimen/y50"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/tv_appVersion"
+                android:layout_marginRight="@dimen/x35"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/textColor"
+                android:text="1.5.3"
+                android:textSize="@dimen/y50"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/sign_out"
+            android:layout_marginTop="@dimen/y40"
+            android:clickable="true"
+            android:background="@drawable/ripple_bg2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y160">
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_centerInParent="true"
+               android:textSize="@dimen/y50"
+               android:textColor="@color/black"
+               android:text="Sign Out"
+               />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</android.support.v4.widget.DrawerLayout>

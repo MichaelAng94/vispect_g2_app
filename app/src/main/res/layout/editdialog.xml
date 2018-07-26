@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_margin="@dimen/y30"
+        android:id="@+id/tv_title_dialog"
+        android:layout_marginTop="@dimen/y30"
+        android:textSize="@dimen/y55"
+        android:textColor="@color/black"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone"
+        />
+
+    <EditText
+        android:id="@+id/et_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:textColor="@color/hint_bg"
+        android:background="@drawable/ripple_bg2"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/y50"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="@dimen/x80"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="cancel"
+        />
+
+    <Button
+        android:id="@+id/btn_ok"
+        android:textColor="@color/hint_bg"
+        android:background="@drawable/ripple_bg2"
+        android:layout_marginRight="@dimen/y50"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/x80"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ok"
+        />
+    </RelativeLayout>
+
+</LinearLayout>

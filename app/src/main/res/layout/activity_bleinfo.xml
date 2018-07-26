@@ -1,0 +1,21 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context="${relativePackage}.${activityClass}">
+
+    <ListView
+        android:background="@color/background"
+        android:id="@+id/list_setting_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y40"
+        android:divider="@null"
+        android:dividerHeight="0dp">
+    </ListView>
+    
+
+</LinearLayout>

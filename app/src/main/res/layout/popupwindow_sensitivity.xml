@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/x2"
+    android:paddingRight="@dimen/x2" >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y700"
+        android:background="@mipmap/bg_volume"
+        android:gravity="center"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/volume_low"
+            android:textSize="@dimen/x50"
+            android:textColor="@color/text_color_calendar_number"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <TextView
+                android:id="@+id/seekbar_level"
+                android:layout_width="@dimen/x70"
+                android:layout_height="@dimen/y82"
+                android:text="0"
+                android:gravity="center"
+                android:background="@mipmap/bg_bubble"
+                android:textSize="@dimen/x40"
+                android:textColor="@color/white"
+                android:layout_marginLeft="@dimen/x15"
+                android:layout_marginBottom="@dimen/y30"/>
+
+            <SeekBar
+
+                android:id="@+id/seekbar_sensitivity"
+                android:layout_width="@dimen/x700"
+                android:layout_height="wrap_content" 
+                android:progressDrawable="@mipmap/volume_seekbar"
+                android:maxHeight="@dimen/y12"
+                 android:minHeight="@dimen/y12"
+                android:thumb="@mipmap/ico_volume_slider"
+                android:indeterminate="false"
+                android:max="99"
+                android:layout_marginRight="@dimen/x10"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_marginBottom="@dimen/x50"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/volume_hight"
+            android:textColor="@color/text_color_calendar_number"
+            android:textSize="@dimen/x50"/>
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/table_check"
+        android:textSize="@dimen/x42"
+        android:text="@string/warning_setting_starting_speend_tips"
+        android:layout_marginLeft="@dimen/x30"/>
+    </LinearLayout>
+
+
+</LinearLayout>

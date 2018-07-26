@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/x2"
+    android:paddingRight="@dimen/x2">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y2"
+        android:background="@mipmap/line_volume"
+        android:gravity="center" >
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+
+     <!--   确定按钮-->
+        <LinearLayout
+            android:id="@+id/ll_popuwindow_savetophone"
+            android:layout_width="@dimen/x250"
+            android:layout_height="@dimen/y150"
+            android:layout_alignParentRight="true"
+            android:gravity="center" >
+
+            <TextView
+                android:layout_width="@dimen/x250"
+                android:layout_height="wrap_content"
+                android:text="OK"
+                android:textColor="@color/color_title_bar"
+                android:background="@mipmap/selector_video_mune"
+                android:gravity="center"
+                android:textSize="@dimen/x50" />
+        </LinearLayout>
+
+
+        <!--取消-->
+        <LinearLayout
+            android:id="@+id/ll_popuwindow_cancel"
+            android:layout_width="@dimen/x250"
+            android:layout_height="@dimen/y150"
+            android:layout_alignParentLeft="true"
+            android:gravity="center" >
+
+            <TextView
+                android:layout_width="@dimen/x250"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel"
+                android:textColor="@color/text_color_default"
+                android:background="@mipmap/selector_video_mune"
+                android:gravity="center"
+                android:textSize="@dimen/x50" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y3"
+        android:background="@color/text_color_default"
+        android:gravity="center" >
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_popuwindow_choosedate"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y350"
+        android:background="@color/white"
+        android:gravity="center" >
+        <com.vispect.android.vispect_g2_app.ui.widget.PickerView
+            android:id="@+id/pv_h"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y350" />
+
+    </LinearLayout>
+
+
+
+
+
+
+
+</LinearLayout>

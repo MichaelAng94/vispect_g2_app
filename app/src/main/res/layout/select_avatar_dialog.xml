@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="200dp">
+
+    <TextView
+        android:gravity="center"
+        android:background="@color/white"
+        android:padding="5dp"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Change Your Avatar"
+        android:textColor="@color/black"
+        android:textSize="@dimen/y50"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <View
+        android:background="@color/hint_bg"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <TextView
+        android:id="@+id/tv_takePhoto"
+        android:gravity="center"
+        android:background="@drawable/ripple_bg2"
+        android:padding="5dp"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Take Photo"
+        android:textSize="@dimen/y45"
+        android:clickable="true"
+        android:focusable="true"
+        />
+
+    <View
+        android:background="@color/hint_bg"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <TextView
+        android:id="@+id/tv_choosePhotos"
+        android:gravity="center"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/ripple_bg2"
+        android:padding="5dp"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Choose from Photos"
+        android:textSize="@dimen/y45"
+        />
+
+    <View
+        android:background="@color/hint_bg"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"/>
+
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:gravity="center"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/ripple_bg2"
+        android:textColor="@color/black"
+        android:padding="5dp"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Cancle"
+        android:textSize="@dimen/y50"
+        />
+
+</LinearLayout>

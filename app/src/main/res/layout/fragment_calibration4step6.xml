@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_new"
+    android:orientation="vertical">
+
+    <com.vispect.android.vispect_g2_app.ui.widget.MoScroller
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- 车辆信息部分-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y50"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/x50"
+                android:paddingRight="@dimen/x50">
+                <!--  长宽高-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <!--步骤2名-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/y100"
+                        android:layout_marginTop="@dimen/y100"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:background="@mipmap/bg_calibration_small_title_new"
+                            android:text="@string/calibration4_step6_context1"
+                            android:textColor="@color/table_check"
+                            android:textSize="@dimen/x50" />
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/calibration4_step6_context2"
+                        android:textColor="@color/text_color_calendar_number"
+                        android:textSize="@dimen/x40" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <!--宽高的设置-->
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/y30"
+                            android:gravity="center_horizontal">
+
+                            <ImageView
+                                android:id="@+id/iv_calibrqation_1"
+                                android:layout_width="@dimen/x700"
+                                android:layout_height="@dimen/y456"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginBottom="@dimen/y30"
+                                android:layout_marginTop="@dimen/y180"
+                                android:src="@mipmap/step8_1" />
+
+                            <!--右边的 高-->
+
+
+                            <!--上边的宽-->
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentTop="true"
+                                android:layout_centerHorizontal="true"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/vehicle_info_width"
+                                    android:textColor="@color/text_color_default"
+                                    android:textSize="@dimen/x48" />
+
+                                <EditText
+                                    android:id="@+id/edit_width"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@mipmap/textfield_focused_holo_light"
+                                    android:inputType="number"
+                                    android:maxLength="5"
+                                    android:selectAllOnFocus="true"
+                                    android:text="- -"
+                                    android:textColor="@color/table_check" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="mm"
+                                    android:textColor="@color/text_color_default"
+                                    android:textSize="@dimen/x40" />
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <!-- 偏移部分-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y70"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/x50"
+                android:paddingRight="@dimen/x50">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/y100"
+                    android:layout_marginTop="@dimen/y100"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:background="@mipmap/bg_calibration_small_title_new"
+                        android:text="@string/calibration4_step6_context4"
+                        android:textColor="@color/table_check"
+                        android:textSize="@dimen/x50" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/calibration4_step6_context5"
+                    android:textColor="@color/text_color_calendar_number"
+                    android:textSize="@dimen/x40" />
+
+                <TextView
+                    android:layout_marginTop="@dimen/y20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/calibration4_step6_context6"
+                    android:textColor="@color/text_color_calendar_number"
+                    android:textSize="@dimen/x40"/>
+
+                <!--步骤3_A说明-->
+
+
+                <!--步骤3_A设置（偏移）-->
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/ll_deviation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <!--偏移值-->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/calibration_deviation"
+                                android:textColor="@color/text_color_default"
+                                android:textSize="@dimen/x48" />
+
+                            <EditText
+                                android:id="@+id/edit_deviation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@mipmap/textfield_focused_holo_light"
+                                android:inputType="numberSigned"
+                                android:maxLength="5"
+                                android:selectAllOnFocus="true"
+                                android:text="- -"
+                                android:textColor="@color/table_check" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="mm"
+                                android:textColor="@color/text_color_default"
+                                android:textSize="@dimen/x40" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="@dimen/x700"
+                            android:layout_height="@dimen/x395"
+                            android:src="@mipmap/ico_adjustments_top" />
+
+
+                    </LinearLayout>
+
+                    <!--高度-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginTop="@dimen/y300"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="@string/calibration_height"
+                            android:textColor="@color/text_color_default"
+                            android:textSize="@dimen/x48" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/edit_height"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/x25"
+                                android:background="@mipmap/textfield_focused_holo_light"
+                                android:inputType="number"
+                                android:maxLength="5"
+                                android:selectAllOnFocus="true"
+                                android:text="- -"
+                                android:textColor="@color/table_check" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="mm"
+                                android:textColor="@color/text_color_default"
+                                android:textSize="@dimen/x40" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+                <!--步骤3_b说明-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y145"
+                    android:layout_marginTop="@dimen/y30"
+                    android:gravity="top|center_horizontal"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/x15"
+                        android:gravity="left"
+                        android:text="@string/calibration_tips_step3_b"
+                        android:textColor="@color/text_color_default"
+                        android:textSize="@dimen/x40" />
+
+
+                </LinearLayout>
+
+
+                <!--步骤3_b设置（深度）-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <!--深度-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x50"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/calibration_depth"
+                            android:textColor="@color/text_color_default"
+                            android:textSize="@dimen/x48" />
+
+                        <EditText
+                            android:id="@+id/edit_depth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@mipmap/textfield_focused_holo_light"
+                            android:inputType="number"
+                            android:maxLength="5"
+                            android:selectAllOnFocus="true"
+                            android:text="- -"
+
+                            android:textColor="@color/table_check" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="mm"
+                            android:textColor="@color/text_color_default"
+                            android:textSize="@dimen/x40" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="@dimen/x800"
+                        android:layout_height="@dimen/x374"
+                        android:src="@mipmap/ico_adjustments_bottom" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_buttom"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:orientation="vertical"></LinearLayout>
+
+        </LinearLayout>
+    </com.vispect.android.vispect_g2_app.ui.widget.MoScroller>
+
+
+</LinearLayout>

@@ -1,0 +1,72 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color_default"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context="${relativePackage}.${activityClass}"
+    android:id="@+id/ll_mian_table">
+
+    <include
+        layout="@layout/include_title"
+        android:id="@+id/title"
+        />
+
+    <LinearLayout
+        android:id="@+id/li"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/y20">
+
+        <Button
+            android:id="@+id/btn_setting_signout"
+            android:layout_width="@dimen/x1000"
+            android:layout_height="@dimen/y150"
+            android:text="@string/setting_singout"
+            android:textColor="@color/white"
+            android:textSize="@dimen/x50"
+            android:background="@mipmap/btn_login" />
+        <Button
+            android:id="@+id/btn_setting_login"
+            android:layout_width="@dimen/x1000"
+            android:layout_height="@dimen/y150"
+            android:text="@string/login"
+            android:textColor="@color/white"
+            android:textSize="@dimen/x50"
+            android:background="@mipmap/btn_login" />
+
+    </LinearLayout>
+
+    <com.vispect.android.vispect_g2_app.ui.widget.MoScroller
+        android:layout_marginTop="@dimen/y40"
+        android:layout_above="@id/li"
+        android:layout_below="@id/title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <com.vispect.android.vispect_g2_app.ui.widget.MoListview
+        android:id="@+id/list_setting_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:divider="@null"
+        android:dividerHeight="0dp">
+    </com.vispect.android.vispect_g2_app.ui.widget.MoListview>
+
+    </com.vispect.android.vispect_g2_app.ui.widget.MoScroller>
+
+
+    <LinearLayout
+        android:id="@+id/ll_mask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/bg_setting_volume_out"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+    </LinearLayout>
+</RelativeLayout>

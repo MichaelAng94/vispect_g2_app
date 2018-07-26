@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- <layer-list
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background" android:drawable="@mipmap/bg_volume_seekbar" />
+    <item android:id="@android:id/secondaryProgress">
+        <scale android:drawable="@mipmap/line_volume" android:scaleWidth="100%" />
+    </item>
+    <item android:id="@android:id/progress">
+        <scale android:drawable="@mipmap/line_volume" android:scaleWidth="100%" />
+    </item>
+</layer-list> -->
+<layer-list
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background" >
+        <shape>
+            <solid android:color="@color/text_color_default"/>
+            <corners android:radius="60dip" />
+        </shape>
+    </item>
+    <item android:id="@android:id/secondaryProgress">
+        <clip>
+            <shape>
+                <solid android:color="@color/text_color_default"/>
+                <corners android:radius="60dip" />
+            </shape>
+        </clip>
+    </item>
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <solid android:color="@color/text_color_default" />
+                <corners android:radius="60dip" />
+            </shape>
+        </clip>
+    </item>
+</layer-list>

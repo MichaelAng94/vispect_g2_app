@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/include_title"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <!--自检项-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/y50"
+                android:background="@color/white"
+                android:paddingLeft="@dimen/x50">
+
+                <!--T卡状态-->
+                <RelativeLayout
+                    android:id="@+id/rl_device_testing_model_tf_card_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y150"
+                    android:layout_gravity="center" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/x50"
+                        android:text="@string/device_testing_model_tf_card_status" />
+
+                    <TextView
+                        android:id="@+id/tv_device_testing_model_tf_card_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/y100"
+                        android:layout_marginRight="@dimen/x50"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/text_color_default"
+                        android:textSize="@dimen/x42"
+                        android:gravity="center_vertical"
+                        android:layout_centerVertical="true" />
+
+                </RelativeLayout>
+                <View style="@style/h_divider"
+                    android:layout_marginBottom="1px" />
+
+                <!--电池电压-->
+                <RelativeLayout
+                    android:id="@+id/rl_device_testing_model_battery"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y150"
+                    android:layout_gravity="center" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/x50"
+                        android:text="@string/device_testing_model_battery" />
+
+                    <TextView
+                        android:id="@+id/tv_device_testing_model_battery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/y100"
+                        android:layout_marginRight="@dimen/x50"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/text_color_default"
+                        android:textSize="@dimen/x42"
+                        android:gravity="center_vertical"
+                        android:layout_centerVertical="true" />
+
+                </RelativeLayout>
+                <View style="@style/h_divider"
+                    android:layout_marginBottom="1px" />
+                <!-- 小电池温度-->
+                <RelativeLayout
+                    android:id="@+id/rl_device_testing_model_battery_temperature"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y150"
+                    android:layout_gravity="center" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/x50"
+                        android:text="@string/device_testing_model_battery_temperature" />
+
+                    <TextView
+                        android:id="@+id/tv_device_testing_model_battery_temperature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/y100"
+                        android:layout_marginRight="@dimen/x50"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/text_color_default"
+                        android:textSize="@dimen/x42"
+                        android:gravity="center_vertical"
+                        android:layout_centerVertical="true" />
+
+                </RelativeLayout>
+                <View style="@style/h_divider"
+                    android:layout_marginBottom="1px" />
+
+                <!--相机状态-->
+                <RelativeLayout
+                    android:id="@+id/rl_device_testing_model_camera_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y150"
+                    android:layout_gravity="center" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/x50"
+                        android:text="@string/device_testing_model_tf_card_camera_status" />
+
+                    <TextView
+                        android:id="@+id/tv_device_testing_model_camera_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/y100"
+                        android:layout_marginRight="@dimen/x50"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/text_color_default"
+                        android:textSize="@dimen/x42"
+                        android:gravity="center_vertical"
+                        android:layout_centerVertical="true" />
+
+                </RelativeLayout>
+                <View style="@style/h_divider"
+                    android:layout_marginBottom="1px" />
+
+               <!-- GPS状态-->
+                <RelativeLayout
+                    android:id="@+id/rl_device_testing_model_gps"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y150"
+                    android:layout_gravity="center" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/x50"
+                        android:text="GPS" />
+
+                    <TextView
+                        android:id="@+id/tv_device_testing_model_gps"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/y100"
+                        android:layout_marginRight="@dimen/x50"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/text_color_default"
+                        android:textSize="@dimen/x42"
+                        android:gravity="center_vertical"
+                        android:layout_centerVertical="true" />
+
+                </RelativeLayout>
+                <View style="@style/h_divider"
+                    android:layout_marginBottom="1px" />
+
+               <!-- 传感器状态-->
+                <RelativeLayout
+                    android:id="@+id/rl_device_testing_model_senser"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y150"
+                    android:layout_gravity="center" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/x50"
+                        android:text="@string/device_testing_model_senser" />
+
+                    <TextView
+                        android:id="@+id/tv_device_testing_model_senser"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/y100"
+                        android:layout_marginRight="@dimen/x50"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/text_color_default"
+                        android:textSize="@dimen/x42"
+                        android:gravity="center_vertical"
+                        android:layout_centerVertical="true" />
+
+                </RelativeLayout>
+                <View style="@style/h_divider"
+                    android:layout_marginBottom="1px" />
+
+               <!-- 485通讯状态-->
+                <RelativeLayout
+                    android:id="@+id/rl_device_testing_model_485_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y150"
+                    android:layout_gravity="center" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/x50"
+                        android:text="@string/device_testing_model_485_status" />
+
+                    <TextView
+                        android:id="@+id/tv_device_testing_model_485_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/y100"
+                        android:layout_marginRight="@dimen/x50"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/text_color_default"
+                        android:textSize="@dimen/x42"
+                        android:gravity="center_vertical"
+                        android:layout_centerVertical="true" />
+
+                </RelativeLayout>
+                <View style="@style/h_divider"
+                    android:layout_marginBottom="1px" />
+
+
+                <!-- CPU温度-->
+                <RelativeLayout
+                    android:id="@+id/rl_device_testing_model_cpu_temperature"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y150"
+                    android:layout_gravity="center" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/x50"
+                        android:text="@string/device_testing_model_cpu_temperature" />
+
+                    <TextView
+                        android:id="@+id/tv_device_testing_model_cpu_temperature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/y100"
+                        android:layout_marginRight="@dimen/x50"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/text_color_default"
+                        android:textSize="@dimen/x42"
+                        android:gravity="center_vertical"
+                        android:layout_centerVertical="true" />
+
+                </RelativeLayout>
+                <View style="@style/h_divider"
+                    android:layout_marginBottom="1px" />
+
+                <!--WIFI信号强度-->
+                <RelativeLayout
+                    android:id="@+id/rl_device_testing_model_wifi_rssi"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y150"
+                    android:layout_gravity="center" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/x50"
+                        android:text="@string/device_testing_model_wifi_rssi" />
+
+                    <TextView
+                        android:id="@+id/tv_device_testing_model_wifi_rssi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/y100"
+                        android:layout_marginRight="@dimen/x50"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/text_color_default"
+                        android:textSize="@dimen/x42"
+                        android:gravity="center_vertical"
+                        android:layout_centerVertical="true" />
+
+                </RelativeLayout>
+                <View style="@style/h_divider"
+                    android:layout_marginBottom="1px" />
+            <!--    BLE信号强度-->
+                <RelativeLayout
+                    android:id="@+id/rl_device_testing_model_ble_rssi"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y150"
+                    android:layout_gravity="center" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/x50"
+                        android:text="@string/device_testing_model_ble_rssi" />
+
+                    <TextView
+                        android:id="@+id/tv_device_testing_model_ble_rssi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/y100"
+                        android:layout_marginRight="@dimen/x50"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/text_color_default"
+                        android:textSize="@dimen/x42"
+                        android:gravity="center_vertical"
+                        android:layout_centerVertical="true" />
+
+                </RelativeLayout>
+                <View style="@style/h_divider"
+                    android:layout_marginBottom="1px" />
+
+            </LinearLayout>
+
+            <!--操作项-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/y50"
+                android:background="@color/white"
+                android:paddingLeft="@dimen/x50">
+
+                <!--实景-->
+                <RelativeLayout
+                    android:id="@+id/rl_device_testing_model_to_real_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y150"
+                    android:layout_gravity="center" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/x50"
+                        android:text="@string/road_live_see" />
+
+                    <ImageView
+                        android:id="@+id/iv_arrow"
+                        android:layout_width="@dimen/x80"
+                        android:layout_height="@dimen/y80"
+                        android:src="@mipmap/ico_goto"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x50"/>
+                </RelativeLayout>
+                <View style="@style/h_divider"
+                    android:layout_marginBottom="1px" />
+
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</LinearLayout>

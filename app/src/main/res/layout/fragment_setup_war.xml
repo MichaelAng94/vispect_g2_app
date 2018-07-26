@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_new">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <!--LDW-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y50"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/x50"
+                android:paddingRight="@dimen/x50">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y50"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/x20"
+                    android:paddingRight="@dimen/x20">
+
+                    <ImageView
+                        android:layout_width="@dimen/x30"
+                        android:layout_height="@dimen/y30"
+                        android:layout_marginTop="@dimen/y20"
+                        android:layout_marginRight="@dimen/x20"
+                        android:src="@mipmap/img_dot_bllue" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/warning_setting_ldw"
+                        android:textColor="@color/text_color_calendar_number"
+                        android:textSize="@dimen/x50" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="@dimen/y30"
+                    android:gravity="left"
+                    android:text="@string/warning_setting_ldw_tips"
+                    android:textColor="@color/color_title_bar"
+                    android:textSize="@dimen/x42" />
+
+                <ImageView
+                    android:layout_width="@dimen/x934"
+                    android:layout_height="@dimen/y385"
+                    android:layout_marginBottom="@dimen/y50"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginRight="@dimen/x20"
+                    android:layout_marginTop="@dimen/y50"
+                    android:background="@mipmap/ico_ldw" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/y50"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/warning_setting_starting_speend"
+                        android:textColor="@color/text_color_default"
+                        android:textSize="@dimen/x38" />
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/x160"
+                        android:layout_height="@dimen/y100"
+                        android:layout_marginLeft="@dimen/x10"
+                        android:background="@mipmap/dialog_notconnect_cancel"
+                        android:paddingLeft="@dimen/x10"
+                        android:paddingRight="@dimen/x10"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/edt_starspeed_ldw"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="center"
+                            android:minWidth="@dimen/x90"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:textSize="@dimen/x38" />
+
+                        <ImageView
+                            android:layout_width="@dimen/x60"
+                            android:layout_height="@dimen/y60"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@mipmap/ico_udarrow" />
+
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x60"
+                        android:text="@string/warning_setting_sensivitivity_level"
+                        android:textColor="@color/text_color_default"
+                        android:textSize="@dimen/x38" />
+
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/x150"
+                        android:layout_height="@dimen/y100"
+                        android:layout_marginLeft="@dimen/x10"
+                        android:paddingLeft="@dimen/x10"
+                        android:paddingRight="@dimen/x10"
+                        android:background="@mipmap/dialog_notconnect_cancel"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/edt_sensitivity_ldw"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="center"
+                            android:minWidth="@dimen/x90"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:textSize="@dimen/x38" />
+
+                        <ImageView
+                            android:layout_width="@dimen/x60"
+                            android:layout_height="@dimen/y60"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@mipmap/ico_udarrow" />
+
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <!--FCW-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y50"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/x50"
+                android:paddingRight="@dimen/x50">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y50"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/x20"
+                    android:paddingRight="@dimen/x20">
+
+                    <ImageView
+                        android:layout_width="@dimen/x30"
+                        android:layout_height="@dimen/y30"
+                        android:layout_marginTop="@dimen/y20"
+                        android:layout_marginRight="@dimen/x20"
+                        android:src="@mipmap/img_dot_bllue" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/warning_setting_fcw"
+                        android:textColor="@color/text_color_calendar_number"
+                        android:textSize="@dimen/x50" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="@dimen/y30"
+                    android:gravity="left"
+                    android:text="@string/warning_setting_fcw_tips"
+                    android:textColor="@color/color_title_bar"
+                    android:textSize="@dimen/x42" />
+
+                <ImageView
+                    android:layout_width="@dimen/x934"
+                    android:layout_height="@dimen/y385"
+                    android:layout_marginBottom="@dimen/y50"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginRight="@dimen/x20"
+                    android:layout_marginTop="@dimen/y50"
+                    android:background="@mipmap/ico_fcw" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/y50"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/warning_setting_starting_speend"
+                        android:textColor="@color/text_color_default"
+                        android:textSize="@dimen/x38" />
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/x150"
+                        android:layout_height="@dimen/y100"
+                        android:layout_marginLeft="@dimen/x10"
+                        android:background="@mipmap/dialog_notconnect_cancel"
+                        android:paddingLeft="@dimen/x10"
+                        android:paddingRight="@dimen/x10"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/edt_starspeed_fcw"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="center"
+                            android:minWidth="@dimen/x90"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:textSize="@dimen/x38" />
+
+                        <ImageView
+                            android:layout_width="@dimen/x60"
+                            android:layout_height="@dimen/y60"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@mipmap/ico_udarrow" />
+
+
+                    </RelativeLayout>
+
+
+                  <!--  FCW灵敏度级别-->
+                  <LinearLayout
+                      android:id="@+id/ll_fcw_sensivitivity_level"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal">
+                      <TextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="@dimen/x100"
+                          android:text="@string/warning_setting_sensivitivity_level"
+                          android:textColor="@color/text_color_default"
+                          android:textSize="@dimen/x38" />
+
+                      <RelativeLayout
+                          android:layout_width="@dimen/x150"
+                          android:layout_height="@dimen/y100"
+                          android:layout_marginLeft="@dimen/x10"
+                          android:background="@mipmap/dialog_notconnect_cancel"
+                          android:paddingLeft="@dimen/x10"
+                          android:paddingRight="@dimen/x10"
+                          android:gravity="center_vertical">
+
+                          <TextView
+                              android:id="@+id/edt_sensitivity_fcw"
+                              android:layout_width="wrap_content"
+                              android:layout_height="match_parent"
+                              android:layout_alignParentLeft="true"
+                              android:layout_centerVertical="true"
+                              android:gravity="center"
+                              android:minWidth="@dimen/x90"
+                              android:text="- -"
+                              android:textColor="@color/table_check"
+                              android:textSize="@dimen/x38" />
+
+                          <ImageView
+                              android:layout_width="@dimen/x60"
+                              android:layout_height="@dimen/y60"
+                              android:layout_alignParentRight="true"
+                              android:layout_centerVertical="true"
+                              android:src="@mipmap/ico_udarrow" />
+
+
+                      </RelativeLayout>
+                  </LinearLayout>
+
+                <!--    FCW的HMW-->
+                    <LinearLayout
+                        android:id="@+id/ll_fcw_hmw"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/x150"
+                            android:layout_marginLeft="@dimen/x50"
+                            android:text="@string/fcw_hmw"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textColor="@color/text_color_default"
+                            android:textSize="@dimen/x38" />
+
+                        <RelativeLayout
+                            android:layout_width="@dimen/x150"
+                            android:layout_height="@dimen/y100"
+                            android:layout_marginLeft="@dimen/x10"
+                            android:background="@mipmap/dialog_notconnect_cancel"
+                            android:paddingLeft="@dimen/x10"
+                            android:paddingRight="@dimen/x10"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:id="@+id/edt_hmw_fcw"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:minWidth="@dimen/x90"
+                                android:text="- -"
+                                android:textColor="@color/table_check"
+                                android:textSize="@dimen/x38" />
+
+                            <ImageView
+                                android:layout_width="@dimen/x60"
+                                android:layout_height="@dimen/y60"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:src="@mipmap/ico_udarrow" />
+
+
+                        </RelativeLayout>
+                    </LinearLayout>
+
+
+
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <!--PCW-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y50"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/x50"
+                android:paddingRight="@dimen/x50">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y50"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/x20"
+                    android:paddingRight="@dimen/x20">
+
+                    <ImageView
+                        android:layout_width="@dimen/x30"
+                        android:layout_height="@dimen/y30"
+                        android:layout_marginTop="@dimen/y20"
+                        android:layout_marginRight="@dimen/x20"
+                        android:src="@mipmap/img_dot_bllue" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/warning_setting_pcw"
+                        android:textColor="@color/text_color_calendar_number"
+                        android:textSize="@dimen/x50" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="@dimen/y30"
+                    android:gravity="left"
+                    android:text="@string/warning_setting_pcw_tips"
+                    android:textColor="@color/color_title_bar"
+                    android:textSize="@dimen/x42" />
+
+                <ImageView
+                    android:layout_width="@dimen/x934"
+                    android:layout_height="@dimen/y385"
+                    android:layout_marginBottom="@dimen/y50"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginRight="@dimen/x20"
+                    android:layout_marginTop="@dimen/y50"
+                    android:background="@mipmap/ico_pcw" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/y50"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/warning_setting_stop_speend"
+                        android:textColor="@color/text_color_default"
+                        android:textSize="@dimen/x38" />
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/x150"
+                        android:layout_height="@dimen/y100"
+                        android:layout_marginLeft="@dimen/x10"
+                        android:background="@mipmap/dialog_notconnect_cancel"
+                        android:paddingLeft="@dimen/x10"
+                        android:paddingRight="@dimen/x10"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/edt_starspeed_pcw"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="center"
+                            android:minWidth="@dimen/x90"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:textSize="@dimen/x38" />
+
+                        <ImageView
+                            android:layout_width="@dimen/x60"
+                            android:layout_height="@dimen/y60"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@mipmap/ico_udarrow" />
+
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x100"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/warning_setting_sensivitivity_level"
+                        android:textColor="@color/text_color_default"
+                        android:textSize="@dimen/x38" />
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/x150"
+                        android:layout_height="@dimen/y100"
+                        android:layout_marginLeft="@dimen/x10"
+                        android:background="@mipmap/dialog_notconnect_cancel"
+                        android:paddingLeft="@dimen/x10"
+                        android:paddingRight="@dimen/x10"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/edt_sensitivity_pcw"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="center"
+                            android:minWidth="@dimen/x90"
+                            android:text="- -"
+                            android:textColor="@color/table_check"
+                            android:textSize="@dimen/x38" />
+
+                        <ImageView
+                            android:layout_width="@dimen/x60"
+                            android:layout_height="@dimen/y60"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@mipmap/ico_udarrow" />
+
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/ll_mask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/bg_setting_volume_out"
+        android:orientation="vertical"
+        android:visibility="gone"></LinearLayout>
+
+</RelativeLayout>

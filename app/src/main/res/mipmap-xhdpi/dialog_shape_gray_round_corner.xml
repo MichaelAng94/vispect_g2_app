@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 描边，边框 -->
+    <stroke
+        android:width="@dimen/x2"
+        android:color="@color/table_check"
+        />
+    <solid android:color="#66000000"/>
+</shape>

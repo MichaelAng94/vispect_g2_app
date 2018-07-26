@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/x2"
+    android:paddingRight="@dimen/x2">
+
+    <LinearLayout
+        android:id="@+id/ll_popuwindow_choosedate"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y150"
+        android:background="@mipmap/bg_updata_avatar_1"
+        android:gravity="center" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/selector_video_mune"
+            android:gravity="center"
+            android:textColor="@color/text_color_calendar_number"
+            android:textSize="@dimen/x50" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y3"
+        android:background="@color/text_color_default"
+        android:gravity="center" >
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_popuwindow_savetophone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y150"
+        android:background="@mipmap/bg_updata_avatar_2"
+        android:gravity="center" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/videos_delete"
+            android:textColor="@color/text_color_default"
+            android:background="@mipmap/selector_video_mune"
+            android:gravity="center"
+            android:textSize="@dimen/x48" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y20"
+        android:background="@color/transparent"
+        android:gravity="center" >
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_popuwindow_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y150"
+        android:background="@mipmap/bg_updata_avatar_last"
+        android:gravity="center" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            android:textColor="@color/text_color_default"
+            android:background="@mipmap/selector_video_mune"
+            android:gravity="center"
+            android:textSize="@dimen/x48" />
+    </LinearLayout>
+
+</LinearLayout>

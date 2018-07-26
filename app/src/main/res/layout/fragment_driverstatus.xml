@@ -1,0 +1,2180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/hintColor"
+    xmlns:coolswitch="http://schemas.android.com/apk/res-auto">
+
+    <com.vispect.android.vispect_g2_app.ui.widget.MoScroller
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.serchinastico.coolswitch.TargetFrameLayout
+            android:layout_marginTop="@dimen/y30"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/disabled_view_foo"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y380"
+                    android:background="#FFFFFF"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_marginTop="@dimen/y30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/dot"
+                        android:tint="@color/table_check"
+                        android:layout_width="@dimen/y90"
+                        android:layout_height= "@dimen/y90" />
+
+                    <TextView
+                        android:textSize="@dimen/y50"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/distracting"
+                        />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_marginTop="@dimen/y30"
+                        android:layout_marginBottom="@dimen/y50"
+                        android:layout_marginLeft="@dimen/y90"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_centerVertical="true"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/speed_10_80"
+                            />
+
+                        <LinearLayout
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="@dimen/x40"
+                            android:layout_gravity="right"
+                            android:background="@drawable/solid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            >
+
+                            <TextView
+                                android:id="@+id/speed_dis"
+                                android:layout_margin="@dimen/y10"
+                           android:layout_width="@dimen/x60"
+                                android:layout_height="wrap_content"
+                                android:text="50"
+                                android:textSize="@dimen/deiver_status_small_size"
+                                />
+
+                            <ImageView
+                                android:layout_gravity="center"
+                                android:layout_width="@dimen/x40"
+                                android:layout_height="@dimen/x40"
+                                android:src="@drawable/remix"
+                                />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_marginLeft="@dimen/y90"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_centerVertical="true"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/time_1_3"
+                            />
+
+                        <LinearLayout
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="@dimen/x40"
+                            android:layout_gravity="right"
+                            android:background="@drawable/solid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            >
+
+                            <TextView
+                                android:id="@+id/time_dis"
+                                android:layout_margin="@dimen/y10"
+                           android:layout_width="@dimen/x60"
+                                android:layout_height="wrap_content"
+                                android:text="50"
+                                android:textSize="@dimen/deiver_status_small_size"
+                                />
+
+                            <ImageView
+                                android:layout_gravity="center"
+                                android:layout_width="@dimen/x40"
+                                android:layout_height="@dimen/x40"
+                                android:src="@drawable/remix"
+                                />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            <LinearLayout
+                android:clickable="true"
+                android:focusable="true"
+                android:id="@+id/enabled_view_foo"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y380"
+                android:background="@color/light_gray"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/dot"
+                        android:tint="@color/black"
+                        android:layout_width="@dimen/y90"
+                        android:layout_height= "@dimen/y90" />
+
+                    <TextView
+                        android:textSize="@dimen/y50"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/distracting"
+                        />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_marginBottom="@dimen/y50"
+                    android:layout_marginLeft="@dimen/y90"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/speed_10_80"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_margin="@dimen/y10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginLeft="@dimen/y90"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/time_1_3"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_margin="@dimen/y10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+                <com.serchinastico.coolswitch.CoolSwitch
+                    android:layout_gravity="right"
+                    android:id="@+id/cool_switch_foo"
+                    android:layout_height="30dp"
+                    android:layout_width="50dp"
+                    android:layout_marginTop="@dimen/y10"
+                    android:layout_marginRight="@dimen/x30"
+                    coolswitch:disabledView="@id/disabled_view_foo"
+                    coolswitch:enabledView="@id/enabled_view_foo"/>
+
+        </com.serchinastico.coolswitch.TargetFrameLayout>
+
+
+        <com.serchinastico.coolswitch.TargetFrameLayout
+            android:layout_marginTop="@dimen/y30"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/disabled_view_foo1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y120"
+                android:background="#FFFFFF"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/dot"
+                        android:tint="@color/table_check"
+                        android:layout_width="@dimen/y90"
+                        android:layout_height= "@dimen/y90" />
+
+                    <TextView
+                        android:textSize="@dimen/y50"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/dangerous"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/enabled_view_foo1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y120"
+                android:background="@color/light_gray"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/dot"
+                        android:tint="@color/background"
+                        android:layout_width="@dimen/y90"
+                        android:layout_height= "@dimen/y90" />
+
+                    <TextView
+                        android:textSize="@dimen/y50"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/dangerous"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <com.serchinastico.coolswitch.CoolSwitch
+                android:layout_gravity="right"
+                android:id="@+id/cool_switch_foo1"
+                android:layout_height="30dp"
+                android:layout_width="50dp"
+                android:layout_marginTop="@dimen/y10"
+                android:layout_marginRight="@dimen/x30"
+                coolswitch:disabledView="@id/disabled_view_foo1"
+                coolswitch:enabledView="@id/enabled_view_foo1"/>
+
+        </com.serchinastico.coolswitch.TargetFrameLayout>
+
+        <com.serchinastico.coolswitch.TargetFrameLayout
+            android:layout_marginTop="@dimen/y30"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/disabled_view_foo2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y380"
+                android:background="#FFFFFF"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/dot"
+                        android:tint="@color/table_check"
+                        android:layout_width="@dimen/y90"
+                        android:layout_height= "@dimen/y90" />
+
+                    <TextView
+                        android:textSize="@dimen/y50"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/phone"
+                        />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_marginBottom="@dimen/y50"
+                    android:layout_marginLeft="@dimen/y90"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/speed_10_80"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:id="@+id/speed_phone"
+                            android:layout_margin="@dimen/y10"
+                       android:layout_width="@dimen/x60"
+                            android:layout_height="wrap_content"
+                            android:text="50"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginLeft="@dimen/y90"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/time_3_9"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:id="@+id/time_phone"
+                            android:layout_margin="@dimen/y10"
+                       android:layout_width="@dimen/x60"
+                            android:layout_height="wrap_content"
+                            android:text="50"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/enabled_view_foo2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y380"
+                android:background="@color/light_gray"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/dot"
+                        android:tint="@color/black"
+                        android:layout_width="@dimen/y90"
+                        android:layout_height= "@dimen/y90" />
+
+                    <TextView
+                        android:textSize="@dimen/y50"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/phone"
+                        />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_marginBottom="@dimen/y50"
+                    android:layout_marginLeft="@dimen/y90"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/speed_10_80"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_margin="@dimen/y10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginLeft="@dimen/y90"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/time_3_9"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_margin="@dimen/y10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <com.serchinastico.coolswitch.CoolSwitch
+                android:layout_gravity="right"
+                android:id="@+id/cool_switch_foo2"
+                android:layout_height="30dp"
+                android:layout_width="50dp"
+                android:layout_marginTop="@dimen/y10"
+                android:layout_marginRight="@dimen/x30"
+                coolswitch:disabledView="@id/disabled_view_foo2"
+                coolswitch:enabledView="@id/enabled_view_foo2"/>
+
+        </com.serchinastico.coolswitch.TargetFrameLayout>
+
+        <com.serchinastico.coolswitch.TargetFrameLayout
+            android:layout_marginTop="@dimen/y30"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/disabled_view_foo3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y380"
+                android:background="#FFFFFF"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/dot"
+                        android:tint="@color/table_check"
+                        android:layout_width="@dimen/y90"
+                        android:layout_height= "@dimen/y90" />
+
+                    <TextView
+                        android:textSize="@dimen/y50"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/smoking"
+                        />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_marginBottom="@dimen/y50"
+                    android:layout_marginLeft="@dimen/y90"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/speed_10_80"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:id="@+id/speed_smoking"
+                            android:layout_margin="@dimen/y10"
+                       android:layout_width="@dimen/x60"
+                            android:layout_height="wrap_content"
+                            android:text="50"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginLeft="@dimen/y90"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/time_1_3"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:id="@+id/time_smoking"
+                            android:layout_margin="@dimen/y10"
+                       android:layout_width="@dimen/x60"
+                            android:layout_height="wrap_content"
+                            android:text="50"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/enabled_view_foo3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y380"
+                android:background="@color/light_gray"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/dot"
+                        android:tint="@color/black"
+                        android:layout_width="@dimen/y90"
+                        android:layout_height= "@dimen/y90" />
+
+                    <TextView
+                        android:textSize="@dimen/y50"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/smoking"
+                        />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_marginBottom="@dimen/y50"
+                    android:layout_marginLeft="@dimen/y90"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/speed_10_80"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_margin="@dimen/y10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginLeft="@dimen/y90"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/time_1_3"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_margin="@dimen/y10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <com.serchinastico.coolswitch.CoolSwitch
+                android:layout_gravity="right"
+                android:id="@+id/cool_switch_foo3"
+                android:layout_height="30dp"
+                android:layout_width="50dp"
+                android:layout_marginTop="@dimen/y10"
+                android:layout_marginRight="@dimen/x30"
+                coolswitch:disabledView="@id/disabled_view_foo3"
+                coolswitch:enabledView="@id/enabled_view_foo3"/>
+
+        </com.serchinastico.coolswitch.TargetFrameLayout>
+
+        <com.serchinastico.coolswitch.TargetFrameLayout
+            android:layout_marginTop="@dimen/y30"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/disabled_view_foo4"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y380"
+                android:background="#FFFFFF"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/dot"
+                        android:tint="@color/table_check"
+                        android:layout_width="@dimen/y90"
+                        android:layout_height= "@dimen/y90" />
+
+                    <TextView
+                        android:textSize="@dimen/y50"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/looking"
+                        />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_marginBottom="@dimen/y50"
+                    android:layout_marginLeft="@dimen/y90"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/speed_10_80"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:id="@+id/speed_looking"
+                            android:layout_margin="@dimen/y10"
+                       android:layout_width="@dimen/x60"
+                            android:layout_height="wrap_content"
+                            android:text="50"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginLeft="@dimen/y90"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/time_3_9"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:id="@+id/time_looking"
+                            android:layout_margin="@dimen/y10"
+                       android:layout_width="@dimen/x60"
+                            android:layout_height="wrap_content"
+                            android:text="50"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/enabled_view_foo4"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y380"
+                android:background="@color/light_gray"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/dot"
+                        android:tint="@color/black"
+                        android:layout_width="@dimen/y90"
+                        android:layout_height= "@dimen/y90" />
+
+                    <TextView
+                        android:textSize="@dimen/y50"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/looking"
+                        />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_marginBottom="@dimen/y50"
+                    android:layout_marginLeft="@dimen/y90"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/speed_10_80"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_margin="@dimen/y10"
+                       android:layout_width="@dimen/x60"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginLeft="@dimen/y90"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/time_3_9"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_margin="@dimen/y10"
+                       android:layout_width="@dimen/x60"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <com.serchinastico.coolswitch.CoolSwitch
+                android:layout_gravity="right"
+                android:id="@+id/cool_switch_foo4"
+                android:layout_height="30dp"
+                android:layout_width="50dp"
+                android:layout_marginTop="@dimen/y10"
+                android:layout_marginRight="@dimen/x30"
+                coolswitch:disabledView="@id/disabled_view_foo4"
+                coolswitch:enabledView="@id/enabled_view_foo4"/>
+
+        </com.serchinastico.coolswitch.TargetFrameLayout>
+
+        <com.serchinastico.coolswitch.TargetFrameLayout
+            android:layout_marginTop="@dimen/y30"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/disabled_view_foo5"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y380"
+                android:background="#FFFFFF"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/dot"
+                        android:tint="@color/table_check"
+                        android:layout_width="@dimen/y90"
+                        android:layout_height= "@dimen/y90" />
+
+                    <TextView
+                        android:textSize="@dimen/y50"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/yawning"
+                        />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_marginBottom="@dimen/y50"
+                    android:layout_marginLeft="@dimen/y90"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/speed_10_80"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:id="@+id/speed_yawning"
+                            android:layout_margin="@dimen/y10"
+                       android:layout_width="@dimen/x60"
+                            android:layout_height="wrap_content"
+                            android:text="50"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginLeft="@dimen/y90"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/time_2_5"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:id="@+id/time_yawning"
+                            android:layout_margin="@dimen/y10"
+                       android:layout_width="@dimen/x60"
+                            android:layout_height="wrap_content"
+                            android:text="50"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/enabled_view_foo5"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y380"
+                android:background="@color/light_gray"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/dot"
+                        android:tint="@color/black"
+                        android:layout_width="@dimen/y90"
+                        android:layout_height= "@dimen/y90" />
+
+                    <TextView
+                        android:textSize="@dimen/y50"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/yawning"
+                        />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_marginBottom="@dimen/y50"
+                    android:layout_marginLeft="@dimen/y90"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/speed_10_80"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_margin="@dimen/y10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginLeft="@dimen/y90"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/time_2_5"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_margin="@dimen/y10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <com.serchinastico.coolswitch.CoolSwitch
+                android:layout_gravity="right"
+                android:id="@+id/cool_switch_foo5"
+                android:layout_height="30dp"
+                android:layout_width="50dp"
+                android:layout_marginTop="@dimen/y10"
+                android:layout_marginRight="@dimen/x30"
+                coolswitch:disabledView="@id/disabled_view_foo5"
+                coolswitch:enabledView="@id/enabled_view_foo5"/>
+
+        </com.serchinastico.coolswitch.TargetFrameLayout>
+
+        <com.serchinastico.coolswitch.TargetFrameLayout
+            android:layout_marginTop="@dimen/y30"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/disabled_view_foo6"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y380"
+                android:background="#FFFFFF"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/dot"
+                        android:tint="@color/table_check"
+                        android:layout_width="@dimen/y90"
+                        android:layout_height= "@dimen/y90" />
+
+                    <TextView
+                        android:textSize="@dimen/y50"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/face"
+                        />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_marginBottom="@dimen/y50"
+                    android:layout_marginLeft="@dimen/y90"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/speed_10_80"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:id="@+id/speed_face"
+                            android:layout_margin="@dimen/y10"
+                       android:layout_width="@dimen/x60"
+                            android:layout_height="wrap_content"
+                            android:text="50"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginLeft="@dimen/y90"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/time_10_60"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:id="@+id/time_face"
+                            android:layout_margin="@dimen/y10"
+                       android:layout_width="@dimen/x60"
+                            android:layout_height="wrap_content"
+                            android:text="50"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/enabled_view_foo6"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y380"
+                android:background="@color/light_gray"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/dot"
+                        android:tint="@color/black"
+                        android:layout_width="@dimen/y90"
+                        android:layout_height= "@dimen/y90" />
+
+                    <TextView
+                        android:textSize="@dimen/y50"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/face"
+                        />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_marginBottom="@dimen/y50"
+                    android:layout_marginLeft="@dimen/y90"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/speed_10_80"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_margin="@dimen/y10"
+                       android:layout_width="@dimen/x60"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginLeft="@dimen/y90"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/time_10_60"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_margin="@dimen/y10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <com.serchinastico.coolswitch.CoolSwitch
+                android:layout_gravity="right"
+                android:id="@+id/cool_switch_foo6"
+                android:layout_height="30dp"
+                android:layout_width="50dp"
+                android:layout_marginTop="@dimen/y10"
+                android:layout_marginRight="@dimen/x30"
+                coolswitch:disabledView="@id/disabled_view_foo6"
+                coolswitch:enabledView="@id/enabled_view_foo6"/>
+
+        </com.serchinastico.coolswitch.TargetFrameLayout>
+
+        <com.serchinastico.coolswitch.TargetFrameLayout
+            android:layout_marginTop="@dimen/y30"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/disabled_view_foo7"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y380"
+                android:background="#FFFFFF"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/dot"
+                        android:tint="@color/table_check"
+                        android:layout_width="@dimen/y90"
+                        android:layout_height= "@dimen/y90" />
+
+                    <TextView
+                        android:textSize="@dimen/y50"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/camera"
+                        />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_marginBottom="@dimen/y50"
+                    android:layout_marginLeft="@dimen/y90"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/speed_10_80"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:id="@+id/speed_camera"
+                            android:layout_margin="@dimen/y10"
+                       android:layout_width="@dimen/x60"
+                            android:layout_height="wrap_content"
+                            android:text="50"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginLeft="@dimen/y90"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/time_10_60"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:id="@+id/time_camera"
+                            android:layout_margin="@dimen/y10"
+                       android:layout_width="@dimen/x60"
+                            android:layout_height="wrap_content"
+                            android:text="50"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/enabled_view_foo7"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y380"
+                android:background="@color/light_gray"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/dot"
+                        android:tint="@color/black"
+                        android:layout_width="@dimen/y90"
+                        android:layout_height= "@dimen/y90" />
+
+                    <TextView
+                        android:textSize="@dimen/y50"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/camera"
+                        />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_marginBottom="@dimen/y50"
+                    android:layout_marginLeft="@dimen/y90"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/speed_10_80"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_margin="@dimen/y10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginLeft="@dimen/y90"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/time_1_3"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_margin="@dimen/y10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <com.serchinastico.coolswitch.CoolSwitch
+                android:layout_gravity="right"
+                android:id="@+id/cool_switch_foo7"
+                android:layout_height="30dp"
+                android:layout_width="50dp"
+                android:layout_marginTop="@dimen/y10"
+                android:layout_marginRight="@dimen/x30"
+                coolswitch:disabledView="@id/disabled_view_foo7"
+                coolswitch:enabledView="@id/enabled_view_foo7"/>
+
+        </com.serchinastico.coolswitch.TargetFrameLayout>
+
+        <com.serchinastico.coolswitch.TargetFrameLayout
+            android:layout_marginTop="@dimen/y30"
+            android:layout_marginBottom="@dimen/y40"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/disabled_view_foo8"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y380"
+                android:background="#FFFFFF"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/dot"
+                        android:tint="@color/table_check"
+                        android:layout_width="@dimen/y90"
+                        android:layout_height= "@dimen/y90" />
+
+                    <TextView
+                        android:textSize="@dimen/y50"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/drinking"
+                        />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_marginBottom="@dimen/y50"
+                    android:layout_marginLeft="@dimen/y90"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/speed_10_80"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:id="@+id/speed_drinking"
+                            android:layout_margin="@dimen/y10"
+                       android:layout_width="@dimen/x60"
+                            android:layout_height="wrap_content"
+                            android:text="50"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginLeft="@dimen/y90"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/time_2_5"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:id="@+id/time_drinking"
+                            android:layout_margin="@dimen/y10"
+                            android:layout_width="@dimen/x60"
+                            android:layout_height="wrap_content"
+                            android:text="50"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/enabled_view_foo8"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y380"
+                android:background="@color/light_gray"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/dot"
+                        android:tint="@color/black"
+                        android:layout_width="@dimen/y90"
+                        android:layout_height= "@dimen/y90" />
+
+                    <TextView
+                        android:textSize="@dimen/y50"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/drinking"
+                        />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_marginBottom="@dimen/y50"
+                    android:layout_marginLeft="@dimen/y90"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/speed_10_80"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_margin="@dimen/y10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginLeft="@dimen/y90"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/deiver_status_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/time_2_5"
+                        />
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x40"
+                        android:layout_gravity="right"
+                        android:background="@drawable/solid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_margin="@dimen/y10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- -"
+                            android:textSize="@dimen/deiver_status_small_size"
+                            />
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/x40"
+                            android:layout_height="@dimen/x40"
+                            android:src="@drawable/remix"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <com.serchinastico.coolswitch.CoolSwitch
+                android:layout_gravity="right"
+                android:id="@+id/cool_switch_foo8"
+                android:layout_height="30dp"
+                android:layout_width="50dp"
+                android:layout_marginTop="@dimen/y10"
+                android:layout_marginRight="@dimen/x30"
+                coolswitch:disabledView="@id/disabled_view_foo8"
+                coolswitch:enabledView="@id/enabled_view_foo8"/>
+
+        </com.serchinastico.coolswitch.TargetFrameLayout>
+
+    </LinearLayout>
+
+    </com.vispect.android.vispect_g2_app.ui.widget.MoScroller>
+
+</LinearLayout>

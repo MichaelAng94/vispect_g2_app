@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y115"
+    android:background="@color/background"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:gravity="center_vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/iv_titlebar_back"
+            android:layout_width="@dimen/y80"
+            android:layout_height="@dimen/y80"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ico_back" />
+
+        <TextView
+            android:id="@+id/iv_titlebar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/x40" />
+
+        <TextView
+            android:visibility="gone"
+            android:layout_centerVertical="true"
+            android:id="@+id/tv_title_save"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/y80"
+            android:textSize="@dimen/y45"
+            android:textColor="@color/white"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x30"
+            android:text="debug"
+            />
+
+        <Button
+            android:visibility="gone"
+            android:layout_marginRight="@dimen/x20"
+            android:textColor="@color/white"
+            android:layout_alignParentRight="true"
+            android:id="@+id/btn_save"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/x110"
+            android:layout_height="@dimen/y70"
+            android:textSize="@dimen/y35"
+            android:text="save"
+            android:background="@drawable/outside" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

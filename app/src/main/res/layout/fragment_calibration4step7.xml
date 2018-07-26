@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.vispect.android.vispect_g2_app.ui.widget.MoScroller
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:padding="@dimen/y60"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/calibration4_step7_context22"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x50" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y30"
+            android:text="@string/calibration4_step7_context23"
+            android:textColor="@color/color_title_bar"
+            android:textSize="@dimen/y35" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y20"
+            android:text="@string/calibration4_step7_context24"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/y35" />
+
+        <LinearLayout
+            android:id="@+id/llrotaionrateverification_number_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/y50"
+            android:background="@mipmap/bg_rotaionrateverification_area"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/x50"
+            android:paddingRight="@dimen/x50">
+
+            <TextView
+                android:id="@+id/tv_rataionrate_number_1"
+                android:layout_width="@dimen/x150"
+                android:layout_height="@dimen/y150"
+                android:background="@mipmap/bg_rotaionrateverification_number"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/blackText"
+                android:textSize="@dimen/x50" />
+
+            <TextView
+                android:id="@+id/tv_rataionrate_number_2"
+                android:layout_width="@dimen/x150"
+                android:layout_height="@dimen/y150"
+                android:layout_marginLeft="@dimen/x20"
+                android:background="@mipmap/bg_rotaionrateverification_number"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/blackText"
+                android:textSize="@dimen/x50" />
+
+            <TextView
+                android:id="@+id/tv_rataionrate_number_3"
+                android:layout_width="@dimen/x150"
+                android:layout_height="@dimen/y150"
+                android:layout_marginLeft="@dimen/x20"
+                android:background="@mipmap/bg_rotaionrateverification_number"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/blackText"
+                android:textSize="@dimen/x50" />
+
+            <TextView
+                android:id="@+id/tv_rataionrate_number_4"
+                android:layout_width="@dimen/x150"
+                android:layout_height="@dimen/y150"
+                android:layout_marginLeft="@dimen/x20"
+                android:background="@mipmap/bg_rotaionrateverification_number"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/blackText"
+                android:textSize="@dimen/x50" />
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_marginBottom="@dimen/y50"
+            android:layout_marginTop="@dimen/y50"
+            android:background="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/calibration4_step7_context25"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x50" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <Button
+                android:id="@+id/btn_show_AutoCrack"
+                android:layout_width="@dimen/y200"
+                android:layout_height="@dimen/y90"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_margin="@dimen/y50"
+                android:layout_marginRight="@dimen/x30"
+                android:background="@mipmap/btn_check"
+                android:paddingLeft="@dimen/x10"
+                android:text="@string/calibration4_step7_context27"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@id/btn_show_AutoCrack"
+                android:layout_weight="0.8"
+                android:text="@string/calibration4_step7_context26"
+                android:textColor="@color/color_title_bar"
+                android:textSize="@dimen/y35" />
+
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_marginBottom="@dimen/y50"
+            android:layout_marginTop="@dimen/y50"
+            android:background="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/calibration4_step7_context28"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x50" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y20"
+            android:text="@string/calibration4_step7_context29"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/y35" />
+
+        <LinearLayout
+            android:id="@+id/ll_left_right_light"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_left_turn_light"
+                    android:layout_width="@dimen/x250"
+                    android:layout_height="@dimen/y250"
+                    android:src="@mipmap/ico_left_turn_light_off" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/obd_test_light_left"
+                    android:textColor="@color/text_color_default"
+                    android:textSize="@dimen/x42" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x100"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_right_turn_light"
+                    android:layout_width="@dimen/x250"
+                    android:layout_height="@dimen/y250"
+                    android:src="@mipmap/ico_right_turn_light_off" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/obd_test_light_right"
+                    android:textColor="@color/text_color_default"
+                    android:textSize="@dimen/x42" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_marginBottom="@dimen/y50"
+            android:layout_marginTop="@dimen/y50"
+            android:background="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/calibration4_step7_context30"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x50" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/y20"
+            android:layout_marginTop="@dimen/y20"
+            android:text="@string/calibration4_step7_context31"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/y35" />
+
+        <LinearLayout
+            android:id="@+id/ll_wiper_brake"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_brake"
+                    android:layout_width="@dimen/x250"
+                    android:layout_height="@dimen/y250"
+                    android:src="@mipmap/ico_brake_off" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/obd_test_brake"
+                    android:textColor="@color/text_color_default"
+                    android:textSize="@dimen/x42" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x100"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_wiper"
+                    android:layout_width="@dimen/x250"
+                    android:layout_height="@dimen/y250"
+                    android:src="@mipmap/ico_wiper_off" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/obd_test_wipper"
+                    android:textColor="@color/text_color_default"
+                    android:textSize="@dimen/x42" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        </LinearLayout>
+
+    </com.vispect.android.vispect_g2_app.ui.widget.MoScroller>
+
+</FrameLayout>

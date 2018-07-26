@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.vispect.android.vispect_g2_app.ui.widget.MoScroller
+        android:background="@color/list_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.vispect.android.vispect_g2_app.ui.widget.MoListview
+            android:id="@+id/list_install"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/list_bg"
+            android:paddingTop="@dimen/y50" />
+
+    </com.vispect.android.vispect_g2_app.ui.widget.MoScroller>
+
+
+</FrameLayout>
