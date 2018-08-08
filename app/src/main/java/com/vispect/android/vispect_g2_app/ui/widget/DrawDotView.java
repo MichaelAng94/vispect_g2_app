@@ -224,6 +224,9 @@ public class DrawDotView extends RelativeLayout {
 
     @SuppressLint("ResourceType")
     public void addSnag(ArrayList<Point> popints, Activity ac, Boolean withSnag) {
+        if (popints==null){
+            return;
+        }
         Pointf p1 = changeSize(popints.get(0), ac);
         Pointf p2 = changeSize(popints.get(1), ac);
         Pointf p3 = changeSize(popints.get(2), ac);

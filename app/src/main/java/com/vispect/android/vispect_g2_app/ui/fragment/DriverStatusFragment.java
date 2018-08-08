@@ -33,6 +33,8 @@ import interf.ResultListner;
 
 /**
  * Created by mo on 2018/7/18.
+ *
+ * DSM启动速度设置
  */
 
 public class DriverStatusFragment extends BaseFragment {

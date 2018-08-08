@@ -12,12 +12,17 @@ import com.vispect.android.vispect_g2_app.R;
 import com.vispect.android.vispect_g2_app.app.AppContext;
 import com.vispect.android.vispect_g2_app.bean.ARG;
 import com.vispect.android.vispect_g2_app.interf.OnClickYesOrNoListener;
+import com.vispect.android.vispect_g2_app.ui.activity.ADASWarringVideosActivity;
+import com.vispect.android.vispect_g2_app.ui.activity.CalibrateActivity;
 import com.vispect.android.vispect_g2_app.ui.activity.DocActivity;
 import com.vispect.android.vispect_g2_app.ui.activity.SelectCarModelActivity;
+import com.vispect.android.vispect_g2_app.ui.activity.SelectVideoActivity;
 import com.vispect.android.vispect_g2_app.ui.activity.VMainActivity;
 import com.vispect.android.vispect_g2_app.ui.activity.VideoPlayerActivity;
 import com.vispect.android.vispect_g2_app.ui.widget.NotconnectDialog;
 import com.vispect.android.vispect_g2_app.utils.XuLog;
+
+import java.util.ArrayList;
 
 
 /**
@@ -59,6 +64,33 @@ public class UIHelper {
         activity.startActivityForResult(intent, 999);
     }
 
+    public static void showSelectVideoActivity(Activity activity, ArrayList<String> mData){
+        Intent intent = new Intent(activity, SelectVideoActivity.class);
+        Bundle b = new Bundle();
+        b.putStringArrayList(ARG.VIDEO_LIST,mData);
+        intent.putExtra(ARG.VIDEO_LIST, b);
+        activity.startActivity(intent);
+    }
+
+    public static void showVideoplayerbyPath(Context activity, String name) {
+        // TODO 跳到视频播放页面
+        Bundle args = new Bundle();
+        args.putString(ARG.CARCORDER_FILE_PATH, name);
+        Intent intent = new Intent(activity, VideoPlayerActivity.class);
+        intent.putExtras(args);
+        activity.startActivity(intent);
+    }
+
+    public static void showVideosActivity(Activity activity,int videoType,int type) {
+        // TODO 跳到文档页面
+        Intent intent = new Intent(activity, ADASWarringVideosActivity.class);
+        Bundle b = new Bundle();
+        b.putInt("videoType",videoType);
+        b.putInt("type",type);
+        intent.putExtras(b);
+        activity.startActivity(intent);
+    }
+
     public static int dp2px(Context context, float dpValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
@@ -74,13 +106,14 @@ public class UIHelper {
             }
             NotconnectDialog.Builder builder = new NotconnectDialog.Builder(context);
             builder.setMessage(msg);
-            builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     askDialog = dialog;
                     listener.isyes(true, dialog);
                 }
             });
-            builder.setNegativeButton("no", new DialogInterface.OnClickListener() {
+
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     askDialog = dialog;
                     listener.isyes(false, dialog);
@@ -122,6 +155,20 @@ public class UIHelper {
 
         if (activity != null) {
             Intent intent = new Intent(activity, VMainActivity.class);
+            intent.putExtra(ARG.SHOW_BACKGROUND_CHECK, isad);
+            activity.startActivityForResult(intent, requestCode);
+        }
+    }
+
+    public static void showCalibrate(Activity activity, int requestCode, boolean isad) {
+        // TODO 跳到实时路况页面
+        if (CalibrateActivity.runing) {
+            XuLog.e("实时路况界面还在");
+            return;
+        }
+
+        if (activity != null) {
+            Intent intent = new Intent(activity, CalibrateActivity.class);
             intent.putExtra(ARG.SHOW_BACKGROUND_CHECK, isad);
             activity.startActivityForResult(intent, requestCode);
         }

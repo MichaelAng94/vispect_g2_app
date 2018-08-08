@@ -6,18 +6,26 @@
     <com.vispect.android.vispect_g2_app.ui.widget.XuHCSurfaceView
         android:id="@+id/hsrufaceview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="match_parent" />
 
-<!--校准线-->
-  <LinearLayout
-    android:id="@+id/iv_lin"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_centerInParent="true"
-    android:background="@mipmap/adjustments_line"
-    android:orientation="horizontal"
-    android:visibility="gone"></LinearLayout>
+    <!--校准线-->
+    <LinearLayout
+        android:id="@+id/iv_lin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@mipmap/adjustments_line"
+        android:orientation="horizontal"
+        android:visibility="gone"></LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/center_line"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:layout_width="1dp"
+        android:layout_height="@dimen/y450"/>
+
 
     <LinearLayout
         android:id="@+id/iv_lin_center"
@@ -41,67 +49,67 @@
 
 
     <LinearLayout
-    android:id="@+id/ll_center_x"
-    android:layout_width="@dimen/x8"
-    android:layout_height="@dimen/y150"
-    android:orientation="vertical"
-    android:background="@color/red"
-    android:layout_centerInParent="true"/>
+        android:id="@+id/ll_center_x"
+        android:layout_width="@dimen/x8"
+        android:layout_height="@dimen/y150"
+        android:layout_centerInParent="true"
+        android:background="@color/red"
+        android:orientation="vertical" />
 
-<com.vispect.android.vispect_g2_app.ui.widget.DrawAdas
-    android:id="@+id/drawadas"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" />
-
-    <com.vispect.android.vispect_g2_app.ui.widget.DrawDotView
-        android:id="@+id/drawdotView"
-        android:visibility="gone"
+    <com.vispect.android.vispect_g2_app.ui.widget.DrawAdas
+        android:id="@+id/drawadas"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <com.vispect.android.vispect_g2_app.ui.widget.DrawDotView
+        android:id="@+id/drawdotView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
     <TextView
-        android:visibility="gone"
         android:id="@+id/tv_speed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/yellowfe"
-        android:textSize="@dimen/x50"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:layout_marginRight="@dimen/y100"
         android:layout_marginTop="@dimen/y100"
-        android:layout_marginRight="@dimen/y100"/>
+        android:textColor="@color/yellowfe"
+        android:textSize="@dimen/x50"
+        android:visibility="gone" />
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:visibility="gone"
         android:id="@+id/lin_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:layout_marginRight="@dimen/y100"
         android:layout_marginTop="@dimen/y200"
-        android:layout_marginRight="@dimen/y100">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/Calibrationing"
             android:textColor="@color/yellowfe"
-            android:textSize="@dimen/x50"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textSize="@dimen/x50" />
 
         <TextView
-            android:textColor="@color/yellowfe"
-            android:textSize="@dimen/x50"
             android:id="@+id/tv_progress"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/yellowfe"
+            android:textSize="@dimen/x50" />
 
         <TextView
-            android:textColor="@color/yellowfe"
-            android:textSize="@dimen/x50"
-            android:text="%"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="%"
+            android:textColor="@color/yellowfe"
+            android:textSize="@dimen/x50" />
 
 
     </LinearLayout>
@@ -110,129 +118,126 @@
         android:id="@+id/ll_mask_tips"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:alpha="0.9"
         android:background="@color/bg_mask"
         android:gravity="center"
-        android:alpha="0.9"
         android:orientation="vertical"
         android:visibility="gone">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:text="@string/center_calibrationing_check_tips"
-            android:layout_gravity="center_horizontal"
-            android:textSize="@dimen/x52"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:textSize="@dimen/x52" />
 
         <TextView
             android:id="@+id/tv_realview_got_it"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/got_it"
-            android:textSize="@dimen/x50"
-            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/y20"
             android:background="@mipmap/frame"
             android:paddingLeft="@dimen/x10"
             android:paddingRight="@dimen/x10"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/y20" />
+            android:text="@string/got_it"
+            android:textColor="@color/white"
+            android:textSize="@dimen/x50" />
     </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/re_top"
+        android:clickable="true"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y110"
-        android:background="#99000000"
-        >
+        android:background="#99000000">
 
         <LinearLayout
-            android:layout_centerVertical="true"
-            android:visibility="gone"
             android:id="@+id/lin_click"
-            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/y100"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <TextView
-                android:clickable="true"
-                android:textSize="@dimen/x50"
                 android:id="@+id/tv_back"
-                android:textColor="@color/color_title_bar"
-                android:layout_marginRight="@dimen/x20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="撤销"
-                />
+                android:layout_marginRight="@dimen/x75"
+                android:clickable="true"
+                android:text="cancel"
+                android:textColor="@color/color_title_bar"
+                android:textSize="@dimen/x50" />
 
             <TextView
-                android:clickable="true"
-                android:textSize="@dimen/x50"
                 android:id="@+id/tv_removeall"
-                android:textColor="@color/color_title_bar"
-                android:layout_marginRight="@dimen/x20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="清除"
-                />
-
-            <TextView
+                android:layout_marginRight="@dimen/x75"
                 android:clickable="true"
-                android:textSize="@dimen/x50"
-                android:id="@+id/tv_sure"
+                android:text="delete"
                 android:textColor="@color/color_title_bar"
-                android:layout_marginRight="@dimen/x20"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="确认"
-                />
+                android:textSize="@dimen/x50" />
 
             <TextView
-                android:clickable="true"
-                android:textSize="@dimen/x50"
                 android:id="@+id/tv_cancle"
-                android:textColor="@color/color_title_bar"
-                android:layout_marginRight="@dimen/x20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="取消"
-                />
+                android:layout_marginRight="@dimen/x75"
+                android:clickable="true"
+                android:text="hide"
+                android:textColor="@color/color_title_bar"
+                android:textSize="@dimen/x50" />
+
+            <TextView
+                android:id="@+id/tv_sure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/x30"
+                android:clickable="true"
+                android:text="save"
+                android:textColor="@color/color_title_bar"
+                android:textSize="@dimen/x50" />
 
         </LinearLayout>
 
 
         <ImageView
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/y30"
             android:id="@+id/img_back_main"
             android:layout_width="@dimen/x90"
             android:layout_height="@dimen/y90"
             android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/y30"
             android:src="@mipmap/ico_back" />
 
         <ImageView
-            android:layout_marginRight="@dimen/y30"
             android:id="@+id/img_change"
-            android:layout_centerVertical="true"
-            android:tint="@color/white"
             android:layout_width="@dimen/x90"
             android:layout_height="@dimen/y90"
             android:layout_alignParentRight="true"
-            android:src="@mipmap/changecamera" />
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/y30"
+            android:src="@mipmap/changecamera"
+            android:tint="@color/white" />
 
         <TextView
-            android:visibility="gone"
-            android:text="开始标定"
             android:id="@+id/tv_readyClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/color_title_bar"
-            android:textSize="@dimen/x50"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:layout_marginRight="@dimen/y100"/>
+            android:layout_marginRight="@dimen/y100"
+            android:text="START"
+            android:textColor="@color/color_title_bar"
+            android:textSize="@dimen/x50"
+            android:visibility="gone" />
 
     </RelativeLayout>
 

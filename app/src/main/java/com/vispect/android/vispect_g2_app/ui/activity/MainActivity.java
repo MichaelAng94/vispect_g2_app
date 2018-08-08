@@ -22,9 +22,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.StrictMode;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.annotation.BoolRes;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -81,6 +83,7 @@ import interf.GetDsmStartSpeed;
 import interf.GetG2CameraList;
 import interf.GetG2CameraType;
 import interf.GetHorizontalLine;
+import interf.GetSIdeAlarmCallback;
 import interf.GetSPMSpeedSpace;
 import interf.GetUDPcamera;
 import interf.GetVideosTypeListener;
@@ -131,8 +134,20 @@ public class MainActivity extends BaseActivity {
     private Boolean connectRealView = false;
     private int lastConnectionState = 0;
     private String curWIFISSID = "";
+    private int checkTime = 0;
     private String curWIFIPassword = "";
     private BottomSheetDialog bottomInterPasswordDialog;
+    private final static int ALARM_TYPE = 0;
+    private final static int RECORD_TYPE = 1;
+    private final static int ADAS = 0;
+    private final static int DSM = 1;
+    private final static int SPML = 2;
+    private final static int SPMR = 3;
+    public static int udpCamera = -1;   //USP实景设定的镜头
+    public static ArrayList<Point> cameras; //获取到的镜头列表
+    private int videoType;   //选择的Video的类型
+    private int algoType;    //选择的Video算法的类型
+    public static int clickMeun = 0;
 
     @Override
     public int getContentResource() {
@@ -150,7 +165,7 @@ public class MainActivity extends BaseActivity {
         }
         myHandler.post(setuerinfo);
         mayRequestLocation();
-        setTitle("G2 ADAS");
+        setTitle("G2-ADAS");
         AppContext.getInstance().setNeeedCloseBluetooth(!BluetoothAdapter.getDefaultAdapter().isEnabled());
 
         //监听连接变化
@@ -203,6 +218,41 @@ public class MainActivity extends BaseActivity {
             imgConnect.setImageResource(R.drawable.disconnect);
             imgConnect.clearColorFilter();
         }
+
+        if (AppContext.getInstance().getDeviceHelper().isConnectedDevice()) {
+            if (AppContext.getInstance().getDeviceHelper().isG2()){
+            AppContext.getInstance().getDeviceHelper().getG2CameraList(new GetG2CameraList() {
+                @Override
+                public void onSuccess(ArrayList arrayList) {
+                    cameras = arrayList;
+                }
+
+                @Override
+                public void onFail() {
+
+                }
+            });
+
+            AppContext.getInstance().getDeviceHelper().getUDPCamera(new GetUDPcamera() {
+                @Override
+                public void onSuccess(int i) {
+                    udpCamera = i;
+                }
+
+                @Override
+                public void onFail() {
+
+                }
+            });
+        }}
+
+        switch (clickMeun){
+            case 1: UIHelper.startActivity(this, InstallActivity.class);break;
+            case 2: UIHelper.startActivity(this, SettingsActivity.class);break;
+            case 3: myHandler.post(new CheckCamera());break;
+        }
+
+        clickMeun = 0;
     }
 
     private void mayRequestLocation() {
@@ -216,6 +266,8 @@ public class MainActivity extends BaseActivity {
             requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE);
             //请求写入SD卡的权限
             requestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            //请求拍照的权限
+            requestPermission(Manifest.permission.CAMERA);
         }
 
     }
@@ -239,15 +291,19 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
+        initPhotoError();
     }
 
     OnDeviceConnectionStateChange deviceConnectionStateListener = new OnDeviceConnectionStateChange() {
+        //TODO 监听蓝牙的连接状态
         @Override
         public void onConnectionStateChange(int i) {
             if (lastConnectionState != i) {
                 XuLog.e(TAG, "连接状态发生变化：" + i);
                 lastConnectionState = i;
                 if (i == 0) {
+                    imgConnect.setColorFilter(null);
+                    XuToast.show(MainActivity.this,"Disconnect");
                     XuLog.e(TAG, "需要退回到首页");
                     AppContext.getInstance().getDeviceHelper().closeWIFIMode();
                     AppContext.getInstance().getDeviceHelper().closeDeviceRealViewMode();
@@ -269,13 +325,14 @@ public class MainActivity extends BaseActivity {
     };
 
     public void cancelConnect() {
+        //断开连接
         myHandler.removeCallbacks(changeDialog);
         XuNetWorkUtils.cancelConnectWIFI();
         AppContext.getInstance().getDeviceHelper().closeDeviceRealViewMode();
     }
 
     class keyListener implements DialogInterface.OnKeyListener {
-
+        //Dialog的返回键监听
         @Override
         public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
             if (i == KeyEvent.KEYCODE_BACK) {
@@ -318,6 +375,7 @@ public class MainActivity extends BaseActivity {
                     imgConnect.setImageResource(R.drawable.disconnect);
                     imgConnect.clearColorFilter();
                     XuToast.show(this, "Device Disconnected");
+                    break;
                 }
                 UIHelper.startActivity(MainActivity.this, ConnectActivity.class);
                 break;
@@ -325,66 +383,33 @@ public class MainActivity extends BaseActivity {
     }
 
     @OnClick({R.id.menu_user_guide, R.id.menu_installation, R.id.menu_settings, R.id.menu_live, R.id.menu_video})
-
     public void onItemClicked(View view) {
         switch (view.getId()) {
-            case R.id.menu_user_guide:
+            case R.id.menu_user_guide:  //user guide的doc界面
                 UIHelper.showDoc(this);
-
-//                AppContext.getInstance().getDeviceHelper().getG2RecordVideoList(1, 1, 2, new G2DrivingVideoOperationListener() {
-//                    @Override
-//                    public void onGetVideoList(ArrayList arrayList) {
-//                        if (arrayList!=null){
-//                            XuLog.e("islast"+arrayList.size());
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onLockOrUnlockResult(boolean b) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onLast() {
-//                        XuLog.e("islast");
-//                    }
-//                });
-//
-//                AppContext.getInstance().getDeviceHelper().getG2AlarmVideoList(1, 1, 2, new G2DrivingVideoOperationListener() {
-//                    @Override
-//                    public void onGetVideoList(ArrayList arrayList) {
-//                        if (arrayList!=null){
-//                            XuLog.e("islast"+arrayList.size());
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onLockOrUnlockResult(boolean b) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onLast() {
-//                        XuLog.e("islast");
-//                    }
-//                });
-//                break;
-            case R.id.menu_installation:
+                break;
+            case R.id.menu_installation: //安装界面
                 if (isConnected()) {
                     UIHelper.startActivity(this, InstallActivity.class);
+                }else {
+                    clickMeun = 1;
                 }
                 break;
-            case R.id.menu_settings:
+            case R.id.menu_settings: //设置界面
                 if (isConnected()) {
                     UIHelper.startActivity(this, SettingsActivity.class);
+                }else{
+                    clickMeun = 2;
                 }
                 break;
-            case R.id.menu_live:
+            case R.id.menu_live:  //实景界面
                 if (isConnected()) {
-                    openlivemode();
+                    myHandler.post(new CheckCamera());
+                }else{
+                    clickMeun = 3;
                 }
                 break;
-            case R.id.menu_video:
+            case R.id.menu_video: //视频界面
                 View dialog = getLayoutInflater().inflate(R.layout.select_video_dialog, null);
                 bottomInterPasswordDialog = new BottomSheetDialog(MainActivity.this);
                 bottomInterPasswordDialog
@@ -415,16 +440,36 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    public boolean isConnected() {
-        return true;
-//        if (AppContext.getInstance().getDeviceHelper().isConnectedDevice()) {
-//            if (isG2()) {
-//                return true;
-//            }
-//        } else {
-//            UIHelper.startActivity(MainActivity.this, ConnectActivity.class);
-//        }
-//        return false;
+    private class CheckCamera implements Runnable {    //获取G2设备的摄像头列表和类型
+        @Override
+        public void run() {
+
+            if (cameras == null || udpCamera == -1) {
+                if (checkTime == 5) {
+                    checkTime = 0;
+                    XuToast.show(MainActivity.this, "can't use camera");
+                    return;
+                }
+                onResume();
+                myHandler.postDelayed(new CheckCamera(), 500);
+                checkTime++;
+            } else {
+                checkTime = 0;
+                openlivemode();
+            }
+        }
+    }
+
+
+    public boolean isConnected() {   //判断是否已经连接G2的设备
+        if (AppContext.getInstance().getDeviceHelper().isConnectedDevice()) {
+            if (isG2()) {
+                return true;
+            }
+        } else {
+            UIHelper.startActivity(MainActivity.this, ConnectActivity.class);
+        }
+        return false;
     }
 
     public boolean isG2() {
@@ -452,12 +497,19 @@ public class MainActivity extends BaseActivity {
 
             switch (view.getId()) {
                 case R.id.alarm_video:
-                    bottomInterPasswordDialog.show();
+                    if (isConnected()){
+                        videoType = 1;
+                        bottomInterPasswordDialog.show();
+                    }
                     break;
                 case R.id.driving_video:
-                    bottomInterPasswordDialog.show();
+                    if (isConnected()){
+                        videoType = 0;
+                        bottomInterPasswordDialog.show();
+                    }
                     break;
                 case R.id.tv_localvideo:
+                    UIHelper.startActivity(MainActivity.this, LocalVideoSeltActivity.class);
                     break;
             }
 
@@ -465,17 +517,47 @@ public class MainActivity extends BaseActivity {
             TextView tv_dsm = dialog.findViewById(R.id.tv_DSM);
             TextView tv_spml = dialog.findViewById(R.id.tv_SPML);
             TextView tv_spmr = dialog.findViewById(R.id.tv_SPMR);
-
-            tv_adas.setOnClickListener(new View.OnClickListener() {
+            TextView tv_cancle = dialog.findViewById(R.id.tv_cancel);
+            tv_cancle.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    UIHelper.startActivity(MainActivity.this, ADASWarringVideosActivity.class);
+                    bottomInterPasswordDialog.dismiss();
                 }
             });
 
+
+            typeClick typeClick = new typeClick();
+
+            tv_adas.setOnClickListener(typeClick);
+            tv_dsm.setOnClickListener(typeClick);
+            tv_spml.setOnClickListener(typeClick);
+            tv_spmr.setOnClickListener(typeClick);
         }
     }
 
+    class typeClick implements View.OnClickListener {
+
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.tv_ADAS:
+                    algoType = ADAS;
+                    break;
+                case R.id.tv_DSM:
+                    algoType = DSM;
+                    break;
+                case R.id.tv_SPML:
+                    algoType = SPML;
+                    break;
+                case R.id.tv_SPMR:
+                    algoType = SPMR;
+                    break;
+            }
+            if (isConnected()) {
+                UIHelper.showVideosActivity(MainActivity.this, videoType, algoType);
+            }
+        }
+    }
 
     @OnClick(R.id.sign_out)
     public void onViewClicked() {
@@ -485,6 +567,7 @@ public class MainActivity extends BaseActivity {
                 if (var1) {
                     AppConfig.getInstance(MainActivity.this).setFirstStart(true);
                     UIHelper.startActivity(MainActivity.this, LoginActivity.class);
+                    finish();
                 }
                 dialog.dismiss();
             }
@@ -506,6 +589,19 @@ public class MainActivity extends BaseActivity {
             XuToast.show(MainActivity.this, "Success");
         }
     };
+
+
+    private static final int MY_CAMERA_REQUEST_CODE = 100;
+
+
+    private void initPhotoError() {
+        // android 7.0系统解决拍照的问题
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+            StrictMode.setVmPolicy(builder.build());
+            builder.detectFileUriExposure();
+        }
+    }
 
     @OnClick({R.id.tv_tel, R.id.tv_email, R.id.tv_sex, R.id.img_head})
     public void oneditClicked(View view) {
@@ -633,18 +729,24 @@ public class MainActivity extends BaseActivity {
     }
 
     private void openRealViewOld() {
+        System.out.println();
         AppContext.getInstance().getDeviceHelper().openDeviceRealViewMode(new OnWifiOpenListener() {
             @Override
             public void onSuccess(String wifiName, String password) {
                 XuLog.e(TAG, "打开设备wifi成功：" + wifiName + "   " + password);
                 curWIFISSID = wifiName;
                 curWIFIPassword = password;
-                if (XuNetWorkUtils.connectWIFI(curWIFISSID, curWIFIPassword)) {
-                    //成功连上WIFI  开始进入实时路况
-                    if (myHandler != null) {
-                        myHandler.postDelayed(toRealView, 1000);
+                AppContext.getInstance().getCachedThreadPool().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (XuNetWorkUtils.connectWIFI(curWIFISSID, curWIFIPassword)) {
+                            //成功连上WIFI  开始进入实时路况
+                            if (myHandler != null) {
+                                myHandler.postDelayed(toRealView, 1000);
+                            }
+                        }
                     }
-                }
+                });
             }
 
             @Override
@@ -672,7 +774,7 @@ public class MainActivity extends BaseActivity {
         changeDialog = new changeDialog();
         connectRealView = true;
         AppContext.getInstance().setCalibrateType(0);
-        DialogHelp.getInstance().connectDialog(MainActivity.this, "连接中", "正在连接设备").setOnKeyListener(new keyListener());
+        DialogHelp.getInstance().connectDialog(MainActivity.this, STR(R.string.dialog_tips_connecting), STR(R.string.dialog_tips_connecting2)).setOnKeyListener(new keyListener());
         myHandler.postDelayed(changeDialog, 10000);
         openliveThread = new Thread(new Runnable() {
             @Override
@@ -684,9 +786,7 @@ public class MainActivity extends BaseActivity {
                     case 1:
                         openRealViewNew();
                         break;
-
                 }
-
             }
         });
 
@@ -698,7 +798,7 @@ public class MainActivity extends BaseActivity {
         @Override
         public void run() {
             DialogHelp.getInstance().hideDialog();
-            DialogHelp.getInstance().connectDialog(MainActivity.this, "连接中", "请手动接入WIFI 设备名称:" + AppConfig.getInstance(MainActivity.this).getWifi_name() + "密码:" + AppConfig.getInstance(MainActivity.this).getWifi_paw()).setOnKeyListener(new keyListener());
+            DialogHelp.getInstance().connectDialog(MainActivity.this, STR(R.string.dialog_tips_connecting), STR(R.string.wifi_waiting_too_long) + AppConfig.getInstance(MainActivity.this).getWifi_name() + STR(R.string.wifi_waiting_too_long2)+ AppConfig.getInstance(MainActivity.this).getWifi_paw()).setOnKeyListener(new keyListener());
         }
     }
 
@@ -747,8 +847,9 @@ public class MainActivity extends BaseActivity {
         @Override
         public void run() {
 //            hideProgress();
+            DialogHelp.getInstance().hideDialog();
+            myHandler.removeCallbacks(changeDialog);
             if (AppContext.getInstance().getDeviceHelper().isConnectedDevice()) {
-                DialogHelp.getInstance().hideDialog();
                 UIHelper.showLiveForResult(MainActivity.this, REQUESRST_LIVE, false);
             }
 //            AppContext.getInstance().setLocation(180000);
@@ -792,9 +893,7 @@ public class MainActivity extends BaseActivity {
                     } else {
                         XuToast.show(AppContext.getInstance(), "hava not sd card");
                     }
-
                     break;
-
             }
         }
         super.onActivityResult(requestCode, resultCode, data);

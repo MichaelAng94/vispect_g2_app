@@ -28,6 +28,8 @@ import interf.ResultListner;
 
 /**
  * Created by mo on 2018/7/19.
+ * <p>
+ * 侧边镜头启动速度设置
  */
 
 public class SideFragment extends BaseFragment {
@@ -45,7 +47,6 @@ public class SideFragment extends BaseFragment {
 
     @Override
     protected void initView(View view) throws IOException {
-
     }
 
     public void showLoopDialog(final TextView textView, final ArrayList<String> stringArrayList) {
@@ -105,8 +106,8 @@ public class SideFragment extends BaseFragment {
             @Override
             public void onSuccess(int i, int i1) {
                 XuLog.e("i" + i + "i1" + i1);
-                tvStartSpeed.setText(i+"");
-                tvEndSpeed.setText(i1+"");
+                tvStartSpeed.setText(i + "");
+                tvEndSpeed.setText(i1 + "");
             }
 
             @Override
@@ -124,7 +125,7 @@ public class SideFragment extends BaseFragment {
         }
     }
 
-    public void saveData(){
+    public void saveData() {
         AppContext.getInstance().getDeviceHelper().setSPMSpeedSpace(new ResultListner() {
             @Override
             public void onSuccess() {
@@ -135,7 +136,7 @@ public class SideFragment extends BaseFragment {
             public void onFail(int i) {
 
             }
-        },0,Integer.parseInt(tvStartSpeed.getText().toString()),Integer.parseInt(tvEndSpeed.getText().toString()));
+        }, 0, Integer.parseInt(tvStartSpeed.getText().toString()), Integer.parseInt(tvEndSpeed.getText().toString()));
     }
 
     @Override
@@ -152,22 +153,22 @@ public class SideFragment extends BaseFragment {
         ButterKnife.unbind(this);
     }
 
-    @OnClick({R.id.tv_start_speed, R.id.tv_end_speed})
+    @OnClick({R.id.lin_start_speed, R.id.lin_end_speed})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.tv_start_speed:
+            case R.id.lin_start_speed:
                 list = new ArrayList<>();
                 for (int i = 0; i < 35; i += 5) {
                     list.add("" + i);
                 }
-                showLoopDialog((TextView) view, list);
+                showLoopDialog(tvStartSpeed, list);
                 break;
-            case R.id.tv_end_speed:
+            case R.id.lin_end_speed:
                 list = new ArrayList<>();
                 for (int i = 40; i < 80; i += 10) {
                     list.add("" + i);
                 }
-                showLoopDialog((TextView) view, list);
+                showLoopDialog(tvEndSpeed, list);
                 break;
         }
     }

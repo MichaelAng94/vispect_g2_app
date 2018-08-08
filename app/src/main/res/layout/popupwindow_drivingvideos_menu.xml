@@ -67,7 +67,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/y20"
-        android:background="@mipmap/bg_updata_avatar_last"
+        android:background="@color/hint_bg"
         android:gravity="center" >
 
     </LinearLayout>

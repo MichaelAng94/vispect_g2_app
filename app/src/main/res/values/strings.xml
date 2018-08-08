@@ -90,10 +90,10 @@
     <string name="obd_test_brake">Brake</string>
 
     <string name="calibration_road_test">Road Test</string>
-    <string name="calibration_start_correcting">Adjust camera angle at lower speed</string>
+    <string name="calibration_start_correcting">Set the Speed to adjust automatically</string>
 
     <string name="wifi_waiting_too_long">Please manually connect your phone to the ADAS Main Unit’s WIFI net. Wi-Fi name: </string>
-    <string name="wifi_waiting_too_long2">,Password:  </string>
+    <string name="wifi_waiting_too_long2">, Password:  </string>
     <string name="calibration_correcting_done">Adjust Successfully</string>
 
 
@@ -825,19 +825,19 @@
     <string name="loadmore">Loading. . . . . </string>
     <string name="updated_at">Last:</string>
 
-    <string name="set_lane_departrue">to set the Lane Departure,Forward Collision,and Pedestrian Collision warning</string>
+    <string name="set_lane_departrue">to set the Lane Departure, Forward Collision,and Pedestrian Collision warning</string>
     <string name="set_driver_status">to set the Driver Status Monitoring</string>
     <string name="set_password_wifi">to set the passwords for Bluetooth and WIFI</string>
     <string name="set_camera_socket">to set the Camera1 and Camera2 sockets</string>
-    <string name="check_device">to check the Device</string>
-    <string name="check_version">to check the Current Version</string>
+    <string name="check_device">to upgrade the ADAS devices</string>
+    <string name="check_version">to check the versions of the ADAS devices</string>
     <string name="set_side_cameras">to set the side cameras</string>
-    <string name="adjust_camera_atlow">Adjust camera angle at lower apeed</string>
+    <string name="adjust_camera_atlow">Set the Speed to adjust automatically</string>
     <string name="driving_behavior_setting">Driving behaviod settings</string>
     <string name="engineering_setting">Engineering settings</string>
-    <string name="DSM_settings">DSM Technician\'s settings</string>
+    <string name="DSM_settings">DSM settings for professional installers</string>
     <string name="status_of_parts">Status of the parts</string>
-    <string name="restore_initial">Restore for the initial settings</string>
+    <string name="restore_initial">Restore to the default settings</string>
 
     <!-- 车况 -->
     <string name="vehicle_title">Vehicle</string>
@@ -927,7 +927,7 @@
     <string name="end_speed">End Speed</string>
 
     <string name="font_camera">Front camera with Lane Departure Warning and Forward Collision Warning functions</string>
-    <string name="back_camera">正后</string>
+
     <string name="left_camera_back">Left side camera(looking backwards) to monitor the left blind spot of your bus/truck</string>
     <string name="left_camera_forward">Left side camera(looking forwards) to monitor the left blind spot of your bus/truck</string>
     <string name="right_camera_back">Right side camera(looking backwards) to monitor the right blind spot of your bus/truck</string>
@@ -935,7 +935,7 @@
     <string name="driver_status_monitoring">Driver Status Monitoring camera to prevent dozing while driving</string>
 
     <string name="cameras_setting_tips">Please state below the cameras you are using</string>
-    <string name="adjust_atlow_tips">Greater than the input speed can be adjusted(0~255)</string>
+    <string name="adjust_atlow_tips">When your vehicle is faster than this speed for the first time, this ADAS system will adjust itself automatically.</string>
     <string name="input_illegal">Input is illegal</string>
     <string name="register_the_email">Register the email</string>
     <string name="login_by_email">Login by email</string>
@@ -943,7 +943,7 @@
     <string name="recommend_login">Recommend login method</string>
     <string name="use_existend_account"><u>Use Existend Account?Sign In</u></string>
 
-    <string name="ask_out_login">Are you sure to quit?</string>
+    <string name="ask_out_login">Determine whether to sign out?</string>
 
     <string name="dsmsettings_tips">The input value must be an integer within the allowed range.</string>
     <string name="warning_interval">Warning interval(4~60 seconds)</string>
@@ -951,5 +951,10 @@
     <string name="sensitivity_mouth">Sensitivity of mouth-opening detection</string>
     <string name="sensitivity_looking">Sensitivity looking-away detection</string>
 
-    <string name="dsm_setings_title">DSM Technician\'s settings</string>
+    <string name="dsm_setings_title">DSM settings for professional installers</string>
+
+    <string name="dialog_tips_connecting">Connecting</string>
+    <string name="dialog_tips_connecting2">Connecting device</string>
+
+
 </resources>

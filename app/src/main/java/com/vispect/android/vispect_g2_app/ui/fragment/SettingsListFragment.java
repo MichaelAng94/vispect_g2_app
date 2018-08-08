@@ -32,6 +32,8 @@ import interf.SetDeviceInfoCallback;
 
 /**
  * Created by mo on 2018/7/12.
+ *
+ * 设置界面显示的Fragment
  */
 
 public class SettingsListFragment extends BaseFragment {

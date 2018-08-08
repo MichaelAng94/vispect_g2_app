@@ -30,7 +30,7 @@ import butterknife.OnClick;
 
 
 /***
- * ѡ�����
+ * 选择国家或地区的界面
  */
 
 public class CountrySeclect extends BaseActivity {

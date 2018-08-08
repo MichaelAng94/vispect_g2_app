@@ -18,6 +18,7 @@ import com.vispect.android.vispect_g2_app.utils.XuLog;
 import com.vispect.android.vispect_g2_app.utils.XuString;
 
 import java.util.ArrayList;
+import java.util.concurrent.Executors;
 
 import bean.DrawShape;
 
@@ -75,9 +76,6 @@ public class DrawAdas extends SurfaceView implements SurfaceHolder.Callback,Runn
         //TODO 可以开始画
         PlayVideo();
         XuLog.d(TAG, "surfaceCreated");
-
-
-
     }
 
     @Override

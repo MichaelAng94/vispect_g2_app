@@ -49,6 +49,7 @@
             android:id="@+id/btn_cancel"
             android:textColor="@color/hint_bg"
             android:background="@drawable/ripple_bg2"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="@dimen/y50"
             android:layout_centerHorizontal="true"
@@ -59,6 +60,7 @@
             />
 
         <Button
+            style="?android:attr/borderlessButtonStyle"
             android:id="@+id/btn_ok"
             android:textColor="@color/hint_bg"
             android:background="@drawable/ripple_bg2"

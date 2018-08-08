@@ -275,18 +275,21 @@ public class VehicleInfoFragment extends BaseFragment {
         String car_year = tv_car_year.getText().toString().trim();
         String car_brand = edt_car_brand.getText().toString().trim();
         String car_model = edt_car_model.getText().toString().trim();
-        if (!region.isEmpty() && !car_year.isEmpty() && !car_brand.isEmpty() && !car_model.isEmpty()) {
-            AppContext.getInstance().setNowBrand(car_brand);
-            AppContext.getInstance().setNowModel(car_model);
-            AppConfig.getInstance(AppContext.getInstance()).setLastuid(AppConfig.getInstance(AppContext.getInstance()).getUserId());
+
+        AppConfig.getInstance(AppContext.getInstance()).setLastuid(AppConfig.getInstance(AppContext.getInstance()).getUserId());
+        if (!region.isEmpty()) {
             AppConfig.getInstance(AppContext.getInstance()).setLasregion(region);
-            AppConfig.getInstance(AppContext.getInstance()).setLascaryear(car_year);
-            mHandler.post(savesuccess);
-        } else {
-            mHandler.post(requiredIsEmpty);
         }
-
-
+        if (!car_year.isEmpty()){
+            AppConfig.getInstance(AppContext.getInstance()).setLascaryear(car_year);
+        }
+        if (!car_brand.isEmpty()){
+            AppContext.getInstance().setNowBrand(car_brand);
+        }
+        if (!car_model.isEmpty()){
+            AppContext.getInstance().setNowModel(car_model);
+        }
+        mHandler.post(savesuccess);
     }
 
     @Override

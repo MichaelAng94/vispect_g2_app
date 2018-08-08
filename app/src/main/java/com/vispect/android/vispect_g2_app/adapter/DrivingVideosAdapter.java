@@ -20,6 +20,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import bean.DVRInfo;
+import bean.G2DVRInfo;
 import interf.DrivingVideoOperationListener;
 
 /**
@@ -28,7 +29,7 @@ import interf.DrivingVideoOperationListener;
  */
 public class DrivingVideosAdapter extends BaseAdapter {
 
-	private ArrayList<DVRInfo> videos;
+	private ArrayList<G2DVRInfo> videos;
 	private Context context;
 	private boolean isedit = false; // 是否正处在编辑状态
 	private ArrayList<String> list =  new ArrayList<String>();//已存在的视频
@@ -55,7 +56,7 @@ public class DrivingVideosAdapter extends BaseAdapter {
 	};
 
 
-	public DrivingVideosAdapter(Context context, ArrayList<DVRInfo> videos) {
+	public DrivingVideosAdapter(Context context, ArrayList<G2DVRInfo> videos) {
 		this.context = context;
 		this.videos = videos;
 		check_loaddown();
@@ -129,7 +130,7 @@ public class DrivingVideosAdapter extends BaseAdapter {
 		}
 
 
-		final DVRInfo videosinfo = videos.get(position);
+		final G2DVRInfo videosinfo = videos.get(position);
 
 		final String filename = videosinfo.getName().substring(0,4)+"-"+videosinfo.getName().substring(4,6)+"-"+videosinfo.getName().substring(6,8)+" "+videosinfo.getName().substring(8,10)+":"+videosinfo.getName().substring(10,12)+":"+videosinfo.getName().substring(12,14);
 
@@ -177,7 +178,7 @@ public class DrivingVideosAdapter extends BaseAdapter {
 		return convertView;
 	}
 
-	public void refreshData(ArrayList<DVRInfo> videolist) {
+	public void refreshData(ArrayList<G2DVRInfo> videolist) {
 		for (int i = 0;i<videolist.size();i++){
 			String videoname = videolist.get(i).getName();
 			for(String temp:list){
@@ -207,7 +208,7 @@ public class DrivingVideosAdapter extends BaseAdapter {
 	public void clearCheckable() {
 		checkable_list.clear();
 		if (videos != null && videos.size() > 0){
-			for (DVRInfo temp : videos){
+			for (G2DVRInfo temp : videos){
 				if(temp.isCheck()){
 					temp.setCheck(false);
 				}
@@ -238,8 +239,8 @@ public class DrivingVideosAdapter extends BaseAdapter {
 		AppContext.getInstance().getCachedThreadPool().execute(new Runnable() {
 			@Override
 			public void run() {
-				ArrayList<DVRInfo> temp_dvr = new ArrayList();
-				for (DVRInfo tmep : videos) {
+				ArrayList<G2DVRInfo> temp_dvr = new ArrayList();
+				for (G2DVRInfo tmep : videos) {
 					if (tmep.isCheck()) {
 						temp_dvr.add(tmep);
 					}
@@ -250,62 +251,62 @@ public class DrivingVideosAdapter extends BaseAdapter {
 					}
 				}
 				for(int i = 0 ;i < temp_dvr.size();i++){
-					DVRInfo temp_ldvr = temp_dvr.get(i);
+					G2DVRInfo temp_ldvr = temp_dvr.get(i);
 					if(i == temp_dvr.size() - 1){
 						if (temp_ldvr.getState().equals("1")) {
 							//发现已加锁
 							temp_ldvr.setState("0");
-							AppContext.getInstance().getDeviceHelper()
-									.lockDVR(temp_ldvr, false, drivingVideoOperationListener);
+//							AppContext.getInstance().getDeviceHelper()
+//									.lockDVR(temp_ldvr, false, drivingVideoOperationListener);
 
 						} else {
 							//发现未加锁
 							temp_ldvr.setState("1");
-							AppContext.getInstance().getDeviceHelper()
-									.lockDVR(temp_ldvr, true, drivingVideoOperationListener);
+//							AppContext.getInstance().getDeviceHelper()
+//									.lockDVR(temp_ldvr, true, drivingVideoOperationListener);
 
 						}
 					}else{
 						if (temp_ldvr.getState().equals("1")) {
 							//发现已加锁
-							AppContext.getInstance().getDeviceHelper()
-									.lockDVR(temp_ldvr, false, new DrivingVideoOperationListener() {
-										@Override
-										public void onGetVideoList(ArrayList arrayList) {
-
-										}
-
-										@Override
-										public void onLockOrUnlockResult(boolean b) {
-
-										}
-
-										@Override
-										public void onLast() {
-
-										}
-									});
-							temp_ldvr.setState("0");
+//							AppContext.getInstance().getDeviceHelper()
+//									.lockDVR(temp_ldvr, false, new DrivingVideoOperationListener() {
+//										@Override
+//										public void onGetVideoList(ArrayList arrayList) {
+//
+//										}
+//
+//										@Override
+//										public void onLockOrUnlockResult(boolean b) {
+//
+//										}
+//
+//										@Override
+//										public void onLast() {
+//
+//										}
+//									});
+//							temp_ldvr.setState("0");
 						} else {
 							//发现未加锁
-							AppContext.getInstance().getDeviceHelper()
-									.lockDVR(temp_ldvr, true, new DrivingVideoOperationListener() {
-										@Override
-										public void onGetVideoList(ArrayList arrayList) {
-
-										}
-
-										@Override
-										public void onLockOrUnlockResult(boolean b) {
-
-										}
-
-										@Override
-										public void onLast() {
-
-										}
-									});
-							temp_ldvr.setState("1");
+//							AppContext.getInstance().getDeviceHelper()
+//									.lockDVR(temp_ldvr, true, new DrivingVideoOperationListener() {
+//										@Override
+//										public void onGetVideoList(ArrayList arrayList) {
+//
+//										}
+//
+//										@Override
+//										public void onLockOrUnlockResult(boolean b) {
+//
+//										}
+//
+//										@Override
+//										public void onLast() {
+//
+//										}
+//									});
+//							temp_ldvr.setState("1");
 						}
 					}
 					try {
@@ -342,8 +343,8 @@ public class DrivingVideosAdapter extends BaseAdapter {
 
 	}
 
-	public DVRInfo getItemVideo(int index) {
-		return (DVRInfo)getItem(index);
+	public G2DVRInfo getItemVideo(int index) {
+		return (G2DVRInfo)getItem(index);
 	}
 
 

@@ -26,6 +26,8 @@ import interf.ResultListner;
 
 /**
  * Created by mo on 2018/7/19.
+ *
+ * 选择镜头类型
  */
 
 public class CameraTypeFragment extends BaseFragment {
@@ -46,6 +48,9 @@ public class CameraTypeFragment extends BaseFragment {
         super.onResume();
         data = new ArrayList<>();
         for (Integer i = 1; i < 8; i++) {
+            if (i==2){
+                continue;
+            }
             data.add(i);
         }
 
@@ -65,7 +70,7 @@ public class CameraTypeFragment extends BaseFragment {
                 for (int i : data){
                     switch (i){
                         case 1:stringArrayList.add(STR(R.string.font_camera));break;
-                        case 2:stringArrayList.add(STR(R.string.back_camera));break;
+                        case 2: ;break;
                         case 3:stringArrayList.add(STR(R.string.driver_status_monitoring));break;
                         case 4:stringArrayList.add(STR(R.string.left_camera_forward));break;
                         case 5:stringArrayList.add(STR(R.string.left_camera_back));break;

@@ -812,7 +812,6 @@ public class DrivingBehaviorSettingActivity extends BaseActivity {
         } catch (Exception e) {
             e.printStackTrace();
             mHandler.post(dissprogress);
-
         }
         finish();
     }

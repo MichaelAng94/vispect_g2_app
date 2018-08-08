@@ -117,6 +117,11 @@ public class AppContext extends Application{
      */
     public int calibrateType = 0;
 
+    /**
+     *  标定的相机ID
+     */
+    public int calivrateID = 0;
+
     public static AppContext getInstance() {
         return sInstance;
     }
@@ -304,4 +309,11 @@ public class AppContext extends Application{
         this.bleRssi = bleRssi;
     }
 
+    public int getCalivrateID() {
+        return calivrateID;
+    }
+
+    public void setCalivrateID(int calivrateID) {
+        this.calivrateID = calivrateID;
+    }
 }

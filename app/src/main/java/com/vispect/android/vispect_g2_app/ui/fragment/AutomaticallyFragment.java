@@ -1,8 +1,5 @@
 package com.vispect.android.vispect_g2_app.ui.fragment;
 
-/**
- * Created by mo on 2018/3/27.
- */
 
 import android.graphics.PointF;
 import android.os.Bundle;
@@ -30,6 +27,8 @@ import interf.SetDeviceInfoCallback;
 
 /**
  * Created by mo on 2018/3/27.
+ *
+ * 自动校正的界面
  */
 
 

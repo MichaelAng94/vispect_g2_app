@@ -8,8 +8,9 @@
 
     <TextView
         android:textColor="@color/white"
+        android:layout_margin="@dimen/y25"
         android:layout_marginLeft="@dimen/x25"
-        android:textSize="@dimen/y55"
+        android:textSize="@dimen/y45"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cameras_setting_tips"

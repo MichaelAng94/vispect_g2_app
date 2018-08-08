@@ -17,6 +17,7 @@ import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.vispect.android.vispect_g2_app.R;
 import com.vispect.android.vispect_g2_app.app.AppContext;
+import com.vispect.android.vispect_g2_app.interf.CarDialogClickListener;
 import com.vispect.android.vispect_g2_app.interf.DialogClickListener;
 
 import java.util.ArrayList;
@@ -81,6 +82,33 @@ public class DialogHelp {
             @Override
             public void onClick(View view) {
                 listener.clickYes(et.getText().toString());
+            }
+        });
+        Button btnCancle = (Button) mMaterialDialog.findViewById(R.id.btn_cancel);
+        btnCancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mMaterialDialog.dismiss();
+            }
+        });
+        return mMaterialDialog;
+    }
+
+    public MaterialDialog carDialog(final Activity ac, String title, final CarDialogClickListener listener) {
+        this.ac = ac;
+        mBuilder = new MaterialDialog.Builder(ac);
+        mMaterialDialog = new MaterialDialog.Builder(ac)
+                .customView(R.layout.cardialog,false)
+                .show();
+        final EditText et_deiver = (EditText) mMaterialDialog.findViewById(R.id.et_brand);
+        final EditText et_model = (EditText) mMaterialDialog.findViewById(R.id.et_model);
+        TextView titleDialog = (TextView) mMaterialDialog.findViewById(R.id.tv_title_dialog);
+        titleDialog.setText(title);
+        Button btnOk = (Button) mMaterialDialog.findViewById(R.id.btn_ok);
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.clickYes(et_deiver.getText().toString(),et_model.getText().toString());
             }
         });
         Button btnCancle = (Button) mMaterialDialog.findViewById(R.id.btn_cancel);

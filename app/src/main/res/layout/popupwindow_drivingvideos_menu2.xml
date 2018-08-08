@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:background="@mipmap/selector_video_mune"
             android:gravity="center"
-            android:text="批量下载"
+            android:text="Batch Download"
             android:textColor="@color/text_color_default"
             android:textSize="@dimen/x48" />
     </LinearLayout>
@@ -67,7 +67,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/y20"
-        android:background="@mipmap/bg_updata_avatar_last"
+        android:background="@color/hint_bg"
         android:gravity="center" >
 
     </LinearLayout>

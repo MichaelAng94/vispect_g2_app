@@ -2,8 +2,12 @@ package com.vispect.android.vispect_g2_app.ui.activity;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.RequiresApi;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -12,11 +16,12 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import com.vispect.android.vispect_g2_app.R;
 import com.vispect.android.vispect_g2_app.adapter.DrivingVideosAdapter;
@@ -38,10 +43,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import bean.DVRInfo;
+import bean.G2DVRInfo;
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import interf.DrivingVideoOperationListener;
+import interf.G2DrivingVideoOperationListener;
 import interf.OnRefreshListener;
 import interf.OnWifiOpenListener;
 import interf.ProgressCallback;
@@ -49,14 +56,16 @@ import interf.ProgressCallback;
 
 /**
  * 报警视频
- *
+ * <p>
  * Created by xu on 2015/12/26.
  */
 public class ADASWarringVideosActivity extends BaseActivity {
 
+    @Bind(R.id.btn_save)
+    ImageView btnSave;
     private List<Integer> checkList = new ArrayList<>();
     private final static String TAG = "ADASWarringVideosActivity";
-    public ArrayList<String> checkable_list =  new ArrayList<String>();//已选中的视频
+    public ArrayList<String> checkable_list = new ArrayList<String>();//已选中的视频
 
     @Bind(R.id.list_videos)
     RefreshableView setting_menu;
@@ -65,10 +74,12 @@ public class ADASWarringVideosActivity extends BaseActivity {
     @Bind(R.id.ll_mask)
     LinearLayout ll_mask;
 
+    private int videoType;
+    private int algoType;
     DrivingVideosAdapter adapter;
     static int currIndex = 0;
     static int pageSize = 0x1d;
-    ArrayList<DVRInfo> videos;
+    ArrayList<G2DVRInfo> videos;
     private int isrefresh = -1;
     public static boolean needclose = false;
     private Handler mHandler = new Handler();
@@ -141,8 +152,8 @@ public class ADASWarringVideosActivity extends BaseActivity {
         @Override
         public void run() {
             //时间过长的话就提示让用户手动连
-            if(canCancelconnection){
-                XuLog.d(TAG,"超时取消wifi连接");
+            if (canCancelconnection) {
+                XuLog.d(TAG, "超时取消wifi连接");
                 canshowlongtime = false;
                 XuNetWorkUtils.cancelConnectWIFI();
                 XuToast.show(AppContext.getInstance(), STR(R.string.connect_timeout));
@@ -170,8 +181,8 @@ public class ADASWarringVideosActivity extends BaseActivity {
         @Override
         public void run() {
             //时间过长的话就提示让用户手动连
-            if(canshowlongtime){
-                DialogHelp.getInstance().connectDialog(ADASWarringVideosActivity.this,STR(R.string.wifi_waiting_too_long));
+            if (canshowlongtime) {
+                DialogHelp.getInstance().connectDialog(ADASWarringVideosActivity.this, STR(R.string.wifi_waiting_too_long));
             }
 
 
@@ -183,7 +194,7 @@ public class ADASWarringVideosActivity extends BaseActivity {
             XuToast.show(ADASWarringVideosActivity.this, STR(R.string.please_wai_last_file_down_done));
             return;
         }
-        DialogHelp.getInstance().connectDialog(ADASWarringVideosActivity.this,STR(R.string.waitting));
+        DialogHelp.getInstance().connectDialog(ADASWarringVideosActivity.this, STR(R.string.waitting));
         switch (AppContext.getInstance().getDeviceHelper().getCommunicationType()) {
             case 0:
                 openDownloadOld(position);
@@ -225,15 +236,25 @@ public class ADASWarringVideosActivity extends BaseActivity {
         return R.layout.activity_drivingvideos;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void initView(View view) {
         // TODO Auto-generated method stub
-        title.setText(STR(R.string.videos_adas_war_videros));
-        if(!AppContext.getInstance().getDeviceHelper().isConnectedDevice()){
+        Bundle b = getIntent().getExtras();
+        videoType = b.getInt("videoType");
+        algoType = b.getInt("type");
+
+        if (videoType == 0) {
+            title.setText(STR(R.string.videos_driving_record_videros));
+        } else if (videoType == 1) {
+            title.setText(STR(R.string.videos_adas_war_videros));
+        }
+
+        if (!AppContext.getInstance().getDeviceHelper().isConnectedDevice()) {
             return;
         }
         CheckTime.toStop();
-        findViewById(R.id.btn_save).setOnClickListener(new OnClickListener(){
+        findViewById(R.id.btn_save).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 showPopupWindow(setting_menu, -1);
@@ -254,36 +275,56 @@ public class ADASWarringVideosActivity extends BaseActivity {
         adapter.saveCheckable();
         adapter.refreshData(videos);
         timeoututil.startCheck(ARG.SET_VALUE_TIMEOUT);
-        AppContext.getInstance()
-                .getDeviceHelper().getADASWarringVideos(0, pageSize, new DrivingVideoOperationListener() {
-            @Override
-            public void onGetVideoList(final ArrayList arrayList) {
-                timeoututil.stopCheck();
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        refreshDVRList(arrayList);
-                    }
-                });
-            }
+        if (videoType == 0) {
+            AppContext.getInstance().getDeviceHelper().getG2RecordVideoList(0, pageSize, algoType, new G2DrivingVideoOperationListener() {
+                @Override
+                public void onGetVideoList(final ArrayList arrayList) {
+                    timeoututil.stopCheck();
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            refreshDVRList(arrayList);
+                        }
+                    });
+                }
 
-            @Override
-            public void onLockOrUnlockResult(boolean b) {
+                @Override
+                public void onLockOrUnlockResult(boolean b) {
 
-            }
+                }
 
-            @Override
-            public void onLast() {
-                timeoututil.stopCheck();
-                mHandler.post(notmoreRunnable);
+                @Override
+                public void onLast() {
+                    XuToast.show(ADASWarringVideosActivity.this, "No More Files");
+                }
+            });
+        } else if (videoType == 1) {
+            AppContext.getInstance().getDeviceHelper().getG2AlarmVideoList(0, pageSize, algoType, new G2DrivingVideoOperationListener() {
+                @Override
+                public void onGetVideoList(final ArrayList arrayList) {
+                    timeoututil.stopCheck();
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            refreshDVRList(arrayList);
+                        }
+                    });
+                }
 
-            }
-        });
+                @Override
+                public void onLockOrUnlockResult(boolean b) {
 
+                }
 
+                @Override
+                public void onLast() {
+                    XuToast.show(ADASWarringVideosActivity.this, "No More Files");
+                }
+            });
+        }
     }
 
-    private void refreshDVRList(ArrayList<DVRInfo> carCorderInfoAdd){
+    private void refreshDVRList(ArrayList<G2DVRInfo> carCorderInfoAdd) {
         //TODO 刷新数据
         videos.addAll(carCorderInfoAdd);
         currIndex = videos.size();
@@ -299,12 +340,13 @@ public class ADASWarringVideosActivity extends BaseActivity {
                         videos.get(downloading_position).setIsDownloading(true);
                         isdownloading = true;
                         //在此重置下载进度
-                        AppContext.getInstance().getDeviceHelper().resetDownloadCallback(filename,progressCallback);
-
+                        AppContext.getInstance().getDeviceHelper().resetDownloadCallback(filename, progressCallback);
                     }
                 }
             }
         }
+
+
         switch (isrefresh) {
             case 0:
                 if (setting_menu != null) {
@@ -324,13 +366,13 @@ public class ADASWarringVideosActivity extends BaseActivity {
     }
 
     private void initlistview() {
-        videos = new ArrayList<DVRInfo>();
+        videos = new ArrayList<G2DVRInfo>();
         adapter = new DrivingVideosAdapter(ADASWarringVideosActivity.this, videos);
         setting_menu.setAdapter(adapter);
         setting_menu.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onDownPullRefresh() {
-                if(isrefresh == 1){
+                if (isrefresh == 1) {
                     //如果现在正在加载更多  那么就不让他刷新
                     if (setting_menu != null) {
                         setting_menu.hideHeaderView();
@@ -344,7 +386,11 @@ public class ADASWarringVideosActivity extends BaseActivity {
             @Override
             public void onLoadingMore() {
                 isrefresh = 1;
-                getVideos(currIndex);
+                if (videoType == 0) {
+                    getVideos(currIndex);
+                } else if (videoType == 1) {
+                    getVideos2(currIndex);
+                }
             }
         });
 
@@ -359,44 +405,89 @@ public class ADASWarringVideosActivity extends BaseActivity {
 
     void getVideos(int pageIndex) {
         timeoututil.startCheck(ARG.SET_VALUE_TIMEOUT);
-      AppContext.getInstance().getDeviceHelper().getADASWarringVideos(pageIndex, pageSize, new DrivingVideoOperationListener() {
-          @Override
-          public void onGetVideoList(final ArrayList arrayList) {
-              timeoututil.stopCheck();
-              mHandler.post(new Runnable() {
-                  @Override
-                  public void run() {
-                      refreshDVRList(arrayList);
-                  }
-              });
+        AppContext.getInstance().getDeviceHelper().getG2RecordVideoList(pageIndex, pageSize, algoType, new G2DrivingVideoOperationListener() {
 
-          }
+            @Override
+            public void onGetVideoList(final ArrayList arrayList) {
+                timeoututil.stopCheck();
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        refreshDVRList(arrayList);
+                    }
+                });
+            }
 
-          @Override
-          public void onLockOrUnlockResult(boolean b) {
+            @Override
+            public void onLockOrUnlockResult(boolean b) {
 
-          }
+            }
 
-          @Override
-          public void onLast() {
-              timeoututil.stopCheck();
-              XuToast.show(ADASWarringVideosActivity.this, STR(R.string.cube_views_load_more_loaded_empty));
-              switch (isrefresh) {
-                  case 0:
-                      if (setting_menu != null) {
-                          setting_menu.hideHeaderView();
-                      }
-                      isrefresh = -1;
-                      break;
-                  case 1:
-                      if (setting_menu != null) {
-                          setting_menu.hideFooterView();
-                      }
-                      isrefresh = -1;
-                      break;
-              }
-          }
-      });
+            @Override
+            public void onLast() {
+                timeoututil.stopCheck();
+                XuToast.show(ADASWarringVideosActivity.this, STR(R.string.cube_views_load_more_loaded_empty));
+                switch (isrefresh) {
+                    case 0:
+                        if (setting_menu != null) {
+                            setting_menu.hideHeaderView();
+                        }
+                        isrefresh = -1;
+                        break;
+                    case 1:
+                        if (setting_menu != null) {
+                            setting_menu.hideFooterView();
+                        }
+                        isrefresh = -1;
+                        break;
+                }
+            }
+        });
+
+
+    }
+
+    void getVideos2(int pageIndex) {
+        timeoututil.startCheck(ARG.SET_VALUE_TIMEOUT);
+        AppContext.getInstance().getDeviceHelper().getG2AlarmVideoList(pageIndex, pageSize, algoType, new G2DrivingVideoOperationListener() {
+
+            @Override
+            public void onGetVideoList(final ArrayList arrayList) {
+                timeoututil.stopCheck();
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        refreshDVRList(arrayList);
+                    }
+                });
+            }
+
+            @Override
+            public void onLockOrUnlockResult(boolean b) {
+
+            }
+
+            @Override
+            public void onLast() {
+                timeoututil.stopCheck();
+                XuToast.show(ADASWarringVideosActivity.this, STR(R.string.cube_views_load_more_loaded_empty));
+                switch (isrefresh) {
+                    case 0:
+                        if (setting_menu != null) {
+                            setting_menu.hideHeaderView();
+                        }
+                        isrefresh = -1;
+                        break;
+                    case 1:
+                        if (setting_menu != null) {
+                            setting_menu.hideFooterView();
+                        }
+                        isrefresh = -1;
+                        break;
+                }
+            }
+        });
+
 
     }
 
@@ -410,7 +501,7 @@ public class ADASWarringVideosActivity extends BaseActivity {
         } else {
             contentView = LayoutInflater.from(ADASWarringVideosActivity.this).inflate(R.layout.popupwindow_drivingvideos_menu2, null);
         }
-        if(popupWindow != null){
+        if (popupWindow != null) {
             popupWindow.dismiss();
         }
         popupWindow = new PopupWindow(contentView, LayoutParams.WRAP_CONTENT,
@@ -452,7 +543,7 @@ public class ADASWarringVideosActivity extends BaseActivity {
                     for (String name : adapter.checkable_list) {
                         for (int i = 0; i < videos.size(); i++) {
                             if (name.equals(videos.get(i).getName())) {
-                                if (!checkList.contains(i)){
+                                if (!checkList.contains(i)) {
                                     checkList.add(i);
                                 }
                             }
@@ -466,7 +557,8 @@ public class ADASWarringVideosActivity extends BaseActivity {
                     adapter.setIsedit(true);
                 }
                 adapter.refreshData(videos);
-                popupWindow.dismiss();}
+                popupWindow.dismiss();
+            }
         });
 
 
@@ -476,7 +568,7 @@ public class ADASWarringVideosActivity extends BaseActivity {
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 popupWindow.dismiss();
-                DialogHelp.getInstance().connectDialog(ADASWarringVideosActivity.this,"");
+                DialogHelp.getInstance().connectDialog(ADASWarringVideosActivity.this, "");
                 AppContext.getInstance().getCachedThreadPool().execute(new Runnable() {
                     @Override
                     public void run() {
@@ -508,9 +600,10 @@ public class ADASWarringVideosActivity extends BaseActivity {
                                 });
 
                             }
+
                             @Override
                             public void onLast() {
-
+                                XuToast.show(ADASWarringVideosActivity.this, "No More Files");
                             }
                         });
                     }
@@ -529,8 +622,8 @@ public class ADASWarringVideosActivity extends BaseActivity {
                     XuToast.show(ADASWarringVideosActivity.this, STR(R.string.please_wai_last_file_down_done));
                     return;
                 }
-                DialogHelp.getInstance().connectDialog(ADASWarringVideosActivity.this,"");
-                switch (AppContext.getInstance().getDeviceHelper().getCommunicationType()){
+                DialogHelp.getInstance().connectDialog(ADASWarringVideosActivity.this, "");
+                switch (AppContext.getInstance().getDeviceHelper().getCommunicationType()) {
                     case 0:
                         openDownloadOld(position);
                         break;
@@ -565,16 +658,17 @@ public class ADASWarringVideosActivity extends BaseActivity {
         finish();
     }
 
-    private void openDownloadNew(final int position){
+    private void openDownloadNew(final int position) {
         AppContext.getInstance().getCachedThreadPool().execute(new Runnable() {
             @Override
             public void run() {
-                    AppContext.getInstance().getDeviceHelper().openDownloadProt();
-                    openUploadServiceAndDownload(position, videos.get(position).getName());
+                AppContext.getInstance().getDeviceHelper().openDownloadProt();
+                openUploadServiceAndDownload(position, videos.get(position).getName());
             }
         });
     }
-    private void openDownloadOld(final int position){
+
+    private void openDownloadOld(final int position) {
         canshowlongtime = true;
         timeoututil.startCheck(ARG.OPEN_WIFI_TIMEOUT);
         //先移除掉可能存在的关闭WIFI的指令
@@ -586,7 +680,7 @@ public class ADASWarringVideosActivity extends BaseActivity {
                 try {
                     needclose = true;
                     //先打开下载模.
-                    mHandler.postDelayed(mRunnable_toas_waiitingtoolong,20000);
+                    mHandler.postDelayed(mRunnable_toas_waiitingtoolong, 20000);
                     AppContext.getInstance().getDeviceHelper().openDeviceDownloadDVRMode(new OnWifiOpenListener() {
                         @Override
                         public void onSuccess(final String name, final String password) {
@@ -597,7 +691,7 @@ public class ADASWarringVideosActivity extends BaseActivity {
                             AppContext.getInstance().getCachedThreadPool().execute(new Runnable() {
                                 @Override
                                 public void run() {
-                                    if(XuNetWorkUtils.connectWIFI(name,password)){
+                                    if (XuNetWorkUtils.connectWIFI(name, password)) {
                                         canCancelconnection = false;
                                         openUploadServiceAndDownload(position, videos.get(position).getName());
                                     }
@@ -646,17 +740,18 @@ public class ADASWarringVideosActivity extends BaseActivity {
                             adapter.refreshData(videos);
                             adapter.check_loaddown();
                             XuLog.d(TAG, "the download is done");
-                            if(downloading_position < videos.size()){
+                            if (downloading_position < videos.size()) {
                                 videos.get(downloading_position).setIsDownloading(false);
                                 videos.get(downloading_position).setHasLocalFile(true);
                             }
-
-                            checkList.remove(0);
-
+                            if (checkList.size() > 0) {
+                                checkList.remove(0);
+                            }
                             if (checkList != null && checkList.size() > 0) {
                                 download(checkList.get(0));
-                            }else {
-                                Toast.makeText(ADASWarringVideosActivity.this,"完成", Toast.LENGTH_SHORT).show();;
+                            } else {
+                                Toast.makeText(ADASWarringVideosActivity.this, "完成", Toast.LENGTH_SHORT).show();
+                                ;
                             }
                         }
                     }
@@ -703,7 +798,7 @@ public class ADASWarringVideosActivity extends BaseActivity {
     private ProgressCallback progressCallback = new ProgressCallback() {
         @Override
         public void onProgressChange(long l) {
-            XuLog.e(TAG,"进度还在继续:"+l);
+            XuLog.e(TAG, "进度还在继续:" + l);
             Message message = new Message();
             message.what = ARG.DOWNLOAD_PROGRESS;
             HashMap<String, String> map = new HashMap<>();
@@ -717,11 +812,11 @@ public class ADASWarringVideosActivity extends BaseActivity {
         public void onErro(int i) {
             XuLog.d(TAG, " onFail():" + i);
             mHandler.removeCallbacks(mRunnable_toas_waiitingtoolong);
-            if(videos != null && downloading_position < videos.size() && downloading_position > -1){
+            if (videos != null && downloading_position < videos.size() && downloading_position > -1) {
                 videos.get(downloading_position).setIsDownloading(false);
             }
             //删除未下载完成的文件
-            XuFileUtils.delFile(AppContext.getInstance().getDeviceHelper().getDownloadDir()+AppContext.getInstance().getDownloading_name()+".mp4");
+            XuFileUtils.delFile(AppContext.getInstance().getDeviceHelper().getDownloadDir() + AppContext.getInstance().getDownloading_name() + ".mp4");
             AppContext.getInstance().setDownloading_name("");
             mHandler.post(mRunnable);
             isdownloading = false;
@@ -736,18 +831,18 @@ public class ADASWarringVideosActivity extends BaseActivity {
             });
 
 
-
         }
 
         @Override
         public void onDone(String fileName, String md5) {
             //完成
-            XuLog.e(TAG,"下载完成");
+            XuLog.e(TAG, "下载完成");
             isdownloading = false;
         }
     };
 
     private String curDowningFileName;
+
     void openUploadServiceAndDownload(final int postion, final String value) {
         XuLog.d(TAG, "开始进入下载");
         canshowlongtime = false;
@@ -760,17 +855,18 @@ public class ADASWarringVideosActivity extends BaseActivity {
                 isdownloading = true;
                 mHandler.removeCallbacks(mRunnable_toas_waiitingtoolong);
                 mHandler.post(mRunnable);
-                AppContext.getInstance().getDeviceHelper().downADASWarringVideoFile(2,value,progressCallback);
+
+                AppContext.getInstance().getDeviceHelper().downG2MultiMediaFile(videoType, algoType, value, progressCallback);
                 //把下载未完成的存在起来，以便下次进来还有进度条
                 if (isdownloading && videos != null && downloading_position < videos.size()) {
                     AppContext.getInstance().setDownloading_name(videos.get(downloading_position).getName());
                 }
+
             }
 
-            });
+        });
 
-        }
-
+    }
 
 
     @Override
@@ -783,7 +879,7 @@ public class ADASWarringVideosActivity extends BaseActivity {
             CheckTime.todisconnectWifi();
             AppContext.getInstance().getDeviceHelper().closeDeviceDownloadDVRMode();
         }
-        if(adapter != null){
+        if (adapter != null) {
             adapter.clear_loaddown();
         }
 
@@ -794,4 +890,10 @@ public class ADASWarringVideosActivity extends BaseActivity {
         super.onDestroy();
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
 }

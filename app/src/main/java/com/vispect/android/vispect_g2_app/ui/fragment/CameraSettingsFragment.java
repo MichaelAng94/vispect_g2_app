@@ -24,6 +24,8 @@ import interf.GetG2CameraList;
 
 /**
  * Created by mo on 2018/7/12.
+ *
+ * 选择G2镜头,改变镜头类型
  */
 
 public class CameraSettingsFragment extends BaseFragment {
@@ -38,8 +40,6 @@ public class CameraSettingsFragment extends BaseFragment {
     public int getContentResource() {
         return R.layout.fragment_calibrate;
     }
-
-
 
     @Override
     protected void initView(View view) throws IOException {
@@ -65,15 +65,15 @@ public class CameraSettingsFragment extends BaseFragment {
                 data = new ArrayList<>();
                 for (Point p : cameras){
                     switch (p.y){
-                        case -1:data.add("镜头不可用");break;
-                        case 0:data.add("未设置");break;
-                        case 1:data.add("正前");break;
-                        case 2:data.add("正后");break;
-                        case 3:data.add("DSM");break;
-                        case 4:data.add("左前");break;
-                        case 5:data.add("左后");break;
-                        case 6:data.add("右前");break;
-                        case 7:data.add("右后");break;
+                        case -1:data.add("Camera "+p.x+" socket: "+"Unavailable");break;
+                        case 0:data.add("Camera "+p.x+" socket: "+"None");break;
+                        case 1:data.add("Camera "+p.x+" socket: "+"Font Camera");break;
+                        case 2:data.add("Camera "+p.x+" socket: "+"None");break;
+                        case 3:data.add("Camera "+p.x+" socket: "+"Driver Status Monitoring");break;
+                        case 4:data.add("Camera "+p.x+" socket: "+"Left side(forwards)");break;
+                        case 5:data.add("Camera "+p.x+" socket: "+"Left side(backwards)");break;
+                        case 6:data.add("Camera "+p.x+" socket: "+"Right side(forwards)");break;
+                        case 7:data.add("Camera "+p.x+" socket: "+"Right side(backwards)");break;
                     }
                 }
                 calibrateAdapter = new CalibrateAdapter(getContext(),data);

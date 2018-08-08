@@ -40,6 +40,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import bean.DVRInfo;
+import bean.G2DVRInfo;
 import butterknife.Bind;
 import butterknife.OnClick;
 import interf.DrivingVideoOperationListener;
@@ -67,7 +68,7 @@ public class DrivingVideosActivity extends BaseActivity {
     DrivingVideosAdapter adapter;
     static int currIndex = 0;
     static int pageSize = 0x1d;
-    ArrayList<DVRInfo> videos;
+    ArrayList<G2DVRInfo> videos;
     private int isrefresh = -1;
     public static boolean needclose = false;
     private Handler mHandler = new Handler();
@@ -267,7 +268,7 @@ public class DrivingVideosActivity extends BaseActivity {
 
     }
 
-    private void refreshDVRList(ArrayList<DVRInfo> carCorderInfoAdd) {
+    private void refreshDVRList(ArrayList<G2DVRInfo> carCorderInfoAdd) {
         //TODO 刷新数据
         videos.addAll(carCorderInfoAdd);
         currIndex = videos.size();
@@ -308,7 +309,7 @@ public class DrivingVideosActivity extends BaseActivity {
     }
 
     private void initlistview() {
-        videos = new ArrayList<DVRInfo>();
+        videos = new ArrayList<G2DVRInfo>();
         adapter = new DrivingVideosAdapter(DrivingVideosActivity.this, videos);
         setting_menu.setAdapter(adapter);
         setting_menu.setOnRefreshListener(new OnRefreshListener() {

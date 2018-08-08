@@ -126,8 +126,18 @@ public class LoginActivity extends BaseActivity {
                 }
                 else {
                     int resultCode = response.getResult();
+                    XuLog.e(TAG,"res"+resultCode);
                     switch (resultCode) {
                         case 100:
+                            mhandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    XuToast.show(LoginActivity.this,  STR(R.string.have_not_userid));
+                                    //账号错误
+                                }
+                            });
+                            break;
+                        case 101:
                             mhandler.post(new Runnable() {
                                 @Override
                                 public void run() {

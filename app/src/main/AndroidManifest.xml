@@ -129,6 +129,13 @@
         <activity android:name=".ui.activity.EngineeringModelActivity"/>
         <activity android:name=".ui.activity.DeviceTestingActivity"/>
         <activity android:name=".ui.activity.ADASWarringVideosActivity"/>
+        <activity android:name=".ui.activity.VideoPlayerActivity"/>
+        <activity android:name=".ui.activity.SelectVideoActivity"/>
+        <activity android:name=".ui.activity.LocalVideoSeltActivity"/>
+        <activity android:name=".ui.activity.CalibrateActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="sensorLandscape"
+            />
 
     </application>
 

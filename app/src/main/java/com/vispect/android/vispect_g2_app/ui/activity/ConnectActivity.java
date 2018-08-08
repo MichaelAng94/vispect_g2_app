@@ -131,31 +131,14 @@ public class ConnectActivity extends BaseActivity {
                 });
             }
             isLogining = false;
-//            AppContext.getInstance().getDeviceHelper().getDeviceVersion(new GetBleInfoVersionCallback() {
-//                @Override
-//                public void onSuccess(String deviceHWver, String deviceOTAver, String deviceAPKver, String obdver, String buzzerver, String GPS) {
-//                    XuLog.e("test:"+deviceHWver+"  "+deviceOTAver+"  "+deviceAPKver+"    "+obdver+"  "+buzzerver+"  "+GPS);
-//                    String[] device =deviceOTAver.split("_");
-//
-//                    XuLog.e(device.length+"");
-//                    if (device.length>2){
-//                        AppContext.getInstance().setDevice_model(device[1]);
-//                    }
-//                }
-//
-//                @Override
-//                public void onFail(int i) {
-//
-//                }
-//            });
 
-            myHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    DialogHelp.getInstance().hideDialog();
-                    ConnectActivity.this.finish();
-                }
-            },1500);
+           DialogHelp.getInstance().hideDialog();
+           myHandler.postDelayed(new Runnable() {
+               @Override
+               public void run() {
+                   finish();
+               }
+           },500);
         }
 
         @Override

@@ -32,6 +32,8 @@ import interf.OnWifiOpenListener;
 
 /**
  * Created by mo on 2018/7/12.
+ *
+ * 选择标定镜头的界面
  */
 
 public class CalibrateFragment extends BaseFragment {
@@ -53,6 +55,13 @@ public class CalibrateFragment extends BaseFragment {
         return R.layout.fragment_calibrate;
     }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden){
+            DialogHelp.getInstance().hideDialog();
+        }
+    }
 
     @Override
     protected void initView(View view) throws IOException {
@@ -65,31 +74,31 @@ public class CalibrateFragment extends BaseFragment {
                 for (Point p : cameras) {
                     switch (p.y) {
                         case -1:
-                            data.add("镜头不可用");
+                            data.add("Unavailable");
                             break;
                         case 0:
-                            data.add("未设置");
+                            data.add("None");
                             break;
                         case 1:
-                            data.add("正前");
+                            data.add(STR(R.string.font_camera));
                             break;
                         case 2:
-                            data.add("正后");
+                            data.add("None");
                             break;
                         case 3:
-                            data.add("DSM");
+                            data.add(STR(R.string.driver_status_monitoring));
                             break;
                         case 4:
-                            data.add("左前");
+                            data.add(STR(R.string.left_camera_forward));
                             break;
                         case 5:
-                            data.add("左后");
+                            data.add(STR(R.string.left_camera_back));
                             break;
                         case 6:
-                            data.add("右前");
+                            data.add(STR(R.string.right_camera_forward));
                             break;
                         case 7:
-                            data.add("右后");
+                            data.add(STR(R.string.right_camera_back));
                             break;
                     }
                 }
@@ -107,6 +116,7 @@ public class CalibrateFragment extends BaseFragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 selectCamera = cameras.get(i);
+                AppContext.getInstance().setCalivrateID(cameras.get(i).x);
                 if (cameras.get(i).y>=4){
                     AppContext.getInstance().setCalibrateType(1);
                 }else if (cameras.get(i).y==3){
@@ -147,7 +157,7 @@ public class CalibrateFragment extends BaseFragment {
         }
         changeDialog = new changeDialog();
 
-        DialogHelp.getInstance().connectDialog(getActivity(), "连接中", "正在连接设备").setOnKeyListener(new keyListener());
+        DialogHelp.getInstance().connectDialog(getActivity(), STR(R.string.dialog_tips_connecting), STR(R.string.dialog_tips_connecting2)).setOnKeyListener(new keyListener());
         myHandler.postDelayed(changeDialog, 10000);
         openliveThread = new Thread(new Runnable() {
             @Override
@@ -178,7 +188,7 @@ public class CalibrateFragment extends BaseFragment {
             DialogHelp.getInstance().hideDialog();
             if(AppContext.getInstance().getDeviceHelper().isConnectedDevice()){
                 DialogHelp.getInstance().hideDialog();
-                UIHelper.showLiveForResult(getActivity(), REQUESRST_LIVE, false);
+                UIHelper.showCalibrate(getActivity(), REQUESRST_LIVE, true);
             }
         }
     };
@@ -201,6 +211,8 @@ public class CalibrateFragment extends BaseFragment {
                     public void run() {
                         //设置超时断开
                         if (XuNetWorkUtils.connectWIFI(name, password)) {
+                            DialogHelp.getInstance().hideDialog();
+                            myHandler.removeCallbacks(changeDialog);
                             //成功连上WIFI  开始进入实时路况
                             myHandler.postDelayed(toRealView, 1000);
                         }else{
@@ -229,7 +241,7 @@ public class CalibrateFragment extends BaseFragment {
         @Override
         public void run() {
             DialogHelp.getInstance().hideDialog();
-            DialogHelp.getInstance().connectDialog(getActivity(), "连接中", "请手动接入WIFI 设备名称:" + AppConfig.getInstance(getActivity()).getWifi_name() + "密码:" + AppConfig.getInstance(getActivity()).getWifi_paw()).setOnKeyListener(new keyListener());
+            DialogHelp.getInstance().connectDialog(getActivity(), STR(R.string.dialog_tips_connecting), STR(R.string.wifi_waiting_too_long) + AppConfig.getInstance(getActivity()).getWifi_name() + STR(R.string.wifi_waiting_too_long2)+ AppConfig.getInstance(getActivity()).getWifi_paw()).setOnKeyListener(new keyListener());
         }
     }
 

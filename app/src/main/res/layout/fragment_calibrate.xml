@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/y25"
-        android:text="@string/choose_camera"
+        android:text="@string/cameras_setting_tips"
         android:textColor="@color/white"
         android:textSize="@dimen/y45"
         />

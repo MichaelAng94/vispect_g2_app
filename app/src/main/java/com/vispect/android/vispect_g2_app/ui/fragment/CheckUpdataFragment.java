@@ -47,6 +47,8 @@ import okhttp3.Request;
 
 /**
  * Created by mo on 2018/7/20.
+ *
+ * 检查更新
  */
 
 public class CheckUpdataFragment extends BaseFragment {
@@ -55,6 +57,7 @@ public class CheckUpdataFragment extends BaseFragment {
     public boolean canupdata = true;
     @Bind(R.id.list_updata)
     ListView listUpdata;
+    private Checknet checknet = new Checknet();
 
     private VispectUpdateFile newUpdaFile_firmware = null;
     private VispectUpdateFile newUpdaFile_system = null;
@@ -67,6 +70,7 @@ public class CheckUpdataFragment extends BaseFragment {
     String device_system = null;
     String device_software_s = null;
     int device_obd = -1;
+    private
 
     SettingMenuAdapter adapter;
     int updataposition = -1;
@@ -150,18 +154,19 @@ public class CheckUpdataFragment extends BaseFragment {
             @Override
             public void run() {
                 if (!XuNetWorkUtils.isNetworkAvailable() || !XuNetWorkUtils.ping()) {
-                    mhandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            XuToast.show(getActivity(), STR(R.string.not_net_work));
-                        }
-                    });
-
+                    mhandler.post(checknet);
                 }
             }
         });
 
         checkupdate();
+    }
+
+    public class Checknet implements Runnable{
+        @Override
+        public void run() {
+            XuToast.show(getActivity(), STR(R.string.not_net_work));
+        }
     }
 
     void tomenu(int position) {
@@ -868,6 +873,7 @@ public class CheckUpdataFragment extends BaseFragment {
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (hidden){
+            mhandler.removeCallbacks(checknet);
             XuNetWorkUtils.cancelConnectWIFI();
         }
     }

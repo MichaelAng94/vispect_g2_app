@@ -36,6 +36,8 @@ import butterknife.ButterKnife;
 
 /**
  * Created by mo on 2018/3/27.
+ *
+ * 安装界面
  */
 
 
