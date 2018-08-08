@@ -34,6 +34,8 @@ import interf.GetBleInfoVersionCallback;
 import interf.OnScanDeviceLisetener;
 import interf.OnWifiOpenListener;
 
+import static com.vispect.android.vispect_g2_app.ui.activity.MainActivity.clickMeun;
+
 public class ConnectActivity extends BaseActivity {
 
     @Bind(R.id.list_connect)
@@ -71,6 +73,13 @@ public class ConnectActivity extends BaseActivity {
             }
         });
         openBluetoothScanDevice();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        clickMeun = 0;
+        finish();
     }
 
     private void refreshScan() {
@@ -342,6 +351,7 @@ public class ConnectActivity extends BaseActivity {
                 refreshScan();
                 break;
             case R.id.img_back_main:
+                clickMeun = 0;
                 finish();
                 break;
         }
