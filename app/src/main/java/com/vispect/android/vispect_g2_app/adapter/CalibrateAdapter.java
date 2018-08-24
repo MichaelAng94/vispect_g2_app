@@ -9,11 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.vispect.android.vispect_g2_app.R;
-
 import java.util.ArrayList;
-
 import bean.BLEDevice;
 
 /**

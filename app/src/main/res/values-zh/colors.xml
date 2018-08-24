@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#000</color>
+    <color name="colorPrimaryDark">#000</color>
+    <color name="colorAccent">#dbdbdb</color>
+    <color name="black">#000000</color>
+    <color name="blue">#2a6ccc</color>
+    <color name="red">#cc1e20</color>
+    <color name="white">#ffffff</color>
+    <color name="green">#2acc21</color>
+    <color name="background">#262631</color>
+    <color name="list_bg">#353542</color>
+    <color name="list_gray">#202020</color>
+    <color name="hint_bg">#444453</color>
+    <color name="light_gray">#989898</color>
+    <color name="main_background">#444453</color>
+    <color name="item_background">#353542</color>
+    <color name="hintColor">#dbdbdb</color>
+    <color name="textColor">#686868</color>
+    <color name="bg_color_default">#262631</color>
+    <color name="table_check">#00CCCC</color>
+
+    <color name="primary">#d1425b</color>
+    <color name="primary_dark">#fa8624</color>
+    <color name="accent">#fabb6e</color>
+
+    <color name="mask">#aa000000</color>
+    <color name="transparent">#00000000</color>
+
+
+    <color name="pink">#ff6a6a</color>
+
+    <color name="blackText">#1b1b1b</color>
+    <color name="vehicle_unseclect">#cdcdd0</color>
+    <color name="listbag">#dedee0</color>
+    <color name="textInfoColor">#a3a3a3</color>
+    <color name="divider">#999999</color>
+
+
+    <color name="main_red_dark">#CE1C40</color>
+    <color name="secondaryProgress">#d8ff6b3d</color>
+    <color name="green27">#27BE76</color>
+    <color name="yellowfe">#FEA92B</color>
+    <color name="gray7a">#7A7A7A</color>
+    <color name="grayee">#eeeeee</color>
+    <color name="pink_lk">#e6014e</color>
+
+
+    <color name="table_check_white">#66dddd </color>
+    <color name="text_color_default">#999999</color>
+    <color name="color_security">#AEEF00</color>
+    <color name="color_warning">#FFCE37</color>
+    <color name="color_dangerous">#FF2A2A</color>
+    <color name="color_title_bar">#00CCCC</color>
+    <color name="text_color_calendar_number">#666666</color>
+    <color name="text_color_blue">#72D5FE</color>
+    <color name="text_color_calibration">#0099cc</color>
+
+
+    <!--按钮按下的颜色-->
+    <color name="btn_color_dvr_selected">#006866</color>
+    <color name="btn_color_war_selected">#00667f</color>
+    <color name="btn_color_rute_selected">#025069</color>
+    <color name="btn_color_set_selected">#29685e</color>
+
+
+    <color name="bg_new">#eef3fa</color>
+    <color name="textcolor_name_password">#333333</color>
+    <color name="bg_mask">#333d46</color>
+
+
+</resources>

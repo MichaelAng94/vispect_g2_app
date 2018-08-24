@@ -1,4 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- 添加好友 -->
+    <string name="addfriend_title">Add a friend</string>
+    <string name="addfriend_searc_hit">Phone Number/Email</string>
+    <string name="deletefriend_title">Confirm to delete this friend?</string>
+
+    <string name="calibration_stop5_1">After connecting the components by wires and calibrating the main unit, disconnect the power supply to the main unit by stopping the engine and pulling out the car key. </string>
+    <string name="calibration_stop5_2">Fixing wires/cables: The cable tie is used to ensure that the cable may not be clamped or clogged by the moving parts on the vehicle. </string>
+    <string name="calibration_stop5_3">Conceal the wires: Two methods are available to conceal the wires and cables. The cable may be concealed in the sealing rubber strip of the windshield, or may be stuck onto the windshield surface with the fixed fastener if permitted by the owner of the vehicle. \nOther cables may be concealed, subject to actual conditions. </string>
+    <string name="calibration_stop5_4">Please note that cables must be kept away from high temperatures and sharp objects, and wiring shall not affect the normal driving and use of the vehicle. </string>
+
+    <string name="calibration_stop6_1">The anti-glare screen is designed to prevent light in the vehicle from being reflected onto the camera. In case of light reflection, identification will be affected. </string>
+    <string name="calibration_stop6_2">Following the figure below, stick the anti-glare screen onto the small flat under the lens of the main unit. The anti-glare screen should cover the screw holes. </string>
+    <string name="calibration_stop6_3">After the anti-glare screen is installed, open the app. On the “Live-road” page, connect the main unit and your smart phone. If the main unit and the phone have successfully connected to each other, the indicator beside the “Connect” button will light up. Click the ‘Real-time mode’ button. After some time, the real view of the main unit will be displayed on your smart phone. </string>
+    <string name="calibration_stop6_4">Confirm whether the screen shields the image. If so, the anti-glare screen may be cut a little as is appropriate; however, the anti-glare screen must make contact with the windshield to prevent potential reflection. </string>
+
+    <string name="calibration_stop7_1">Now, we have finished the installation and calibration process. /nOpen the app. On the “Live-road” page, connect the main unit and your smart phone. If the main unit and the phone have successfully connected to each other, the indicator beside the “Connect” button will light up. /n
+Click the “Real-time mode” button. After some time, the real view of the main unit will be displayed on your smart phone. \nSome of the lanes and vehicles in the images are added with dynamic marks. This ADAS system judges potential dangers almost in the same way as it draws these marks. If the majority of the vehicles in your car’s approaching direction are marked, your calibration is proven correct; otherwise, you need to calibrate the main unit again. \n
+Please note that this system must be tested under proper light. It is not suitable for being tested in a dark environment, or under a comparatively dim or bright environment. </string>
+
+
+    <string name="connect_search_services_fail">Search service failed. Please try again later. </string>
+    <string name="connect_subscribe_fail">Characteristic subscription failure. Please try again later. </string>
+    <string name="connect_write_describer_fail">Descriptor write failed. Please try again later. </string>
+    <string name="connect_login_device_fail">Login failed. Please try again later. </string>
+    <string name="connect_connect_ble_timeout">Connection to bluetooth timed out. Please try again later. </string>
+    <string name="connect_search_services_timeout">Search service timed out. Please try again later. </string>
+    <string name="connect_subscribe_timeout">Characteristic subscription timed out. Please try again later. </string>
+    <string name="connect_write_describer_timeout">Descriptor write timed out. Please try again later. </string>
+    <string name="connect_login_device_timeout">Login timed out. Please try again later. </string>
+    <string name="connect_login_passwrod_error_title">Password error. Please enter again or choose other device. </string>
+    <string name="connect_login_passwrod_error_cancel">Choose other device</string>
+    <string name="connect_login_passwrod_error_input">Enter your password</string>
+
+    <string name="system_set_s_outdraw">Video Stream Output</string>
+    <string name="system_set_s_addadas">Add Recognition Marks</string>
+    <string name="system_set_s_outadas">Data Output Yto Series Port</string>
+    <string name="system_set_s_video_formats">Video Formats:</string>
+
+
+    <string name="user_agreement_title">Installation License Agreement</string>
+    <string name="user_agreement_content">"        This Agreement is a legal agreement made and entered into by and between you and Vispect with respect to the installation of this system. Please carefully read and understand all rights and limitations as set forth under the End User Installation License Agreement (“this Agreement”) with respect to this system. Prior to installation, please carefully read all articles under this Agreement and decide whether or not to accept the same. Unless or until you accept them, this system shall not be installed or applied to your car.
+    \nThis system contains the attached product parts and software, as well as related printing materials.
+    \nThis product is an assistance product for certain driving conditions and cannot be used as a substitute for the driver himself/herself. Even with this product in operation, you must continue to focus on driving, while paying close attention to the conditions on the road and neighboring vehicles.
+    \nThis product is not suitable for driving at night, or in dark environment.
+    \nWhen you use this system, the following may impact its performance ability or reduce its performance:
+    \n1. Weather conditions, such as heavy rain, snow, and fog, are present.
+    \n2. The camera is in a high or low temperature environment.
+    \n3. Vehicle dump or road slope
+    \n4. The vehicle is tilted or the road is on a slope.
+    \n5. The camera suddenly moves from a dark environment into a bright one, or vice versa, such as in a garage and a tunnel.
+    \n6. The camera is sheltered or is in front of a large barrier, such as a wall.
+    \n7. Replace the camera with one of your own without authorization.
+    \n8. The vehicle height changes due to an excessive load of articles or passengers.
+    \n9. After this system is installed, the vehicle height is changed due to replacement of the shockproof system.
+    \n10. A change in the camera height results from a sudden braking.
+    \n11. The camera position and angle change due to a carwash or collision.
+    \n12. Any other factors which may impact the camera performance, camera frame quality, camera sight, or main unit performance.
+    \n\nAll above-mentioned factors may impact the system performance. Please beware that these are excluded as product quality or installation defects. "</string>
+
+    <string name="explain">explain</string>
+    <string name="video">video</string>
+    <string name="operation">operation</string>
+
+    <string name="select_field">Choose a site</string>
+    <string name="select_field_tisp_1">将车停在平坦的地面上。车前最少留下4米的空间，用来放置标定板。</string>
+
+    <string name="calibration_board">标定板</string>
+    <string name="calibration_board_tips1">将标定板放置在离挡风玻璃3-3. 5米处。\n标定板需要固定，可以贴挂在墙上、或车库门上，也可以贴挂在梯子上。地面必须平坦。</string>
+    <string name="calibration_board_tips2">利用墙或车库门放置标定板：</string>
+    <string name="calibration_board_tips3">利用梯子放置标定板：</string>
+    <string name="calibration_board_tips4">不要求标定板一定垂直：</string>
+
+    <string name="select_power_supply">电源选择</string>
+    <string name="select_power_supply_tips1">微牌ADAS系统有两种取电选择：从车辆OBD接口取电、或从车辆供电保险盒取电。除取电外，系统还可以连接车辆的ACC线，以便更准确地获取汽车起停信息。</string>
+    <string name="select_power_supply_tips2">注意：\n从车辆保险盒取电，须只由持有相应电气资质、并经过微牌公司培训的专业人员进行操作。\n连接车辆ACC线，须只由持有相应电气资质、并经过微牌公司培训的专业人员进行操作。</string>
+    <string name="select_power_supply_tips3">以下为不同型号产品的取电建议：</string>
+    <string name="select_power_supply_tips4">注意：电动车、和具有发动机自动熄火的车辆，安装时候必须连接ACC线，否则可能造成本系统开机/关机不及时。</string>
+
+    <string name="connect_power_supply">V款/ F款 连接电源</string>
+    <string name="connect_power_supply_tips1">特别注意：为系统接电之前，请关闭汽车电源，并拔掉车钥匙</string>
+    <string name="connect_power_supply_tips2">部件和线材</string>
+    <string name="connect_power_supply_tips3">如上图：主机带有1个5针插头，用来连接提示器的任意一个5针插头；</string>
+    <string name="connect_power_supply_tips4">如上图：提示器带有2个5针插头（连接主机、和OBD盒；任意选择，不区分）和1个卡口接头（连接震动椅垫）；</string>
+    <string name="connect_power_supply_tips5">如上图：OBD盒子有2个5针插头（1个连接提示器、1个备用；任意选择，不区分）和1个4针插头（连接ACC）；</string>
+    <string name="connect_power_supply_tips6"> 如上图：接线盒（缺图）</string>
+    <string name="connect_power_supply_tips7">如上图：延长线两端各有一个5针插头；延长线可连接两个设备5针插头。</string>
+    <string name="connect_power_supply_tips8">从OBD口取电：</string>
+    <string name="connect_power_supply_tips9">首先，主机的插头连接提示器的任意一个5针插头</string>
+    <string name="connect_power_supply_tips10">提示器的另一个5针插头连接OBD盒子的任意一个5针插头</string>
+    <string name="connect_power_supply_tips11">OBD盒子的4针插头连接ACC（V款主机可以不连，F款主机必须连接）：\n将xx线插入OBD盒子的4针插头\n将xx线的x色xx连接车辆的ACC</string>
+    <string name="connect_power_supply_tips12">将OBD盒子插入车辆的OBD口；OBD口的位置因车而异，一般位于方向盘的下方，车辆说明书上一般可以查到</string>
+    <string name="connect_power_supply_tips13">如果OBD口位置狭小，不能容纳下OBD盒子，可以利用“OBD线1拖1”进行转接</string>
+    <string name="connect_power_supply_tips14">如果OBD口已经被其他设备占用，可以利用“OBD线1拖2”同时接入两个设备</string>
+    <string name="connect_power_supply_tips15">按照上图，把TF存储卡插入主机；存储卡将用来保存行车视频；在日后的使用过程中，请勿在主机工作时插拔存储卡</string>
+    <string name="connect_power_supply_tips16">保险盒取电如下图：</string>
+    <string name="connect_power_supply_obn_ont_to_one">OBD线 1拖1 </string>
+    <string name="connect_power_supply_obn_ont_to_two">OBD线 1拖2（选购） </string>
+    <string name="connect_power_supply_insert_tf_card">插入TF卡 </string>
+
+    <string name="power_on">Power on</string>
+    <string name="power_on_tips1">本步骤只需要取电，不需要连接其他线。</string>
+    <string name="power_on_tips2">After finishing the wiring, insert the vehicle key, start the vehicle engine, hang gear P, and slightly step on the gas pedal. </string>
+    <string name="power_on_tips3">After the ADAS system will automatically power on and wait for a while, the icon is displayed on the prompter</string>
+    <string name="power_on_tips4">在手机上进行下一步，手机会与ADAS进行无线连接</string>
+
+    <string name="communicate_with_vehicle">Insert the vehicle key, start the vehicle engine, hang gear P, and slightly step on the gas pedal. Wait for the buzzer to light up and the main unit to start. </string>
+
+
+    <string name="fault_handling">trouble shooting</string>
+    <string name="fault_handling_tips1">If no display on buzzer screen, please check it in the following order until it is solved. </string>
+    <string name="fault_handling_tips2">Please slightly step on the accelerator and see if the buzzer will light up. </string>
+    <string name="fault_handling_tips3">Check that the circuit is connected correctly. \nIf power is supplied from OBD: please first check whether the OBD box is plugged tightly; If not solved, please check ACC connection. \nIf power is supplied from fuse box: please check whether power line of HUB is connected to vehicle power line, and the ACC line is connected as required or not. </string>
+    <string name="fault_handling_tips4">If buzzer is still unable to display, it may be the aging of the vehicle\'s wiring/connector. Please change another power supply method. </string>
+
+
+    <string name="buzzer_camera_location">Position of camera and buzzer</string>
+    <string name="buzzer_camera_location_tips1">V款和F款：镜头（与主机一体）粘贴在前挡风玻璃上，视野朝向前方；</string>
+    <string name="buzzer_camera_location_tips2">S款：镜头与主机分体，镜头粘贴在前挡风玻璃上，视野朝向前方；主机一般隐藏在副驾的储物箱里面；</string>
+    <string name="buzzer_camera_location_tips3">提示器一般黏贴在仪表台上，便于查看。</string>
+    <string name="buzzer_camera_location_tips4">1-镜头、2-提示器</string>
+    <string name="buzzer_camera_location_tips5">参照上图，为各部件选择合适的安装位置。</string>
+    <string name="buzzer_camera_location_tips6">Pay attention to selection of camera position：</string>
+    <string name="buzzer_camera_location_tips7">不得影响司机视线，一般建议在后视镜背后的挡风玻璃上</string>
+    <string name="buzzer_camera_location_tips8">大货车或大客车上，建议安装在前挡风玻璃下部；家用车、面包车、皮卡车上，安装在前挡风玻璃上部；如下图：</string>
+    <string name="buzzer_camera_location_tips9">镜头的位置，要尽量靠近挡风玻璃中心线，与中心线偏移不允许超过+/-10cm；如下图：</string>
+    <string name="buzzer_camera_location_tips10">在雨刷器范围内，避免被雨刷器遮挡</string>
+    <string name="buzzer_camera_location_tips11">若后视镜上有防炫目感应器，请不要遮挡感应器</string>
+    <string name="buzzer_camera_location_tips12">若前挡风玻璃贴有车膜，请安装在透光性较好的位置</string>
+    <string name="buzzer_camera_location_tips13">选好位置后，请勿固定主机；主机将在后面的步骤固定</string>
+    <string name="buzzer_camera_location_tips14">提示器选位和固定：</string>
+    <string name="buzzer_camera_location_tips15">建议安装在仪表台上，便于查看和听声音</string>
+    <string name="buzzer_camera_location_tips16">不得妨碍司机的驾驶</string>
+    <string name="buzzer_camera_location_tips17">利用包装里的固定胶贴，将提示器粘在选好的位置</string>
+
+
+    <string name="measuring_height_a_adjustment_reference_board">测量高度A - 调整参照板</string>
+    <string name="measuring_height_a_adjustment_reference_board_tips1">使用卷尺，测量镜头即将安装位置的位置距地面的高度A。\n把参照板放在车前方距离镜头3~4米位置；</string>
+    <string name="measuring_height_a_adjustment_reference_board_tips2">调整参照板，使它的中心线（数字3和4中间的线）的左右两端高度均为A，以保证参照板与地面水平。</string>
+
+    <string name="adjust_the_lens_level_paste_host">调整镜头水平- 黏贴主机</string>
+    <string name="adjust_the_lens_level_paste_host_tips1">我们即将把镜头（镜头和主机一体）以合适的角度，粘贴到预设的位置上。操作如下：\n通过APP，在手机上看到实时画面，画面的中心有一条红色线；</string>
+    <string name="adjust_the_lens_level_paste_host_tips2">把镜头拿到选好的安装位置附近；调整主机的倾斜度、和镜头角度（把小钢管套进主机侧面的旋钮，可以调整镜头角度），使镜头的十字线与标定版上任何一条横线重叠；</string>
+    <string name="adjust_the_lens_level_paste_host_tips3">维持镜头的这个角度，缓缓把镜头粘到挡风玻璃上预设的安装位置。</string>
+
+    <string name="measuring_height_b_fine_lens">测量高度B - 微调镜头</string>
+    <string name="measuring_height_b_fine_lens_tisp1">测量镜头高度B；在参照版上，在B高度处记一个明显的标志；</string>
+    <string name="measuring_height_b_fine_lens_tisp2">缓缓调节镜头的俯仰角，使画面中心线与参照板上的标志重合。</string>
+    <string name="measuring_height_b_fine_lens_tisp3">标定完毕</string>
+
+    <string name="done">完成</string>
+    <string name="click_button_to_adjust_the_lens_level_paste_host">点击下面的按钮，您将看到镜头的影像。请进行“调整镜头水平-粘贴主机”</string>
+    <string name="click_button_to_measuring_height_b_fine_lens">点击下面按钮，您将看到镜头的影像。请进行“测量高度B-微调镜头”</string>
+    <string name="no_finish_operation">请完成所有操作并在后面打钩</string>
+
+
+    <string name="cut_off_the_main_power_supply">切断主机电源</string>
+    <string name="cut_off_the_main_power_supply_tips1">请将车辆熄火，拔掉车钥匙。提示器应该在2分钟内熄灭。</string>
+
+    <string name="all_line_connections">所有线路连接</string>
+    <string name="all_line_connections_tips">此前您已经连接好电源，下面需要连接车辆，以获取速度、左右转向信息、刹车信息、雨刮起停等信息\n</string>
+
+    <string name="v_device">V款设备</string>
+    <string name="v_device_tips">通过车辆的OBD口获取这些信息，您已经连接了OBD口，所以不需要进行任何操作；</string>
+
+
+    <string name="f_device">F款设备</string>
+    <string name="f_device_tips1">\n有的信息必须获取，有的信息可以不获取：</string>
+    <string name="f_device_tips2">允许多种接线方式，组合如下表：</string>
+    <string name="f_device_tips3">注意：\n连接车辆的线路时候，须只由持有相应电气资质、并经过微牌公司培训的专业人员进行操作</string>
+    <string name="f_device_tips4">商品包装里，或含有OBD盒子，或含有接线盒，都留有合适的接口连接车辆：</string>
+    <string name="f_device_tips5">OBD盒子有一个4针插头</string>
+
+    <string name="open_host_power">打开主机电源</string>
+    <string name="open_host_power_tips1">完成接线后，插入车钥匙，启动汽车引擎，挂空挡，轻轻踩一下油门。进入手机软件的“操作”界面，按指引一步步设定。</string>
+
+
+    <string name="turn_off_the_car">关车、拔掉钥匙；确认提示器关机</string>
+    <string name="start_and_hang_neutral">启动车；挂空挡，轻踩油门</string>
+    <string name="wait_auto_connect">等待蓝牙自动连接</string>
+
+    <string name="get_spped_by_obd">我从OBD获取车速</string>
+    <string name="get_spped_by_speed_line">我连接了车速线</string>
+
+    <string name="get_turn_single_by_obd">我从OBD获得转向</string>
+    <string name="get_turn_single_by_turn_single_line">我连接了转向线</string>
+
+    <string name="connect_brake_line_and_wiper_line">我连接了刹车线和雨刮线</string>
+    <string name="not_connect_line">我连接了刹车线和雨刮线</string>
+
+    <string name="error">错误</string>
+    <string name="crrect">正确</string>
+    <string name="end">结束</string>
+    <string name="goback">返回</string>
+
+    <string name="rotation_rate_verification_tips">挂在空挡，轻微踩一下油门；如果下面的数字变化，证明接线正确；如果没有变化，请重新接线或选择其他的接线方式。</string>
+
+    <string name="rotation_rate_verification_fail_tips">验证失败；\n未能从车辆的OBD口读取到相应的信息；\n请检查接头是否插紧。\n\n如果问题仍然不能解决，请更换其他方式获取车速</string>
+    <string name="calibration3_done_tips">ADAS系统安装完毕，您可以开始使用。\n按下“结束”后，车辆首次上路的时候，\n系统会自动校正镜头角度和车速线的车速，不需要您的操作。\n如果您日后移动过镜头或车速线，请按下“重新校正”按钮，系统会自动重新校正。\n祝您愉快使用微牌ADAS，谢谢</string>
+    <string name="dont_connect_line">我没连接</string>
+    <string name="fail_to_verfication_turn_light_tips"> 验证失败；\n未能读取左右转向信号；请检查接线。 \n如果问题仍然不能解决，请更换其他方式获取转向信号</string>
+    <string name="fail_to_verfication_brake_wiper"> 验证失败；\n未能读取刹车或雨刮信号；请检查接线。请检查接线。 \n如果问题仍然不能解决，请重新接线，也可以选择不接这2类线</string>
+
+    <string name="hidden_line">藏线</string>
+    <string name="hidden_line_tips1">连接正确后，断开电源</string>
+    <string name="hidden_line_tips2">固定线缆：使用扎线带，确保电缆不会被车上的活动部件夹到或者卡住</string>
+    <string name="hidden_line_tips3">藏线：有两种方法隐藏主机的线缆 -\n  A. 可以把线缆藏在挡风玻璃的密封胶条里面、\n  B. 或者用电线固定卡扣将线缆粘在挡风玻璃表面上。\n 其他的线缆可以根据实际情况隐藏。\n 请注意：线缆必须避开高温环境、避免尖锐物体；走线不能影响车辆的正常驾驶和使用</string>
+
+    <string name="shading_film">遮光片</string>
+    <string name="shading_film_tips1">V款和F款产品带有遮光片，遮光片的作用是防止车内的光线反射到镜头里；如果出现反光现象，识别效果会受影响</string>
+    <string name="shading_film_tips2">您需要把遮光片粘在镜头下面；注意：如果您的挡风玻璃接近垂直（比如大部分大巴、货车的挡风玻璃就接近垂直），您可以不沾遮光片；绝大部分家用轿车需要粘</string>
+    <string name="shading_film_tips3">按照下图，把遮光片粘在镜头下面的“小平台”，遮盖住螺丝孔</string>
+    <string name="shading_film_tips4">遮光片安装完成后，查看屏幕，确认遮光片没有遮挡图像；如果出现遮挡，可以适当的将遮光片剪短一点</string>
+    <string name="shading_film_tips5">遮光片必须与挡风玻璃接触</string>
+
+
+    <string name="calibration_start_up_tips"> Dear user,\n\n Thanks for choosing Vispect Advanced Driving Assistant System. \nThe Installation greatly influences the performance of this system. Please follow the detailed instructions step by step. \nBest wishes
+
+Vispect Team</string>
+    <string name="start_intall">开始安装</string>
+
+
+    <string name="connect_device_tips_title">The phone is about to connect to the ADAS system.\n\n</string>
+    <string name="connect_device_tips">ADAS system has bluetooth function, which can exchange information with your mobile phone. \nBefore connection, please manually turn on the bluetooth of phone, and the rest steps will be completed automatically. \nBluetooth name VISPECT_ADAS_V1\nInitial password：6666</string>
+    <string name="start_to_connect">Start to connect</string>
+
+
+    <string name="connect_wifi_tips_title">手机即将连接ADAS系统的WIFI内网，请仔细阅读下面的说明\n\n</string>
+    <string name="connect_wifi_tips">ADAS系统带有WIFI，可以与智能手机通讯。\n苹果手机：您需要在手机上手动接入ADAS的WIFI网络。具体操作与接入普通WIFI网络一样。\n安卓手机：大部分完全自动连接；如果等待2分钟后，仍然未能接入，说明您的手机不允许自动连接WIFI网络，每次都需要手动接入。具体操作与手机接入普通WIFI网络一样。\n\nWIFI连接后，如果出现提示信息：“您的手机现在接入的WIFI系统不能连接英特网，是否取消这个WIFI连接？”请选择保持当前的WIFI连接。\n\nWIFI名称：VISPECT_ADAS_V1\n初始密码：12345678</string>
+
+    <string name="finish_step6_title">ADAS系统安装完毕，您可以开始使用。</string>
+    <string name="cfinish_step6_tips">按下“结束”后，车辆首次上路时候，\n系统会自动校正镜头角度和车速线的车速，不需要您的操作。\n如果您日后移动过镜头或车速线，请按下“重新校正”按钮，系统会自动重新校正。\n祝您愉快使用微牌ADAS，谢谢</string>
+
+
+    ADAS系统安装完毕，您可以开始使用
+    <string name="please_operate_in_sequence">请按顺序操作</string>
+
+
+    <string name="rataionrate_verification_fail">转速校验失败，请重新从最上面的操作开始</string>
+
+
     <string name="hello_world">Hello World!</string>
     <string name="loading">Please Wait</string>
     <string name="cancel">Cancel</string>
@@ -189,6 +430,7 @@
     <string name="not_net_work">No network connection</string>
     <string name="current_network_type">The current network type:</string>
     <string name="facebook_app_id">452767211734532</string>
+    <string name="dialog_ok">OK</string>
     <string name="fb_login_protocol_scheme">fb452767211734532</string>
     <string name="connect_timeout">Connection timed out!</string>
     <string name="block_canary_display_activity_label">Blocks</string>
@@ -955,6 +1197,9 @@
 
     <string name="dialog_tips_connecting">Connecting</string>
     <string name="dialog_tips_connecting2">Connecting device</string>
+    <string name="title_step">Steps</string>
 
-
+    <string name="dialog_alarm_video">Alarm Video</string>
+    <string name="dialog_driving_video">Driving Video</string>
+    <string name="dialog_local_video">Saved Videos On The Phone</string>
 </resources>

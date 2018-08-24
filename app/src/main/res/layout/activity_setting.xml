@@ -43,7 +43,7 @@
                 android:layout_width="@dimen/x110"
                 android:layout_height="@dimen/y70"
                 android:textSize="@dimen/y35"
-                android:text="save"
+                android:text="@string/adjustments_save"
                 android:background="@drawable/outside" />
 
         </RelativeLayout>

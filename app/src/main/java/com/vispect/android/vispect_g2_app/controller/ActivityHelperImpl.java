@@ -47,7 +47,6 @@ public class ActivityHelperImpl extends ActivityHelper {
 		AppManager.getInstance().removeActivity(mActivity);
 		ButterKnife.unbind(mActivity);
 		mActivity = null;
-
 	}
 
 	@Override

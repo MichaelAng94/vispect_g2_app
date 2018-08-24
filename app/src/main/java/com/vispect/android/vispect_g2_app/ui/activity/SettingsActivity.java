@@ -112,7 +112,7 @@ public class SettingsActivity extends BaseActivity {
     }
 
     public void switchFragment(int position) {
-        btnSave.setVisibility(View.GONE);
+        btnSave.setVisibility(View.INVISIBLE);
         transaction = getSupportFragmentManager().beginTransaction();
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         hideAll();

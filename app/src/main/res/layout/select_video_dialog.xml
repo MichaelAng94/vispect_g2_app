@@ -14,7 +14,7 @@
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Alarm video"
+        android:text="@string/dialog_alarm_video"
         android:textSize="@dimen/y45"
         android:clickable="true"
         android:focusable="true" />
@@ -32,7 +32,7 @@
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Driving video"
+        android:text="@string/dialog_driving_video"
         android:textSize="@dimen/y45"
         android:clickable="true"
         android:focusable="true"
@@ -53,7 +53,7 @@
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Saved Videos On The Phone"
+        android:text="@string/local_video"
         android:textSize="@dimen/y45"
         />
 
@@ -73,7 +73,7 @@
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Cancle"
+        android:text="@string/cancel"
         android:textSize="@dimen/y50"
         />
 

@@ -59,7 +59,7 @@ public class ConnectActivity extends BaseActivity {
 
     @Override
     protected void initView(View view) {
-        setTitle("Choose Your Device");
+        setTitle(STR(R.string.road_live_choose_drive));
         devicelist = new ArrayList<>();
         list = new ArrayList<>();
         AppConfig.getInstance(ConnectActivity.this).setDeviceName("unkonwDevoce");

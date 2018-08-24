@@ -37,7 +37,7 @@
         android:layout_marginRight="@dimen/x80"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="cancel"
+        android:text="@string/cancel"
         />
 
     <Button
@@ -51,7 +51,7 @@
         android:layout_marginLeft="@dimen/x80"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ok"
+        android:text="@string/dialog_ok"
         />
     </RelativeLayout>
 

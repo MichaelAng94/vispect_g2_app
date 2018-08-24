@@ -157,7 +157,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView(View view) {
-
         try {
             tvAppVersion.setText(getPackageManager().getPackageInfo(getPackageName(), 0).versionName);
         } catch (PackageManager.NameNotFoundException e) {
@@ -167,7 +166,6 @@ public class MainActivity extends BaseActivity {
         mayRequestLocation();
         setTitle("G2-ADAS");
         AppContext.getInstance().setNeeedCloseBluetooth(!BluetoothAdapter.getDefaultAdapter().isEnabled());
-
         //监听连接变化
         AppContext.getInstance().getDeviceHelper().setDeviceConnectStateListener(deviceConnectionStateListener);
     }
@@ -197,9 +195,9 @@ public class MainActivity extends BaseActivity {
                         tvTel.setText(AppContext.getInstance().getUser().getPhone());
                         tvUsername.setText(AppContext.getInstance().getUser().getName());
                         if (AppContext.getInstance().getUser().getSex() == 1) {
-                            tvSex.setText("Female");
+                            tvSex.setText(STR(R.string.female));
                         } else {
-                            tvSex.setText("Male");
+                            tvSex.setText(STR(R.string.male));
                         }
                     }
                 }
@@ -443,7 +441,6 @@ public class MainActivity extends BaseActivity {
     private class CheckCamera implements Runnable {    //获取G2设备的摄像头列表和类型
         @Override
         public void run() {
-
             if (cameras == null || udpCamera == -1) {
                 if (checkTime == 5) {
                     checkTime = 0;
@@ -462,6 +459,7 @@ public class MainActivity extends BaseActivity {
 
 
     public boolean isConnected() {   //判断是否已经连接G2的设备
+//        return true;
         if (AppContext.getInstance().getDeviceHelper().isConnectedDevice()) {
             if (isG2()) {
                 return true;
@@ -607,7 +605,7 @@ public class MainActivity extends BaseActivity {
     public void oneditClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_tel:
-                DialogHelp.getInstance().editDialog(this, "Phone", new DialogClickListener() {
+                DialogHelp.getInstance().editDialog(this, STR(R.string.phone_number), new DialogClickListener() {
                     @Override
                     public void clickYes(String editText) {
                         if (XuString.isEmpty(editText) || !isNumeric(editText)) {
@@ -671,7 +669,7 @@ public class MainActivity extends BaseActivity {
                 });
                 break;
             case R.id.tv_email:
-                DialogHelp.getInstance().editDialog(this, "Email", new DialogClickListener() {
+                DialogHelp.getInstance().editDialog(this, STR(R.string.email_address), new DialogClickListener() {
                     @Override
                     public void clickYes(String editText) {
                         if (XuString.isEmpty(editText)) {

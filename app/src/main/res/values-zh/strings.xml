@@ -1,0 +1,1219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="loading">请稍候</string>
+    <string name="cancel">取消</string>
+    <string name="yes">确定</string>
+    <string name="dialog_ok">确定</string>
+    <string name="no">取消</string>
+    <string name="skip">跳过</string>
+    <string name="device_disconnected">设备断开</string>
+    <string name="auto_disable_bluetooth_fail">自动关闭蓝牙失败，请手动关闭！</string>
+    <string name="click_again_to_exit_app">再按一次退出vispect</string>
+    <string name="operation_timeoout">请求超时!</string>
+
+    <!-- 驾驶 -->
+    <string name="road_live_tile">驾驶</string>
+    <string name="road_live_notconnect">现在还未连接设备</string>
+    <string name="road_live_req_connect">连接手机与ADAS设备？</string>
+    <string name="road_live_connect">连接</string>
+    <string name="road_live_connect_s">连接</string>
+    <string name="road_live_unconnect">断开连接</string>
+    <string name="road_live_connectdrive">连接设备</string>
+    <string name="road_live_live_action_mode">实景模式</string>
+    <string name="road_live_choose_drive">选择设备</string>
+    <string name="road_live_connect_success">设备连接成功</string>
+    <string name="road_live_not_real_view">S款设备无实景模式</string>
+
+    <string name="road_live_on">连接</string>
+    <string name="road_live_off">断开</string>
+    <string name="road_live_see">实景</string>
+    <string name="dialog_tips_connecting">连接中</string>
+    <string name="dialog_tips_connecting2">正在连接设备</string>
+
+    <string name="dsmsettings_tips">输入的值必须在允许范围内.</string>
+    <string name="warning_interval">报警间隔(4~60s)</string>
+    <string name="sensitivity_eye">眼张合度灵敏度</string>
+    <string name="sensitivity_mouth">嘴张合度灵敏度</string>
+    <string name="sensitivity_looking">左顾右盼灵敏度</string>
+
+    <string name="adjust_atlow_tips">当你首次驾驶超过这个速度,系统会自动进行校正.</string>
+    <string name="input_illegal">非法输入</string>
+    <string name="register_the_email">邮箱注册</string>
+    <string name="login_by_email">邮箱登录</string>
+    <string name="register_"><u>注册</u></string>
+    <string name="recommend_login">推荐登录方式</string>
+    <string name="use_existend_account"><u>已有账号？立即登录</u></string>
+
+
+    <!-- 车况 -->
+    <string name="vehicle_title">车况</string>
+    <string name="vehicle_coolant_temperature">冷却液温度</string>
+    <string name="vehicle_engine_speed">发动机转速</string>
+    <string name="vehicle_instantaneous_fuel_consumption">瞬时油耗</string>
+    <string name="vehicle_ODO">总里程</string>
+    <string name="vehicle_vehicle_speed">车速</string>
+    <string name="vehicle_remaining_fuel">油箱剩余油量</string>
+    <string name="vehicle_battery_voltage">电瓶电压</string>
+    <string name="vehicle_fuel_consumption_100KM">百公里平均油耗</string>
+    <string name="vehicle_fuel_consumption">耗油量</string>
+
+    <!-- 发现 -->
+    <string name="discover_title">轨迹</string>
+    <string name="discover_share_my_route">分享我的轨迹</string>
+    <string name="discover_view_ta_route">看他的轨迹</string>
+    <string name="discover_map">地图</string>
+
+    <!-- 我的 -->
+    <string name="mine_title">我的</string>
+    <string name="mine_driving_videos">行车视频</string>
+    <string name="mine_share_my_route">共享我的轨迹</string>
+    <string name="mine_friends">好友</string>
+    <string name="mine_setting">设置</string>
+    <string name="mine_take_photo">拍照</string>
+    <string name="mine_choose_from_photos">从相册选择</string>
+    <string name="mine_save_photo">保存照片</string>
+    <string name="mine_share_your_route">确定分享您的轨迹？</string>
+    <string name="mine_user_agreement"><u>用户协议</u></string>
+    <string name="mine_route_analysis">行程分析</string>
+    <string name="mine_warning_record">警报记录</string>
+
+    <string name="mine_instaallation_calibration">安装与标定</string>
+    <string name="mine_set_up_upgrade">设置</string>
+    <string name="mine_use_guide">用户指南</string>
+    <string name="mine_start_adjustments">开始标定</string>
+
+    <string name="mine_user_edit">编辑</string>
+
+    <string name="mine_show_activity_titile">请选择设备类型</string>
+    <string name="mine_show_activity_v">V系列</string>
+    <string name="mine_show_activity_s">S系列</string>
+    <string name="mine_show_activity_f">F系列</string>
+    <string name="mine_show_activity_v_f">V/F系列</string>
+
+
+
+
+    <string name="mine_get_user_info_fail">获取用户信息失败！</string>
+
+
+
+    <!-- 添加好友 -->
+    <string name="addfriend_title">添加好友</string>
+    <string name="addfriend_searc_hit">手机号码/邮箱</string>
+    <string name="deletefriend_title">确认删除该好友？</string>
+
+    <!-- 行车视频 -->
+    <string name="videos_choose_a_date">选择日期</string>
+    <string name="videos_batch_management">批量管理</string>
+    <string name="videos_lock_unlock">加锁/解锁</string>
+    <string name="videos_save_to_phone">保存到手机</string>
+    <string name="videos_delete">删除</string>
+    <string name="videos_checkall">全选</string>
+    <string name="cube_views_load_more_loaded_empty">已经到底了！</string>
+    <string name="cube_views_load_not_date">没有数据！</string>
+    <string name="cube_views_load_more_click_to_load_more">点击加载更多</string>
+
+
+    <string name="cube_views_load_more_error">加载数据失败</string>
+
+    <!-- 设置 -->
+    <string name="setting_vehicle_information">车辆信息</string>
+    <string name="setting_adjustments">标定</string>
+    <string name="camera_adjustment">摄像头校准</string>
+    <string name="setting_volume">提示音</string>
+    <string name="setting_about">关于</string>
+    <string name="setting_singout">退出登录</string>
+    <string name="adjustments_tips">请调整相机：水平线对准地平线</string>
+    <string name="setting_calibration">校准</string>
+    <string name="update2">更新</string>
+    <string name="have_not_userid">账号不存在</string>
+    <string name="password_fail">密码错误</string>
+    <string name="choose_camera">请选择你要校正的镜头:</string>
+    <string name="font_camera_calibrate">前向摄像头 - 道路偏离报警、和前车碰撞报警</string>
+    <string name="none">未设置算法类型</string>
+    <string name="bleinfo_obd_version">OBD:</string>
+    <string name="bleinfo_buzzer_version">Buzzer:</string>
+    <string name="dsm_setings_title">疲劳驾驶监测的安装人员设置</string>
+    <!--校准-->
+    <string name="calibration_step1">Step/1</string>
+    <string name="calibration_step2">Step/2</string>
+    <string name="calibration_step3">Step/3</string>
+    <string name="calibration_step4">Step/4</string>
+    <string name="calibration_step5">Step/5</string>
+    <string name="calibration_step6">Step/6</string>
+    <string name="calibration_step7">Step/7</string>
+    <string name="calibration_step8">Step/8</string>
+    <string name="calibration_step9">Step/9</string>
+    <string name="calibration_title_adjustments">主机校准</string>
+    <string name="calibration_tips_step1_a">点击“进入”按钮，实景画面及水平仪会自动展现在APP上。</string>
+    <string name="calibration_tips_step1_b">手动调整主机安装位置，确认实景画面能够完整展现，且无任何角度倾斜。</string>
+    <string name="calibration_tips_step1_c">上下微调主机左下方滚轮，使实景画面的天际线与页面水平仪基本重合，即可完成主机摄像头校准。</string>
+    <string name="calibration_btn_step1">进入</string>
+    <string name="calibration_title_step_3">偏移&amp;深度&amp;高度</string>
+    <string name="calibration_tips_step3_a">偏移：测量主机镜头中心的到车中心的距离（从前方看向汽车，以车中心为原点，向左偏移为正值，向右偏移为负值）</string>
+    <string name="calibration_tips_step3_b">深度：测量主机镜头中心到车头保险杠顶端的距离</string>
+    <string name="calibration_tips_step3_c">高度：测量主机镜头中心到地面的距离</string>
+
+  <!--  新的-->
+    <string name="calibration_tips_top">V系列下有不同型号的主机，以下为V1的安装过程。</string>
+    <string name="calibration_title_understand_devices">了解设备</string>
+    <string name="calibration_more">查看更多</string>
+    <string name="calibration">标定</string>
+    <string name="calibration_title_adjustments_fixed_a">点击下面的“标定”按钮，手机和ADAS主机自动连接完成后，您会看到实景画面，在画面的中心，会出现一条蓝色线。</string>
+    <string name="calibration_title_adjustments_fixed_b">几乎同时，会出现一条红色的线。</string>
+    <string name="calibration_title_adjustments_fixed_c">轻柔地调整主机的左右角度，您会在手机上看见红线会随之旋转。</string>
+    <string name="calibration_title_adjustments_fixed_d">当红线和蓝线最大限度地重合时候，就可以把主机粘到挡风玻璃上去。</string>
+    <string name="calibration_title_adjustments_fixed_e">然后，缓缓转动主机上的滚轮，镜头会上下调整；使蓝色线与实际的地平线基本重合；标定过程结束。</string>
+    <string name="calibration_height">高度</string>
+    <string name="calibration_deviation">偏移</string>
+    <string name="calibration_depth">深度</string>
+    <string name="calibration_hide_line">藏线</string>
+    <string name="calibration_shading">遮光板</string>
+    <string name="calibration_qc">检验效果</string>
+
+    <string name="calibration_stop5_1">连接正确，断开电源</string>
+    <string name="calibration_stop5_2">固定线缆：使用扎线带，确保电缆不会被车上的活动部件夹到或者卡住</string>
+    <string name="calibration_stop5_3">藏线：有两种方法隐藏主机的线缆-可以把线缆藏在挡风玻璃的密封胶带里面、或者用电线固定扣将线缆粘在档风玻璃表面上。</string>
+    <string name="calibration_stop5_4">请注意：线缆必须避开高温环境、避免尖锐物体；走线不能影响车辆的正常驾驶和使用。</string>
+
+    <string name="calibration_stop6_1">遮光片的作用是防止车内的光线反射到镜头里；如果出现反光现象，识别效果会受影响。</string>
+    <string name="calibration_stop6_2">按照下图，把遮光片粘在镜头下面的“小平台”，遮盖住螺丝孔。</string>
+    <string name="calibration_stop6_3">遮光片安装完成后，查看屏幕，确认遮光片没有遮挡图像；如果出现遮挡，可以适当将遮光片剪短一点。</string>
+    <string name="calibration_stop6_4">遮光片必须与挡风玻璃接触。</string>
+
+    <string name="calibration_stop7_1">安装和标定完成后，进入手机APP的“驾驶”页面，连接设备，然后点击“实景模式”；等待一会儿后，主机会把实时图像和识别效果传送到手机上；如果图像中的车辆和车道线识别的较为准确，则整个安装和标定无误。否则，您需要重新标定。
+请注意，光线过强或过弱会影响识别效果，请将车开到光线充足、柔和的地方检验。</string>
+        <string name="connect_timeout">连接超时</string>
+
+    <string name="warning_settings">报警设置</string>
+    <string name="device">Device</string>
+    <string name="camera_settings">镜头设置</string>
+    <string name="check_devices">检查设备</string>
+    <string name="check_current">当前版本</string>
+
+   <!-- 报警设置-->
+    <string name="warning_setting_title">报警设置</string>
+    <string name="warning_setting_sensivitivity_level">灵敏度级别</string>
+    <string name="warning_setting_starting_speend">启动报警车速</string>
+    <string name="warning_setting_stop_speend">停止报警车速</string>
+    <string name="warning_setting_starting_speend_50">(默认 50km/h)</string>
+    <string name="warning_setting_starting_speend_30">(默认 30km/h)</string>
+    <string name="warning_setting_starting_speend_20">(默认 70km/h)</string>
+    <string name="warning_setting_starting_speend_tips">报警的灵敏度从低到高分为0、1、2、3，共四级；0级时关闭报警。</string>
+    <string name="warning_setting_ldw">车道偏离</string>
+    <string name="warning_setting_ldw_tips">当您的车速高于设定的速度时，如遇车道偏离，则报警</string>
+    <string name="warning_setting_fcw">前车防碰撞</string>
+    <string name="warning_setting_fcw_tips">当您的车速高于设定的速度时，当可能与前车碰撞时，发出报警</string>
+    <string name="warning_setting_pcw">行人检测</string>
+    <string name="warning_setting_pcw_tips">当您的车速低于设定的速度时，当前方发现行人，则报警</string>
+
+
+
+
+
+    <!-- 参数设置 -->
+    <string name="setting_parmater">参数设置</string>
+    <string name="drive">设备</string>
+    <string name="setting_parmater_edit_ble_pas">设备密码</string>
+    <string name="setting_parmater_edit_wifi_pas">WIFI密码</string>
+    <string name="setting_parmater_edit_ble_name">设备名称</string>
+    <string name="setting_parmater_edit_wifi_name">WIFI名称</string>
+    <string name="setting_parmater_updata_ota">升级固件</string>
+    <string name="setting_parmater_updata_apk">设备系统升级</string>
+
+
+    <string name="setting_drive_setting">设备设置</string>
+
+    <string name="setting_drive_setting_hint">请输入</string>
+
+
+
+    <string name="Calibrationing">校正进度：</string>
+
+
+
+    <!-- 音量 -->
+    <string name="volume_low">低</string>
+    <string name="volume_hight">高</string>
+
+    <!-- 关于 -->
+    <string name="about_this_app">检查各个设备版本</string>
+    <string name="about_this_app_title">设备版本</string>
+    <string name="about_help">帮助</string>
+    <string name="about_updates">升级各个设备</string>
+    <string name="about_updates_title">检查更新</string>
+    <string name="about_updates_this_app">App</string>
+
+    <!-- 标定 -->
+    <string name="adjustments_top">相机安装位置距离车辆中心的距离（以中心点为原点，坐在车里右手为正，左手为负值。）</string>
+    <string name="adjustments_center">机位置距离车头的距离</string>
+    <string name="adjustments_bot">相机安装位置距离地面的高度</string>
+    <string name="adjustments_save">保存</string>
+    <string name="adjustments_success">标定成功！</string>
+    <string name="adjustments_fail">标定失败：</string>
+
+
+    <!-- 车辆信息 -->
+    <string name="vehicle_info_height">车高</string>
+    <string name="vehicle_info_width">车宽</string>
+    <string name="vehicle_info_length">车长</string>
+
+    <!-- 日历 -->
+    <string name="month">月</string>
+    <string name="monday">一</string>
+    <string name="tuesday">二</string>
+    <string name="wednesday">三</string>
+    <string name="thursday">四</string>
+    <string name="friday">五</string>
+    <string name="saturday">六</string>
+    <string name="sunday">日</string>
+    <string name="january">1月</string>
+    <string name="february">2月</string>
+    <string name="march">3月</string>
+    <string name="april">4月</string>
+    <string name="may">5月</string>
+    <string name="june">6月</string>
+    <string name="July">7月</string>
+    <string name="august">8月</string>
+    <string name="september">9月</string>
+    <string name="october">10月</string>
+    <string name="november">11月</string>
+    <string name="december">12月</string>
+
+    <!-- 登录/注册 -->
+    <string name="login_email">邮箱</string>
+    <string name="login_password">密码</string>
+    <string name="login">登录</string>
+    <string name="login_forget_password"><u>忘记密码?</u></string>
+    <string name="register"><u>注册</u></string>
+    <string name="register_tologin"><u>已有账号？立即登录</u></string>
+    <string name="login_success">设备登录成功！</string>
+    <string name="not_find_service">获取BLE服务失败，请重启BLE设备！</string>
+    <string name="login_login_fail">登录失败：</string>
+    <string name="login_login_has_null">账号名和密码不能为空！</string>
+    <string name="login_login_password_format_error">请输入由数字和字母组成的6至16位的密码！</string>
+    <string name="login_login_name_format_error">用户名长度范围：3-64！</string>
+    <string name="login_login_success">登录成功！</string>
+    <string name="register_register_success">注册成功！</string>
+    <string name="register_register_fail">注册失败：</string>
+
+
+
+
+
+
+    <!-- 关于APP -->
+    <string name="bleinfo_hardware_version">设备固件版本</string>
+    <string name="bleinfo_software_system">设备操作系统</string>
+    <string name="bleinfo_application_software">设备应用软件</string>
+
+
+
+    <string name="release_to_refresh">释放立即刷新</string>
+    <string name="refreshing">正在刷新…</string>
+    <string name="loadmore">正在加载…</string>
+
+    <string name="updated_at">上次更新于：</string>
+
+
+
+    <!--连接界面-->
+    <string name="connect_connect_ble_fail">连接蓝牙失败请重试！</string>
+
+    <string name="connect_search_services_fail">寻找服务失败请重试！</string>
+
+    <string name="connect_subscribe_fail">订阅特征字失败请重试！</string>
+    <string name="connect_write_describer_fail">写描述者失败请重试！</string>
+
+    <string name="connect_login_device_fail">登录失败请重试！</string>
+    <string name="connect_connect_ble_timeout">连接蓝牙超时请重试！</string>
+    <string name="connect_search_services_timeout">寻找服务超时请重试！</string>
+    <string name="connect_subscribe_timeout">订阅特征字超时请重试！</string>
+    <string name="connect_write_describer_timeout">写描述者超时请重试！</string>
+    <string name="connect_login_device_timeout">登录超时请重试！</string>
+    <string name="connect_login_passwrod_error_title">密码错误，请检查是否选择了正确的设备或者手动输入密码。</string>
+    <string name="connect_login_passwrod_error_cancel">选择其他设备</string>
+    <string name="connect_login_passwrod_error_input">输入密码</string>
+
+
+
+    <!--编辑界面-->
+    <string name="edit_input_legal_value">请输入合法的值</string>
+    <string name="edit_input_vlaue_nochange">数值未发生改变</string>
+    <string name="edit_input_4_number_password">请输入四位纯数字的BLE密码</string>
+    <string name="edit_input_8_number_password">请输入八位纯数字的WIFI密码</string>
+
+
+
+    <!--硬件错误提示-->
+    <string name="camera_erro">设备的相机模块无法正常工作，请检查！</string>
+    <string name="gps_erro">设备的GPS模块无法正常工作，请检查！</string>
+    <string name="s_app_erro"> 检测到智能硬件的内置程序已损坏，是否进入更新模式进行更新？</string>
+
+
+
+    <!--更新-->
+    <string name="update_has_update">已有更新操作在进行中，请等待其完成后再进行！</string>
+    <string name="update_fail">更新失败！</string>
+    <string name="update_not_find_file">找不到文件！</string>
+    <string name="update_time_out">更新超时！</string>
+    <string name="update_to_update">进入更新</string>
+    <string name="update_done">更新完成</string>
+
+    <string name="update_hardware">系统固件</string>
+    <string name="update_software_system">系统软件</string>
+
+    <string name="update">更新</string>
+
+
+
+ <!--   S款的系统设置-->
+    <string name="system_set_s_outdraw">输出图像</string>
+    <string name="system_set_s_addadas">叠加智能信息</string>
+    <string name="system_set_s_outadas">输出识别信息</string>
+    <string name="system_set_s_video_formats">视频制式：</string>
+
+
+
+    <!--引导页-->
+    <string name="novice">新手</string>
+    <string name="olddriver">老司机</string>
+    <string name="maledriver">男司机</string>
+    <string name="womandriver">女司机</string>
+    <string name="cautiousdriver">谨慎的司机</string>
+    <string name="bolddriver">胆大的司机</string>
+    <string name="submit">提交</string>
+
+    <string name="user_agreement_title">安装许可协议</string>
+    <string name="user_agreement_content">"        本《协议》是您与广州微牌智能科技有限公司之间有关本系统安装的法律协议，请务必仔细阅读和理解此系统的最终用户安装许可协议（\"本《协议》\"）中规定的所有权利和限制。在安装前，您需要仔细阅读并决定接受或不接受本《协议》的条款。除非或直至您接受本《协议》的条款，否则本系统不得安装或使用在您的汽车上。本系统包括随附的产品部件及软件，并包括相关文档印刷材料。本系统是安全辅助系统，不可代替司机本人；即使安装了本系统，司机在驾驶过程中仍然必须专心驾驶。本系统不适合于夜间行车、或光线较暗环境下、或能见度较低的环境下使用。在您使用本系统过程中，以下因素可能影响系统的使用效果、或降低系统的性能：\n1.大雨、雪花、雾气等气候条件\n2.相机处于高温或低温环境\n3.车辆倾斜或道路斜坡\n4.相机处于光线较暗或较亮的环境\n5.相机从光线较暗迅速移动到较亮的，或者从光线较亮迅速移动到较暗环境中，例如：车库、隧道等\n6.相机被遮挡或者相机位于墙壁等大型障碍物平面前\n7.使用了您自行更换的相机\n8.因装载较重的物品或乘客较多等原因，导致车辆高度变化。\n9.安装本系统后，更换汽车的避震系统等导致车辆高度变化\n10.汽车迅速制动时，引起的相机高度变化\n11.洗车、碰撞，导致相机位置与角度发生变化\n12.其他任何可能影响相机性能、或影响相机画面质量、或影响相机视线、或影响主机性能的因素\n\n上述因素均可影响系统的性能，请确认这类因素不属于产品质量或安装缺陷。"</string>
+
+    <string name="agree">我已阅读并同意以上协议</string>
+
+
+
+    <string name="calibration_of_pc">电脑版标定（非专业人员慎用）</string>
+    <string name="dialog_camera_error">镜头故障！\n请检查设备的镜头。</string>
+    <string name="latest">已是最新版本！</string>
+    <string name="to_download_updatefile">是否下载最新版本？</string>
+   <!-- OBD DeBug-->
+
+
+    <string name="obd_debug_light_title">灯类</string>
+    <string name="obd_debug_light_id">灯类ID：</string>
+    <string name="obd_debug_light_right">右转向：</string>
+    <string name="obd_debug_light_left">左转向：</string>
+    <string name="obd_debug_light_big">远光灯：</string>
+    <string name="obd_debug_light_driving">行车灯：</string>
+    <string name="obd_debug_wipper_title">雨刮类</string>
+    <string name="obd_debug_wipper_id">雨刮ID：</string>
+    <string name="obd_debug_wipper">雨刮：</string>
+    <string name="obd_debug_reverse_title">倒车类</string>
+    <string name="obd_debug_reverse_id">倒车ID：</string>
+    <string name="obd_debug_reverse">倒车：</string>
+    <string name="obd_debug_brake_title">刹车类</string>
+    <string name="obd_debug_brake_id">刹车ID：</string>
+    <string name="obd_debug_brake">刹车：</string>
+
+    <string name="obd_select_title">车型选择</string>
+
+
+
+    <string name="to_set_obd_crack_value">确定设置破解数据到设备？</string>
+    <string name="add_obd_crack_title">新增车型</string>
+    <string name="select_search_hit">搜索</string>
+    <string name="select_brand_title">车辆品牌</string>
+    <string name="select_model_title">车辆型号</string>
+    <string name="select_model_reviewed">已验证</string>
+    <string name="add_obd_not_brand_model">请输入品牌和车型</string>
+    <string name="obd_value_not_format">OBD数据格式错误</string>
+    <string name="select_model_not_brand">请先选择品牌</string>
+
+    <string name="obd_debug_hex_exchange">进制转换</string>
+    <string name="obd_debug_start_filter">开始过滤</string>
+    <string name="obd_debug_stop_filter">结束过滤</string>
+
+
+    <string name="calibration_step5_test_obd">OBD 验证</string>
+    <string name="obd_test_tips">用户进行如下操作时，对应的图片按照操作的频率闪烁，则说明设置的OBD数据正确，反之则说明设置的OBD数据错误。</string>
+    <string name="obd_test_light_left">左转向</string>
+    <string name="obd_test_light_right">右转向</string>
+    <string name="obd_test_light_big">远光灯</string>
+    <string name="obd_test_light_driving">行车灯</string>
+    <string name="obd_test_wipper">雨刮</string>
+    <string name="obd_test_reverse">倒车</string>
+    <string name="obd_test_brake">刹车</string>
+
+    <string name="calibration_road_test">路测</string>
+    <string name="calibration_start_correcting">校正中心点</string>
+    <string name="calibration_stop9_1">点击下面按钮，开始自动校正。\n校正过程中，尽量保持您的车朝着正前方地停放或行驶在车道线中央。\n进度条结束后完成，校正过程需要数分钟。</string>
+
+    <string name="wifi_waiting_too_long">请手动接入ADAS系统的WIFI。WIFI名称：</string>
+    <string name="wifi_waiting_too_long2">密码：</string>
+    <string name="calibration_correcting_done">校正成功！</string>
+    <string name="calibration_start_correcting_fail">开启校正失败！</string>
+    <string name="calibration_has_correcting">设备正在校正！</string>
+
+    <string name="stop_real_time_data_stream">停止实时数据流</string>
+    <string name="start_real_time_data_stream">开启实时数据流</string>
+    <string name="start_can_listen">开启CAN线数据监听</string>
+    <string name="stop_can_listen">停止CAN线数据监听</string>
+    <string name="success">成功</string>
+    <string name="fail">失败</string>
+    <string name="file_corrupted">文件已损坏！</string>
+
+    <string name="value_not_null">数值不能为空！</string>
+    <string name="car_LWH_value_error">数值不合法，车长必须大于等于483且小于等于32767，车高和车宽必须大于等于483且小于等于4000！</string>
+    <string name="camera_DHL_value_error">数值不合法，偏移必须大于等于-250且小于等于250，高度和深度必须大于等于100且小于等于3000！</string>
+
+    <string name="connect_bottom_tips">请在以上列表中点击您的ADAS设备，默认名称“VISPECT_ADAS_G2”或“VISPECT_G2”</string>
+    <string name="to_rel_view_loading_title"> 正在转化为实景模式，请稍候</string>
+    <string name="not_select_make">请先选择车牌</string>
+    <string name="not_net_work">无网络连接</string>
+    <string name="current_network_type">当前网络类型：</string>
+
+
+
+    <string name="facebook_app_id">452767211734532</string>
+    <string name="fb_login_protocol_scheme">fb452767211734532</string>
+
+    <string name="notifyTitle">提示</string>
+    <string name="notifyMsg">当前应用缺少必要权限。\n\n请点击\"设置\"-\"权限\"-打开所需权限。</string>
+    <string name="setting">设置</string>
+
+    <string name="block_canary_display_activity_label">Blocks</string>
+    <string name="email_exited">This email address has already been.</string>
+    <string name="email_format_error">Email account error.</string>
+    <string name="foeget_password">Forgot password? An email has been sent</string>
+    <string name="password_error">Password incorrect.</string>
+
+
+
+    <string name="recommended_login">推荐登录方式</string>
+    <string name="login_by_eamil">邮箱登录</string>
+    <string name="register_by_eamil">邮箱注册</string>
+    <string name="video_of_install">安装视频</string>
+    <string name="calibrationgiode_tips_on_start">开始安装前，建议仔细查看安装视频</string>
+    <string name="got_it">知道了</string>
+    <string name="start_install">开始安装</string>
+    <string name="device_calibration_tips">注意：将主机贴到挡风玻璃上时，尽量保持红蓝线最大限度重合。</string>
+    <string name="last_step">上一步</string>
+    <string name="next_step">下一步</string>
+    <string name="recommended_location_of_install">建议安装位置</string>
+    <string name="warring">报警</string>
+     <string name="connect_device_by_ble_tips">请连接ADAS系统</string>
+    <string name="save_obd_dialog_title">是否设置为此车型？</string>
+    <string name="connecting">连接中</string>
+    <string name="center_calibrationing_tips">设备中心点校正中，请不要退出！</string>
+    <string name="calibration_location_of_install_tips">选好主机和提示器的位置，将OBD盒子插入汽车的OBD口中。</string>
+    <string name="calibration_exit">退出</string>
+    <string name="calibration_input_number">数值输入</string>
+    <string name="calibration_please_input_number">请填写下面空格：</string>
+    <string name="center_calibrationing_check_tips">安装标定结束，\n如果ADAS系统不能框出您周围的车辆和车道线，\n请重新进行安装和标定</string>
+    <string name="center_calibrationing_title">校正和检验</string>
+    <string name="device_calibrationing_title">标定和固定主机</string>
+    <string name="title_edit_user_info">个人资料</string>
+    <string name="username">用户名：</string>
+    <string name="mobilephone_number">手机号码：</string>
+    <string name="email">邮箱：</string>
+    <string name="open_wifi_fail">打开智能硬件WIFI失败！</string>
+    <string name="open_bluetooth_fail">打开蓝牙失败，请检查是否禁用了蓝牙权限！</string>
+    <string name="open_ble_scan_fail">打开扫描失败，请检查是否禁用了蓝牙的权限！</string>
+    <string name="please_wai_last_file_down_done">请等待上一个文件下载完成！</string>
+    <string name="download_fail">下载失败</string>
+    <string name="request_permission">请求APP必要的的权限</string>
+    <string name="reconnect_wifi">WIFI断开，正在进行重连</string>
+    <string name="not_find_sdcard">未找到存储卡</string>
+    <string name="add">添加</string>
+    <string name="frequent_operations">频繁操作！</string>
+    <string name="not_install_wx">未安装微信</string>
+    <string name="ask_save_data">保存当前数据？</string>
+
+    <string name="driving_behavior_setting_title">驾驶行为设置</string>
+    <string name="driving_behavior_configurtion_tips">*设定的参数有一定的数值范围，超出此数值范围配置将不成功，数值均为正数</string>
+    <string name="rapid_acceleration_parameter_title">急加速参数设置</string>
+    <string name="rapid_acceleration_parameter_cache_time">急加速缓存时间</string>
+    <string name="rapid_acceleration_parameter_start_up_speed">急加速触发速度</string>
+    <string name="rapid_acceleration_parameter_start_up_time">急加速触发时间段</string>
+    <string name="rapid_acceleration_parameter_way_of_speed_got">急加速速度获取</string>
+
+
+
+    <string name="rapid_deceleration_parameter_title">急减速参数设置</string>
+    <string name="rapid_deceleration_parameter_cache_time">急减速缓存时间</string>
+    <string name="rapid_deceleration_parameter_start_up_speed">急减速触发速度</string>
+    <string name="rapid_deceleration_parameter_start_up_time">急减速触发时间段</string>
+    <string name="rapid_deceleration_parameter_way_of_speed_got">急减速速度获取</string>
+
+    <string name="rapid_turn_parameter_title">急转弯参数设置</string>
+    <string name="rapid_turn_parameter_trigger_angular_velocity">急转弯触发角速度</string>
+    <string name="rapid_turn_parameter_cache_time_of_before">急转弯前数据缓存时间</string>
+    <string name="rapid_turn_parameter_cache_time_of_last">急转弯后数据缓存时间</string>
+    <string name="rapid_turn_parameter_interval_time">急转弯触发间隔</string>
+
+    <string name="rapid_rollover_parameter_title">侧翻参数设置</string>
+    <string name="rapid_rollover_parameter_trigger_angular_velocity">侧翻触发角速度</string>
+    <string name="rapid_rollover_parameter_cache_time_of_before">侧翻前数据缓存时间</string>
+    <string name="rapid_rollover_parameter_cache_time_of_last">侧翻后数据缓存时间</string>
+    <string name="rapid_rollover_parameter_interval_time">侧翻触发间隔</string>
+
+
+    <string name="rapid_collision_parameter_title">碰撞参数设置</string>
+    <string name="rapid_collision_parameter_threshold_of_accelerationX">加速度X轴的阈值</string>
+    <string name="rapid_collision_parameter_threshold_of_accelerationY">加速度Y轴的阈值</string>
+    <string name="rapid_collision_parameter_threshold_of_accelerationZ">加速度Z轴的阈值</string>
+    <string name="rapid_collision_parameter_cache_time_before">碰撞前缓存时间</string>
+    <string name="rapid_collision_parameter_cache_time_last">碰撞后缓存时间</string>
+    <string name="rapid_collision_parameter_upload_image">是否传图像/视频</string>
+
+    <string name="engineering_model_title">工程模式配置</string>
+    <string name="engineering_model_dvr_configuration_title">行车记录参数配置</string>
+    <string name="engineering_model_dvr_configuration_draw_adas">是否叠加ADAS信息</string>
+    <string name="engineering_model_dvr_configuration_condense_level">图像压缩等级</string>
+    <string name="engineering_model_dvr_configuration_recording_ldw">LDW录像</string>
+    <string name="engineering_model_dvr_configuration_recording_hmw">HMW录像</string>
+    <string name="engineering_model_dvr_configuration_recording_fcw">FCW录像</string>
+    <string name="engineering_model_dvr_configuration_recording_pdw">PDW录像</string>
+
+    <string name="engineering_model_gps_and_senser_configuration_title">GPS  &amp; 传感器参数配置</string>
+    <string name="engineering_model_gps_and_senser_configuration_sensor_sampling_frequency">传感器采样频率</string>
+    <string name="engineering_model_gps_and_senser_configuration_gps_sampling_frequency">GPS采样频率</string>
+    <string name="engineering_model_gps_and_senser_configuration_gps_upload_interva">GPS上传间隔</string>
+    <string name="engineering_model_gps_and_senser_configuration_senser_upload_interva">传感器上传间隔</string>
+
+    <string name="engineering_model_adas_alarm_configuration_title">ADAS报警参数配置</string>
+    <string name="engineering_model_adas_alarm_configuration_ttc_war_time_valve">TTC报警时间</string>
+    <string name="engineering_model_adas_alarm_configuration_car_slide_back_level">溜车提醒级别</string>
+    <string name="engineering_model_adas_alarm_configuration_before_car_start_up_level">前车启动提醒级别</string>
+    <string name="engineering_model_adas_alarm_configuration_hmw_model">HMW提示模式</string>
+    <string name="engineering_model_adas_alarm_configuration_left_car_model">切入车辆报警模式</string>
+
+    <string name="engineering_model_driving_behavior_configuration_title">驾驶行为参数配置</string>
+    <string name="engineering_model_driving_behavior_configuration_event_input_model">驾驶行为输出模式</string>
+    <string name="engineering_model_driving_behavior_configuration_senser_input_model">传感器数据输出模式</string>
+    <string name="device_testing_model_title">设备检测</string>
+    <string name="device_testing_model_tf_card_status">T卡状态</string>
+    <string name="device_testing_model_battery">电池</string>
+    <string name="device_testing_model_senser">senser</string>
+    <string name="device_testing_model_485_status">485</string>
+    <string name="device_testing_model_cpu_temperature">CPU温度</string>
+    <string name="device_testing_model_battery_temperature">电池温度</string>
+    <string name="device_testing_model_ble_rssi">BLE信号强度</string>
+    <string name="device_testing_model_wifi_rssi">WIFI信号强度</string>
+    <string name="device_testing_model_normal">正常</string>
+    <string name="device_testing_model_error">异常</string>
+    <string name="device_testing_model_tf_card_inserted">T卡未插入</string>
+    <string name="device_testing_model_tf_card_not_loaded">T卡未挂载</string>
+    <string name="device_testing_model_tf_card_block">T卡阻塞</string>
+    <string name="device_testing_model_tf_card_camera_status">相机状态</string>
+    <string name="fcw_hmw">HMW提示时间</string>
+    <string name="videos">视频</string>
+    <string name="videos_adas_war_videros">报警视频文件</string>
+    <string name="videos_collision_videros">碰撞视频文件</string>
+    <string name="videos_driving_record_videros">行车记录文件</string>
+
+    <string name="opening_wifi_mode_tips">正在开启WIFI通讯模式  请不要先使用实时路况、下载、更新等打开wifi的操作</string>
+    <string name="opening_wifi_mode_success">WIFI通讯模式已开启</string>
+    <string name="please_wait_open_wifi_mode">请等待WIFI通讯模式开启完成</string>
+    <string name="please_wait_check_can_open_wifi_mode">正在检测是否需要开启WIFI模式</string>
+    <string name="opening_wifi_mode_fail">WIFI通讯模式开启失败</string>
+    <string name="use_ble_mode">当前使用BLE通讯模式</string>
+    <string name="open_developer_mode">点够五次了，开启调试者模式</string>
+    <string name="in_developer_mode">已处于开发者模式</string>
+    <string name="start">开始</string>
+    <string name="wait">请等待</string>
+    <string name="obd_auto_crack_tips_before_start">下面您需要多次开关转向灯\n请按照进度条指示，尽可能地及时 打开/关闭 您的 左/右 转向灯</string>
+    <string name="obd_auto_crack_tips_get_all_data">此时请不要做任何操作，包括车上开关转向灯</string>
+    <string name="obd_auto_crack_tips_off_or_on_light">请按照界面进度条标识的内容进行开关转向灯操作</string>
+    <string name="left_turn_signal">左转向灯</string>
+    <string name="right_turn_signal">右转向灯</string>
+    <string name="off">关</string>
+    <string name="on">开</string>
+    <string name="obd_auto_crack_tips_auto_crack_fail">自动破解失败。是否尝试再次破解？</string>
+    <string name="obd_auto_crack_tips_save">请填写车辆的品牌和车型</string>
+
+    <string name="to_crack_right_tips">左转破解成功，是否继续破解右转？</string>
+    <string name="to_verification_tips">右转破解成功，是否进行校验？</string>
+
+    <string name="calibration4_step7_context32">已连接设备</string>
+    <string name="explain">说明</string>
+    <string name="video">视频</string>
+    <string name="operation">操作</string>
+
+    <string name="calibration4_step6_context0">测量方法-演示</string>
+
+
+    <string name="select_field">场地选择</string>
+    <string name="select_field_tisp_1">将车停在平坦的地面上。车前最少留下4米的空间，用来放置标定板。</string>
+
+
+    <string name="calibration_board">标定板</string>
+    <string name="calibration_board_tips1">将标定板放置在离挡风玻璃3-3.5米处。\n标定板需要固定，可以贴挂在墙上、或车库门上，也可以贴挂在梯子上。地面必须平坦。</string>
+    <string name="calibration_board_tips2">利用墙或车库门放置标定板：</string>
+    <string name="calibration_board_tips3">利用梯子放置标定板：</string>
+    <string name="calibration_board_tips4">不要求标定板一定垂直：</string>
+
+    <string name="select_power_supply">电源选择</string>
+    <string name="select_power_supply_tips1">微牌ADAS系统有两种取电选择：从车辆OBD接口取电、或从车辆供电保险盒取电。除取电外，系统还可以连接车辆的ACC线，以便更准确地获取汽车起停信息。</string>
+    <string name="select_power_supply_tips2">注意：\n从车辆保险盒取电，须只由持有相应电气资质、并经过微牌公司培训的专业人员进行操作。\n连接车辆ACC线，须只由持有相应电气资质、并经过微牌公司培训的专业人员进行操作。</string>
+    <string name="select_power_supply_tips3">以下为不同型号产品的取电建议：</string>
+    <string name="select_power_supply_tips4">注意：电动车、和具有发动机自动熄火的车辆，安装时候必须连接ACC线，否则可能造成本系统开机/关机不及时。</string>
+
+    <string name="connect_power_supply">V款/ F款 连接电源</string>
+    <string name="connect_power_supply_tips1">特别注意：为系统接电之前，请关闭汽车电源，并拔掉车钥匙</string>
+    <string name="connect_power_supply_tips2">部件和线材</string>
+    <string name="connect_power_supply_tips3">如上图：主机带有1个5针插头，用来连接提示器的任意一个5针插头；</string>
+    <string name="connect_power_supply_tips4">如上图：提示器带有2个5针插头（连接主机、和OBD盒；任意选择，不区分）和1个卡口接头（连接震动椅垫）；</string>
+    <string name="connect_power_supply_tips5">如上图：OBD盒子有2个5针插头（1个连接提示器、1个备用；任意选择，不区分）和1个4针插头（连接ACC）；</string>
+    <string name="connect_power_supply_tips6"> 如上图：接线盒（缺图）</string>
+    <string name="connect_power_supply_tips7">如上图：延长线两端各有一个5针插头；延长线可连接两个设备5针插头。</string>
+    <string name="connect_power_supply_tips8">从OBD口取电：</string>
+    <string name="connect_power_supply_tips9">首先，主机的插头连接提示器的任意一个5针插头</string>
+    <string name="connect_power_supply_tips10">提示器的另一个5针插头连接OBD盒子的任意一个5针插头</string>
+    <string name="connect_power_supply_tips11">OBD盒子的4针插头连接ACC（V款主机可以不连，F款主机必须连接）：\n将xx线插入OBD盒子的4针插头\n将xx线的x色xx连接车辆的ACC</string>
+    <string name="connect_power_supply_tips12">将OBD盒子插入车辆的OBD口；OBD口的位置因车而异，一般位于方向盘的下方，车辆说明书上一般可以查到</string>
+    <string name="connect_power_supply_tips13">如果OBD口位置狭小，不能容纳下OBD盒子，可以利用“OBD线1拖1”进行转接</string>
+    <string name="connect_power_supply_tips14">如果OBD口已经被其他设备占用，可以利用“OBD线1拖2”同时接入两个设备</string>
+    <string name="connect_power_supply_tips15">按照上图，把TF存储卡插入主机；存储卡将用来保存行车视频；在日后的使用过程中，请勿在主机工作时插拔存储卡</string>
+    <string name="connect_power_supply_tips16">保险盒取电如下图：</string>
+    <string name="connect_power_supply_obn_ont_to_one">OBD线 1拖1 </string>
+    <string name="connect_power_supply_obn_ont_to_two">OBD线 1拖2（选购） </string>
+    <string name="connect_power_supply_insert_tf_card">插入TF卡 </string>
+
+
+    <string name="power_on">上电</string>
+    <string name="power_on_tips1">本步骤只需要取电，不需要连接其他线。</string>
+    <string name="power_on_tips2">接好电源后，插入车钥匙，启动汽车引擎，挂空挡，轻轻踩一下油门</string>
+    <string name="power_on_tips3">ADAS系统会自动上电，等待一会儿后，提示器上显示图标</string>
+    <string name="power_on_tips4">在手机上进行下一步，手机会与ADAS进行无线连接</string>
+
+
+    <string name="fault_handling">故障处理</string>
+    <string name="fault_handling_tips1">如果上电后提示器没有出现显示，请按以下顺序排查，直到解决：</string>
+    <string name="fault_handling_tips2">请轻轻踩一下油门</string>
+    <string name="fault_handling_tips3">检查线路是否连接正确，即：\n如从OBD口取电：检查OBD盒子是否插紧（F款还应检查ACC线的连接），或\n如从保险盒取电：检查接线盒的电源线是否连接到车辆的电源线，并且是否按要求连接了ACC线</string>
+    <string name="fault_handling_tips4">如果提示器仍然不能显示，可能是因为车辆的线路/接头老化，则请更换取电方式</string>
+
+
+    <string name="buzzer_camera_location">镜头、提示器的位置</string>
+    <string name="buzzer_camera_location_tips1">V款和F款：镜头（与主机一体）粘贴在前挡风玻璃上，视野朝向前方；</string>
+    <string name="buzzer_camera_location_tips2">S款：镜头与主机分体，镜头粘贴在前挡风玻璃上，视野朝向前方；主机一般隐藏在副驾的储物箱里面；</string>
+    <string name="buzzer_camera_location_tips3">提示器一般黏贴在仪表台上，便于查看。</string>
+    <string name="buzzer_camera_location_tips4">1-镜头、2-提示器</string>
+    <string name="buzzer_camera_location_tips5">参照上图，为各部件选择合适的安装位置。</string>
+    <string name="buzzer_camera_location_tips6">镜头选择位置注意：</string>
+    <string name="buzzer_camera_location_tips7">不得影响司机视线，一般建议在后视镜背后的挡风玻璃上</string>
+    <string name="buzzer_camera_location_tips8">大货车或大客车上，建议安装在前挡风玻璃下部；家用车、面包车、皮卡车上，安装在前挡风玻璃上部；如下图：</string>
+    <string name="buzzer_camera_location_tips9">镜头的位置，要尽量靠近挡风玻璃中心线，与中心线偏移不允许超过+/-10cm；如下图：</string>
+    <string name="buzzer_camera_location_tips10">在雨刷器范围内，避免被雨刷器遮挡</string>
+    <string name="buzzer_camera_location_tips11">若后视镜上有防炫目感应器，请不要遮挡感应器</string>
+    <string name="buzzer_camera_location_tips12">若前挡风玻璃贴有车膜，请安装在透光性较好的位置</string>
+    <string name="buzzer_camera_location_tips13">选好位置后，请勿固定主机；主机将在后面的步骤固定</string>
+    <string name="buzzer_camera_location_tips14">提示器选位和固定：</string>
+    <string name="buzzer_camera_location_tips15">建议安装在仪表台上，便于查看和听声音</string>
+    <string name="buzzer_camera_location_tips16">不得妨碍司机的驾驶</string>
+    <string name="buzzer_camera_location_tips17">利用包装里的固定胶贴，将提示器粘在选好的位置</string>
+
+
+
+    <string name="measuring_height_a_adjustment_reference_board">测量高度A - 调整参照板</string>
+    <string name="measuring_height_a_adjustment_reference_board_tips1">使用卷尺，测量镜头即将安装位置的位置距地面的高度A。\n把参照板放在车前方距离镜头3~4米位置；</string>
+    <string name="measuring_height_a_adjustment_reference_board_tips2">调整参照板，使它的中心线（数字3和4中间的线）的左右两端高度均为A，以保证参照板与地面水平。</string>
+
+    <string name="adjust_the_lens_level_paste_host">调整镜头水平- 黏贴主机</string>
+    <string name="adjust_the_lens_level_paste_host_tips1">我们即将把镜头（镜头和主机一体）以合适的角度，粘贴到预设的位置上。操作如下：\n通过APP，在手机上看到实时画面，画面的中心有一条红色线；</string>
+    <string name="adjust_the_lens_level_paste_host_tips2">把镜头拿到选好的安装位置附近；调整主机的倾斜度、和镜头角度（把小钢管套进主机侧面的旋钮，可以调整镜头角度），使镜头的十字线与标定版上任何一条横线重叠；</string>
+    <string name="adjust_the_lens_level_paste_host_tips3">维持镜头的这个角度，缓缓把镜头粘到挡风玻璃上预设的安装位置。</string>
+
+    <string name="measuring_height_b_fine_lens">测量高度B - 微调镜头</string>
+    <string name="measuring_height_b_fine_lens_tisp1">测量镜头高度B；在参照版上，在B高度处记一个明显的标志；</string>
+    <string name="measuring_height_b_fine_lens_tisp2">缓缓调节镜头的俯仰角，使画面中心线与参照板上的标志重合。</string>
+    <string name="measuring_height_b_fine_lens_tisp3">标定完毕</string>
+
+    <string name="done">完成</string>
+    <string name="click_button_to_adjust_the_lens_level_paste_host">点击下面的按钮，您将看到镜头的影像。请进行“调整镜头水平-粘贴主机”</string>
+    <string name="click_button_to_measuring_height_b_fine_lens">点击下面按钮，您将看到镜头的影像。请进行“测量高度B-微调镜头”</string>
+    <string name="no_finish_operation">请完成所有操作并在后面打钩</string>
+
+
+
+    <string name="cut_off_the_main_power_supply">切断主机电源</string>
+    <string name="cut_off_the_main_power_supply_tips1">请将车辆熄火，拔掉车钥匙。提示器应该在2分钟内熄灭。</string>
+
+    <string name="all_line_connections">所有线路连接</string>
+    <string name="all_line_connections_tips">此前您已经连接好电源，下面需要连接车辆，以获取速度、左右转向信息、刹车信息、雨刮起停等信息</string>
+
+    <string name="v_device">V款设备</string>
+    <string name="v_device_tips">通过车辆的OBD口获取这些信息，您已经连接了OBD口，所以不需要进行任何操作；</string>
+
+
+
+    <string name="f_device">F款设备</string>
+    <string name="f_device_tips1">有的信息必须获取，有的信息可以不获取：</string>
+    <string name="f_device_tips2">允许多种接线方式，组合如下表：</string>
+    <string name="f_device_tips3">注意：\n连接车辆的线路时候，须只由持有相应电气资质、并经过微牌公司培训的专业人员进行操作</string>
+    <string name="f_device_tips4">商品包装里，或含有OBD盒子，或含有接线盒，都留有合适的接口连接车辆：</string>
+    <string name="f_device_tips5">OBD盒子有一个4针插头</string>
+
+    <string name="open_host_power">打开主机电源</string>
+    <string name="open_host_power_tips1">完成接线后，插入车钥匙，启动汽车引擎，挂空挡，轻轻踩一下油门。进入手机软件的“操作”界面，按指引一步步设定。</string>
+
+
+    <string name="turn_off_the_car">关车、拔掉钥匙；确认提示器关机</string>
+    <string name="start_and_hang_neutral">启动车；挂空挡，轻踩油门</string>
+    <string name="wait_auto_connect">等待蓝牙自动连接</string>
+
+    <string name="get_spped_by_obd">我从OBD获取车速</string>
+    <string name="get_spped_by_speed_line">我连接了车速线</string>
+
+    <string name="get_turn_single_by_obd">我从OBD获得转向</string>
+    <string name="get_turn_single_by_turn_single_line">我连接了转向线</string>
+
+    <string name="connect_brake_line_and_wiper_line">我连接了刹车线和雨刮线</string>
+    <string name="not_connect_line">我连接了刹车线和雨刮线</string>
+
+    <string name="error">错误</string>
+    <string name="crrect">正确</string>
+    <string name="end">结束</string>
+    <string name="goback">返回</string>
+
+    <string name="rotation_rate_verification_tips">挂在空挡，轻微踩一下油门；如果下面的数字变化，证明接线正确；如果没有变化，请重新接线或选择其他的接线方式。</string>
+    <string name="rotation_rate_verification_fail_tips">验证失败；\n未能从车辆的OBD口读取到相应的信息；\n请检查接头是否插紧。\n\n如果问题仍然不能解决，请更换其他方式获取车速</string>
+    <string name="calibration3_done_tips">ADAS系统安装完毕，您可以开始使用。\n按下“结束”后，车辆首次上路的时候，\n系统会自动校正镜头角度和车速线的车速，不需要您的操作。\n如果您日后移动过镜头或车速线，请按下“重新校正”按钮，系统会自动重新校正。\n祝您愉快使用微牌ADAS，谢谢</string>
+    <string name="dont_connect_line">我没连接</string>
+    <string name="fail_to_verfication_turn_light_tips"> 验证失败；\n未能读取左右转向信号；请检查接线。 \n如果问题仍然不能解决，请更换其他方式获取转向信号</string>
+    <string name="fail_to_verfication_brake_wiper"> 验证失败；\n未能读取刹车或雨刮信号；请检查接线。请检查接线。 \n如果问题仍然不能解决，请重新接线，也可以选择不接这2类线</string>
+
+
+
+    <string name="hidden_line">藏线</string>
+    <string name="hidden_line_tips1">连接正确后，断开电源</string>
+    <string name="hidden_line_tips2">固定线缆：使用扎线带，确保电缆不会被车上的活动部件夹到或者卡住</string>
+    <string name="hidden_line_tips3">藏线：有两种方法隐藏主机的线缆 -\n  A. 可以把线缆藏在挡风玻璃的密封胶条里面、\n  B. 或者用电线固定卡扣将线缆粘在挡风玻璃表面上。\n 其他的线缆可以根据实际情况隐藏。\n 请注意：线缆必须避开高温环境、避免尖锐物体；走线不能影响车辆的正常驾驶和使用</string>
+
+    <string name="shading_film">遮光片</string>
+    <string name="shading_film_tips1">V款和F款产品带有遮光片，遮光片的作用是防止车内的光线反射到镜头里；如果出现反光现象，识别效果会受影响</string>
+    <string name="shading_film_tips2">您需要把遮光片粘在镜头下面；注意：如果您的挡风玻璃接近垂直（比如大部分大巴、货车的挡风玻璃就接近垂直），您可以不沾遮光片；绝大部分家用轿车需要粘</string>
+    <string name="shading_film_tips3">按照下图，把遮光片粘在镜头下面的“小平台”，遮盖住螺丝孔</string>
+    <string name="shading_film_tips4">遮光片安装完成后，查看屏幕，确认遮光片没有遮挡图像；如果出现遮挡，可以适当的将遮光片剪短一点</string>
+    <string name="shading_film_tips5">遮光片必须与挡风玻璃接触</string>
+
+
+    <string name="calibration_start_up_tips">亲爱的用户，欢迎您安装微牌智能驾驶辅助系统。\n\n安装共分为七步；安装很大程度影响系统的性能，我们为您准备了详细的指引，请尽可能严格地按照指引安装。\n祝您顺利</string>
+    <string name="start_intall">开始安装</string>
+
+    <string name="connect_device_tips_title">手机即将连接ADAS系统，请仔细阅读下面的说明\n\n</string>
+    <string name="connect_device_tips">ADAS系统带有蓝牙，可以与您的手机交换信息。\n苹果手机：连接之前，您需要手动打开手机的蓝牙功能，其余的步骤会自动完成；安卓手机：大部分安卓手机完全自动连接；如果等待2分钟后，仍然未能连接成功，说明您的手机不允许自动连接蓝牙设备，需要您手动连接。\n蓝牙设备名称：VISPECT_ADAS_V1\n初始密码：6666</string>
+    <string name="start_to_connect">开始连接</string>
+
+    <string name="connect_wifi_tips_title">手机即将连接ADAS系统的WIFI内网，请仔细阅读下面的说明\n\n</string>
+    <string name="connect_wifi_tips">ADAS系统带有WIFI，可以与智能手机通讯。\n苹果手机：您需要在手机上手动接入ADAS的WIFI网络。具体操作与接入普通WIFI网络一样。\n安卓手机：大部分完全自动连接；如果等待2分钟后，仍然未能接入，说明您的手机不允许自动连接WIFI网络，每次都需要手动接入。具体操作与手机接入普通WIFI网络一样。\n\nWIFI连接后，如果出现提示信息：“您的手机现在接入的WIFI系统不能连接英特网，是否取消这个WIFI连接？”请选择保持当前的WIFI连接。\n\nWIFI名称：VISPECT_ADAS_V1\n初始密码：12345678</string>
+
+    <string name="please_operate_in_sequence">请按顺序操作</string>
+
+    <string name="finish_step6_title">ADAS系统安装完毕，您可以开始使用。</string>
+    <string name="cfinish_step6_tips">按下“结束”后，车辆首次上路时候，\n系统会自动校正镜头角度和车速线的车速，不需要您的操作。\n如果您日后移动过镜头或车速线，请按下“重新校正”按钮，系统会自动重新校正。\n祝您愉快使用微牌ADAS，谢谢</string>
+
+
+
+
+    <string name="rataionrate_verification_fail">转速校验失败，请重新从最上面的操作开始</string>
+
+    <string name="user_info_edit_tips1">这些信息可能影响您的ADAS设备性能发挥，请仔细填写</string>
+    <string name="required">必填项</string>
+    <string name="optional">选填项</string>
+
+    <string name="region">国家/地区</string>
+    <string name="car_year">车辆年份</string>
+    <string name="license_plate">车牌号码</string>
+    <string name="cars_name">私家车/车队名称</string>
+    <string name="name_of_installer_company">自己安装/安装公司的名称</string>
+    <string name="name_of_installer">安装人员的姓名</string>
+    <string name="user_info_edit_tips2">请提供您的信息，ADAS系统会自动匹配您的驾驶习惯</string>
+    <string name="name">姓名</string>
+    <string name="phone_number">电话</string>
+    <string name="email_address">邮箱</string>
+    <string name="sex">性别</string>
+    <string name="required_cant_not_empty">请填写必填项</string>
+    <string name="wirelesscardid">数据卡号码</string>
+    <string name="tint">亲爱的用户\n\n欢迎您安装微牌智能驾驶辅助系统。安装很大程度影响系统的性能，我们为您准备了详细的指引，请按照指引步骤进行。\n\n祝您顺利</string>
+    <string name="start_calibration">开始</string>
+    <string name="male">男</string>
+    <string name="female">女</string>
+
+    <string name="buzzer_info_fcw_first_class_subject">前车防碰撞预警 - FCW</string>
+    <string name="buzzer_info_fcw_second_class_subject1">1.	提示器中显示： </string>
+    <string name="buzzer_info_fcw_second_class_subject1_tips1">绿色车：本车与前方车辆之间距离处于安全范围。</string>
+    <string name="buzzer_info_fcw_second_class_subject1_tips2">红色车：本车与前方车辆之间距离处于危险范围。</string>
+    <string name="buzzer_info_fcw_second_class_subject1_tips3">车上数字：亦称为TTC，即本车在当前车速下，如果前方车辆急刹停车，本车还有多少秒会碰撞到前车。</string>
+    <string name="security">安全</string>
+    <string name="danger">危险</string>
+    <string name="solid_line">实线</string>
+    <string name="dotted_line">虚线</string>
+    <string name="buzzer_info_fcw_second_class_subject2">2.	报警方式： </string>
+    <string name="buzzer_info_fcw_second_class_subject2_tips1">APP设置：</string>
+    <string name="buzzer_info_fcw_second_class_subject2_tips2">启动车速：预警功能启动的速度。例如：选择30KM，当本车速度达到30公里/小时或以上，功能开启</string>
+    <string name="buzzer_info_fcw_second_class_subject2_tips3">灵敏度：FCW报警的灵敏度，分为0、1、2、3级别。每个级别对应不同的TTC。报警阈值见下表</string>
+    <string name="buzzer_info_fcw_second_class_subject2_tips4">例如：前方防碰撞预警的灵敏度选择1级，即当您的车与前车之间的TTC时间低于0.8秒时，产生报警。</string>
+    <string name="buzzer_info_fcw_second_class_subject2_tips5">报警音为“D”：正常报警</string>
+    <string name="buzzer_info_fcw_second_class_subject2_tips6">报警音为连续急速“DDDD”：你在高速接近前车</string>
+
+
+
+    <string name="buzzer_info_ldw_first_class_subject"> 车道偏移预警 - LDW</string>
+    <string name="buzzer_info_ldw_second_class_subject1">1.	提示器中显示：设备通电开机后，默认显示为左右两条灰色线。</string>
+    <string name="buzzer_info_ldw_second_class_subject1_tips1">左、右实线：当本车前轮压在路面实线上触发系统报警，提示器中显示红色实线。 </string>
+    <string name="buzzer_info_ldw_second_class_subject1_tips2">左、右虚线：当本车前轮压在路面虚线上触发系统报警，提示器中显示红色虚线。</string>
+    <string name="buzzer_info_ldw_second_class_subject2">2.	报警方式：</string>
+    <string name="buzzer_info_ldw_second_class_subject2_tips1">启动车速：预警功能启动的速度。例如：选择30KM，当本车速度达到30公里/小时或以上，功能开启。</string>
+    <string name="buzzer_info_ldw_second_class_subject2_tips2">灵敏度：功能报警的灵敏度，分0、1、2、3四种级别。报警阈值见下表</string>
+
+    <string name="buzzer_info_pcw_first_class_subject">行人预警 - PCW</string>
+    <string name="buzzer_info_pcw_first_class_subject_tips1">车速10-60km/h，距离本车40米范围内，系统对在本车道和相邻车道有横穿趋势的行人、自行车、电动车、摩托车发出预警。</string>
+
+    <string name="buzzer_info_vb_first_class_subject">虚拟保险杠 - VB</string>
+    <string name="buzzer_info_vb_first_class_subject_tips1">当本车速度等于小于5km/h，与前方车辆距离小于3米时，系统发出“DD”两声报警。提醒驾驶员本车与前车距离太近，注意安全。</string>
+
+    <string name="buzzer_info_fvsn_first_class_subject">前车启动预警 - FVSA</string>
+    <string name="buzzer_info_fvsn_first_class_subject_tips1">当本车处于停止状态，速度为0km/h，前方车辆移动距离和本车超过5米时，系统发出警报，提醒驾驶员车辆可以行驶。</string>
+    <string name="buzzer_info_title">图标和声音</string>
+    <string name="try_to_obd_auto_crack">是否尝试OBD自动破解？</string>
+    <string name="not_obd_value_try_to_obd_auto_crack">查询不到当前车型的OBD破解数据，请进行OBD破解</string>
+
+    <string name="gps_upload_interva_tips">（0:不上传GPS数据 >0:时间间隔只上传一个数据包）</string>
+    <string name="sensor_upload_interva_tips">（0:不上传Sensor数据 >0:时间间隔只上传一堆数据）</string>
+    <string name="ttc_war_time_valve_tips">（单位：0.1s）</string>
+    <string name="car_slide_back_level_tips">（0:不报警 1：距离1M 2：距离2M 3：距离3M 4：距离4M 5：距离5M）</string>
+    <string name="car_start_up_level_tips">（0:不报警 1：距离4M 2：距离5M 3：距离6M 4：距离7M 5：距离8M）</string>
+    <string name="hmw_model_tips">（0:只输出一次 1：周期性输出）</string>
+    <string name="left_car_model_tips">（0:监测距离报警 1：立刻报警）</string>
+    <string name="event_input_model_tips">（0：不输出 1：输出到485 2：输出到APP 3：输出到485与APP）</string>
+    <string name="senser_input_model_tips">（0：不输出 1：输出到485 2：输出到APP 3：输出到485与APP）</string>
+    <string name="data_card_id">数据卡ID</string>
+    <string name="illegal_file">非法文件</string>
+
+
+    <string name="communicate_with_vehicle">插入车钥匙，启动汽车引擎，挂P档，轻轻踩一下油门。请等待提示器亮起并主机正常开机 </string>
+
+    <string name="calibration_flag">已完成</string>
+    <string name="calibration4list_title">目录</string>
+
+    <string name="calibration4list_title_step1">车辆信息录入</string>
+    <string name="calibration4list_title_step2">场地选择-接通电源</string>
+    <string name="calibration4list_title_step3">连接蓝牙</string>
+    <string name="calibration4list_title_step4">选择安装位置</string>
+    <string name="calibration4list_title_step5">固定-标定</string>
+    <string name="calibration4list_title_step6">填写尺寸</string>
+    <string name="calibration4list_title_step7">与车通讯</string>
+    <string name="calibration4list_title_step8">藏线</string>
+    <string name="calibration4list_title_step9">自动校正</string>
+
+    <string name="calibration4list_title_finish">完成</string>
+
+    <string name="calibration4list_step1_context">安装类型</string>
+    <string name="calibration4list_step1_context1">个人</string>
+    <string name="calibration4list_step1_context2">车队</string>
+    <string name="calibration4list_step1_context3">跳过</string>
+
+
+    <string name="calibration4list_step2_list1">视频演示</string>
+    <string name="calibration4list_step2_list2">工具准备</string>
+    <string name="calibration4list_step2_list3">场地选择</string>
+    <string name="calibration4list_step2_list4">部件与线材</string>
+    <string name="calibration4list_step2_list5">电源与ACC</string>
+    <string name="calibration4list_step2_list6">GPRS，TF卡，遮光片</string>
+    <string name="calibration4list_step2_list6v">TF卡，遮光片</string>
+    <string name="calibration4list_step2_list7">上电</string>
+
+    <string name="calibration4list_step2_list2_context">安装前应准备:</string>
+    <string name="calibration4list_step2_list3_context1_v">将车停到水平，平整的路面上，即路面不要有倾斜，路面不要有凹凸。</string>
+    <string name="calibration4list_step2_list3_context1_f">将车停在平坦的地面上。车前最少留下4米的空间，用来放置标定板。</string>
+    <string name="calibration4list_step2_list3_context2">同时，车辆前方不能有固定的障碍物，要能从车里看到地平线。</string>
+
+    <string name="calibration4list_step2_list4_context1">如上图（必配）：主机带有1个5针插头，用来连接提示器的任意一个5针插头；</string>
+    <string name="calibration4list_step2_list4_context2">如上图（选配）：提示器带有2个5针插头（连接主机、和OBD盒；任意选择，不区分）和1个卡口接头（连接震动椅垫）；</string>
+    <string name="calibration4list_step2_list4_context3">如上图（选配）：OBD盒子有2个5针插头（1个连接提示器、1个备用；任意选择，不区分）和1个4针插头（连接ACC）；</string>
+    <string name="calibration4list_step2_list4_context4">如上图（选配）：接线盒上有四个接口，分别接出若干条线；这些线的用途见下面说明。\n\nComm-1接口接出2个5针插头，将其中任何1个连接提示器；</string>
+    <string name="calibration4list_step2_list4_context5">\nP&amp;C Interface接口有5条线：</string>
+    <string name="calibration4list_step2_list4_context6">HS Interface接口有6条线：</string>
+    <string name="calibration4list_step2_list4_context7">如上图（选配）：延长线两端各有一个5针插头；延长线可连接两个设备5针插头。</string>
+    <string name="calibration4list_step2_list4_context8">如上图（选配）：4针线束一端有一个4针插头，另一端为3条线，这3条线的用途如下：</string>
+    <string name="calibration4list_step2_list4_context9">如上图（选配）：GPRS模块侧面的插槽用来安装电话卡；本模块支持中国移动的GPRS。</string>
+
+    <string name="calibration4list_step2_list5_context1">• 取电操作:</string>
+    <string name="calibration4list_step2_list5_context2">微牌ADAS系统有两种取电选择:优先从车辆供电保险盒取电，或从车辆OBD接口取电。</string>
+    <string name="calibration4list_step2_list5_context3">\n注意：\n从车辆保险盒取电，须只由持有相关电气资质，并经过微牌公司培训的专业人员进行操作。\n连接车辆ACC线，须只由持有相关电气资质，并经过微牌公司培训的专业人员进行操作。</string>
+    <string name="calibration4list_step2_list5_context4">以下为不同型号产品的取电建议：</string>
+    <string name="calibration4list_step2_list5_context5">特别注意：接电之前，请关闭汽车电源，并拔掉车钥匙。</string>
+    <string name="calibration4list_step2_list5_context6">选择2 - 从OBD口取电</string>
+    <string name="calibration4list_step2_list5_context7">1.主机的插头连接提示器的任意一个5针插头\n\n2.提示器的另一个5针插头连接OBD盒子的任意一个5针插头\n\n3.将OBD盒子插入车辆的OBD口；OBD口的位置因车而异，一般位于方向盘的下方，车辆说明书上一般可以查到\n\n• 如果OBD口位置狭小，不能容纳下OBD盒子，可以利用“OBD线1拖1”进行转接\n\n• 如果OBD口已经被其他设备占用，可以利用“OBD线1拖2”同时接入两个设备\n</string>
+    <string name="calibration4list_step2_list5_context8">OBD线 1拖1</string>
+    <string name="calibration4list_step2_list5_context9">BD线 1拖2（选购）</string>
+    <string name="calibration4list_step2_list5_context10">1. 将4针线束连接到OBD盒子的4针插头\n</string>
+    <string name="calibration4list_step2_list5_context10vv">• 系统还可以连接车辆的ACC线，以便更准确地获取汽车起停信息，如果您的车辆属于电动车或者具有启停功能，建议您安装的时候连接ACC线</string>
+    <string name="calibration4list_step2_list5_context10v">• 注意：如果没有连接ACC线，本系统在部分车型上使用，可能无法正常启动或关机</string>
+    <string name="calibration4list_step2_list5_context11">选择1 - 从保险盒取电</string>
+    <string name="calibration4list_step2_list5_context12">1.将主机的插头连接提示器的任意一个5针插头\n\n2.将提示器的另一个5针插头连接接线盒的任意一个5针插头\n\n3.把接线盒的PWR、GND连接到车辆的电源和地。挑选的接电点，要保证拔掉车钥匙后仍然供电。\n\n• 注意：请勿连接到任何可能危及行车安全的保险丝上，比如打火、引擎、刹车、方向盘等相关的保险丝\n\n</string>
+    <string name="calibration4list_step2_list5_context13">• 连接 ACC：\n</string>
+    <string name="calibration4list_step2_list5_context14">• 在连接ACC前，请依照您所在地区的法律，确定您是否有资质进行以下操作</string>
+    <string name="calibration4list_step2_list5_context141">2.准备好万用表，调到最高电压60V的位置；下面将测量的电压为 - 家用车辆约为12V；卡车约为24V\n\n3.打开车辆的保险盒，大部分保险盒类似下面彩图，并且附有接线说明：\n\n</string>
+
+    <string name="calibration4list_step2_list5_context15">3.按照保险盒的接线说明，找到车载娱乐系统、或收音机（radio）对应的保险丝；取掉这个保险丝，看见2个保险丝脚的插孔\n\n4.分别在拔掉车钥匙、和车钥匙打在ACC位置上时候，测量这2个插孔的电压；其中有1个插孔在2种状况下都没有电压，这个插孔就是我们需要的插孔\n\n5.把我们设备的ACC线连在取下的保险丝的脚上；把保险丝插回到插孔，连有ACC线的脚要插入我们需要的插孔中，不要插反\n\n6.拔掉车钥匙\n</string>
+    <string name="calibration4list_step2_list5_context16">• 注意：本ADAS设备的ACC线，请勿连接到任何可能危及行车安全的保险丝上，比如打火、引擎、刹车、方向盘等相关的保险丝。</string>
+    <string name="calibration4list_step2_list5_context17">• 系统还可以连接车辆的ACC线，以便更准确地获得汽车起停信息。如果您的车辆属于电动车或者具有启停功能，建议您安装时连接ACC线</string>
+
+
+    <string name="calibration4list_step2_list6_context1">将GPRS模块的5针插头，连接到OBD盒子的任意一个5针插头、或连接到接线盒的任意一个5针插头；插入电话卡\n</string>
+    <string name="calibration4list_step2_list6_context2">注意：如有需要使用GPRS模块才连接\n</string>
+    <string name="calibration4list_step2_list6_context3">按照上图，把TF存储卡插入主机；存储卡将用来保存行车视频；在日后的使用过程中，请勿在主机工作时插拔存储卡\n</string>
+    <string name="calibration4list_step2_list6_context4">• V款和F款产品带有遮光片，遮光片的作用是防止车内的光线反射到镜头里；如果出现反光现象，识别效果会受影响\n\n• 您需要把遮光片粘在镜头下面；按照下图，把遮光片粘在镜头下面的“小平台”，遮盖住螺丝孔\n</string>
+    <string name="calibration4list_step2_list6_context5">• 遮光片安装完成后，查看屏幕，确认遮光片没有遮挡图像；如果出现遮挡，可以适当的将遮光片剪短一点\n\n• 遮光片必须与挡风玻璃接触\n</string>
+
+    <string name="calibration4list_step2_list7_context1">1.接好电源后，插入车钥匙，启动汽车引擎，挂空挡，轻轻踩一下油门\n\n2.ADAS系统会自动上电，等待一会儿后，提示器上显示图标\n</string>
+    <string name="calibration4list_step2_list7_context2">• 如果上电后提示器没有出现显示，请按以下顺序排查，直到解决：\n\n• 请轻轻踩一下油门\n\n• 检查线路是否连接正确，即：\n\n• 如从OBD口取电的：首先检查OBD盒子是否插紧；如仍未解决，应检查ACC线的连接\n如从保险盒取电的：检查接线盒的电源线是否连接到车辆的电源线，并且是否按要求连接了ACC线\n\n• 如果提示器仍然不能显示，可能是因为车辆的线路/接头老化，则请更换取电方式</string>
+    <string name="calibration4list_step2_list7_context2_v">• 如果上电后提示器没有出现显示，请按以下顺序排查，直到解决：\n\n• 请轻轻踩一下油门\n\n• 检查线路是否连接正确，即：\n\n• 检查OBD盒子是否插紧；如仍未解决，V款需要增加连接ACC线\n\n• 如果提示器仍然不能显示，可能是因为车辆的线路/接头老化，则请更换取电方式</string>
+
+    <string name="calibration4list_step3_context1">手机即将连接ADAS系统的蓝牙。\n\n</string>
+    <string name="calibration4list_step3_context2">蓝牙设备名称：VISPECT_ADAS_V1\n\n初始密码：6666</string>
+    <string name="calibration4list_step3_context2_f">蓝牙设备名称：VISF100000XXX\n\n初始密码：6666</string>
+    <string name="calibration4list_step3_context3">开始连接</string>
+
+    <string name="calibration4list_step4_context1">镜头,提示器的位置</string>
+    <string name="calibration4list_step4_context2">注意：本步骤内只选择镜头的位置，切记不要粘贴镜头！镜头粘贴之前需要调整角度，下一步会有详细说明。</string>
+    <string name="calibration4list_step4_context3">V款和F款：镜头（与主机一体）粘贴在前挡风玻璃上，视野朝向前方；\n\nS款：镜头与主机分体，镜头粘贴在前挡风玻璃上，视野朝向前方；主机一般隐藏在副驾的储物箱里面；\n</string>
+    <string name="calibration4list_step4_context4">镜头选择位置注意：</string>
+    <string name="calibration4list_step4_context5">\n• 安装位置示意图：</string>
+    <string name="calibration4list_step4_context6">注意：提示器一般黏贴在仪表台上，便于查看。\n</string>
+    <string name="calibration4list_step4_context7">1-镜头，2-提示器\n</string>
+    <string name="calibration4list_step4_context8">参照下图，为各部件选择合适的安装位置。</string>
+    <string name="calibration4list_step4_context9">\n• 对外视野良好，不被遮挡\n\n• 在雨刷器范围内，下雨时镜头不会被积水遮挡\n\n• 不得影响司机视线，一般建议在后视镜背后的挡风玻璃上\n\n• 大货车或大客车上，建议安装在前挡风玻璃下部；家用车、面包车、皮卡车上，安装在前挡风玻璃上部；如下图：\n</string>
+    <string name="calibration4list_step4_context10">• 镜头的位置，要尽量靠近挡风玻璃中心线，与中心线偏移不允许超过+/-5cm；如下图：\n</string>
+    <string name="calibration4list_step4_context11">• 若后视镜上有防炫目感应器，请不要遮挡感应器\n\n• 若前挡风玻璃贴有车膜，请安装在透光性较好的位置</string>
+    <string name="calibration4list_step4_context12">\n• 选好位置后，请勿固定主机；主机将在后面的步骤固定\n</string>
+    <string name="calibration4list_step4_context13">提示器选位和固定：</string>
+    <string name="calibration4list_step4_context14">• 建议安装在仪表台上，便于查看和听声音\n\n• 不得妨碍司机的驾驶\n</string>
+
+    <string name="calibration4_step5_context0">无标定板-演示</string>
+    <string name="calibration4_step5_context1">固定及标定 - 演示</string>
+    <string name="calibration4_step5_context2">固定标定板</string>
+    <string name="calibration4_step5_context3">将标定板放置在离挡风玻璃3&#8211;3.5米处；尽量放在车头的正前方。</string>
+    <string name="calibration4_step5_context4">标定板需要固定，可以贴挂在墙上、或车库门上，也可以贴挂在梯子上。地面必须平坦。\n\n利用墙或车库门放置标定板：</string>
+    <string name="calibration4_step5_context5">利用梯子放置标定板：</string>
+    <string name="calibration4_step5_context6">不要求标定板一定垂直：</string>
+    <string name="calibration4_step5_context7">粘贴主机</string>
+    <string name="calibration4_step5_context8">粘贴主机-说明</string>
+    <string name="calibration4_step5_context9">• 测量高度A-调整参照板：</string>
+    <string name="calibration4_step5_context10">使用卷尺，测量镜头即将安装位置的位置距地面的高度A。</string>
+    <string name="calibration4_step5_context11">调整参照板，使它的中心线（数字3和4中间的线）的左右两端高度均为A，以保证参照板与地面水平。</string>
+    <string name="calibration4_step5_context12">• 调整镜头水平- 黏贴主机</string>
+    <string name="calibration4_step5_context13">擦拭干净即将安装主机的位置；\n</string>
+    <string name="calibration4_step5_context14">撕掉主机上3M胶的贴纸\n</string>
+    <string name="calibration4_step5_context15">注意：小心现在不要贴在挡风玻璃上\n</string>
+    <string name="calibration4_step5_context16">我们即将把镜头（镜头和主机一体）以合适的角度，粘贴到预设的位置上。操作如下：\n</string>
+    <string name="calibration4_step5_context17">1. 点击下面的“开始”按钮，按照提示操作后，会看到实景画面，画面中的红色线是水平线；红十字是手机屏幕中心；蓝色横线是手机屏幕的中线</string>
+    <string name="calibration4_step5_context18">2.把镜头拿到选好的安装位置附近；\n</string>
+    <string name="calibration4_step5_context19">3.调整主机的倾斜度、和镜头角度（把小钢管套进主机侧面的旋钮，可以调整镜头角度），使画面中的红色横线与标定版上任何一条横线重叠，并且红色十字落在标定板的中心线附近；</string>
+    <string name="calibration4_step5_context20">维持镜头的这个角度，缓缓把镜头粘到挡风玻璃上预设的安装位置\n\n</string>
+    <string name="calibration4_step5_context21">点击下面按钮，您将看到镜头的影像。可以开始安装进行以上介绍的操作</string>
+    <string name="calibration4_step5_context22">微调镜头</string>
+    <string name="calibration4_step5_context23">微调镜头-说明</string>
+    <string name="calibration4_step5_context24">• 测量高度B - 微调镜头：\n</string>
+    <string name="calibration4_step5_context25">测量镜头高度B（记录下这个高度，下一步需要填写）；在参照版上，在B高度处记一个明显的标志；</string>
+    <string name="calibration4_step5_context26">缓缓调节镜头的俯仰角，使画面中心线与参照板上的标志重合。</string>
+    <string name="calibration4_step5_context27">点击下面按钮，您将看到镜头的影像。可以开始安装进行以上介绍的操作</string>
+    <string name="calibration4_step5_context28">标定完毕。\n</string>
+    <string name="calibration4_step5_context29">特别注意：如果您日后移动过镜头，请重新进行“固定-标定”和“自动校正”两个步骤</string>
+    <string name="calibration4_step5_context30">开始</string>
+
+
+    <string name="calibration4_step5_v_context0">视频演示</string>
+    <string name="calibration4_step5_v_context1">• 镜头必须安装在挡风玻璃中心线</string>
+    <string name="calibration4_step5_v_context2">• 擦拭干净即将安装主机的位置</string>
+    <string name="calibration4_step5_v_context3">• 点击本页最下面的“开始”按钮；按照提示操作后，会看到实景画面；红十字的中心永远位于手机屏幕中心，红线是动态水平线，蓝线是屏幕的中线，如下图： </string>
+    <string name="calibration4_step5_v_context4">• 撕掉主机上3M胶的贴纸（注意：小心现在不要贴在挡风玻璃上），轻柔地调整主机的左右角度, 如下图： </string>
+    <string name="calibration4_step5_v_context5">• 手机上红线随您的动作旋转，当红线和蓝线最大限度地重合时候，把主机粘贴到挡风玻璃上，如下图：</string>
+    <string name="calibration4_step5_v_context6">• 然后，把小钢管（镜头调节器）套进主机侧面的旋钮，可以调整镜头角度，主机上的摄像头会上下调整，如下图：</string>
+    <string name="calibration4_step5_v_context7">• 如下图，当红蓝线与地平线基本重合，本步骤结束</string>
+
+
+
+    <string name="calibration4_step6_context1">车辆</string>
+    <string name="calibration4_step6_context2">车宽：测量车辆两轮外侧的距离</string>
+    <string name="calibration4_step6_context3">车宽</string>
+    <string name="calibration4_step6_context4">主机</string>
+    <string name="calibration4_step6_context5">偏移：测量主机镜头中心到车中心的距离（从前方看向汽车，以汽车为原点，向左偏移为正值，向右偏移为负值）</string>
+    <string name="calibration4_step6_context6">高度：设备安装位置到地面的距离（您之前测量过此数值）</string>
+    <string name="calibration4_step6_context7">偏移</string>
+    <string name="calibration4_step6_context8">高度</string>
+    <string name="calibration4_step6_context9">深度：测量主机镜头中心到车头保险杠顶端的距离</string>
+    <string name="calibration4_step6_context10">深度</string>
+
+
+    <string name="calibration4_step7_context1">说明</string>
+    <string name="calibration4_step7_context2">• 切断主机电源</string>
+    <string name="calibration4_step7_context3">请将车辆熄火，拔掉车钥匙。提示器应该在2分钟内熄火。</string>
+    <string name="calibration4_step7_context4">• 所有线路连接</string>
+    <string name="calibration4_step7_context5">此前您已经连接好电源，下面需要连接车辆，以获取速度、左右转向信息、刹车信息、雨刮起停等信息。</string>
+    <string name="calibration4_step7_context6">有的信息必须获取，有的信息可以不获取：</string>
+    <string name="calibration4_step7_context7">允许多种接线方式，组合如下表：</string>
+    <string name="calibration4_step7_context8">• 连线：</string>
+    <string name="calibration4_step7_context9">选好接线方案后，参考手机软件的“场地和通电”-“部件与线材”，里面有关于接线的详细说明；请按说明连接好相关线路。</string>
+    <string name="calibration4_step7_context10">注意：</string>
+    <string name="calibration4_step7_context11">连接车辆的线路时候，须只由持有相应电气资质、并经过微牌公司培训的专业人员进行操作。</string>
+    <string name="calibration4_step7_context12">• 打开主机电源：</string>
+    <string name="calibration4_step7_context13">完成接线后，插入车钥匙，启动汽车引擎，挂P档，轻轻踩一下油门。</string>
+    <string name="calibration4_step7_context14">特别注意：如果您日后重新连接了车速线，请重新进行“自动校正”。</string>
+    <string name="calibration4_step7_context15">操作</string>
+    <string name="calibration4_step7_context16">• 关车、拔掉车钥匙；确认提示器关机；</string>
+    <string name="calibration4_step7_context17">• 连接您需要的线路；</string>
+    <string name="calibration4_step7_context18">• 启动车；挂P档、轻踩油门；</string>
+    <string name="calibration4_step7_context19">• 按以下操作步骤，验证接线效果；</string>
+    <string name="calibration4_step7_context20">• 连接蓝牙：</string>
+    <string name="calibration4_step7_context21">连接</string>
+    <string name="calibration4_step7_context22">• OBD连接验证：</string>
+    <string name="calibration4_step7_context23">注意：本操作仅适合从OBD获取车速的做法，如果您连接了车速线，请跳过此操作。</string>
+    <string name="calibration4_step7_context24">挂在空挡或P档，轻微踩一下油门；如果下面的数字变化，证明接线正确；如果没有变化，请重新接线或选择其他接线方式</string>
+    <string name="calibration4_step7_context25">• OBD口读取转向信息：</string>
+    <string name="calibration4_step7_context26">注意：本操作仅适合从OBD获取转向信号的做法，如果您决定不获取转向信息，或者您连接了转向线，请跳过此操作。</string>
+    <string name="calibration4_step7_context27">破解</string>
+    <string name="calibration4_step7_context28">• 验证左右转向：</string>
+    <string name="calibration4_step7_context29">本操作用于验证ADAS系统是否可以获取到您车辆的左右转向信号。请打开转向灯，如果接线正确，下面的图标会随着您的操作而闪烁</string>
+    <string name="calibration4_step7_context30">• 验证硬线：</string>
+    <string name="calibration4_step7_context31">如果您连接了刹车线或雨刮线，请踩下刹车或雨刮，如果接线正确，下面的图标会随着您的操作而闪烁</string>
+
+    <string name="calibration4_step7_vcontext2">OBD左右转向破解</string>
+    <string name="calibration4_step7_vcontext3">设置：按下按钮，开始尝试读取OBD口输出的转向信息</string>
+    <string name="calibration4_step7_vcontext4">请注意：\n对于家庭轿车，此步骤可以跳过。\n部分车款的转向信号，是无法破解的\n如果验证通过，则在以后使用过程中，打下转向灯后车辆变线，不会收到变线提示；\n如果跳过此步骤、或验证失败，则以后每次变线的时候都会收到提示。</string>
+    <string name="calibration4_step7_vcontext5">验证：请打开转向灯，如果接线正确，下面的图标会随着您的操作而闪烁</string>
+    <string name="calibration4_step7_vcontext6">请检查设备连接是否断开</string>
+
+    <string name="calibration4_step8_context1">• 连接正确后，断开电源</string>
+    <string name="calibration4_step8_context2">• 固定线缆：使用扎线带，确保电缆不会被车上的活动部件夹到或者卡住</string>
+    <string name="calibration4_step8_context3">• 藏线：有两个方法隐藏主机的线缆 - </string>
+    <string name="calibration4_step8_context4">A.可以把线缆藏在挡风玻璃的密封胶条里面、</string>
+    <string name="calibration4_step8_context5">B.或者用电线固定卡扣将线缆粘到挡风玻璃表面上。</string>
+    <string name="calibration4_step8_context6">其他的线缆可以根据实际情况隐藏。\n</string>
+    <string name="calibration4_step8_context7">请注意：线缆必须避开高温环境、避免尖锐物体；走线不能影响车辆的正常驾驶和使用。</string>
+    <string name="calibration4_step8_context8">固定线缆后，利用包装里的固定胶贴，将提示器粘在选好的位置。\n</string>
+    <string name="calibration4_step8_context9">视频演示</string>
+
+    <string name="calibration4_step9_context1">操作</string>
+    <string name="calibration4_step9_context2">• 校正镜头角度</string>
+    <string name="calibration4_step9_context3">首次安装或重新移动过镜头后，请按下面的按钮进行自动校正；此后当您首次快速行驶在有车道线的路上时，系统会自动进行校正；校正时间大约持续3~5分钟，校正期间请尽量行驶在车道线的正中间。校正的进度可在实景模式中查看。</string>
+    <string name="calibration4_step9_context4">校正角度</string>
+    <string name="calibration4_step9_context5">• 校正车速:</string>
+    <string name="calibration4_step9_context6">注意：如果您没有连接车速线，不需要校正车速。</string>
+    <string name="calibration4_step9_context7">首次或重新连接车速线后，请按下面的按钮进行自动校正，当您在公路上正常行驶时即会自动校正。</string>
+    <string name="calibration4_step9_context8">校正车速</string>
+    <string name="calibration4_step9_context9">已开始校正</string>
+    <string name="calibration4_step9_context10">校正失败</string>
+
+
+    <string name="OBDAutoCrack_context1">开始后,按照进度条及箭头提示，开关相应的转向灯</string>
+    <string name="OBDAutoCrack_context2">开始破解</string>
+    <string name="OBDAutoCrack_context3">操作完毕后请等待</string>
+    <string name="OBDAutoCrack_context4">请勿开关转向灯，请等待</string>
+    <string name="OBDAutoCrack_context5">转圈完毕后请开关左转向灯</string>
+    <string name="OBDAutoCrack_context6">转圈完毕后请开关右转向灯</string>
+    <string name="OBDAutoCrack_context7">请等待</string>
+
+    <string name="Country_select_title">选择国家</string>
+
+    <string name="tips_shavent">S款没有行车视频</string>
+    <string name="tips_connect">您已经连接设备</string>
+
+    <string name="chooseyes">确定</string>
+    <string name="chooseno">取消</string>
+
+    <string name="engineering1">驾驶行为设置</string>
+    <string name="engineering2">工程配置</string>
+    <string name="engineering3">设备检测</string>
+    <string name="engineering4">恢复出厂设置</string>
+    <string name="engineering5">更新文件</string>
+    <string name="engineering6">电池不在位</string>
+    <string name="engineering7">车辆信息设置</string>
+
+    <string name="trouble_shooting">故障处理</string>
+    <string name="must_read">必读</string>
+
+    <string name="ask_save_OBD">是否从服务器获取您的车辆破解信息？</string>
+    <string name="cannot_getOBD">获取失败，请尝试自动破解。</string>
+    <string name="save_OBD_success">保存成功</string>
+
+    <string name="ask_reset">是否确定恢复出厂设置？</string>
+    <string name="ask_out_login">是否确定退出？</string>
+
+    <string name="local_video">本地视频文件</string>
+    <string name="select_video_type">请选择文件类型</string>
+
+    <string name="set_driver_status">设置疲劳驾驶监测</string>
+    <string name="set_camera_socket">设置Cam1接口 和 Cam2接口</string>
+    <string name="set_side_cameras">设置侧面摄像头</string>
+    <string name="adjust_camera_atlow">设置“自动校正”功能的启动速度</string>
+    <string name="DSM_settings">疲劳驾驶监测的安装人员设置</string>
+    <string name="dsm_settings">疲劳驾驶监测的设置</string>
+    <string name="distracting">分神提醒（一级报警）</string>
+    <string name="speed_10_80">启动速度(10-80km/h)</string>
+    <string name="time_1_3">触发灵敏度(1~3s)</string>
+    <string name="dangerous">危险驾驶（一级报警）</string>
+    <string name="time_3_9">触发灵敏度</string>
+    <string name="phone">打电话</string>
+    <string name="smoking">吸烟</string>
+    <string name="looking">左顾右盼</string>
+    <string name="yawning">打哈欠</string>
+    <string name="time_2_5">触发灵敏度(2~5s)</string>
+    <string name="face">离岗</string>
+
+    <string name="time_10_60">触发灵敏度(10~60s)</string>
+    <string name="camera">遮挡摄像头</string>
+    <string name="drinking">喝水</string>
+    <string name="side_camera">设置侧面摄像头</string>
+    <string name="note_side_cameras">当车速介于“起始速度”和“终止速度”之间时，如果有人进入“危险区域”内，系统会产生报警</string>
+    <string name="start_speed">起始速度</string>
+    <string name="end_speed">终止速度</string>
+    <string name="font_camera">前向摄像头 - 道路偏离报警、和前车碰撞报警</string>
+
+    <string name="side_cameras">侧边镜头</string>
+    <string name="app_name">G2-ADAS</string>
+    <string name="forget_password">忘记密码?</string>
+    <string name="user_guide">用户指南</string>
+    <string name="insatllation">安装</string>
+
+    <string name="set_lane_departrue">参数设置</string>
+    <string name="set_password_wifi">设置蓝牙和WIFI的密码</string>
+    <string name="settings">设置</string>
+    <string name="live">实景</string>
+    <string name="video_archivews">行车视频</string>
+    <string name="waitting">请稍等</string>
+    <string name="updateing">under revision</string>
+    <string name="please_connect_G2">请连接G2设备</string>
+
+    <string name="vehicle_information">车辆信息录用</string>
+    <string name="calibrate">标定</string>
+    <string name="adapt_automatically">自动校正</string>
+    <string name="tali_with_car">与车通讯</string>
+    <string name="enter_size">填写尺寸</string>
+
+    <string name="save_success">保存成功</string>
+    <string name="save_fail">保存失败</string>
+
+    <string name="left_camera_back">左侧摄像头（向后看） - 盲区行人监测</string>
+    <string name="left_camera_forward">左侧摄像头（向前看） - 盲区行人监测（正式版本中文没有这页）</string>
+    <string name="right_camera_back">右侧摄像头（向后看） - 盲区行人监测（正式版本中文没有这页）</string>
+    <string name="right_camera_forward">右侧摄像头（向前看） - 盲区行人监测（正式版本中文没有这页）</string>
+    <string name="driver_status_monitoring">DSM摄像头 - 疲劳驾驶监测</string>
+    <string name="cameras_setting_tips">请在下面注明您所使用的摄像头种类</string>
+
+    <string name="check_device">检查设备</string>
+    <string name="check_version">当前版本</string>
+    <string name="driving_behavior_setting">驾驶行为设置</string>
+    <string name="engineering_setting">工程配置</string>
+    <string name="status_of_parts">设备检测</string>
+    <string name="restore_initial">恢复出厂设置</string>
+    <string name="title_step">操作步骤</string>
+
+    <string name="dialog_alarm_video">报警视频</string>
+    <string name="dialog_driving_video">行车视频</string>
+    <string name="dialog_local_video">本地视频</string>
+</resources>

@@ -61,7 +61,7 @@ public class InstallActivity extends BaseActivity {
 
     @Override
     protected void initView(View view) {
-        setTitle("Steps");
+        setTitle(STR(R.string.title_step));
         switchFragment(5);
         transHandler = new myHandler();
     }
@@ -140,7 +140,7 @@ public class InstallActivity extends BaseActivity {
                 btnSave.setVisibility(View.GONE);
                 break;
             case INSTALLLIST:
-                setTitle("Steps");
+                setTitle(STR(R.string.title_step));
                 if (installListFragment == null) {
                     installListFragment = new InstallListFragment();
                     transaction.add(R.id.frame_install, installListFragment);

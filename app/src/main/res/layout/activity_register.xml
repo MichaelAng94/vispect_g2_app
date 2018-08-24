@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/x50"
             android:layout_marginRight="@dimen/x50"
-            android:hint="Email"
+            android:hint="@string/login_email"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:theme="@style/MyEditText" />
@@ -39,7 +39,7 @@
             android:layout_marginLeft="@dimen/x50"
             android:layout_marginRight="@dimen/x50"
             android:layout_marginTop="@dimen/y80"
-            android:hint="Password"
+            android:hint="@string/login_password"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:theme="@style/MyEditText" />
@@ -52,7 +52,7 @@
             android:layout_marginRight="@dimen/x50"
             android:layout_marginTop="@dimen/y50"
             android:background="@drawable/btn_login"
-            android:text="Register"
+            android:text="@string/register"
             android:textColor="@color/background" />
 
         <TextView

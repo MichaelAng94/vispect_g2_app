@@ -106,14 +106,14 @@ public class UIHelper {
             }
             NotconnectDialog.Builder builder = new NotconnectDialog.Builder(context);
             builder.setMessage(msg);
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            builder.setPositiveButton(context.getString(R.string.dialog_ok), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     askDialog = dialog;
                     listener.isyes(true, dialog);
                 }
             });
 
-            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(context.getString(R.string.cancel), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     askDialog = dialog;
                     listener.isyes(false, dialog);

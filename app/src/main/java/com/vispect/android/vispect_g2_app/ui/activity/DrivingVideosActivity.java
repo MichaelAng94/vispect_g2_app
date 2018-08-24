@@ -240,7 +240,7 @@ public class DrivingVideosActivity extends BaseActivity {
         adapter.refreshData(videos);
         timeoututil.startCheck(ARG.SET_VALUE_TIMEOUT);
         AppContext.getInstance()
-                .getDeviceHelper().getDVRLists(0, pageSize, new DrivingVideoOperationListener() {
+                .getDeviceHelper().getDVRLists(1, pageSize, new DrivingVideoOperationListener() {
             @Override
             public void onGetVideoList(final ArrayList arrayList) {
                 timeoututil.stopCheck();

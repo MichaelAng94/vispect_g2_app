@@ -1063,7 +1063,7 @@
 
                         <TextView
                             android:layout_margin="@dimen/y10"
-                       android:layout_width="@dimen/x60"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="- -"
                             android:textSize="@dimen/deiver_status_small_size"
@@ -1105,7 +1105,7 @@
 
                         <TextView
                             android:layout_margin="@dimen/y10"
-                       android:layout_width="@dimen/x60"
+                           android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="- -"
                             android:textSize="@dimen/deiver_status_small_size"
@@ -1581,7 +1581,7 @@
 
                         <TextView
                             android:layout_margin="@dimen/y10"
-                       android:layout_width="@dimen/x60"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="- -"
                             android:textSize="@dimen/deiver_status_small_size"

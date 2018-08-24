@@ -276,7 +276,7 @@ public class ADASWarringVideosActivity extends BaseActivity {
         adapter.refreshData(videos);
         timeoututil.startCheck(ARG.SET_VALUE_TIMEOUT);
         if (videoType == 0) {
-            AppContext.getInstance().getDeviceHelper().getG2RecordVideoList(0, pageSize, algoType, new G2DrivingVideoOperationListener() {
+            AppContext.getInstance().getDeviceHelper().getG2RecordVideoList(1, pageSize, algoType, new G2DrivingVideoOperationListener() {
                 @Override
                 public void onGetVideoList(final ArrayList arrayList) {
                     timeoututil.stopCheck();

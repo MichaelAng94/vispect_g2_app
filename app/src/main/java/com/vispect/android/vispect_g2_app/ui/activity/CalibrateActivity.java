@@ -150,7 +150,6 @@ public class CalibrateActivity extends BaseActivity {
     ArrayList<DrawShape> adas = null;
     float c_x = 0;
 
-
     private PowerManager.WakeLock sCpuWakeLock;
     private float centerpointX = -2;
     private float centerpointY = -2;
@@ -813,7 +812,6 @@ public class CalibrateActivity extends BaseActivity {
     protected void onStop() {
         super.onStop();
 
-        XuLog.e("Unnamed-0", "老子设置了变量了");
         if (sCpuWakeLock != null) {
             sCpuWakeLock.release();
             sCpuWakeLock = null;
@@ -869,7 +867,6 @@ public class CalibrateActivity extends BaseActivity {
             //如果可以开始录就开始录
             if (onStart) {
                 buffer.put(buf);
-
             }
             //判断是不是存够了
             if (count_i >= 3) {
@@ -889,7 +886,6 @@ public class CalibrateActivity extends BaseActivity {
     private void getShortVideo(OnGetShortVideoCallback onGetShortVideoCallback) {
         needGetShorVideo = true;
         this.onGetShortVideoCallback = onGetShortVideoCallback;
-
     }
 
     @Override
@@ -977,7 +973,6 @@ public class CalibrateActivity extends BaseActivity {
     private class UpdateTask extends AsyncTask<byte[], Void, String> {
         @Override
         protected void onPreExecute() {
-
             super.onPreExecute();
         }
 
@@ -989,7 +984,6 @@ public class CalibrateActivity extends BaseActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
             return null;
         }
     }

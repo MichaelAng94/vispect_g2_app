@@ -67,7 +67,6 @@ public class XuHCSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         try {
-
             initDecoder(holder);
             XuLog.e(TAG, "调用了一次创建");
             h = new HandlerThread("fd");

@@ -92,7 +92,7 @@
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Cancle"
+        android:text="@string/cancel"
         android:textSize="@dimen/y50"
         />
 

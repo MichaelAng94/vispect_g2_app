@@ -233,7 +233,7 @@
                android:layout_centerInParent="true"
                android:textSize="@dimen/y50"
                android:textColor="@color/black"
-               android:text="Sign Out"
+               android:text="@string/setting_singout"
                />
 
         </RelativeLayout>
