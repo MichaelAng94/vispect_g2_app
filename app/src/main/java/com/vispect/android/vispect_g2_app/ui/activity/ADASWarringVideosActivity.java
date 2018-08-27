@@ -871,8 +871,6 @@ public class ADASWarringVideosActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-
-
         AppContext.getInstance().setNeedclosetcp(isdownloading);
         if (needclose && !isdownloading) {
             //没有视频下载的时候关闭TCP
@@ -885,7 +883,6 @@ public class ADASWarringVideosActivity extends BaseActivity {
 
         //退出的时候清空handler
         mHandler.removeCallbacksAndMessages(null);
-
         canshowlongtime = false;
         super.onDestroy();
     }
