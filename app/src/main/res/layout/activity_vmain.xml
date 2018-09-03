@@ -8,7 +8,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <!--校准线-->
+    <!--红色边框-->
+    <TextView
+        android:id="@+id/red_rectangle"
+        android:layout_width="@dimen/x400"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_red_border"
+        android:visibility="gone"
+        android:layout_centerInParent="true"/>
+
+    <!--蓝色校准线-->
     <LinearLayout
         android:id="@+id/iv_lin"
         android:layout_width="match_parent"
@@ -18,13 +27,14 @@
         android:orientation="horizontal"
         android:visibility="gone"></LinearLayout>
 
+    <!--垂直红色中线-->
     <LinearLayout
-        android:orientation="vertical"
         android:id="@+id/center_line"
-        android:visibility="gone"
-        android:layout_centerInParent="true"
         android:layout_width="1dp"
-        android:layout_height="@dimen/y450"/>
+        android:layout_height="@dimen/y450"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:visibility="gone" />
 
 
     <LinearLayout
@@ -149,10 +159,10 @@
 
     <RelativeLayout
         android:id="@+id/re_top"
-        android:clickable="true"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y110"
-        android:background="#99000000">
+        android:background="#99000000"
+        android:clickable="true">
 
         <LinearLayout
             android:id="@+id/lin_click"

@@ -2,20 +2,16 @@ package com.vispect.android.vispect_g2_app.ui.activity;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.Dialog;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-
 import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -25,21 +21,13 @@ import android.os.Handler;
 import android.os.StrictMode;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.support.annotation.BoolRes;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -55,7 +43,6 @@ import com.vispect.android.vispect_g2_app.controller.UIHelper;
 import com.vispect.android.vispect_g2_app.interf.DialogClickListener;
 import com.vispect.android.vispect_g2_app.interf.OnClickYesOrNoListener;
 import com.vispect.android.vispect_g2_app.interf.ResultCallback;
-import com.vispect.android.vispect_g2_app.ui.fragment.CalibrateFragment;
 import com.vispect.android.vispect_g2_app.ui.widget.DialogHelp;
 import com.vispect.android.vispect_g2_app.utils.DoubleClickExit;
 import com.vispect.android.vispect_g2_app.utils.SDcardTools;
@@ -70,34 +57,39 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import bean.Vispect_SDK_ErrorCode;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import interf.G2DrivingVideoOperationListener;
-import interf.GetDiatanceListener;
-import interf.GetDsmAlarmSensitivity;
-import interf.GetDsmSensitivityLevel;
-import interf.GetDsmShieldingListener;
-import interf.GetDsmStartSpeed;
 import interf.GetG2CameraList;
-import interf.GetG2CameraType;
-import interf.GetHorizontalLine;
-import interf.GetSIdeAlarmCallback;
-import interf.GetSPMSpeedSpace;
 import interf.GetUDPcamera;
-import interf.GetVideosTypeListener;
 import interf.OnDeviceConnectionStateChange;
 import interf.OnWifiOpenListener;
-import interf.PointOfAreaListener;
-import interf.ResultListner;
-import interf.SetPointOfArea;
 import okhttp3.Request;
-
-import static java.security.AccessController.getContext;
 
 public class MainActivity extends BaseActivity {
 
+    private static final int REQUEST_FINE_LOCATION = 0;
+    /*头像名称*/
+    private static final String IMAGE_FILE_NAME = "/user_face.jpg";
+    /* 请求码*/
+    private static final int IMAGE_REQUEST_CODE = 0;
+    private static final int CAMERA_REQUEST_CODE = 1;
+    private static final int RESULT_REQUEST_CODE = 2;
+    private static final int RESULT_PHONE_CODE = 3;
+    private static final int RESULT_EMAIL_CODE = 4;
+    private final static int ALARM_TYPE = 0;
+    private final static int RECORD_TYPE = 1;
+    private final static int ADAS = 0;
+    private final static int DSM = 1;
+    private final static int SPML = 2;
+    private final static int SPMR = 3;
+    private static final int MY_CAMERA_REQUEST_CODE = 100;
+    public static int udpCamera = -1;   //USP实景设定的镜头
+    public static ArrayList<Point> cameras; //获取到的镜头列表
+    public static int clickMeun = 0;
+    private final int BLE_CONNECT = 406;
+    private final int REQUESRST_CONNECT = 100;
+    private final int REQUESRST_LIVE = 101;
     @Bind(R.id.drawerlayout)
     DrawerLayout drawerlayout;
     @Bind(R.id.img_connect)
@@ -114,63 +106,9 @@ public class MainActivity extends BaseActivity {
     TextView tvSex;
     @Bind(R.id.tv_appVersion)
     TextView tvAppVersion;
+    Thread openliveThread = null;
     private DoubleClickExit doubleclick = new DoubleClickExit(this);
     private String TAG = "MainActivity";
-    private final int BLE_CONNECT = 406;
-    private final int REQUESRST_CONNECT = 100;
-    private final int REQUESRST_LIVE = 101;
-    private static final int REQUEST_FINE_LOCATION = 0;
-    private Handler myHandler = new Handler();
-    /*头像名称*/
-    private static final String IMAGE_FILE_NAME = "/user_face.jpg";
-    /* 请求码*/
-    private static final int IMAGE_REQUEST_CODE = 0;
-    private static final int CAMERA_REQUEST_CODE = 1;
-    private static final int RESULT_REQUEST_CODE = 2;
-    private static final int RESULT_PHONE_CODE = 3;
-    private static final int RESULT_EMAIL_CODE = 4;
-    Thread openliveThread = null;
-    private changeDialog changeDialog;
-    private Boolean connectRealView = false;
-    private int lastConnectionState = 0;
-    private String curWIFISSID = "";
-    private int checkTime = 0;
-    private String curWIFIPassword = "";
-    private BottomSheetDialog bottomInterPasswordDialog;
-    private final static int ALARM_TYPE = 0;
-    private final static int RECORD_TYPE = 1;
-    private final static int ADAS = 0;
-    private final static int DSM = 1;
-    private final static int SPML = 2;
-    private final static int SPMR = 3;
-    public static int udpCamera = -1;   //USP实景设定的镜头
-    public static ArrayList<Point> cameras; //获取到的镜头列表
-    private int videoType;   //选择的Video的类型
-    private int algoType;    //选择的Video算法的类型
-    public static int clickMeun = 0;
-
-    @Override
-    public int getContentResource() {
-        return R.layout.activity_main;
-    }
-
-
-    @Override
-    protected void initView(View view) {
-        try {
-            tvAppVersion.setText(getPackageManager().getPackageInfo(getPackageName(), 0).versionName);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        myHandler.post(setuerinfo);
-        mayRequestLocation();
-        setTitle("G2-ADAS");
-        AppContext.getInstance().setNeeedCloseBluetooth(!BluetoothAdapter.getDefaultAdapter().isEnabled());
-        //监听连接变化
-        AppContext.getInstance().getDeviceHelper().setDeviceConnectStateListener(deviceConnectionStateListener);
-    }
-
-
     Runnable setuerinfo = new Runnable() {
         @Override
         public void run() {
@@ -205,6 +143,169 @@ public class MainActivity extends BaseActivity {
 
         }
     };
+    private Handler myHandler = new Handler();
+    private changeDialog changeDialog;
+    private Boolean connectRealView = false;
+    private int lastConnectionState = 0;
+    OnDeviceConnectionStateChange deviceConnectionStateListener = new OnDeviceConnectionStateChange() {
+        //TODO 监听蓝牙的连接状态
+        @Override
+        public void onConnectionStateChange(int i) {
+            if (lastConnectionState != i) {
+                XuLog.e(TAG, "连接状态发生变化：" + i);
+                lastConnectionState = i;
+                if (i == 0) {
+                    imgConnect.setColorFilter(null);
+                    XuToast.show(MainActivity.this, "Disconnect");
+                    XuLog.e(TAG, "需要退回到首页");
+                    AppContext.getInstance().getDeviceHelper().closeWIFIMode();
+                    AppContext.getInstance().getDeviceHelper().closeDeviceRealViewMode();
+                    //关闭热点
+                    if (AppContext.getInstance().getWificontroller().isWifiApEnabled()) {
+                        XuLog.e(TAG, "断开连接关热点");
+                        AppContext.getInstance().getWificontroller().setWifiApEnabled(false);
+                    }
+                    AppManager.getInstance().finishActivityToindex();
+                }
+            }
+
+
+        }
+
+        @Override
+        public void onSocketStateChange(int i) {
+        }
+    };
+    private String curWIFISSID = "";
+    private int checkTime = 0;
+    private String curWIFIPassword = "";
+    private BottomSheetDialog bottomInterPasswordDialog;
+    private int videoType;   //选择的Video的类型
+    private int algoType;    //选择的Video算法的类型
+    private Runnable savefail = new Runnable() {
+        @Override
+        public void run() {
+            XuToast.show(MainActivity.this, "Save fail");
+        }
+    };
+    private Runnable savesuccess = new Runnable() {
+        @Override
+        public void run() {
+            myHandler.post(setuerinfo);
+            DialogHelp.getInstance().hideDialog();
+            DialogHelp.getInstance().hideDialog();
+            XuToast.show(MainActivity.this, "Success");
+        }
+    };
+    private Runnable toRealView = new Runnable() {
+        @Override
+        public void run() {
+//            hideProgress();
+            DialogHelp.getInstance().hideDialog();
+            myHandler.removeCallbacks(changeDialog);
+            if (AppContext.getInstance().getDeviceHelper().isConnectedDevice()) {
+                UIHelper.showLiveForResult(MainActivity.this, REQUESRST_LIVE, false);
+            }
+//            AppContext.getInstance().setLocation(180000);
+        }
+    };
+    private Runnable legalvalue = new Runnable() {
+        @Override
+        public void run() {
+            XuToast.show(MainActivity.this, STR(R.string.edit_input_legal_value));
+        }
+    };
+    private Runnable hideDialog = new Runnable() {
+        @Override
+        public void run() {
+            DialogHelp.getInstance().hideDialog();
+        }
+    };
+
+    /**
+     * 设配安卓4.4的图片地址，获取真实地址
+     */
+    public static String getPath(Context context, Uri uri) {
+
+        boolean isKitKat = Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT;
+
+        // DocumentProvider
+        if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
+            // MediaProvider
+            if (isMediaDocument(uri)) {
+                String docId = DocumentsContract.getDocumentId(uri);
+                String[] split = docId.split(":");
+                String type = split[0];
+
+                Uri contentUri = null;
+                if ("image".equals(type)) {
+                    contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+                } else if ("video".equals(type)) {
+                    contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                } else if ("audio".equals(type)) {
+                    contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+                }
+
+                String selection = "_id=?";
+                String[] selectionArgs = new String[]{
+                        split[1]
+                };
+                return "file://" + getDataColumn(context, contentUri, selection, selectionArgs);
+            }
+        }
+        return uri.toString();
+    }
+
+    /**
+     * 判断图片路径是否是安卓4.4版本的路径
+     *
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is MediaProvider.
+     */
+    public static boolean isMediaDocument(Uri uri) {
+        return "com.android.providers.media.documents".equals(uri.getAuthority());
+    }
+
+    public static String getDataColumn(Context context, Uri uri, String selection,
+                                       String[] selectionArgs) {
+        Cursor cursor = null;
+        String column = "_data";
+        String[] projection = {
+                column
+        };
+        try {
+            cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs,
+                    null);
+            if (cursor != null && cursor.moveToFirst()) {
+                int column_index = cursor.getColumnIndexOrThrow(column);
+                return cursor.getString(column_index);
+            }
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+        return null;
+    }
+
+    @Override
+    public int getContentResource() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initView(View view) {
+        try {
+            tvAppVersion.setText(getPackageManager().getPackageInfo(getPackageName(), 0).versionName);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        myHandler.post(setuerinfo);
+        mayRequestLocation();
+        setTitle("G2-ADAS");
+        AppContext.getInstance().setNeeedCloseBluetooth(!BluetoothAdapter.getDefaultAdapter().isEnabled());
+        //监听连接变化
+        AppContext.getInstance().getDeviceHelper().setDeviceConnectStateListener(deviceConnectionStateListener);
+    }
 
     @Override
     protected void onResume() {
@@ -218,36 +319,43 @@ public class MainActivity extends BaseActivity {
         }
 
         if (AppContext.getInstance().getDeviceHelper().isConnectedDevice()) {
-            if (AppContext.getInstance().getDeviceHelper().isG2()){
-            AppContext.getInstance().getDeviceHelper().getG2CameraList(new GetG2CameraList() {
-                @Override
-                public void onSuccess(ArrayList arrayList) {
-                    cameras = arrayList;
-                }
+            if (AppContext.getInstance().getDeviceHelper().isG2()) {
+                AppContext.getInstance().getDeviceHelper().getG2CameraList(new GetG2CameraList() {
+                    @Override
+                    public void onSuccess(ArrayList arrayList) {
+                        cameras = arrayList;
+                    }
 
-                @Override
-                public void onFail() {
+                    @Override
+                    public void onFail() {
 
-                }
-            });
+                    }
+                });
 
-            AppContext.getInstance().getDeviceHelper().getUDPCamera(new GetUDPcamera() {
-                @Override
-                public void onSuccess(int i) {
-                    udpCamera = i;
-                }
+                AppContext.getInstance().getDeviceHelper().getUDPCamera(new GetUDPcamera() {
+                    @Override
+                    public void onSuccess(int i) {
+                        udpCamera = i;
+                    }
 
-                @Override
-                public void onFail() {
+                    @Override
+                    public void onFail() {
 
-                }
-            });
-        }}
+                    }
+                });
+            }
+        }
 
-        switch (clickMeun){
-            case 1: UIHelper.startActivity(this, InstallActivity.class);break;
-            case 2: UIHelper.startActivity(this, SettingsActivity.class);break;
-            case 3: myHandler.post(new CheckCamera());break;
+        switch (clickMeun) {
+            case 1:
+                UIHelper.startActivity(this, InstallActivity.class);
+                break;
+            case 2:
+                UIHelper.startActivity(this, SettingsActivity.class);
+                break;
+            case 3:
+                myHandler.post(new CheckCamera());
+                break;
         }
 
         clickMeun = 0;
@@ -292,54 +400,11 @@ public class MainActivity extends BaseActivity {
         initPhotoError();
     }
 
-    OnDeviceConnectionStateChange deviceConnectionStateListener = new OnDeviceConnectionStateChange() {
-        //TODO 监听蓝牙的连接状态
-        @Override
-        public void onConnectionStateChange(int i) {
-            if (lastConnectionState != i) {
-                XuLog.e(TAG, "连接状态发生变化：" + i);
-                lastConnectionState = i;
-                if (i == 0) {
-                    imgConnect.setColorFilter(null);
-                    XuToast.show(MainActivity.this,"Disconnect");
-                    XuLog.e(TAG, "需要退回到首页");
-                    AppContext.getInstance().getDeviceHelper().closeWIFIMode();
-                    AppContext.getInstance().getDeviceHelper().closeDeviceRealViewMode();
-                    //关闭热点
-                    if (AppContext.getInstance().getWificontroller().isWifiApEnabled()) {
-                        XuLog.e(TAG, "断开连接关热点");
-                        AppContext.getInstance().getWificontroller().setWifiApEnabled(false);
-                    }
-                    AppManager.getInstance().finishActivityToindex();
-                }
-            }
-
-
-        }
-
-        @Override
-        public void onSocketStateChange(int i) {
-        }
-    };
-
     public void cancelConnect() {
         //断开连接
         myHandler.removeCallbacks(changeDialog);
         XuNetWorkUtils.cancelConnectWIFI();
         AppContext.getInstance().getDeviceHelper().closeDeviceRealViewMode();
-    }
-
-    class keyListener implements DialogInterface.OnKeyListener {
-        //Dialog的返回键监听
-        @Override
-        public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
-            if (i == KeyEvent.KEYCODE_BACK) {
-                cancelConnect();
-                dialogInterface.dismiss();
-                return true;
-            }
-            return false;
-        }
     }
 
     @Override
@@ -389,21 +454,21 @@ public class MainActivity extends BaseActivity {
             case R.id.menu_installation: //安装界面
                 if (isConnected()) {
                     UIHelper.startActivity(this, InstallActivity.class);
-                }else {
+                } else {
                     clickMeun = 1;
                 }
                 break;
             case R.id.menu_settings: //设置界面
                 if (isConnected()) {
                     UIHelper.startActivity(this, SettingsActivity.class);
-                }else{
+                } else {
                     clickMeun = 2;
                 }
                 break;
             case R.id.menu_live:  //实景界面
                 if (isConnected()) {
                     myHandler.post(new CheckCamera());
-                }else{
+                } else {
                     clickMeun = 3;
                 }
                 break;
@@ -438,32 +503,10 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    private class CheckCamera implements Runnable {    //获取G2设备的摄像头列表和类型
-        @Override
-        public void run() {
-            if (cameras == null || udpCamera == -1) {
-                if (checkTime == 5) {
-                    checkTime = 0;
-                    XuToast.show(MainActivity.this, "can't use camera");
-                    return;
-                }
-                onResume();
-                myHandler.postDelayed(new CheckCamera(), 500);
-                checkTime++;
-            } else {
-                checkTime = 0;
-                openlivemode();
-            }
-        }
-    }
-
-
     public boolean isConnected() {   //判断是否已经连接G2的设备
 //        return true;
-        if (AppContext.getInstance().getDeviceHelper().isConnectedDevice()) {
-            if (isG2()) {
-                return true;
-            }
+        if (AppContext.getInstance().getDeviceHelper().isConnectedDevice() && isG2()) {
+            return true;
         } else {
             UIHelper.startActivity(MainActivity.this, ConnectActivity.class);
         }
@@ -476,85 +519,6 @@ public class MainActivity extends BaseActivity {
         }
         XuToast.show(this, STR(R.string.please_connect_G2));
         return false;
-    }
-
-    public class ClickListener implements View.OnClickListener {
-
-        @Override
-        public void onClick(View view) {
-            bottomInterPasswordDialog.dismiss();
-            View dialog = getLayoutInflater().inflate(R.layout.select_type_dialog, null);
-            final BottomSheetDialog bottomInterPasswordDialog = new BottomSheetDialog(MainActivity.this);
-
-            bottomInterPasswordDialog
-                    .contentView(dialog)
-                    .heightParam(UIHelper.dp2px(MainActivity.this, 255))
-                    .inDuration(100)
-                    .outDuration(100)
-                    .cancelable(true);
-
-            switch (view.getId()) {
-                case R.id.alarm_video:
-                    if (isConnected()){
-                        videoType = 1;
-                        bottomInterPasswordDialog.show();
-                    }
-                    break;
-                case R.id.driving_video:
-                    if (isConnected()){
-                        videoType = 0;
-                        bottomInterPasswordDialog.show();
-                    }
-                    break;
-                case R.id.tv_localvideo:
-                    UIHelper.startActivity(MainActivity.this, LocalVideoSeltActivity.class);
-                    break;
-            }
-
-            TextView tv_adas = dialog.findViewById(R.id.tv_ADAS);
-            TextView tv_dsm = dialog.findViewById(R.id.tv_DSM);
-            TextView tv_spml = dialog.findViewById(R.id.tv_SPML);
-            TextView tv_spmr = dialog.findViewById(R.id.tv_SPMR);
-            TextView tv_cancle = dialog.findViewById(R.id.tv_cancel);
-            tv_cancle.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    bottomInterPasswordDialog.dismiss();
-                }
-            });
-
-
-            typeClick typeClick = new typeClick();
-
-            tv_adas.setOnClickListener(typeClick);
-            tv_dsm.setOnClickListener(typeClick);
-            tv_spml.setOnClickListener(typeClick);
-            tv_spmr.setOnClickListener(typeClick);
-        }
-    }
-
-    class typeClick implements View.OnClickListener {
-
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.tv_ADAS:
-                    algoType = ADAS;
-                    break;
-                case R.id.tv_DSM:
-                    algoType = DSM;
-                    break;
-                case R.id.tv_SPML:
-                    algoType = SPML;
-                    break;
-                case R.id.tv_SPMR:
-                    algoType = SPMR;
-                    break;
-            }
-            if (isConnected()) {
-                UIHelper.showVideosActivity(MainActivity.this, videoType, algoType);
-            }
-        }
     }
 
     @OnClick(R.id.sign_out)
@@ -571,26 +535,6 @@ public class MainActivity extends BaseActivity {
             }
         });
     }
-
-    private Runnable savefail = new Runnable() {
-        @Override
-        public void run() {
-            XuToast.show(MainActivity.this, "Save fail");
-        }
-    };
-    private Runnable savesuccess = new Runnable() {
-        @Override
-        public void run() {
-            myHandler.post(setuerinfo);
-            DialogHelp.getInstance().hideDialog();
-            DialogHelp.getInstance().hideDialog();
-            XuToast.show(MainActivity.this, "Success");
-        }
-    };
-
-
-    private static final int MY_CAMERA_REQUEST_CODE = 100;
-
 
     private void initPhotoError() {
         // android 7.0系统解决拍照的问题
@@ -721,11 +665,13 @@ public class MainActivity extends BaseActivity {
         });
     }
 
+    //设备连手机发出的热点
     private void openRealViewNew() {
         AppContext.getInstance().getDeviceHelper().openDeviceRealViewMode(null);
         myHandler.postDelayed(toRealView, 1000);
     }
 
+    //手机连设备WiFi
     private void openRealViewOld() {
         System.out.println();
         AppContext.getInstance().getDeviceHelper().openDeviceRealViewMode(new OnWifiOpenListener() {
@@ -757,47 +703,6 @@ public class MainActivity extends BaseActivity {
 
             }
         });
-    }
-
-    int openlivemode() {
-        //TODO 开启实时路况
-        if (!AppContext.getInstance().getDeviceHelper().isConnectedDevice()) {
-            XuToast.show(AppContext.getInstance(), STR(R.string.road_live_notconnect));
-            return 1;
-        }
-        if (AppContext.getInstance().isERROR_CAMERA()) {
-            XuToast.show(AppContext.getInstance(), STR(R.string.camera_erro));
-            return 2;
-        }
-        changeDialog = new changeDialog();
-        connectRealView = true;
-        AppContext.getInstance().setCalibrateType(0);
-        DialogHelp.getInstance().connectDialog(MainActivity.this, STR(R.string.dialog_tips_connecting), STR(R.string.dialog_tips_connecting2)).setOnKeyListener(new keyListener());
-        myHandler.postDelayed(changeDialog, 10000);
-        openliveThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                switch (AppContext.getInstance().getDeviceHelper().getCommunicationType()) {
-                    case 0:
-                        openRealViewOld();
-                        break;
-                    case 1:
-                        openRealViewNew();
-                        break;
-                }
-            }
-        });
-
-        AppContext.getInstance().getCachedThreadPool().execute(openliveThread);
-        return 0;
-    }
-
-    public class changeDialog implements Runnable {
-        @Override
-        public void run() {
-            DialogHelp.getInstance().hideDialog();
-            DialogHelp.getInstance().connectDialog(MainActivity.this, STR(R.string.dialog_tips_connecting), STR(R.string.wifi_waiting_too_long) + AppConfig.getInstance(MainActivity.this).getWifi_name() + STR(R.string.wifi_waiting_too_long2)+ AppConfig.getInstance(MainActivity.this).getWifi_paw()).setOnKeyListener(new keyListener());
-        }
     }
 
 
@@ -841,32 +746,38 @@ public class MainActivity extends BaseActivity {
 //        });
 //    }
 
-    private Runnable toRealView = new Runnable() {
-        @Override
-        public void run() {
-//            hideProgress();
-            DialogHelp.getInstance().hideDialog();
-            myHandler.removeCallbacks(changeDialog);
-            if (AppContext.getInstance().getDeviceHelper().isConnectedDevice()) {
-                UIHelper.showLiveForResult(MainActivity.this, REQUESRST_LIVE, false);
+    int openLiveMode() {
+        //开启实时路况
+        if (!AppContext.getInstance().getDeviceHelper().isConnectedDevice()) {
+            XuToast.show(AppContext.getInstance(), STR(R.string.road_live_notconnect));
+            return 1;
+        }
+        if (AppContext.getInstance().isERROR_CAMERA()) {
+            XuToast.show(AppContext.getInstance(), STR(R.string.camera_erro));
+            return 2;
+        }
+        changeDialog = new changeDialog();
+        connectRealView = true;
+        AppContext.getInstance().setCalibrateType(0);
+        DialogHelp.getInstance().connectDialog(MainActivity.this, STR(R.string.dialog_tips_connecting), STR(R.string.dialog_tips_connecting2)).setOnKeyListener(new keyListener());
+        myHandler.postDelayed(changeDialog, 10000);
+        openliveThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                switch (AppContext.getInstance().getDeviceHelper().getCommunicationType()) {
+                    case 0:
+                        openRealViewOld();
+                        break;
+                    case 1:
+                        openRealViewNew();
+                        break;
+                }
             }
-//            AppContext.getInstance().setLocation(180000);
-        }
-    };
+        });
 
-    private Runnable legalvalue = new Runnable() {
-        @Override
-        public void run() {
-            XuToast.show(MainActivity.this, STR(R.string.edit_input_legal_value));
-        }
-    };
-
-    private Runnable hideDialog = new Runnable() {
-        @Override
-        public void run() {
-            DialogHelp.getInstance().hideDialog();
-        }
-    };
+        AppContext.getInstance().getCachedThreadPool().execute(openliveThread);
+        return 0;
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -960,69 +871,123 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    /**
-     * 设配安卓4.4的图片地址，获取真实地址
-     */
-    public static String getPath(final Context context, final Uri uri) {
+    class keyListener implements DialogInterface.OnKeyListener {
+        //Dialog的返回键监听
+        @Override
+        public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
+            if (i == KeyEvent.KEYCODE_BACK) {
+                cancelConnect();
+                dialogInterface.dismiss();
+                return true;
+            }
+            return false;
+        }
+    }
 
-        final boolean isKitKat = Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT;
-
-        // DocumentProvider
-        if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
-            // MediaProvider
-            if (isMediaDocument(uri)) {
-                final String docId = DocumentsContract.getDocumentId(uri);
-                final String[] split = docId.split(":");
-                final String type = split[0];
-
-                Uri contentUri = null;
-                if ("image".equals(type)) {
-                    contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-                } else if ("video".equals(type)) {
-                    contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-                } else if ("audio".equals(type)) {
-                    contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+    private class CheckCamera implements Runnable {    //获取G2设备的摄像头列表和类型
+        @Override
+        public void run() {
+            if (cameras == null || udpCamera == -1) {
+                if (checkTime == 5) {
+                    checkTime = 0;
+                    XuToast.show(MainActivity.this, "can't use camera");
+                    return;
                 }
-
-                final String selection = "_id=?";
-                final String[] selectionArgs = new String[]{
-                        split[1]
-                };
-                return "file://" + getDataColumn(context, contentUri, selection, selectionArgs);
+                onResume();
+                myHandler.postDelayed(new CheckCamera(), 500);
+                checkTime++;
+            } else {
+                checkTime = 0;
+                openLiveMode();
             }
         }
-        return uri.toString();
     }
 
-    /**
-     * 判断图片路径是否是安卓4.4版本的路径
-     *
-     * @param uri The Uri to check.
-     * @return Whether the Uri authority is MediaProvider.
-     */
-    public static boolean isMediaDocument(Uri uri) {
-        return "com.android.providers.media.documents".equals(uri.getAuthority());
-    }
+    public class ClickListener implements View.OnClickListener {
 
-    public static String getDataColumn(Context context, Uri uri, String selection,
-                                       String[] selectionArgs) {
-        Cursor cursor = null;
-        final String column = "_data";
-        final String[] projection = {
-                column
-        };
-        try {
-            cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs,
-                    null);
-            if (cursor != null && cursor.moveToFirst()) {
-                final int column_index = cursor.getColumnIndexOrThrow(column);
-                return cursor.getString(column_index);
+        @Override
+        public void onClick(View view) {
+            bottomInterPasswordDialog.dismiss();
+            View dialog = getLayoutInflater().inflate(R.layout.select_type_dialog, null);
+            final BottomSheetDialog bottomInterPasswordDialog = new BottomSheetDialog(MainActivity.this);
+
+            bottomInterPasswordDialog
+                    .contentView(dialog)
+                    .heightParam(UIHelper.dp2px(MainActivity.this, 255))
+                    .inDuration(100)
+                    .outDuration(100)
+                    .cancelable(true);
+
+            switch (view.getId()) {
+                case R.id.alarm_video:
+                    if (isConnected()) {
+                        videoType = 1;
+                        bottomInterPasswordDialog.show();
+                    }
+                    break;
+                case R.id.driving_video:
+                    if (isConnected()) {
+                        videoType = 0;
+                        bottomInterPasswordDialog.show();
+                    }
+                    break;
+                case R.id.tv_localvideo:
+                    UIHelper.startActivity(MainActivity.this, LocalVideoSeltActivity.class);
+                    break;
             }
-        } finally {
-            if (cursor != null)
-                cursor.close();
+
+            TextView tv_adas = dialog.findViewById(R.id.tv_ADAS);
+            TextView tv_dsm = dialog.findViewById(R.id.tv_DSM);
+            TextView tv_spml = dialog.findViewById(R.id.tv_SPML);
+            TextView tv_spmr = dialog.findViewById(R.id.tv_SPMR);
+            TextView tv_cancle = dialog.findViewById(R.id.tv_cancel);
+            tv_cancle.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    bottomInterPasswordDialog.dismiss();
+                }
+            });
+
+
+            typeClick typeClick = new typeClick();
+
+            tv_adas.setOnClickListener(typeClick);
+            tv_dsm.setOnClickListener(typeClick);
+            tv_spml.setOnClickListener(typeClick);
+            tv_spmr.setOnClickListener(typeClick);
         }
-        return null;
+    }
+
+    class typeClick implements View.OnClickListener {
+
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.tv_ADAS:
+                    algoType = ADAS;
+                    break;
+                case R.id.tv_DSM:
+                    algoType = DSM;
+                    break;
+                case R.id.tv_SPML:
+                    algoType = SPML;
+                    break;
+                case R.id.tv_SPMR:
+                    algoType = SPMR;
+                    break;
+            }
+            if (isConnected()) {
+                UIHelper.showVideosActivity(MainActivity.this, videoType, algoType);
+            }
+        }
+    }
+
+    public class changeDialog implements Runnable {
+        @Override
+        public void run() {
+            DialogHelp.getInstance().hideDialog();
+            DialogHelp.getInstance().connectDialog(MainActivity.this, STR(R.string.dialog_tips_connecting), STR(R.string.wifi_waiting_too_long) + AppConfig.getInstance(MainActivity.this).getWifi_name() + STR(R.string.wifi_waiting_too_long2) + AppConfig.getInstance(MainActivity.this).getWifi_paw()).setOnKeyListener(new keyListener());
+        }
     }
 
 }

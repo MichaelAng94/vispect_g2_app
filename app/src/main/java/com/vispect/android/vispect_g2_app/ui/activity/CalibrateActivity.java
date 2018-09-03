@@ -3,6 +3,7 @@ package com.vispect.android.vispect_g2_app.ui.activity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.PointF;
 import android.os.AsyncTask;
@@ -16,6 +17,7 @@ import android.view.Display;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -37,6 +39,7 @@ import com.vispect.android.vispect_g2_app.ui.widget.XuHCSurfaceView;
 import com.vispect.android.vispect_g2_app.utils.CheckTime;
 import com.vispect.android.vispect_g2_app.utils.CodeUtil;
 import com.vispect.android.vispect_g2_app.utils.XuLog;
+import com.vispect.android.vispect_g2_app.utils.XuString;
 import com.vispect.android.vispect_g2_app.utils.XuToast;
 import com.vispect.android.vispect_g2_app.utils.XuView;
 
@@ -130,6 +133,8 @@ public class CalibrateActivity extends BaseActivity {
     ImageView imgBackMain;
     @Bind(R.id.center_line)
     LinearLayout centerLine;
+    @Bind(R.id.red_rectangle)
+    TextView redRectangle;
     private int count_i = 0;
     private boolean needGetShorVideo = false;
     private boolean onStart = false;
@@ -389,7 +394,6 @@ public class CalibrateActivity extends BaseActivity {
 
         }
 
-
         public void onGetADASRecInfo(ArrayList arrayList) {
             hasAdasDta = true;
             if (!drawable || !canGetAdas) {
@@ -404,9 +408,51 @@ public class CalibrateActivity extends BaseActivity {
             toclear = false;
         }
 
+        //标定红线
         @Override
         public void onGetSensorData(float x, float y, float z) {
+            c_x = x;
+            x = x - AppConfig.getInstance(CalibrateActivity.this).get_CALIBRATION();
+            if (x == 0) {
+                XuLog.d(TAG, "加速度坐标系发现X轴等于零零");
+            }
+            XuLog.d(TAG, "角度X:" + x + "    角度y:" + y + "    角度z：" + z + "    x - y=" + (x - y));
 
+
+            checksensor(x, y);
+            float degreeX = 0;
+
+            if (!isNewSensor) {
+                degreeX = todegree(x, y);
+            } else {
+                degreeX = todegree(y, x);
+            }
+
+            float lasty = (float) ((640 / Math.sin((90 - degreeX) * Math.PI / 180)) * Math.sin(degreeX * Math.PI / 180));
+            XuLog.e(TAG, "lasty:" + lasty + "       degreeX:" + degreeX + "    isNewSensor:" + isNewSensor);
+
+            if (sensor == null) {
+                sensor = new DrawShape();
+            }
+
+            sensor.setColor(Color.RED);
+            sensor.setType(3);
+            sensor.setDashed(false);
+            sensor.setX0(0);
+            sensor.setY0(360 + (lasty * -1));
+            sensor.setX1(1280);
+            sensor.setY1(360 + lasty);
+            sensor.setTextStr("x:" + XuString.formatFloatNumber2(x) + "   y:" + XuString.formatFloatNumber2(y) + "   z:" + XuString.formatFloatNumber2(z));
+
+            if (adas == null) {
+                adas = new ArrayList<>();
+            }
+
+            if (isShowBackgroud && cameraType == 1) {
+                adas.add(sensor);
+                drawadas.setDrawList(adas);
+            }
+            XuLog.d(TAG, "加速度各值    X:" + formatFloatNumber(x) + "       y:" + formatFloatNumber(y) + "         z:" + formatFloatNumber(z));
         }
 
         @Override
@@ -619,11 +665,17 @@ public class CalibrateActivity extends BaseActivity {
                     }, (byte) cameraID);
                 }
             }, 500);
+        } else if (AppContext.getInstance().getCalibrateType() == 3) {
+            redRectangle.setVisibility(View.VISIBLE);
+
+            Display display = getWindowManager().getDefaultDisplay();
+            ViewGroup.LayoutParams layoutParams = redRectangle.getLayoutParams();
+            layoutParams.width =  display.getHeight();
+            redRectangle.setLayoutParams(layoutParams);
         } else {
             centerLine.setVisibility(View.GONE);
             drawdotView.setVisibility(View.GONE);
         }
-
     }
 
 

@@ -1053,7 +1053,6 @@ Vispect Team</string>
     <string name="bleinfo_buzzer_version">Buzzer:</string>
 
 
-
     <string name="agree">I have read and agreed to the above-mentioned Agreement. </string>
 
 
@@ -1151,7 +1150,7 @@ Vispect Team</string>
     <string name="time_2_5">triggering time(2~5 second)</string>
     <string name="face">face missed</string>
     <string name="time_10_60">triggering time(10~60 second)</string>
-    <string name="camera">camera covered</string>
+    <string name="camera_corverd">camera covered</string>
     <string name="drinking">drinking</string>
 
     <string name="settings">Settings</string>
@@ -1202,4 +1201,13 @@ Vispect Team</string>
     <string name="dialog_alarm_video">Alarm Video</string>
     <string name="dialog_driving_video">Driving Video</string>
     <string name="dialog_local_video">Saved Videos On The Phone</string>
+
+    <string name="camera_unavailable">camera %1$d socket: Unavailable</string>
+    <string name="camera_none">camera %1$d socket: None</string>
+    <string name="camera_font">camera %1$d socket: Font Camera</string>
+    <string name="camera_DSM">camera %1$d socket: Driver Status Monitoring</string>
+    <string name="camera_LF">camera %1$d socket: Left side(forwards)</string>
+    <string name="camera_LB">camera %1$d socket: Left side(backwards)</string>
+    <string name="camera_RF">camera %1$d socket: Right side(forwards)</string>
+    <string name="camera_RB">camera %1$d socket: Right side(backwards)</string>
 </resources>

@@ -14,9 +14,11 @@ import com.vispect.android.vispect_g2_app.app.AppContext;
 import com.vispect.android.vispect_g2_app.ui.activity.SettingsActivity;
 import com.vispect.android.vispect_g2_app.ui.widget.MoListview;
 import com.vispect.android.vispect_g2_app.utils.XuLog;
+import com.vispect.android.vispect_g2_app.utils.XuString;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -24,17 +26,17 @@ import interf.GetG2CameraList;
 
 /**
  * Created by mo on 2018/7/12.
- *
+ * <p>
  * 选择G2镜头,改变镜头类型
  */
 
 public class CameraSettingsFragment extends BaseFragment {
+    public static int listitem;
     @Bind(R.id.list_select_camera)
     MoListview listSelectCamera;
     private CalibrateAdapter calibrateAdapter;
-    private ArrayList<String> data;
-    public static int listitem;
-    private ArrayList<Point> cameras;
+    private List<String> data = new ArrayList<>();
+    private List<Point> cameras = new ArrayList<>();
 
     @Override
     public int getContentResource() {
@@ -60,23 +62,42 @@ public class CameraSettingsFragment extends BaseFragment {
         AppContext.getInstance().getDeviceHelper().getG2CameraList(new GetG2CameraList() {
             @Override
             public void onSuccess(ArrayList arrayList) {
-                XuLog.e("sucess" + arrayList.size());
-                cameras = arrayList;
-                data = new ArrayList<>();
-                for (Point p : cameras){
-                    switch (p.y){
-                        case -1:data.add("Camera "+p.x+" socket: "+"Unavailable");break;
-                        case 0:data.add("Camera "+p.x+" socket: "+"None");break;
-                        case 1:data.add("Camera "+p.x+" socket: "+"Font Camera");break;
-                        case 2:data.add("Camera "+p.x+" socket: "+"None");break;
-                        case 3:data.add("Camera "+p.x+" socket: "+"Driver Status Monitoring");break;
-                        case 4:data.add("Camera "+p.x+" socket: "+"Left side(forwards)");break;
-                        case 5:data.add("Camera "+p.x+" socket: "+"Left side(backwards)");break;
-                        case 6:data.add("Camera "+p.x+" socket: "+"Right side(forwards)");break;
-                        case 7:data.add("Camera "+p.x+" socket: "+"Right side(backwards)");break;
+                XuLog.e("success" + arrayList.size());
+                cameras.clear();
+                data.clear();
+                cameras.addAll(arrayList);
+                for (Point p : cameras) {
+                    switch (p.y) {
+                        case -1:
+                            data.add(STR(R.string.camera_unavailable, p.x));
+                            break;
+                        case 0:
+                            data.add(STR(R.string.camera_none, p.x));
+                            break;
+                        case 1:
+                            data.add(STR(R.string.camera_font, p.x));
+                            break;
+                        case 2:
+                            data.add(STR(R.string.camera_none, p.x));
+                            break;
+                        case 3:
+                            data.add(STR(R.string.camera_DSM, p.x));
+                            break;
+                        case 4:
+                            data.add(STR(R.string.camera_LF, p.x));
+                            break;
+                        case 5:
+                            data.add(STR(R.string.camera_LB, p.x));
+                            break;
+                        case 6:
+                            data.add(STR(R.string.camera_RF, p.x));
+                            break;
+                        case 7:
+                            data.add(STR(R.string.camera_RB, p.x));
+                            break;
                     }
                 }
-                calibrateAdapter = new CalibrateAdapter(getContext(),data);
+                calibrateAdapter = new CalibrateAdapter(getContext(), data);
                 listSelectCamera.setAdapter(calibrateAdapter);
             }
 
@@ -90,7 +111,7 @@ public class CameraSettingsFragment extends BaseFragment {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (!hidden){
+        if (!hidden) {
             onResume();
         }
     }

@@ -856,7 +856,7 @@ public class ADASWarringVideosActivity extends BaseActivity {
                 mHandler.removeCallbacks(mRunnable_toas_waiitingtoolong);
                 mHandler.post(mRunnable);
 
-                AppContext.getInstance().getDeviceHelper().downG2MultiMediaFile(videoType, algoType, value, progressCallback);
+                AppContext.getInstance().getDeviceHelper().downG2MultiMediaFile(videoType, algoType, value,false ,progressCallback);
                 //把下载未完成的存在起来，以便下次进来还有进度条
                 if (isdownloading && videos != null && downloading_position < videos.size()) {
                     AppContext.getInstance().setDownloading_name(videos.get(downloading_position).getName());

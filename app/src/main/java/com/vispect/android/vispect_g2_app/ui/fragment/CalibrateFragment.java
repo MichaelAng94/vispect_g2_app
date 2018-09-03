@@ -15,7 +15,6 @@ import com.vispect.android.vispect_g2_app.adapter.CalibrateAdapter;
 import com.vispect.android.vispect_g2_app.app.AppConfig;
 import com.vispect.android.vispect_g2_app.app.AppContext;
 import com.vispect.android.vispect_g2_app.controller.UIHelper;
-import com.vispect.android.vispect_g2_app.ui.activity.MainActivity;
 import com.vispect.android.vispect_g2_app.ui.widget.DialogHelp;
 import com.vispect.android.vispect_g2_app.ui.widget.MoListview;
 import com.vispect.android.vispect_g2_app.utils.XuLog;
@@ -33,23 +32,33 @@ import interf.OnWifiOpenListener;
 
 /**
  * Created by mo on 2018/7/12.
- *
+ * <p>
  * 选择标定镜头的界面
  */
 
 public class CalibrateFragment extends BaseFragment {
-    private String TAG = "CalibrateFragment";
-
+    public static Point selectCamera;
+    private final int REQUESRST_LIVE = 101;
     @Bind(R.id.list_select_camera)
     MoListview listSelectCamera;
+    Thread openliveThread = null;
+    private String TAG = "CalibrateFragment";
     private CalibrateAdapter calibrateAdapter;
-    private ArrayList<String> data;
+    private ArrayList<String> data = new ArrayList<>();
     private changeDialog changeDialog;
     private Handler myHandler;
-    Thread openliveThread = null;
-    private final int REQUESRST_LIVE = 101;
-    private  ArrayList<Point> cameras = new ArrayList<>();
-    public static Point selectCamera;
+    private ArrayList<Point> cameras = new ArrayList<>();
+    private Runnable toRealView = new Runnable() {
+        @Override
+        public void run() {
+            DialogHelp.getInstance().hideDialog();
+            if (AppContext.getInstance().getDeviceHelper().isConnectedDevice()) {
+                DialogHelp.getInstance().hideDialog();
+                UIHelper.showCalibrate(getActivity(), REQUESRST_LIVE, true);
+            }
+        }
+    };
+    private boolean isNotZh = !XuString.isZh(AppContext.getInstance());
 
     @Override
     public int getContentResource() {
@@ -59,7 +68,7 @@ public class CalibrateFragment extends BaseFragment {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (!hidden){
+        if (!hidden) {
             DialogHelp.getInstance().hideDialog();
         }
     }
@@ -70,8 +79,9 @@ public class CalibrateFragment extends BaseFragment {
         AppContext.getInstance().getDeviceHelper().getG2CameraList(new GetG2CameraList() {
             @Override
             public void onSuccess(ArrayList arrayList) {
-                cameras = arrayList;
-                data = new ArrayList<>();
+                cameras.clear();
+                cameras.addAll(arrayList);
+                data.clear();
                 for (Point p : cameras) {
                     switch (p.y) {
                         case -1:
@@ -90,16 +100,16 @@ public class CalibrateFragment extends BaseFragment {
                             data.add(STR(R.string.driver_status_monitoring));
                             break;
                         case 4:
-                            data.add(STR(R.string.left_camera_forward));
+                            if (isNotZh) data.add(STR(R.string.left_camera_forward));//中文版不显示侧边摄像头
                             break;
                         case 5:
-                            data.add(STR(R.string.left_camera_back));
+                            if (isNotZh) data.add(STR(R.string.left_camera_back));
                             break;
                         case 6:
-                            data.add(STR(R.string.right_camera_forward));
+                            if (isNotZh) data.add(STR(R.string.right_camera_forward));
                             break;
                         case 7:
-                            data.add(STR(R.string.right_camera_back));
+                            if (isNotZh) data.add(STR(R.string.right_camera_back));
                             break;
                     }
                 }
@@ -117,13 +127,25 @@ public class CalibrateFragment extends BaseFragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 selectCamera = cameras.get(i);
+                //设置摄像头ID
                 AppContext.getInstance().setCalivrateID(cameras.get(i).x);
-                if (cameras.get(i).y>=4){
-                    AppContext.getInstance().setCalibrateType(1);
-                }else if (cameras.get(i).y==3){
+//                -1：镜头不可用
+//                0：未设置
+//                1：正前（ADAS）
+//                2：正后
+//                3：DSM
+//                4：左前
+//                5：左后
+//                6：右前
+//                7：右后
+                if (cameras.get(i).y >= 4) {//cameras.get(i).y 镜头类型
+                    AppContext.getInstance().setCalibrateType(1);//侧边摄像头标定
+                } else if (cameras.get(i).y == 3) {
                     AppContext.getInstance().setCalibrateType(3);
-                }else {
+                } else if (cameras.get(i).y == 1) {
                     AppContext.getInstance().setCalibrateType(2);
+                } else {
+                    AppContext.getInstance().setCalibrateType(4);
                 }
                 //selectCamera = cameras.get(i);
                 openlivemode();
@@ -178,22 +200,10 @@ public class CalibrateFragment extends BaseFragment {
         return 0;
     }
 
-    private void openRealViewNew(){
+    private void openRealViewNew() {
         AppContext.getInstance().getDeviceHelper().openDeviceCalibrationMode(null);
         myHandler.postDelayed(toRealView, 1000);
     }
-
-    private Runnable toRealView = new Runnable() {
-        @Override
-        public void run() {
-            DialogHelp.getInstance().hideDialog();
-            if(AppContext.getInstance().getDeviceHelper().isConnectedDevice()){
-                DialogHelp.getInstance().hideDialog();
-                UIHelper.showCalibrate(getActivity(), REQUESRST_LIVE, true);
-            }
-        }
-    };
-
 
     private void toCancelRealTime() {
         XuLog.d(TAG, "取消连接WIFI");
@@ -201,7 +211,7 @@ public class CalibrateFragment extends BaseFragment {
         AppContext.getInstance().getDeviceHelper().closeDeviceCalibrationMode();
     }
 
-    private void openRealViewOld(){
+    private void openRealViewOld() {
         //先打开设备的wifi
         AppContext.getInstance().getDeviceHelper().openDeviceCalibrationMode(new OnWifiOpenListener() {
             @Override
@@ -216,8 +226,8 @@ public class CalibrateFragment extends BaseFragment {
                             myHandler.removeCallbacks(changeDialog);
                             //成功连上WIFI  开始进入实时路况
                             myHandler.postDelayed(toRealView, 1000);
-                        }else{
-                            XuLog.e(TAG,"连接设备的WIFI失败");
+                        } else {
+                            XuLog.e(TAG, "连接设备的WIFI失败");
                         }
                     }
                 });
@@ -226,7 +236,7 @@ public class CalibrateFragment extends BaseFragment {
             }
 
             @Override
-            public void onFail(final int i) {
+            public void onFail(int i) {
                 //1.5秒后获取开关的滑动
                 XuLog.e("open wifi fail：" + i);
             }
@@ -238,11 +248,17 @@ public class CalibrateFragment extends BaseFragment {
         });
     }
 
+    public void cancelConnect() {
+        myHandler.removeCallbacks(changeDialog);
+        XuNetWorkUtils.cancelConnectWIFI();
+        AppContext.getInstance().getDeviceHelper().closeDeviceRealViewMode();
+    }
+
     public class changeDialog implements Runnable {
         @Override
         public void run() {
             DialogHelp.getInstance().hideDialog();
-            DialogHelp.getInstance().connectDialog(getActivity(), STR(R.string.dialog_tips_connecting), STR(R.string.wifi_waiting_too_long) + AppConfig.getInstance(getActivity()).getWifi_name() + STR(R.string.wifi_waiting_too_long2)+ AppConfig.getInstance(getActivity()).getWifi_paw()).setOnKeyListener(new keyListener());
+            DialogHelp.getInstance().connectDialog(getActivity(), STR(R.string.dialog_tips_connecting), STR(R.string.wifi_waiting_too_long) + AppConfig.getInstance(getActivity()).getWifi_name() + STR(R.string.wifi_waiting_too_long2) + AppConfig.getInstance(getActivity()).getWifi_paw()).setOnKeyListener(new keyListener());
         }
     }
 
@@ -257,12 +273,6 @@ public class CalibrateFragment extends BaseFragment {
             }
             return false;
         }
-    }
-
-    public void cancelConnect() {
-        myHandler.removeCallbacks(changeDialog);
-        XuNetWorkUtils.cancelConnectWIFI();
-        AppContext.getInstance().getDeviceHelper().closeDeviceRealViewMode();
     }
 
 }

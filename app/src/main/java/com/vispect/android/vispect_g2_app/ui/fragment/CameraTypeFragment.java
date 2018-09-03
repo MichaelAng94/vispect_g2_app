@@ -13,20 +13,19 @@ import com.vispect.android.vispect_g2_app.R;
 import com.vispect.android.vispect_g2_app.adapter.CalibrateAdapter;
 import com.vispect.android.vispect_g2_app.app.AppContext;
 import com.vispect.android.vispect_g2_app.ui.activity.SettingsActivity;
-import com.vispect.android.vispect_g2_app.utils.XuLog;
+import com.vispect.android.vispect_g2_app.utils.XuString;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import interf.GetG2CameraList;
 import interf.ResultListner;
 
 /**
  * Created by mo on 2018/7/19.
- *
+ * <p>
  * 选择镜头类型
  */
 
@@ -48,7 +47,7 @@ public class CameraTypeFragment extends BaseFragment {
         super.onResume();
         data = new ArrayList<>();
         for (Integer i = 1; i < 8; i++) {
-            if (i==2){
+            if (i == 2) {
                 continue;
             }
             data.add(i);
@@ -58,8 +57,9 @@ public class CameraTypeFragment extends BaseFragment {
             @Override
             public void onSuccess(ArrayList arrayList) {
                 ArrayList<Point> cameras = arrayList;
+                boolean isNotZh = !XuString.isZh(AppContext.getInstance());
                 for (Point p : cameras) {
-                    for (int i = 0;i<data.size();i++){
+                    for (int i = 0; i < data.size(); i++) {
                         if (p.y == data.get(i)) {
                             data.remove(i);
                             i--;
@@ -67,15 +67,28 @@ public class CameraTypeFragment extends BaseFragment {
                     }
                 }
                 ArrayList<String> stringArrayList = new ArrayList<>();
-                for (int i : data){
-                    switch (i){
-                        case 1:stringArrayList.add(STR(R.string.font_camera));break;
-                        case 2: ;break;
-                        case 3:stringArrayList.add(STR(R.string.driver_status_monitoring));break;
-                        case 4:stringArrayList.add(STR(R.string.left_camera_forward));break;
-                        case 5:stringArrayList.add(STR(R.string.left_camera_back));break;
-                        case 6:stringArrayList.add(STR(R.string.right_camera_forward));break;
-                        case 7:stringArrayList.add(STR(R.string.right_camera_back));break;
+                for (int i : data) {
+                    switch (i) {
+                        case 1:
+                            stringArrayList.add(STR(R.string.font_camera));
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            stringArrayList.add(STR(R.string.driver_status_monitoring));
+                            break;
+                        case 4:
+                            if (isNotZh) stringArrayList.add(STR(R.string.left_camera_forward));
+                            break;
+                        case 5:
+                            if (isNotZh) stringArrayList.add(STR(R.string.left_camera_back));
+                            break;
+                        case 6:
+                            if (isNotZh) stringArrayList.add(STR(R.string.right_camera_forward));
+                            break;
+                        case 7:
+                            if (isNotZh) stringArrayList.add(STR(R.string.right_camera_back));
+                            break;
                     }
                 }
                 calibrateAdapter = new CalibrateAdapter(getContext(), stringArrayList);
@@ -116,7 +129,7 @@ public class CameraTypeFragment extends BaseFragment {
                     public void onFail(int i) {
 
                     }
-                },points);
+                }, points);
                 Message msg = new Message();
                 msg.arg2 = 4;
                 SettingsActivity.transHandler.sendMessage(msg);

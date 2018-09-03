@@ -1166,7 +1166,7 @@
     <string name="face">离岗</string>
 
     <string name="time_10_60">触发灵敏度(10~60s)</string>
-    <string name="camera">遮挡摄像头</string>
+    <string name="camera_corverd">遮挡摄像头</string>
     <string name="drinking">喝水</string>
     <string name="side_camera">设置侧面摄像头</string>
     <string name="note_side_cameras">当车速介于“起始速度”和“终止速度”之间时，如果有人进入“危险区域”内，系统会产生报警</string>
@@ -1216,4 +1216,14 @@
     <string name="dialog_alarm_video">报警视频</string>
     <string name="dialog_driving_video">行车视频</string>
     <string name="dialog_local_video">本地视频</string>
+
+    <string name="camera">摄像头</string>
+    <string name="camera_unavailable">摄像头 : %1$d socket: Unavailable</string>
+    <string name="camera_none">摄像头 : %1$d socket: None</string>
+    <string name="camera_font">摄像头 : %1$d 前向摄像头</string>
+    <string name="camera_DSM">摄像头 : %1$d 疲劳驾驶监测</string>
+    <string name="camera_LF">摄像头 : %1$d 左侧摄像头（向前看）</string>
+    <string name="camera_LB">摄像头 : %1$d 左侧摄像头（向后看）</string>
+    <string name="camera_RF">摄像头 : %1$d 右侧摄像头（向前看）</string>
+    <string name="camera_RB">摄像头 : %1$d 右侧摄像头（向后看）</string>
 </resources>

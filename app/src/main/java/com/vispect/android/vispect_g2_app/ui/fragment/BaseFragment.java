@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 
+import com.vispect.android.vispect_g2_app.R;
 import com.vispect.android.vispect_g2_app.controller.FragmentHelper;
 import com.vispect.android.vispect_g2_app.interf.OnSoftKeyboardChangeListener;
 import com.vispect.android.vispect_g2_app.interf.ProgressController;
@@ -22,7 +23,7 @@ import com.vispect.android.vispect_g2_app.utils.XuToast;
 import java.io.IOException;
 
 
-public abstract class BaseFragment extends Fragment implements ProgressController,View.OnLayoutChangeListener {
+public abstract class BaseFragment extends Fragment implements ProgressController, View.OnLayoutChangeListener {
 
     private FragmentHelper mFragmentHelper;
     private boolean isFirstVisible = true;
@@ -51,8 +52,7 @@ public abstract class BaseFragment extends Fragment implements ProgressControlle
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        if(savedInstanceState!= null)
-        {
+        if (savedInstanceState != null) {
             String FRAGMENTS_TAG = "Android:support:fragments";
             savedInstanceState.remove(FRAGMENTS_TAG);
         }
@@ -72,8 +72,6 @@ public abstract class BaseFragment extends Fragment implements ProgressControlle
     }
 
 
-
-
     @Override
     public void onLayoutChange(View v, int left, int top, int right,
                                int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
@@ -82,16 +80,17 @@ public abstract class BaseFragment extends Fragment implements ProgressControlle
 
 
         //������ΪֻҪ�ؼ���Activity�����Ƶĸ߶ȳ�����1/3��Ļ�ߣ�����Ϊ����̵���
-        if (listener == null){
+        if (listener == null) {
             return;
         }
-        if(oldBottom != 0 && bottom != 0 &&(oldBottom - bottom > keyHeight)){
+        if (oldBottom != 0 && bottom != 0 && (oldBottom - bottom > keyHeight)) {
             listener.InputStatusChange(true);
-        }else if(oldBottom != 0 && bottom != 0 &&(bottom - oldBottom > keyHeight)){
+        } else if (oldBottom != 0 && bottom != 0 && (bottom - oldBottom > keyHeight)) {
             listener.InputStatusChange(false);
         }
 
     }
+
     /**
      * @return �Ƿ�ʵ���������ļ�
      */
@@ -180,10 +179,10 @@ public abstract class BaseFragment extends Fragment implements ProgressControlle
         }
     }
 
-   @Override
-    public  void setUserVisibleHint(boolean isVisibleToUser) {
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-       onVisibleChange(isVisibleToUser);
+        onVisibleChange(isVisibleToUser);
         if (isVisibleToUser) {
             onUserVisible(isFirstVisible);
             if (isFirstVisible) {
@@ -197,8 +196,6 @@ public abstract class BaseFragment extends Fragment implements ProgressControlle
         }
 
     }
-
-
 
 
     /**
@@ -236,10 +233,9 @@ public abstract class BaseFragment extends Fragment implements ProgressControlle
 
     @Override
     public Dialog showProgress() {
-    	Activity activity = getActivity();
+        Activity activity = getActivity();
         return activity instanceof ProgressController ? ((ProgressController) activity).showProgress() : null;
     }
-
 
 
 //    public ProgressDialog getProgressDialog() {
@@ -262,34 +258,35 @@ public abstract class BaseFragment extends Fragment implements ProgressControlle
 
     public Dialog showProgress(boolean cancelable) {
         Activity activity = getActivity();
-        if( activity instanceof ProgressController){
+        if (activity instanceof ProgressController) {
             Dialog progressdialog = ((ProgressController) activity).showProgress();
             progressdialog.setCancelable(cancelable);
-            return  progressdialog;
+            return progressdialog;
         }
-        return  null;
+        return null;
     }
+
     public Dialog showProgress(boolean cancelable, String content) {
         Activity activity = getActivity();
-        if( activity instanceof ProgressController){
+        if (activity instanceof ProgressController) {
             ((ProgressController) activity).hideProgress();
             Dialog progressdialog = ((ProgressController) activity).showProgress(content);
             progressdialog.setCancelable(cancelable);
-            return  progressdialog;
+            return progressdialog;
         }
-        return  null;
+        return null;
     }
 
     @Override
     public Dialog showProgress(@StringRes int resId) {
-    	Activity activity = getActivity();
+        Activity activity = getActivity();
         boolean ttt = activity instanceof ProgressController;
         return activity instanceof ProgressController ? ((ProgressController) activity).showProgress(resId) : null;
     }
 
     @Override
     public Dialog showProgress(CharSequence text) {
-    	Activity activity = getActivity();
+        Activity activity = getActivity();
         return activity instanceof ProgressController ? ((ProgressController) activity).showProgress(text) : null;
     }
 
@@ -298,19 +295,28 @@ public abstract class BaseFragment extends Fragment implements ProgressControlle
     }
 
     public void showToast(@StringRes int resId) {
-    	XuToast.show(getActivity(), resId);
+        XuToast.show(getActivity(), resId);
     }
-    
-    public String STR(int stringid){
-    	String str = "null";
-    	try {
-    		str = getActivity().getResources().getString(stringid);
-		} catch (Exception e) {
-			// TODO: handle exception
-			return "";
-		}
-		return str;
+
+    public String STR(int stringid) {
+        String str = "null";
+        try {
+            str = getActivity().getResources().getString(stringid);
+        } catch (Exception e) {
+            // TODO: handle exception
+            return "";
+        }
+        return str;
     }
+
+    public String STR(@StringRes int stringRes, String value) {
+        return String.format(getResources().getString(stringRes), value);
+    }
+
+    public String STR(@StringRes int stringRes, int value) {
+        return String.format(getResources().getString(stringRes), value);
+    }
+
     /**
      * ��ʼ��View,��initData()�����
      *
@@ -333,7 +339,7 @@ public abstract class BaseFragment extends Fragment implements ProgressControlle
         //��ȡ��Ļ�߶�
         screenHeight = getActivity().getWindowManager().getDefaultDisplay().getHeight();
         //��ֵ����Ϊ��Ļ�߶ȵ�1/3
-        keyHeight = screenHeight/3;
+        keyHeight = screenHeight / 3;
 
         //���layout��С�����ı������
         rootview.addOnLayoutChangeListener(this);
@@ -344,10 +350,12 @@ public abstract class BaseFragment extends Fragment implements ProgressControlle
      * 监听软键盘的弹出和高度
      */
     private boolean lastvisible = false;
+
     public void observeSoftKeyboard(final OnSoftKeyboardChangeListener listener) {
         final View decorView = getActivity().getWindow().getDecorView();
         decorView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             int previousKeyboardHeight = -1;
+
             @Override
             public void onGlobalLayout() {
                 Rect rect = new Rect();
@@ -357,7 +365,7 @@ public abstract class BaseFragment extends Fragment implements ProgressControlle
                 int keyboardHeight = height - displayHeight;
                 if (previousKeyboardHeight != keyboardHeight) {
                     boolean hide = (double) displayHeight / height > 0.8;
-                    if(lastvisible != !hide){
+                    if (lastvisible != !hide) {
                         lastvisible = !hide;
                         listener.onSoftKeyBoardChange(keyboardHeight, !hide);
                     }
@@ -368,8 +376,8 @@ public abstract class BaseFragment extends Fragment implements ProgressControlle
         });
     }
 
-    
-    public  interface  OnInputStatusChange{
+
+    public interface OnInputStatusChange {
         public void InputStatusChange(boolean status);
     }
 }

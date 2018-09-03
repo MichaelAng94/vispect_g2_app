@@ -636,7 +636,6 @@ public class VMainActivity extends BaseActivity {
     public void changeCameraType() {
         XuLog.e(TAG, "改变了镜头,镜头ID:" + cameraID + "镜头类型:" + cameraType);
         if (cameraType == 4 || cameraType == 5 || cameraType == 6 || cameraType == 7) {
-            XuLog.e("ssssss", "" + 2);
             ll_lin_center_d.post(new Runnable() {
                 @Override
                 public void run() {
