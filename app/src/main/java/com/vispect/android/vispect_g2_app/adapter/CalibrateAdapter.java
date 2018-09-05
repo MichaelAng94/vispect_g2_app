@@ -22,9 +22,13 @@ public class CalibrateAdapter  extends BaseAdapter{
     private List<String> datas = new ArrayList<String>();
     private Context context;
 
-    public CalibrateAdapter(Context context, List<String> datas) {
+    public CalibrateAdapter(Context context) {
         this.context = context;
-        this.datas = datas;
+    }
+
+    public void setData( List<String> data){
+        this.datas = data;
+        notifyDataSetChanged();
     }
 
     @Override

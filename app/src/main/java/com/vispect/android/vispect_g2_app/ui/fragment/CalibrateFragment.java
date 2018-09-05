@@ -76,6 +76,10 @@ public class CalibrateFragment extends BaseFragment {
     @Override
     protected void initView(View view) throws IOException {
         myHandler = new Handler();
+
+        calibrateAdapter = new CalibrateAdapter(getContext());
+        listSelectCamera.setAdapter(calibrateAdapter);
+
         AppContext.getInstance().getDeviceHelper().getG2CameraList(new GetG2CameraList() {
             @Override
             public void onSuccess(ArrayList arrayList) {
@@ -113,8 +117,7 @@ public class CalibrateFragment extends BaseFragment {
                             break;
                     }
                 }
-                calibrateAdapter = new CalibrateAdapter(getContext(), data);
-                listSelectCamera.setAdapter(calibrateAdapter);
+                calibrateAdapter.setData(data);
             }
 
             @Override

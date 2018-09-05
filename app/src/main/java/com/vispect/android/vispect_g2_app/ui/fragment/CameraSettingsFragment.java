@@ -34,7 +34,7 @@ public class CameraSettingsFragment extends BaseFragment {
     public static int listitem;
     @Bind(R.id.list_select_camera)
     MoListview listSelectCamera;
-    private CalibrateAdapter calibrateAdapter;
+    private CalibrateAdapter calibrateAdapter ;
     private List<String> data = new ArrayList<>();
     private List<Point> cameras = new ArrayList<>();
 
@@ -54,6 +54,9 @@ public class CameraSettingsFragment extends BaseFragment {
                 SettingsActivity.transHandler.sendMessage(msg);
             }
         });
+
+        calibrateAdapter = new CalibrateAdapter(getContext());
+        listSelectCamera.setAdapter(calibrateAdapter);
     }
 
     @Override
@@ -97,8 +100,7 @@ public class CameraSettingsFragment extends BaseFragment {
                             break;
                     }
                 }
-                calibrateAdapter = new CalibrateAdapter(getContext(), data);
-                listSelectCamera.setAdapter(calibrateAdapter);
+                calibrateAdapter.setData(data);
             }
 
             @Override

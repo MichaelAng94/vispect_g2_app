@@ -159,8 +159,6 @@ public class DrawAdas extends SurfaceView implements SurfaceHolder.Callback,Runn
 
     }
 
-
-
     synchronized  private void draw() {
                     canvas = sfh.lockCanvas();
                         // 画线条和矩形

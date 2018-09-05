@@ -91,8 +91,7 @@ public class CameraTypeFragment extends BaseFragment {
                             break;
                     }
                 }
-                calibrateAdapter = new CalibrateAdapter(getContext(), stringArrayList);
-                listCameraType.setAdapter(calibrateAdapter);
+                calibrateAdapter.setData(stringArrayList);
             }
 
             @Override
@@ -112,6 +111,10 @@ public class CameraTypeFragment extends BaseFragment {
 
     @Override
     protected void initView(View view) throws IOException {
+
+        calibrateAdapter = new CalibrateAdapter(getContext());
+        listCameraType.setAdapter(calibrateAdapter);
+
         listCameraType.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

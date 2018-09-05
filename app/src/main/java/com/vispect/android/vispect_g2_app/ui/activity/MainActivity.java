@@ -54,13 +54,16 @@ import com.vispect.android.vispect_g2_app.utils.XuToast;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import interf.GetDSMPointMap;
 import interf.GetG2CameraList;
+import interf.GetHorizontalLine;
 import interf.GetUDPcamera;
 import interf.OnDeviceConnectionStateChange;
 import interf.OnWifiOpenListener;
@@ -504,7 +507,7 @@ public class MainActivity extends BaseActivity {
     }
 
     public boolean isConnected() {   //判断是否已经连接G2的设备
-//        return true;
+      //  return true;
         if (AppContext.getInstance().getDeviceHelper().isConnectedDevice() && isG2()) {
             return true;
         } else {

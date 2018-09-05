@@ -68,7 +68,8 @@ public class SettingsListFragment extends BaseFragment {
         data.add(STR(R.string.set_camera_socket));
         data.add(STR(R.string.check_device));
         data.add(STR(R.string.check_version));
-        CalibrateAdapter cvl = new CalibrateAdapter(getContext(), data);
+        CalibrateAdapter cvl = new CalibrateAdapter(getContext());
+        cvl.setData(data);
         listSettings.setAdapter(cvl);
         listSettings.setOnItemClickListener(new itemClick());
     }

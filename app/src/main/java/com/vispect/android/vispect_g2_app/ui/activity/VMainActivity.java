@@ -48,12 +48,15 @@ import com.vispect.android.vispect_g2_app.utils.XuView;
 import java.nio.ByteBuffer;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import bean.DrawShape;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import interf.CorrectingCallback;
+import interf.GetDSMPointMap;
 import interf.GetG2CameraList;
 import interf.GetHorizontalLine;
 import interf.GetSIdeAlarmCallback;
@@ -711,6 +714,22 @@ public class VMainActivity extends BaseActivity {
                     }
                 }, 500);
             }
+        } else if (cameraType == 3) {
+            AppContext.getInstance().getDeviceHelper().getDSMPointList(new GetDSMPointMap() {
+                @Override
+                public void onSuccess(Map map) {
+                    for (int i = 0; i < map.size(); i++) {
+                        if (map.containsKey(i)){
+                            ArrayList<Point> PointsList = (ArrayList<Point>) map.get(i);
+
+                            }
+                        }
+                }
+                @Override
+                public void onFail() {
+                    XuLog.e("getDSMPointList onFail","getDSMPointList fail");
+                }
+            });
         } else {
             ll_lin_center_d.post(new Runnable() {
                 @Override
