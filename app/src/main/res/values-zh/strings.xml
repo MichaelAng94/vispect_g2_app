@@ -1226,4 +1226,6 @@
     <string name="camera_LB">摄像头 : %1$d 左侧摄像头（向后看）</string>
     <string name="camera_RF">摄像头 : %1$d 右侧摄像头（向前看）</string>
     <string name="camera_RB">摄像头 : %1$d 右侧摄像头（向后看）</string>
+
+    <string name="allow_camera_permission">请允许摄像头权限</string>
 </resources>

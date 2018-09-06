@@ -1210,4 +1210,6 @@ Vispect Team</string>
     <string name="camera_LB">camera %1$d socket: Left side(backwards)</string>
     <string name="camera_RF">camera %1$d socket: Right side(forwards)</string>
     <string name="camera_RB">camera %1$d socket: Right side(backwards)</string>
+
+    <string name="allow_camera_permission">please allow the camera permission</string>
 </resources>

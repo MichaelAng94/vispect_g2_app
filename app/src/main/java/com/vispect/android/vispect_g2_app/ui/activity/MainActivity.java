@@ -1,6 +1,5 @@
 package com.vispect.android.vispect_g2_app.ui.activity;
 
-import android.Manifest;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
@@ -21,8 +20,6 @@ import android.os.Handler;
 import android.os.StrictMode;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -45,6 +42,7 @@ import com.vispect.android.vispect_g2_app.interf.OnClickYesOrNoListener;
 import com.vispect.android.vispect_g2_app.interf.ResultCallback;
 import com.vispect.android.vispect_g2_app.ui.widget.DialogHelp;
 import com.vispect.android.vispect_g2_app.utils.DoubleClickExit;
+import com.vispect.android.vispect_g2_app.utils.PermissionUtils;
 import com.vispect.android.vispect_g2_app.utils.SDcardTools;
 import com.vispect.android.vispect_g2_app.utils.XuFileUtils;
 import com.vispect.android.vispect_g2_app.utils.XuLog;
@@ -54,20 +52,25 @@ import com.vispect.android.vispect_g2_app.utils.XuToast;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import interf.GetDSMPointMap;
 import interf.GetG2CameraList;
-import interf.GetHorizontalLine;
 import interf.GetUDPcamera;
 import interf.OnDeviceConnectionStateChange;
 import interf.OnWifiOpenListener;
 import okhttp3.Request;
+
+import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
+import static android.Manifest.permission.CAMERA;
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.READ_PHONE_STATE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import static com.vispect.android.vispect_g2_app.app.AppConfig.REQUEST_CODE_CAMERA_PERMISSION;
+import static com.vispect.android.vispect_g2_app.app.AppConfig.REQUEST_CODE_GROBLE_PERMISSION;
 
 public class MainActivity extends BaseActivity {
 
@@ -303,7 +306,9 @@ public class MainActivity extends BaseActivity {
             e.printStackTrace();
         }
         myHandler.post(setuerinfo);
-        mayRequestLocation();
+        if (Build.VERSION.SDK_INT > 22) {
+            PermissionUtils.request(this, REQUEST_CODE_GROBLE_PERMISSION, ACCESS_COARSE_LOCATION, READ_PHONE_STATE, READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE, CAMERA);
+        }
         setTitle("G2-ADAS");
         AppContext.getInstance().setNeeedCloseBluetooth(!BluetoothAdapter.getDefaultAdapter().isEnabled());
         //监听连接变化
@@ -364,34 +369,23 @@ public class MainActivity extends BaseActivity {
         clickMeun = 0;
     }
 
-    private void mayRequestLocation() {
-        //TODO 在6.0及以上的系统中动态请求一些敏感权限
-        if (Build.VERSION.SDK_INT >= 18) {
-            //请求蓝牙权限
-            requestPermission(Manifest.permission.ACCESS_COARSE_LOCATION);
-            //请求读取手机状态的权限
-            requestPermission(Manifest.permission.READ_PHONE_STATE);
-            //请求读取SD卡的权限
-            requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE);
-            //请求写入SD卡的权限
-            requestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-            //请求拍照的权限
-            requestPermission(Manifest.permission.CAMERA);
-        }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_CODE_CAMERA_PERMISSION:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-    }
-
-    synchronized private void requestPermission(String permission) {
-        //TODO 向用户请求权限
-        int checkCallPhonePermission = ContextCompat.checkSelfPermission(MainActivity.this, permission);
-        if (checkCallPhonePermission != PackageManager.PERMISSION_GRANTED) {
-            //判断是否需要 向用户解释，为什么要申请该权限
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission))
-                XuToast.show(MainActivity.this, "request necessary permissions of app");
-            ActivityCompat.requestPermissions(this, new String[]{permission}, REQUEST_FINE_LOCATION);
-            return;
-        } else {
-
+                    Intent intentFromCapture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    // 判断存储卡是否可以用，可用则进行存储
+                    if (SDcardTools.hasSdcard()) {
+                        intentFromCapture.putExtra(MediaStore.EXTRA_OUTPUT,
+                                Uri.fromFile(new File(Environment.getExternalStorageDirectory(), IMAGE_FILE_NAME)));
+                    }
+                    startActivityForResult(intentFromCapture, CAMERA_REQUEST_CODE);
+                } else {
+                    XuToast.show(MainActivity.this, STR(R.string.allow_camera_permission));
+                }
+                break;
         }
     }
 
@@ -507,7 +501,7 @@ public class MainActivity extends BaseActivity {
     }
 
     public boolean isConnected() {   //判断是否已经连接G2的设备
-      //  return true;
+        //  return true;
         if (AppContext.getInstance().getDeviceHelper().isConnectedDevice() && isG2()) {
             return true;
         } else {
@@ -585,19 +579,16 @@ public class MainActivity extends BaseActivity {
                 tvTakePhoto.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intentFromCapture = new Intent(
-                                MediaStore.ACTION_IMAGE_CAPTURE);
-                        // 判断存储卡是否可以用，可用则进行存储
-                        if (SDcardTools.hasSdcard()) {
-                            intentFromCapture.putExtra(
-                                    MediaStore.EXTRA_OUTPUT,
-                                    Uri.fromFile(new File(
-                                            Environment
-                                                    .getExternalStorageDirectory(),
-                                            IMAGE_FILE_NAME)));
+                        //判断是否已获取到摄像头权限
+                        if (PermissionUtils.request(MainActivity.this, REQUEST_CODE_CAMERA_PERMISSION, CAMERA)) {
+                            Intent intentFromCapture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            // 判断存储卡是否可以用，可用则进行存储
+                            if (SDcardTools.hasSdcard()) {
+                                intentFromCapture.putExtra(MediaStore.EXTRA_OUTPUT,
+                                        Uri.fromFile(new File(Environment.getExternalStorageDirectory(), IMAGE_FILE_NAME)));
+                            }
+                            startActivityForResult(intentFromCapture, CAMERA_REQUEST_CODE);
                         }
-                        startActivityForResult(intentFromCapture,
-                                CAMERA_REQUEST_CODE);
                         bottomInterPasswordDialog.dismiss();
                     }
                 });

@@ -720,7 +720,7 @@ public class VMainActivity extends BaseActivity {
                 public void onSuccess(Map map) {
                     for (int i = 0; i < map.size(); i++) {
                         if (map.containsKey(i)){
-                            ArrayList<Point> PointsList = (ArrayList<Point>) map.get(i);
+                            ArrayList<Point> pointsList = (ArrayList<Point>) map.get(i);
 
                             }
                         }

@@ -11,8 +11,6 @@ import java.io.File;
 import java.util.Locale;
 
 
-
-
 /**
  * 配置信息类
  * Created by xu on 2016/03/11.
@@ -20,6 +18,46 @@ import java.util.Locale;
 public class AppConfig {
 
 
+    public final static String CARPETSERVER_PACKAGENAME = "com.vispect.carpet";    //设备APP的包名
+    public final static String CARPETWATCHDOG_PACKAGENAME = "com.vispect.watchdog";    //设备看门狗的包名
+    public final static String CARPETLAUNCHER_PACKAGENAME = "com.vispect.launcher";    //设备launcher的包名
+    //requestCode
+    public static final int REQUEST_CODE_CAMERA_PERMISSION = 0;
+    public static final int REQUEST_CODE_GROBLE_PERMISSION = 1;
+    /**
+     * Socker的配置参数
+     */
+    public static final String SOCKET_STREAM_SERVICE_HOST = "192.168.43.1";
+    public static final int SOCKET_STREAM_SERVICE_PORT = 9000;    //下载视频
+    public static final int SOCKET_BLE_SERVICE_PORT = 9001;       //实时路况通讯
+    public static final int SOCKET_UPDATA_PORT = 9002;       //上传文件
+    public static final int SOCKET_ADAS_SERVICE_PORT = 1942;
+    /**
+     * 是否第一次运行
+     */
+    public final static String APP_FIRST_START = "APP_FIRST_START";
+    /**
+     * 默认存放图片的路径
+     */
+    public final static String DEFAULT_SAVE_IMAGE_PATH = Environment.getExternalStorageDirectory() + "/vispect/";
+    public static final long TS_MAX = 253402271999000L;// 最大有限期
+    /**
+     * 行车记录
+     */
+    public static final String APP_NAME = "vispect_app";
+    /**
+     * 硬件升级
+     */
+    public static final String OTA_NAME = "ota.zip";
+    public static final String OTA_SVALE_DIR = "OTA/" + OTA_NAME;
+    /**
+     * 第三方登录需要的配置
+     */
+    public static final String WX_APP_ID = "wxf1ca6af6d86907bb";
+    /**
+     * 安装视频的链接
+     */
+    public static final String INSTALL_VIDEO_URL = "http://v.youku.com/v_show/id_XMjcxODI1NTUzNg==.html?spm=a2h0k.8191407.0.0&from=s1.8-1-1.2";
     /**
      * SP对应的KEY
      */
@@ -41,72 +79,30 @@ public class AppConfig {
     private final static String BUZZERVERSION = "BUZZER_VERSION";
     private final static String GPSVERSION = "GPS_VERSION";
     private final static String OPENCOUNT = "OPNE_COUNT";
+    //    public static final int SOCKET_STREAM_SERVICE_PORT = 8821;
     private final static String CURRENT_DEVICE_NAME = "CURRENT_DEVICE_NAME";    //临时
     private final static String AUTO = "AUTO";    //临时
-
     private final static String LASTUID = "LASTUID";    //临时保存上次保存数据的用户的ID
     private final static String LASTBRAND = "LASTBRAND";    //临时保存上次保存的车的品牌
     private final static String LASTMODE = "LASTMODE";    //临时保存上次保存的车的型号
     private final static String LASTREGION = "LASTREGION";    //临时保存上次保存的地区
     private final static String LASTYEAR = "LASTYEAR";    //临时保存上次保存的车的年份
     private final static String LASTDATACAIRDID = "LASTDATACAIRDID";    //临时保存上次保存的数据卡ID
-    public final static String CARPETSERVER_PACKAGENAME = "com.vispect.carpet";    //设备APP的包名
-    public final static String CARPETWATCHDOG_PACKAGENAME = "com.vispect.watchdog";    //设备看门狗的包名
-    public final static String CARPETLAUNCHER_PACKAGENAME = "com.vispect.launcher";    //设备launcher的包名
-
-
-    /**
-     * Socker的配置参数
-     */
-    public static final String SOCKET_STREAM_SERVICE_HOST = "192.168.43.1";
-    public static final int SOCKET_STREAM_SERVICE_PORT = 9000;    //下载视频
-    public static final int SOCKET_BLE_SERVICE_PORT = 9001;       //实时路况通讯
-    public static final int SOCKET_UPDATA_PORT = 9002;       //上传文件
-    public static final int SOCKET_ADAS_SERVICE_PORT = 1942;
-//    public static final int SOCKET_STREAM_SERVICE_PORT = 8821;
-
     public static Boolean showSSID = false;
+    public static String DEVICE_NAME = "unkonwDevoce";
+    public static String EXTERNAL_DIR = getExternalStoragePath() + File.separator + APP_NAME;
     private static AppConfig xInstance;
     private static XuSp xSharedPreferences;
-    /**
-     * 是否第一次运行
-     */
-    public final static String APP_FIRST_START = "APP_FIRST_START";
+    private static String CARCORDER_DIR = EXTERNAL_DIR + "/" + DEVICE_NAME + File.separator;
     /**
      * 是否已连接BLE设备
      */
     private boolean BLE_CONNECTED = false;
-    /**
-     * 默认存放图片的路径
-     */
-    public final static String DEFAULT_SAVE_IMAGE_PATH = Environment.getExternalStorageDirectory() + "/vispect/";
 
 
-    public static final long TS_MAX = 253402271999000L;// 最大有限期
-    /**
-     * 行车记录
-     */
-    public static final String APP_NAME = "vispect_app";
-    public static String DEVICE_NAME = "unkonwDevoce";
-    public static String EXTERNAL_DIR = getExternalStoragePath() + File.separator + APP_NAME;
-    private static String CARCORDER_DIR = EXTERNAL_DIR + "/" + DEVICE_NAME + File.separator;
-    /**
-     * 硬件升级
-     */
-    public static final String OTA_NAME = "ota.zip";
-    public static final String OTA_SVALE_DIR = "OTA/" + OTA_NAME;
+    private AppConfig() {
 
-    /**
-     * 第三方登录需要的配置
-     */
-    public static final String WX_APP_ID = "wxf1ca6af6d86907bb";
-
-
-    /**
-     * 安装视频的链接
-     */
-    public static final String INSTALL_VIDEO_URL = "http://v.youku.com/v_show/id_XMjcxODI1NTUzNg==.html?spm=a2h0k.8191407.0.0&from=s1.8-1-1.2";
-
+    }
 
     public static String getCarcorderDir() {
         return EXTERNAL_DIR + "/" + DEVICE_NAME + File.separator;
@@ -124,12 +120,38 @@ public class AppConfig {
         return xInstance;
     }
 
-    private AppConfig() {
-
-    }
-
     public static String getWxAppId() {
         return WX_APP_ID;
+    }
+
+    public static boolean isZh(Context ct) {
+        Locale locale = ct.getResources().getConfiguration().locale;
+        String language = locale.getLanguage();
+        if (language.endsWith("zh"))
+            return true;
+        else
+            return false;
+    }
+
+    public static String getDeviceName() {
+        return DEVICE_NAME;
+    }
+
+    public static void setDeviceName(String deviceName) {
+        DEVICE_NAME = deviceName;
+    }
+
+    /**
+     * get the external storage file path
+     *
+     * @return the file path
+     */
+    public static String getExternalStoragePath() {
+        return getExternalStorageDir().getAbsolutePath();
+    }
+
+    public static File getExternalStorageDir() {
+        return Environment.getExternalStorageDirectory();
     }
 
     public boolean islogin() {
@@ -151,12 +173,12 @@ public class AppConfig {
         xSharedPreferences.put(USER_ID, uid);
     }
 
-    public void setFirstStart(boolean firstStart) {
-        xSharedPreferences.put(APP_FIRST_START, firstStart);
-    }
-
     public boolean getFirstStart() {
         return xSharedPreferences.get(APP_FIRST_START, true);
+    }
+
+    public void setFirstStart(boolean firstStart) {
+        xSharedPreferences.put(APP_FIRST_START, firstStart);
     }
 
     public String getBle_paw() {
@@ -191,16 +213,6 @@ public class AppConfig {
         return xSharedPreferences.get(BLE_NAME, "adas");
     }
 
-    public static boolean isZh(Context ct) {
-        Locale locale = ct.getResources().getConfiguration().locale;
-        String language = locale.getLanguage();
-        if (language.endsWith("zh"))
-            return true;
-        else
-            return false;
-    }
-
-
     //临时
     public boolean setCurrentDeviceName(String value) {
         return xSharedPreferences.put(CURRENT_DEVICE_NAME, value);
@@ -218,7 +230,6 @@ public class AppConfig {
         return xSharedPreferences.getBoolean(AUTO, true);
     }
 
-
     public String getBle_Token() {
         return xSharedPreferences.get(BLE_TOKEN, "00000000");
     }
@@ -234,7 +245,6 @@ public class AppConfig {
     public void settOpenCount(int count) {
         xSharedPreferences.put(OPENCOUNT, count);
     }
-
 
     public void setBleConnected(boolean bleConnected) {
         BLE_CONNECTED = bleConnected;
@@ -262,14 +272,6 @@ public class AppConfig {
 
     public float get_CALIBRATION() {
         return xSharedPreferences.getFloat(CALIBRATION, 0);
-    }
-
-    public static String getDeviceName() {
-        return DEVICE_NAME;
-    }
-
-    public static void setDeviceName(String deviceName) {
-        DEVICE_NAME = deviceName;
     }
 
     public String getSensitivityLecel() {
@@ -331,7 +333,6 @@ public class AppConfig {
         return xSharedPreferences.get(GPSVERSION, "");
     }
 
-
     //临时保存本地的数据
     public String getLastuid() {
         return xSharedPreferences.get(LASTUID, "");
@@ -379,19 +380,5 @@ public class AppConfig {
 
     public boolean setLasdatacarid(String caidid) {
         return xSharedPreferences.put(LASTDATACAIRDID, caidid);
-    }
-
-
-    /**
-     * get the external storage file path
-     *
-     * @return the file path
-     */
-    public static String getExternalStoragePath() {
-        return getExternalStorageDir().getAbsolutePath();
-    }
-
-    public static File getExternalStorageDir() {
-        return Environment.getExternalStorageDirectory();
     }
 }
