@@ -1,58 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TextView
-        android:layout_margin="@dimen/y30"
         android:id="@+id/tv_title_dialog"
-        android:layout_marginTop="@dimen/y30"
-        android:textSize="@dimen/y50"
-        android:textColor="@color/black"
-        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/y30"
+        android:layout_marginTop="@dimen/y30"
         android:text="Phone"
-        />
+        android:textColor="@color/black"
+        android:textSize="@dimen/y50" />
 
     <EditText
         android:id="@+id/et_phone"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/x35" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <Button
-        style="?android:attr/borderlessButtonStyle"
-        android:id="@+id/btn_cancel"
-        android:textColor="@color/hint_bg"
-        android:background="@drawable/ripple_bg2"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="@dimen/y50"
-        android:layout_centerHorizontal="true"
-        android:layout_marginRight="@dimen/x80"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cancel"
-        />
+        <Button
+            android:id="@+id/btn_cancel"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/y50"
+            android:layout_marginRight="@dimen/x80"
+            android:background="@drawable/ripple_bg2"
+            android:text="@string/cancel"
+            android:textColor="@color/hint_bg" />
 
-    <Button
-        style="?android:attr/borderlessButtonStyle"
-        android:id="@+id/btn_ok"
-        android:textColor="@color/hint_bg"
-        android:background="@drawable/ripple_bg2"
-        android:layout_marginRight="@dimen/y50"
-        android:layout_alignParentRight="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="@dimen/x80"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/dialog_ok"
-        />
+        <Button
+            android:id="@+id/btn_ok"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/x80"
+            android:layout_marginRight="@dimen/y50"
+            android:background="@drawable/ripple_bg2"
+            android:text="@string/dialog_ok"
+            android:textColor="@color/hint_bg" />
     </RelativeLayout>
 
 </LinearLayout>

@@ -43,12 +43,6 @@ public class DeviceSetUpFragment extends BaseFragment {
     EditText edit_parameters_wifi_pas;
     @Bind(R.id.ll_buttom)
     LinearLayout ll_buttom;
-
-
-
-    private AppConfig appconfig;
-    private String ble_pas, ble_name, wifi_pas, wifi_name;
-    private boolean canToSave = true;
     boolean isallsuccess = true;
     Handler mHandler = new Handler();
     Runnable show = new Runnable() {
@@ -75,29 +69,9 @@ public class DeviceSetUpFragment extends BaseFragment {
 
         }
     };
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        getActivity().findViewById(R.id.btn_save).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                UIHelper.showAsk(getActivity(), STR(R.string.ask_save_data), true, new OnClickYesOrNoListener() {
-                    @Override
-                    public void isyes(boolean b, DialogInterface dialog) {
-                        if (b) {
-                            saveData();
-                            Message msg = new Message();
-                            msg.arg2 = -1;
-                            SettingsActivity.transHandler.sendMessage(msg);
-                        }
-                        dialog.dismiss();
-                    }
-                });
-            }
-        });
-    }
-
+    private AppConfig appconfig;
+    private String ble_pas, ble_name, wifi_pas, wifi_name;
+    private boolean canToSave = true;
     private OnSoftKeyboardChangeListener onSoftKeyboardChangeListener = new OnSoftKeyboardChangeListener() {
         @Override
         public void onSoftKeyBoardChange(final int softKeybardHeight,final boolean visible) {
@@ -121,6 +95,27 @@ public class DeviceSetUpFragment extends BaseFragment {
         }
     };
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().findViewById(R.id.btn_save).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UIHelper.showAsk(getActivity(), STR(R.string.ask_save_data), true, new OnClickYesOrNoListener() {
+                    @Override
+                    public void isyes(boolean b, DialogInterface dialog) {
+                        if (b) {
+                            saveData();
+                            Message msg = new Message();
+                            msg.arg2 = -1;
+                            SettingsActivity.transHandler.sendMessage(msg);
+                        }
+                        dialog.dismiss();
+                    }
+                });
+            }
+        });
+    }
 
     @Override
     public int getContentResource() {

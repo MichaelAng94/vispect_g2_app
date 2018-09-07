@@ -124,7 +124,7 @@
     <string name="camera_adjustment">摄像头校准</string>
     <string name="setting_volume">提示音</string>
     <string name="setting_about">关于</string>
-    <string name="setting_singout">退出登录</string>
+    <string name="logout">退出登录</string>
     <string name="adjustments_tips">请调整相机：水平线对准地平线</string>
     <string name="setting_calibration">校准</string>
     <string name="update2">更新</string>
@@ -1186,7 +1186,7 @@
     <string name="live">实景</string>
     <string name="video_archivews">行车视频</string>
     <string name="waitting">请稍等</string>
-    <string name="updateing">under revision</string>
+    <string name="updateing">正在修改...</string>
     <string name="please_connect_G2">请连接G2设备</string>
 
     <string name="vehicle_information">车辆信息录用</string>
@@ -1219,7 +1219,7 @@
 
     <string name="camera">摄像头</string>
     <string name="camera_unavailable">摄像头 : %1$d socket: Unavailable</string>
-    <string name="camera_none">摄像头 : %1$d socket: None</string>
+    <string name="camera_none">摄像头 : %1$d 未设置</string>
     <string name="camera_font">摄像头 : %1$d 前向摄像头</string>
     <string name="camera_DSM">摄像头 : %1$d 疲劳驾驶监测</string>
     <string name="camera_LF">摄像头 : %1$d 左侧摄像头（向前看）</string>
@@ -1228,4 +1228,10 @@
     <string name="camera_RB">摄像头 : %1$d 右侧摄像头（向后看）</string>
 
     <string name="allow_camera_permission">请允许摄像头权限</string>
+    <string name="app_version">APP 版本</string>
+    <string name="change_avatar">修改头像</string>
+    <string name="take_photo">拍照</string>
+    <string name="choose_from_photos">从相册中选择</string>
+    <string name="upload_success">上传成功</string>
+    <string name="upload_fail">上传失败</string>
 </resources>

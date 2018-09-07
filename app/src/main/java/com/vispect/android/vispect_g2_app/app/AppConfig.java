@@ -21,9 +21,14 @@ public class AppConfig {
     public final static String CARPETSERVER_PACKAGENAME = "com.vispect.carpet";    //设备APP的包名
     public final static String CARPETWATCHDOG_PACKAGENAME = "com.vispect.watchdog";    //设备看门狗的包名
     public final static String CARPETLAUNCHER_PACKAGENAME = "com.vispect.launcher";    //设备launcher的包名
+    //头像名称
+    public static final String IMAGE_USER_AVATAR_NAME = "/user_avatar.jpg";
     //requestCode
     public static final int REQUEST_CODE_CAMERA_PERMISSION = 0;
-    public static final int REQUEST_CODE_GROBLE_PERMISSION = 1;
+    public static final int REQUEST_CODE_GLOBAL_PERMISSION = 1;
+    public static final int REQUEST_CODE_CAMERA = 2;//拍照
+    public static final int REQUEST_CODE_ALBUM = 3;//从相册中选择
+    public static final int REQUEST_CODE_CROP_IMAGE = 4;//裁剪图片
     /**
      * Socker的配置参数
      */

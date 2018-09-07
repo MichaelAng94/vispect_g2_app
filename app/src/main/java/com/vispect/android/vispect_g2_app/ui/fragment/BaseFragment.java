@@ -22,6 +22,8 @@ import com.vispect.android.vispect_g2_app.utils.XuToast;
 
 import java.io.IOException;
 
+import butterknife.ButterKnife;
+
 
 public abstract class BaseFragment extends Fragment implements ProgressController, View.OnLayoutChangeListener {
 
@@ -34,6 +36,10 @@ public abstract class BaseFragment extends Fragment implements ProgressControlle
     //����̵������ռ�߶ȷ�ֵ
     private int keyHeight = 0;
     private OnInputStatusChange listener;
+    /**
+     * 监听软键盘的弹出和高度
+     */
+    private boolean lastvisible = false;
 
     @Override
     public void onAttach(Context context) {
@@ -61,16 +67,15 @@ public abstract class BaseFragment extends Fragment implements ProgressControlle
         getFragmentHelper().onCreateView(view);
 
         //��ʼ��
-        initData();
         try {
             initView(view);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        ButterKnife.bind(this, view);
+        initData();
         return view;
     }
-
 
     @Override
     public void onLayoutChange(View v, int left, int top, int right,
@@ -145,6 +150,7 @@ public abstract class BaseFragment extends Fragment implements ProgressControlle
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        ButterKnife.unbind(this);
         getFragmentHelper().onDestroyView();
     }
 
@@ -197,7 +203,6 @@ public abstract class BaseFragment extends Fragment implements ProgressControlle
 
     }
 
-
     /**
      * fragment���ɼ�ʱ���ã��л�������onPause��
      */
@@ -231,12 +236,6 @@ public abstract class BaseFragment extends Fragment implements ProgressControlle
         }
     }
 
-    @Override
-    public Dialog showProgress() {
-        Activity activity = getActivity();
-        return activity instanceof ProgressController ? ((ProgressController) activity).showProgress() : null;
-    }
-
 
 //    public ProgressDialog getProgressDialog() {
 //        if (null == mProgressDialog) {
@@ -255,6 +254,11 @@ public abstract class BaseFragment extends Fragment implements ProgressControlle
 //        return progressDialog;
 //    }
 
+    @Override
+    public Dialog showProgress() {
+        Activity activity = getActivity();
+        return activity instanceof ProgressController ? ((ProgressController) activity).showProgress() : null;
+    }
 
     public Dialog showProgress(boolean cancelable) {
         Activity activity = getActivity();
@@ -345,11 +349,6 @@ public abstract class BaseFragment extends Fragment implements ProgressControlle
         rootview.addOnLayoutChangeListener(this);
 
     }
-
-    /**
-     * 监听软键盘的弹出和高度
-     */
-    private boolean lastvisible = false;
 
     public void observeSoftKeyboard(final OnSoftKeyboardChangeListener listener) {
         final View decorView = getActivity().getWindow().getDecorView();

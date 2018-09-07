@@ -3,6 +3,7 @@ package com.vispect.android.vispect_g2_app.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
@@ -25,10 +26,12 @@ public class PermissionUtils {
      * 若无 弹出权限申请框
      */
     public static boolean request(Activity context, int requestCode, String permission) {
-        int checkPermission = ContextCompat.checkSelfPermission(context, permission);
-        if (checkPermission != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(context, new String[]{permission}, requestCode);
-            return false;
+        if (Build.VERSION.SDK_INT > 22) {
+            int checkPermission = ContextCompat.checkSelfPermission(context, permission);
+            if (checkPermission != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(context, new String[]{permission}, requestCode);
+                return false;
+            }
         }
         return true;
     }

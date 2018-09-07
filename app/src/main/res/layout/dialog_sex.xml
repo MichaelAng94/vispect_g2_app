@@ -1,42 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv_title_dialog"
-        android:layout_marginTop="@dimen/y30"
-        android:textSize="@dimen/y55"
-        android:textColor="@color/black"
-        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/y30"
         android:text="@string/sex"
+        android:textColor="@color/black"
+        android:textSize="@dimen/y55"
         />
 
     <RadioGroup
-        android:layout_marginTop="@dimen/y15"
-        android:layout_marginBottom="@dimen/y15"
         android:id="@+id/ra_sex"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/y15"
+        android:layout_marginTop="@dimen/y15"
+        android:paddingHorizontal="@dimen/x35">
 
         <RadioButton
-            android:checked="true"
-            android:textSize="@dimen/y55"
             android:id="@+id/male"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:checked="true"
             android:text="@string/male"
+            android:textSize="@dimen/y55"
             />
         <RadioButton
-            android:textSize="@dimen/y55"
             android:id="@+id/female"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/female"
+            android:textSize="@dimen/y55"
             />
 
     </RadioGroup>
@@ -47,30 +48,30 @@
 
         <Button
             android:id="@+id/btn_cancel"
-            android:textColor="@color/hint_bg"
-            android:background="@drawable/ripple_bg2"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="@dimen/y50"
-            android:layout_centerHorizontal="true"
-            android:layout_marginRight="@dimen/x80"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/y50"
+            android:layout_marginRight="@dimen/x80"
+            android:background="@drawable/ripple_bg2"
             android:text="@string/cancel"
+            android:textColor="@color/hint_bg"
             />
 
         <Button
-            style="?android:attr/borderlessButtonStyle"
             android:id="@+id/btn_ok"
-            android:textColor="@color/hint_bg"
-            android:background="@drawable/ripple_bg2"
-            android:layout_marginRight="@dimen/y50"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="@dimen/x80"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/y50"
+            android:background="@drawable/ripple_bg2"
             android:text="@string/dialog_ok"
+            android:textColor="@color/hint_bg"
             />
     </RelativeLayout>
 
