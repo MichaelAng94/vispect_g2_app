@@ -29,7 +29,7 @@
     <string name="road_live_on">连接</string>
     <string name="road_live_off">断开</string>
     <string name="road_live_see">实景</string>
-    <string name="dialog_tips_connecting">连接中</string>
+    <string name="dialog_tips_connecting">连接中...</string>
     <string name="dialog_tips_connecting2">正在连接设备</string>
 
     <string name="dsmsettings_tips">输入的值必须在允许范围内.</string>
@@ -1178,13 +1178,13 @@
     <string name="app_name">G2-ADAS</string>
     <string name="forget_password">忘记密码?</string>
     <string name="user_guide">用户指南</string>
-    <string name="insatllation">安装</string>
+    <string name="installation">安装</string>
 
     <string name="set_lane_departrue">参数设置</string>
     <string name="set_password_wifi">设置蓝牙和WIFI的密码</string>
     <string name="settings">设置</string>
     <string name="live">实景</string>
-    <string name="video_archivews">行车视频</string>
+    <string name="video_archives">行车视频</string>
     <string name="waitting">请稍等</string>
     <string name="updateing">正在修改...</string>
     <string name="please_connect_G2">请连接G2设备</string>
@@ -1234,4 +1234,5 @@
     <string name="choose_from_photos">从相册中选择</string>
     <string name="upload_success">上传成功</string>
     <string name="upload_fail">上传失败</string>
+    <string name="get_camera_list_failed">获取摄像头列表失败</string>
 </resources>

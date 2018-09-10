@@ -1,79 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/drawerlayout"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/main_background"
-        android:orientation="vertical"
-       >
+        android:orientation="vertical">
 
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y115"
-            android:background="@color/background">
+            android:layout_height="@dimen/y120"
+            android:background="@color/black">
 
-            <RelativeLayout
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="@dimen/y120">
 
                 <ImageView
-                    android:id="@+id/img_useredit"
-                    android:layout_width="@dimen/x60"
-                    android:layout_height="@dimen/y60"
-                    android:layout_alignParentLeft="true"
+                    android:id="@+id/img_left"
+                    android:layout_width="@dimen/x120"
+                    android:layout_height="@dimen/y120"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/x30"
                     android:src="@mipmap/user_edit" />
 
                 <TextView
-                    android:id="@+id/tv_title"
+                    android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="G2"
+                    android:layout_gravity="center"
+                    android:text="G2-ADAS"
                     android:textColor="@color/white"
                     android:textSize="@dimen/y45" />
 
                 <ImageView
-                    android:id="@+id/img_connect"
-                    android:layout_width="@dimen/x60"
-                    android:layout_height="@dimen/y60"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="@dimen/x50"
-                    android:src="@drawable/disconnect"
-                    android:tint="@color/white" />
-
-
-            </RelativeLayout>
-
+                    android:id="@+id/img_right"
+                    android:layout_width="@dimen/x120"
+                    android:layout_height="@dimen/y120"
+                    android:layout_gravity="center_vertical|right"
+                    android:padding="@dimen/x30"
+                    android:src="@drawable/disconnect" />
+            </FrameLayout>
         </android.support.v7.widget.Toolbar>
 
-        <com.vispect.android.vispect_g2_app.ui.widget.MoScroller
+        <FrameLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/y120" />
+    </FrameLayout>
 
-            <include layout="@layout/include_main" />
-
-        </com.vispect.android.vispect_g2_app.ui.widget.MoScroller>
-
-    </LinearLayout>
-
-
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/drawer"
         android:layout_width="@dimen/x710"
         android:layout_height="match_parent"
         android:layout_gravity="left"
         android:background="@color/hintColor"
-        android:choiceMode="singleChoice"
-        android:clickable="true"
-        android:focusable="true"
-        android:orientation="vertical">
-
-    </LinearLayout>
+        android:choiceMode="singleChoice" />
 
 </android.support.v4.widget.DrawerLayout>

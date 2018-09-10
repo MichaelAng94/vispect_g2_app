@@ -8,6 +8,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,9 +21,10 @@ import com.vispect.android.vispect_g2_app.app.AppHelper;
 import com.vispect.android.vispect_g2_app.bean.ResultData;
 import com.vispect.android.vispect_g2_app.bean.UserInfo;
 import com.vispect.android.vispect_g2_app.controller.AppApi;
+import com.vispect.android.vispect_g2_app.controller.UIHelper;
 import com.vispect.android.vispect_g2_app.interf.DialogClickListener;
 import com.vispect.android.vispect_g2_app.interf.ResultCallback;
-import com.vispect.android.vispect_g2_app.ui.activity.MainActivity;
+import com.vispect.android.vispect_g2_app.ui.activity.LoginActivity;
 import com.vispect.android.vispect_g2_app.ui.widget.DialogHelp;
 import com.vispect.android.vispect_g2_app.utils.DialogUtils;
 import com.vispect.android.vispect_g2_app.utils.PermissionUtils;
@@ -42,14 +44,13 @@ import okhttp3.Request;
 
 import static android.Manifest.permission_group.CAMERA;
 import static android.app.Activity.RESULT_OK;
-import static android.content.Intent.ACTION_PICK;
 import static android.provider.MediaStore.ACTION_IMAGE_CAPTURE;
 import static com.nostra13.universalimageloader.core.ImageLoader.TAG;
 import static com.vispect.android.vispect_g2_app.app.AppConfig.IMAGE_USER_AVATAR_NAME;
 import static com.vispect.android.vispect_g2_app.app.AppConfig.REQUEST_CODE_ALBUM;
+import static com.vispect.android.vispect_g2_app.app.AppConfig.REQUEST_CODE_CAMERA;
 import static com.vispect.android.vispect_g2_app.app.AppConfig.REQUEST_CODE_CAMERA_PERMISSION;
 import static com.vispect.android.vispect_g2_app.app.AppConfig.REQUEST_CODE_CROP_IMAGE;
-import static com.vispect.android.vispect_g2_app.app.AppConfig.REQUEST_CODE_CAMERA;
 
 public class UserInfoFragment extends BaseFragment {
 
@@ -139,35 +140,34 @@ public class UserInfoFragment extends BaseFragment {
 
     //退出登录
     private void logout() {
-
-        //TODO 2018/09/07
-//                UIHelper.showAsk(MainActivity.this, STR(R.string.ask_out_login), false, new OnClickYesOrNoListener() {
-//            @Override
-//            public void isyes(boolean var1, DialogInterface dialog) {
-//                if (var1) {
-//                    AppConfig.getInstance(MainActivity.this).setFirstStart(true);
-//                    UIHelper.startActivity(MainActivity.this, LoginActivity.class);
-//                    finish();
-//                }
-//                dialog.dismiss();
-//            }
-//        });
+        DialogUtils.confirmDialog(getActivity(), STR(R.string.ask_out_login), new Runnable() {
+            @Override
+            public void run() {
+                AppConfig.getInstance(getActivity()).setFirstStart(true);
+                UIHelper.startActivity(getActivity(), LoginActivity.class);
+                getActivity().finish();
+            }
+        }, null);
     }
 
     //选择性别
     private void selectSex() {
-        DialogHelp.getInstance().sexDialog(getActivity(), new DialogClickListener() {
+        final UserInfo user = AppContext.getInstance().getUser();
+        if (user == null) return;
+        DialogHelp.getInstance().sexDialog(getActivity(), user.getSex(), new DialogClickListener() {
             @Override
             public void clickYes(String text) {
                 int sex = Integer.parseInt(text);
                 DialogHelp.getInstance().hideDialog();
-                saveUserInfo(sex, AppContext.getInstance().getUser().getPhone(), AppContext.getInstance().getUser().getEmail());
+                if (sex != user.getSex()) saveUserInfo(sex, user.getPhone(), user.getEmail());
             }
         });
     }
 
     //修改邮箱
     private void modifyEmail() {
+        final UserInfo user = AppContext.getInstance().getUser();
+        if (user == null) return;
         DialogHelp.getInstance().editDialog(getActivity(), STR(R.string.email_address), new DialogClickListener() {
             @Override
             public void clickYes(String text) {
@@ -176,13 +176,15 @@ public class UserInfoFragment extends BaseFragment {
                     return;
                 }
                 DialogHelp.getInstance().hideDialog();
-                saveUserInfo(AppContext.getInstance().getUser().getSex(), AppContext.getInstance().getUser().getPhone(), text);
+                saveUserInfo(user.getSex(), user.getPhone(), text);
             }
         });
     }
 
     //修改手机号
     private void modifyPhone() {
+        final UserInfo user = AppContext.getInstance().getUser();
+        if (user == null) return;
         DialogHelp.getInstance().editDialog(getActivity(), STR(R.string.phone_number), new DialogClickListener() {
             @Override
             public void clickYes(String text) {
@@ -191,7 +193,7 @@ public class UserInfoFragment extends BaseFragment {
                     return;
                 }
                 DialogHelp.getInstance().hideDialog();
-                saveUserInfo(AppContext.getInstance().getUser().getSex(), text, AppContext.getInstance().getUser().getEmail());
+                saveUserInfo(user.getSex(), text, user.getEmail());
             }
         });
     }

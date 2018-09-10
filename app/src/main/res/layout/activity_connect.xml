@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/hint_bg"
+    android:orientation="vertical"
     tools:context="com.vispect.android.vispect_g2_app.ui.activity.ConnectActivity">
 
     <android.support.v7.widget.Toolbar
-        app:contentInsetStart="5dp"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y115"
-        android:background="@color/background">
+        android:background="@color/black"
+        app:contentInsetStart="5dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -26,64 +26,64 @@
                 android:src="@mipmap/ico_back" />
 
             <TextView
+                android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="G2"
-                android:id="@+id/tv_title"
                 android:textColor="@color/white"
                 android:textSize="@dimen/x45" />
 
             <ImageView
-                android:tint="@color/white"
                 android:id="@+id/img_connect"
                 android:layout_width="@dimen/x60"
                 android:layout_height="@dimen/y60"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/x50"
-                android:src="@mipmap/refresh" />
+                android:src="@mipmap/refresh"
+                android:tint="@color/white" />
 
             <ProgressBar
-                android:visibility="gone"
-                android:layout_marginRight="@dimen/x50"
-                android:layout_alignParentRight="true"
                 android:id="@+id/progressBar1"
                 style="?android:attr/progressBarStyleInverse"
                 android:layout_width="@dimen/x60"
                 android:layout_height="@dimen/y60"
+                android:layout_alignParentRight="true"
                 android:layout_gravity="center"
-                android:background="@android:color/transparent" />
+                android:layout_marginRight="@dimen/x50"
+                android:background="@android:color/transparent"
+                android:visibility="gone" />
 
         </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
 
     <ListView
-        android:listSelector="@drawable/selector"
-        android:layout_marginTop="@dimen/y55"
         android:id="@+id/list_connect"
-        android:divider="#ffffff"
-        android:background="@color/list_bg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y55"
+        android:background="@color/list_bg"
+        android:divider="#ffffff"
+        android:listSelector="@drawable/selector" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/table_check"
-        android:minHeight="@dimen/y160"
-        android:gravity="center">
+        android:gravity="center"
+        android:minHeight="@dimen/y160">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/x40"
-            android:textColor="@color/white"
-            android:text="@string/connect_bottom_tips"
             android:layout_marginLeft="@dimen/x100"
-            android:lineSpacingExtra="@dimen/y20"
             android:layout_marginTop="@dimen/y10"
-            android:gravity="left" />
+            android:gravity="left"
+            android:lineSpacingExtra="@dimen/y20"
+            android:text="@string/connect_bottom_tips"
+            android:textColor="@color/white"
+            android:textSize="@dimen/x40" />
 
     </LinearLayout>
 

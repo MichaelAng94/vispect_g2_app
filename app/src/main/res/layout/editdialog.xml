@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tv_title_dialog"
+        android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="@dimen/y30"
-        android:layout_marginTop="@dimen/y30"
-        android:text="Phone"
-        android:textColor="@color/black"
+        android:layout_marginVertical="@dimen/y35"
+        android:text="Title"
+        android:textColor="@color/dark_gray"
         android:textSize="@dimen/y50" />
 
     <EditText
         android:id="@+id/et_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/x40"
         android:paddingHorizontal="@dimen/x35" />
 
     <RelativeLayout
@@ -31,9 +31,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_centerHorizontal="true"
             android:layout_marginLeft="@dimen/y50"
-            android:layout_marginRight="@dimen/x80"
+            android:layout_marginVertical="@dimen/y30"
             android:background="@drawable/ripple_bg2"
             android:text="@string/cancel"
             android:textColor="@color/hint_bg" />
@@ -44,9 +43,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="@dimen/x80"
             android:layout_marginRight="@dimen/y50"
+            android:layout_marginVertical="@dimen/y30"
             android:background="@drawable/ripple_bg2"
             android:text="@string/dialog_ok"
             android:textColor="@color/hint_bg" />

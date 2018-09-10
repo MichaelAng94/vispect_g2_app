@@ -1,80 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:background="@color/white"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="200dp">
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/alarm_video"
-        android:gravity="center"
-        android:background="@drawable/ripple_bg2"
-        android:padding="5dp"
-        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:background="@drawable/ripple_bg2"
+        android:gravity="center"
         android:text="@string/dialog_alarm_video"
-        android:textSize="@dimen/y45"
-        android:clickable="true"
-        android:focusable="true" />
+        android:textSize="@dimen/y45" />
 
     <View
-        android:background="@color/hint_bg"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="1dp"
+        android:background="@color/hint_bg" />
 
     <TextView
         android:id="@+id/driving_video"
-        android:gravity="center"
-        android:background="@drawable/ripple_bg2"
-        android:padding="5dp"
-        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:background="@drawable/ripple_bg2"
+        android:gravity="center"
         android:text="@string/dialog_driving_video"
-        android:textSize="@dimen/y45"
-        android:clickable="true"
-        android:focusable="true"
-        />
+        android:textSize="@dimen/y45" />
 
     <View
-        android:background="@color/hint_bg"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="1dp"
+        android:background="@color/hint_bg" />
 
     <TextView
-        android:id="@+id/tv_localvideo"
-        android:gravity="center"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="@drawable/ripple_bg2"
-        android:padding="5dp"
-        android:layout_gravity="center"
+        android:id="@+id/local_video"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:background="@drawable/ripple_bg2"
+        android:gravity="center"
         android:text="@string/local_video"
-        android:textSize="@dimen/y45"
-        />
+        android:textSize="@dimen/y45" />
 
     <View
-        android:background="@color/hint_bg"
         android:layout_width="match_parent"
-        android:layout_height="5dp"/>
+        android:layout_height="5dp"
+        android:background="@color/hint_bg" />
 
     <TextView
         android:id="@+id/tv_cancel"
-        android:gravity="center"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="@drawable/ripple_bg2"
-        android:textColor="@color/black"
-        android:padding="5dp"
-        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:background="@drawable/ripple_bg2"
+        android:gravity="center"
         android:text="@string/cancel"
-        android:textSize="@dimen/y50"
-        />
+        android:textColor="@color/black"
+        android:textSize="@dimen/y50" />
 
 </LinearLayout>

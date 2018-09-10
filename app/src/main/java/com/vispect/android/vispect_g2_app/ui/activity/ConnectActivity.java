@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.vispect.android.vispect_g2_app.R;
 import com.vispect.android.vispect_g2_app.adapter.ConnectDdeviceAdapter;
@@ -34,8 +35,6 @@ import interf.GetBleInfoVersionCallback;
 import interf.OnScanDeviceLisetener;
 import interf.OnWifiOpenListener;
 
-import static com.vispect.android.vispect_g2_app.ui.activity.MainActivity.clickMeun;
-
 public class ConnectActivity extends BaseActivity {
 
     @Bind(R.id.list_connect)
@@ -44,77 +43,27 @@ public class ConnectActivity extends BaseActivity {
     ProgressBar progressBar1;
     @Bind(R.id.img_connect)
     ImageView imgConnect;
-    private String TAG = "ConnectActivity";
     ArrayList<BLEDevice> devicelist;
     ArrayList<BLEDevice> list;
-    private Handler myHandler = new Handler();
     ConnectDdeviceAdapter adapter;
+    private String TAG = "ConnectActivity";
+    private Handler myHandler = new Handler();
     private BLEDevice currDevice;
     private boolean isLogining = false;
-
-    @Override
-    public int getContentResource() {
-        return R.layout.activity_connect;
-    }
-
-    @Override
-    protected void initView(View view) {
-        setTitle(STR(R.string.road_live_choose_drive));
-        devicelist = new ArrayList<>();
-        list = new ArrayList<>();
-        AppConfig.getInstance(ConnectActivity.this).setDeviceName("unkonwDevoce");
-        adapter = new ConnectDdeviceAdapter(ConnectActivity.this, devicelist);
-        listConnect.setAdapter(adapter);
-        listConnect.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                logintToDevice(devicelist.get(position));
-                myHandler.postDelayed(connectfail,15000);
-            }
-        });
-        openBluetoothScanDevice();
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        clickMeun = 0;
-        finish();
-    }
-
-    private void refreshScan() {
-        list.clear();
-        devicelist.clear();
-        adapter.notifyDataSetChanged();
-        imgConnect.setVisibility(View.GONE);
-        progressBar1.setVisibility(View.VISIBLE);
-//        if (!AppContext.getInstance().getDeviceHelper().isConnectedDevice()) {
-            AppContext.getInstance().getDeviceHelper().stopScanDevice();
-            AppContext.getInstance().getDeviceHelper().startScanDevice(scanLister);
-            myHandler.postDelayed(cancleScan,7000);
-//        }
-    }
-
-    private void logintToDevice(final BLEDevice device) {
-        if (!isLogining) {
-            DialogHelp.getInstance().connectDialog(ConnectActivity.this,STR(R.string.connecting));
-            currDevice = device;
-            isLogining = true;
-            AppContext.getInstance().setBleRssi(device.getRssi());
-            BluetoothAdapter.getDefaultAdapter().cancelDiscovery();
-            AppContext.getInstance().getDeviceHelper().loginDevice(device, loginListener);
-        } else {
-            myHandler.post(frequentoperations);
-        }
-    }
-
     private Runnable frequentoperations = new Runnable() {
         @Override
         public void run() {
             XuToast.show(ConnectActivity.this, STR(R.string.frequent_operations));
         }
     };
-
+    private Runnable connectfail = new Runnable() {
+        @Override
+        public void run() {
+            isLogining = false;
+            DialogHelp.getInstance().hideDialog();
+            XuToast.show(ConnectActivity.this, STR(R.string.connect_connect_ble_fail));
+        }
+    };
     private BleLoginListener loginListener = new BleLoginListener() {
         @Override
         public void onSuccess() {
@@ -190,15 +139,16 @@ public class ConnectActivity extends BaseActivity {
             isLogining = false;
         }
     };
-
-    private Runnable connectfail = new Runnable() {
+    private Runnable refreshRunnable = new Runnable() {
         @Override
         public void run() {
-            isLogining = false;
-            DialogHelp.getInstance().hideDialog();
-            XuToast.show(ConnectActivity.this, STR(R.string.connect_connect_ble_fail));
-    }};
-
+            if (adapter == null || list == null) {
+                return;
+            }
+            devicelist = (ArrayList<BLEDevice>) list.clone();
+            adapter.refreshData(devicelist);
+        }
+    };
     private OnScanDeviceLisetener scanLister = new OnScanDeviceLisetener() {
         @Override
         public void onSuccess() {
@@ -216,6 +166,70 @@ public class ConnectActivity extends BaseActivity {
             addDevice(bleDevice);
         }
     };
+    private Runnable cancleScan = new Runnable() {
+        @Override
+        public void run() {
+            progressBar1.setVisibility(View.GONE);
+            imgConnect.setVisibility(View.VISIBLE);
+            AppContext.getInstance().getDeviceHelper().stopScanDevice();
+        }
+    };
+
+    @Override
+    public int getContentResource() {
+        return R.layout.activity_connect;
+    }
+
+    @Override
+    protected void initView(View view) {
+        TextView title = findViewById(R.id.tv_title);
+        title.setText((STR(R.string.road_live_choose_drive)));
+        devicelist = new ArrayList<>();
+        list = new ArrayList<>();
+        AppConfig.getInstance(ConnectActivity.this).setDeviceName("unkonwDevoce");
+        adapter = new ConnectDdeviceAdapter(ConnectActivity.this, devicelist);
+        listConnect.setAdapter(adapter);
+        listConnect.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                logintToDevice(devicelist.get(position));
+                myHandler.postDelayed(connectfail, 15000);
+            }
+        });
+        openBluetoothScanDevice();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+    private void refreshScan() {
+        list.clear();
+        devicelist.clear();
+        adapter.notifyDataSetChanged();
+        imgConnect.setVisibility(View.GONE);
+        progressBar1.setVisibility(View.VISIBLE);
+//        if (!AppContext.getInstance().getDeviceHelper().isConnectedDevice()) {
+        AppContext.getInstance().getDeviceHelper().stopScanDevice();
+        AppContext.getInstance().getDeviceHelper().startScanDevice(scanLister);
+        myHandler.postDelayed(cancleScan, 7000);
+//        }
+    }
+
+    private void logintToDevice(BLEDevice device) {
+        if (!isLogining) {
+            DialogHelp.getInstance().connectDialog(ConnectActivity.this, STR(R.string.connecting));
+            currDevice = device;
+            isLogining = true;
+            AppContext.getInstance().setBleRssi(device.getRssi());
+            BluetoothAdapter.getDefaultAdapter().cancelDiscovery();
+            AppContext.getInstance().getDeviceHelper().loginDevice(device, loginListener);
+        } else {
+            myHandler.post(frequentoperations);
+        }
+    }
 
     @Override
     protected void onDestroy() {
@@ -324,26 +338,6 @@ public class ConnectActivity extends BaseActivity {
         });
     }
 
-    private Runnable refreshRunnable = new Runnable() {
-        @Override
-        public void run() {
-            if (adapter == null || list == null) {
-                return;
-            }
-            devicelist = (ArrayList<BLEDevice>) list.clone();
-            adapter.refreshData(devicelist);
-        }
-    };
-
-    private Runnable cancleScan = new Runnable() {
-        @Override
-        public void run() {
-            progressBar1.setVisibility(View.GONE);
-            imgConnect.setVisibility(View.VISIBLE);
-            AppContext.getInstance().getDeviceHelper().stopScanDevice();
-        }
-    };
-
     @OnClick({R.id.img_connect,R.id.img_back_main})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -351,7 +345,6 @@ public class ConnectActivity extends BaseActivity {
                 refreshScan();
                 break;
             case R.id.img_back_main:
-                clickMeun = 0;
                 finish();
                 break;
         }

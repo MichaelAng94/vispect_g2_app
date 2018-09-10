@@ -2,18 +2,13 @@ package com.vispect.android.vispect_g2_app.ui.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.EditText;
 
 import com.vispect.android.vispect_g2_app.R;
 import com.vispect.android.vispect_g2_app.app.AppConfig;
 import com.vispect.android.vispect_g2_app.app.AppContext;
-import com.vispect.android.vispect_g2_app.app.AppManager;
 import com.vispect.android.vispect_g2_app.bean.ResultData;
 import com.vispect.android.vispect_g2_app.bean.UserInfo;
 import com.vispect.android.vispect_g2_app.controller.AppApi;
@@ -83,7 +78,7 @@ public class LoginActivity extends BaseActivity {
                     XuToast.show(LoginActivity.this, STR(R.string.login_login_has_null));
                     return;
                 }
-                if (!XuString.checkpassword(password)) {
+                if (!XuString.checkPassword(password)) {
                     XuToast.show(LoginActivity.this, STR(R.string.login_login_password_format_error));
                     return;
                 }

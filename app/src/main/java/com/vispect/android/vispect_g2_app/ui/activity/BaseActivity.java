@@ -13,6 +13,7 @@ import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
@@ -30,6 +31,8 @@ import com.vispect.android.vispect_g2_app.interf.ProgressController;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.ButterKnife;
 
 /**
  * Activity基类 Created by xu on 2016/03/11.
@@ -137,7 +140,6 @@ public abstract class BaseActivity extends FragmentActivity implements ActivityC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         onBeforeSetContent();
 
         View view = onCreateContentView();
@@ -219,6 +221,7 @@ public abstract class BaseActivity extends FragmentActivity implements ActivityC
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        ButterKnife.unbind(this);
         getActivityHelper().onDestroy();
         mProgressDialog = null;
         mActivityHelper = null;

@@ -4,56 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/main_background"
+    android:orientation="vertical"
     tools:context="com.vispect.android.vispect_g2_app.ui.activity.ConnectActivity">
 
     <android.support.v7.widget.Toolbar
-        app:contentInsetStart="5dp"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y115"
-        android:background="@color/background">
+        android:background="@color/black"
+        app:contentInsetStart="5dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_centerVertical="true"
                 android:id="@+id/img_back_main"
                 android:layout_width="@dimen/x60"
                 android:layout_height="@dimen/y60"
                 android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
                 android:src="@mipmap/ico_back" />
 
             <TextView
+                android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="G2"
-                android:id="@+id/tv_title"
                 android:textColor="@color/white"
                 android:textSize="@dimen/x45" />
 
             <Button
-                android:layout_marginRight="@dimen/x20"
-                android:textColor="@color/white"
-                android:layout_alignParentRight="true"
                 android:id="@+id/btn_save"
-                android:layout_centerVertical="true"
                 android:layout_width="@dimen/x110"
                 android:layout_height="@dimen/y70"
-                android:textSize="@dimen/y35"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x20"
+                android:background="@drawable/outside"
                 android:text="@string/done"
-                android:background="@drawable/outside" />
+                android:textColor="@color/white"
+                android:textSize="@dimen/y35" />
 
         </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
 
    <FrameLayout
-       android:background="@color/main_background"
        android:id="@+id/frame_install"
        android:layout_width="match_parent"
-       android:layout_height="match_parent"/>
+       android:layout_height="match_parent"
+       android:background="@color/main_background" />
 </LinearLayout>

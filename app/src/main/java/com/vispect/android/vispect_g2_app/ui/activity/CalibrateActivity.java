@@ -60,8 +60,6 @@ import interf.ResultListner;
 import interf.SetPointOfArea;
 import utils.Vispect_SDK_FileUtils;
 
-import static com.vispect.android.vispect_g2_app.ui.activity.MainActivity.cameras;
-
 
 //import com.coremedia.iso.boxes.Container;
 //import com.googlecode.mp4parser.FileDataSourceImpl;
@@ -167,25 +165,6 @@ public class CalibrateActivity extends BaseActivity {
     private boolean onStart = false;
     private OnGetShortVideoCallback onGetShortVideoCallback;
     private volatile int progress = -1;
-    Runnable changeProgress = new Runnable() {
-        @Override
-        public void run() {
-            if (progress != 100) {
-                if (linProgress != null && linProgress.getVisibility() == View.GONE) {
-                    linProgress.setVisibility(View.VISIBLE);
-                }
-                if (tvProgress != null) {
-                    tvProgress.setText(progress + "");
-                }
-
-                mhandler.postDelayed(getProgress, 2000);
-            } else {
-                mhandler.post(getcenterponintag);
-                i = -1;
-                linProgress.setVisibility(View.GONE);
-            }
-        }
-    };
     Runnable getProgress = new Runnable() {
         @Override
         public void run() {
@@ -287,6 +266,25 @@ public class CalibrateActivity extends BaseActivity {
                     canTranslation = true;
                 }
             });
+        }
+    };
+    Runnable changeProgress = new Runnable() {
+        @Override
+        public void run() {
+            if (progress != 100) {
+                if (linProgress != null && linProgress.getVisibility() == View.GONE) {
+                    linProgress.setVisibility(View.VISIBLE);
+                }
+                if (tvProgress != null) {
+                    tvProgress.setText(progress + "");
+                }
+
+                mhandler.postDelayed(getProgress, 2000);
+            } else {
+                mhandler.post(getcenterponintag);
+                i = -1;
+                linProgress.setVisibility(View.GONE);
+            }
         }
     };
 //    //----------------------------------------
@@ -925,27 +923,27 @@ public class CalibrateActivity extends BaseActivity {
         drawdotView.setIsCalibrate(true);
     }
 
-    public int getID() {
-        for (Point pp : cameras) {
-            XuLog.e("pppp" + pp.x + "   " + pp.y);
-        }
-
-        if (cameras != null) {
-            for (Point p : cameras) {
-                if (p.x == cameraID + 1 && p.y != -1 && p.y != 0) {
-                    cameraType = p.y;
-                    return ++cameraID;
-                }
-            }
-            for (Point p : cameras) {
-                if (p.x == 0 && p.y != -1 && p.y != 0) {
-                    cameraType = p.y;
-                }
-            }
-        }
-        cameraID = 0;
-        return 0;
-    }
+//    public int getID() {
+//        for (Point pp : cameras) {
+//            XuLog.e("pppp" + pp.x + "   " + pp.y);
+//        }
+//
+//        if (cameras != null) {
+//            for (Point p : cameras) {
+//                if (p.x == cameraID + 1 && p.y != -1 && p.y != 0) {
+//                    cameraType = p.y;
+//                    return ++cameraID;
+//                }
+//            }
+//            for (Point p : cameras) {
+//                if (p.x == 0 && p.y != -1 && p.y != 0) {
+//                    cameraType = p.y;
+//                }
+//            }
+//        }
+//        cameraID = 0;
+//        return 0;
+//    }
 
 
     @OnClick({R.id.img_back_main, R.id.img_change})

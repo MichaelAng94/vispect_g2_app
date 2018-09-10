@@ -312,7 +312,7 @@ public class XuString {
      *
      * @param password：密码
      */
-    public static boolean checkpassword(String password) {
+    public static boolean checkPassword(String password) {
         boolean result = false;
         Pattern p = Pattern.compile("^[a-zA-Z_0-9]{6,16}$");
         Matcher m = p.matcher(password);

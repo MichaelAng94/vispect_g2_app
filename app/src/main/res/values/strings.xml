@@ -255,10 +255,10 @@ Vispect Team</string>
     <string name="update_not_find_file">haven\'t find file</string>
     <string name="click_again_to_exit_app">click again to exit app</string>
     <string name="user_guide">User\'s Guide</string>
-    <string name="insatllation">Installation</string>
+    <string name="installation">Installation</string>
 
     <string name="live">Live</string>
-    <string name="video_archivews">Video Archives</string>
+    <string name="video_archives">Video Archives</string>
     <string name="frequent_operations">Frequent operations!</string>
     <string name="not_find_service"> Could not find servers. Please restart again</string>
     <string name="connect_connect_ble_fail">Connection failed, please try again later. </string>
@@ -1194,7 +1194,7 @@ Vispect Team</string>
 
     <string name="dsm_setings_title">DSM settings for professional installers</string>
 
-    <string name="dialog_tips_connecting">Connecting</string>
+    <string name="dialog_tips_connecting">Connecting...</string>
     <string name="dialog_tips_connecting2">Connecting device</string>
     <string name="title_step">Steps</string>
 
@@ -1218,4 +1218,5 @@ Vispect Team</string>
     <string name="choose_from_photos">Choose from Photos</string>
     <string name="upload_success">Upload Success</string>
     <string name="upload_fail">Upload Failed !</string>
+    <string name="get_camera_list_failed">get camera list failed</string>
 </resources>

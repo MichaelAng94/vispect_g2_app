@@ -28,36 +28,33 @@ import java.util.ArrayList;
 
 public class DialogHelp {
 
-    private MaterialDialog.Builder mBuilder;
     private static MaterialDialog mMaterialDialog;
     private static DialogHelp dialogHelp;
-    private Activity ac;
     private static ArrayList<MaterialDialog> dialoglist = new ArrayList<>();
-
-    public void hideDialog() {
-        if (mMaterialDialog!=null&&!ac.isFinishing()){
-            mMaterialDialog.dismiss();
-            mMaterialDialog = null;
-        }else if(dialoglist.size()>0){
-            dialoglist.get(dialoglist.size()-1).dismiss();
-            dialoglist.remove(dialoglist.size()-1);
-        }
-    }
+    private MaterialDialog.Builder mBuilder;
+    private Activity ac;
 
     public static DialogHelp getInstance() {
         if (dialogHelp == null) {
             dialogHelp = new DialogHelp();
         }
-        if (mMaterialDialog != null){
+        if (mMaterialDialog != null) {
             dialoglist.add(mMaterialDialog);
         }
         return dialogHelp;
     }
 
+    public void hideDialog() {
+        if (mMaterialDialog != null && !ac.isFinishing()) {
+            mMaterialDialog.dismiss();
+            mMaterialDialog = null;
+        } else if (dialoglist.size() > 0) {
+            dialoglist.get(dialoglist.size() - 1).dismiss();
+            dialoglist.remove(dialoglist.size() - 1);
+        }
+    }
 
-
-
-    public void loginDialog(final Activity ac) {
+    public void loginDialog(Activity ac) {
         this.ac = ac;
         mBuilder = new MaterialDialog.Builder(ac);
         mMaterialDialog = mBuilder.title("Logging in")
@@ -68,14 +65,14 @@ public class DialogHelp {
 
     }
 
-    public MaterialDialog editDialog(final Activity ac, String title, final DialogClickListener listener) {
+    public MaterialDialog editDialog(Activity ac, String title, final DialogClickListener listener) {
         this.ac = ac;
         mBuilder = new MaterialDialog.Builder(ac);
         mMaterialDialog = new MaterialDialog.Builder(ac)
-                .customView(R.layout.editdialog,false)
+                .customView(R.layout.editdialog, false)
                 .show();
         final EditText et = (EditText) mMaterialDialog.findViewById(R.id.et_phone);
-        TextView titleDialog = (TextView) mMaterialDialog.findViewById(R.id.tv_title_dialog);
+        TextView titleDialog = (TextView) mMaterialDialog.findViewById(R.id.tv_title);
         titleDialog.setText(title);
         Button btnOk = (Button) mMaterialDialog.findViewById(R.id.btn_ok);
         btnOk.setOnClickListener(new View.OnClickListener() {
@@ -94,11 +91,11 @@ public class DialogHelp {
         return mMaterialDialog;
     }
 
-    public MaterialDialog carDialog(final Activity ac, String title, final CarDialogClickListener listener) {
+    public MaterialDialog carDialog(Activity ac, String title, final CarDialogClickListener listener) {
         this.ac = ac;
         mBuilder = new MaterialDialog.Builder(ac);
         mMaterialDialog = new MaterialDialog.Builder(ac)
-                .customView(R.layout.cardialog,false)
+                .customView(R.layout.cardialog, false)
                 .show();
         final EditText et_deiver = (EditText) mMaterialDialog.findViewById(R.id.et_brand);
         final EditText et_model = (EditText) mMaterialDialog.findViewById(R.id.et_model);
@@ -108,7 +105,7 @@ public class DialogHelp {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.clickYes(et_deiver.getText().toString(),et_model.getText().toString());
+                listener.clickYes(et_deiver.getText().toString(), et_model.getText().toString());
             }
         });
         Button btnCancle = (Button) mMaterialDialog.findViewById(R.id.btn_cancel);
@@ -121,20 +118,20 @@ public class DialogHelp {
         return mMaterialDialog;
     }
 
-    public void connectDialog(Activity ac,String title) {
+    public void connectDialog(Activity ac, String title) {
         this.ac = ac;
         mBuilder = new MaterialDialog.Builder(ac);
-        mMaterialDialog =  mBuilder.title(title)
+        mMaterialDialog = mBuilder.title(title)
                 .canceledOnTouchOutside(false)
                 .content(ac.getResources().getString(R.string.waitting))
                 .progress(true, 0)
                 .show();
     }
 
-    public MaterialDialog connectDialog(Activity ac,String title,String context) {
+    public MaterialDialog connectDialog(Activity ac, String title, String context) {
         this.ac = ac;
         mBuilder = new MaterialDialog.Builder(ac);
-        mMaterialDialog =  mBuilder.title(title)
+        mMaterialDialog = mBuilder.title(title)
                 .canceledOnTouchOutside(false)
                 .content(context)
                 .progress(true, 0)
@@ -142,26 +139,32 @@ public class DialogHelp {
         return mMaterialDialog;
     }
 
-    public void chooesDialog(Activity ac,String title) {
+    public void chooesDialog(Activity ac, String title) {
         this.ac = ac;
         mBuilder = new MaterialDialog.Builder(ac);
-        mMaterialDialog =  mBuilder.title(title)
+        mMaterialDialog = mBuilder.title(title)
                 .canceledOnTouchOutside(false)
                 .content(ac.getResources().getString(R.string.waitting))
                 .progress(true, 0)
                 .show();
     }
 
-    public void sexDialog(final Activity ac, final DialogClickListener listener){
+    /**
+     * @param defaultValue 0表示默认选中男,1表示女
+     * @param listener
+     */
+
+    public void sexDialog(Activity ac, int defaultValue, final DialogClickListener listener) {
         this.ac = ac;
         mBuilder = new MaterialDialog.Builder(ac);
         mMaterialDialog = new MaterialDialog.Builder(ac)
-                .customView(R.layout.dialog_sex,false)
+                .customView(R.layout.dialog_sex, false)
                 .show();
         final RadioGroup rg = (RadioGroup) mMaterialDialog.findViewById(R.id.ra_sex);
+        rg.check(defaultValue == 0 ? R.id.male : R.id.female);
         Button btnOk = (Button) mMaterialDialog.findViewById(R.id.btn_ok);
-        Button btnCancle = (Button) mMaterialDialog.findViewById(R.id.btn_cancel);
-        btnCancle.setOnClickListener(new View.OnClickListener() {
+        Button btnCancel = (Button) mMaterialDialog.findViewById(R.id.btn_cancel);
+        btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mMaterialDialog.dismiss();
@@ -170,9 +173,9 @@ public class DialogHelp {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (rg.getCheckedRadioButtonId() == R.id.male){
+                if (rg.getCheckedRadioButtonId() == R.id.male) {
                     listener.clickYes("0");
-                }else{
+                } else {
                     listener.clickYes("1");
                 }
 
@@ -180,11 +183,11 @@ public class DialogHelp {
         });
     }
 
-    public void loopDialog(final Activity ac,View view){
+    public void loopDialog(Activity ac, View view) {
         this.ac = ac;
         mBuilder = new MaterialDialog.Builder(ac);
         mMaterialDialog = new MaterialDialog.Builder(ac)
-                .customView(R.layout.dialog_loop,false)
+                .customView(R.layout.dialog_loop, false)
                 .show();
     }
 

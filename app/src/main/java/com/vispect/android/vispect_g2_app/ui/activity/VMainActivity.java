@@ -3,6 +3,7 @@ package com.vispect.android.vispect_g2_app.ui.activity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.Camera;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.PointF;
@@ -69,8 +70,6 @@ import interf.SetPointOfArea;
 import interf.SideAlarmEvent;
 import utils.Vispect_SDK_FileUtils;
 
-import static com.vispect.android.vispect_g2_app.ui.activity.MainActivity.cameras;
-
 
 //import com.coremedia.iso.boxes.Container;
 //import com.googlecode.mp4parser.FileDataSourceImpl;
@@ -84,7 +83,10 @@ import static com.vispect.android.vispect_g2_app.ui.activity.MainActivity.camera
 public class VMainActivity extends BaseActivity {
 
     private final static String TAG = "VMainActivity";
-
+    public static boolean runing = false;
+    public static boolean drawable = false;
+    public static boolean isShowBackgroud;
+    static boolean hasAdasDta = false;
     @Bind(R.id.lin_click)
     LinearLayout linClick;
     @Bind(R.id.tv_readyClick)
@@ -93,32 +95,20 @@ public class VMainActivity extends BaseActivity {
     RelativeLayout reTop;
     @Bind(R.id.img_change)
     ImageView imgChange;
-
-
     @Bind(R.id.hsrufaceview)
     XuHCSurfaceView hsrufaceview;
-
-
     @Bind(R.id.drawadas)
     DrawAdas drawadas;
-
-
     @Bind(R.id.tv_speed)
     TextView tv_speed;
-
-
     @Bind(R.id.ll_center_x)
     LinearLayout ll_center_x;
     @Bind(R.id.iv_lin_center)
     LinearLayout iv_lin_center;
-
-
     @Bind(R.id.ll_lin_center_d)
     LinearLayout ll_lin_center_d;
     @Bind(R.id.ll_mask_tips)
     LinearLayout ll_mask_tips;
-
-
     ByteBuffer buffer = ByteBuffer.allocate(1024 * 1024);
     @Bind(R.id.tv_progress)
     TextView tvProgress;
@@ -126,39 +116,12 @@ public class VMainActivity extends BaseActivity {
     LinearLayout linProgress;
     @Bind(R.id.drawdotView)
     DrawDotView drawdotView;
-    private int count_i = 0;
-    private boolean needGetShorVideo = false;
-    private boolean onStart = false;
-    private OnGetShortVideoCallback onGetShortVideoCallback;
-    private volatile int progress = -1;
-    private Boolean isCalibrate = false;
-    public static boolean runing = false;
-    private ArrayList<Point> points = null;
-    public static boolean drawable = false;
-
-    private int cameraID = 0;
-    private int cameraType = -1;
-    static boolean hasAdasDta = false;
-
-    private int horizontal = -1;
     boolean toclear = false;
     DrawShape sensor = null;
     ArrayList<DrawShape> adas = null;
     float c_x = 0;
-
-
-    private PowerManager.WakeLock sCpuWakeLock;
-    private float centerpointX = -2;
-    private float centerpointY = -2;
-
-
-    private String speed = "";
     Handler mhandler = new Handler();
     Handler speedHandler = new Handler();
-
-    private boolean canTranslation = false;
-
-
     Runnable check_network = new Runnable() {
         @Override
         public void run() {
@@ -188,28 +151,59 @@ public class VMainActivity extends BaseActivity {
             }
         }
     };
-
-
-    Runnable changeProgress = new Runnable() {
+    int i = 1;
+    private int count_i = 0;
+    private boolean needGetShorVideo = false;
+    private boolean onStart = false;
+    private OnGetShortVideoCallback onGetShortVideoCallback;
+    private volatile int progress = -1;
+    Runnable getProgress = new Runnable() {
         @Override
         public void run() {
-            if (progress != 100) {
-                if (linProgress != null && linProgress.getVisibility() == View.GONE) {
-                    linProgress.setVisibility(View.VISIBLE);
-                }
-                if (tvProgress != null) {
-                    tvProgress.setText(progress + "");
-                }
 
-                mhandler.postDelayed(getProgress, 2000);
-            } else {
-                mhandler.post(getcenterponintag);
-                i = -1;
-                linProgress.setVisibility(View.GONE);
+            try {
+                AppContext.getInstance().getDeviceHelper().getCorrectingProgress(new CorrectingCallback() {
+                    @Override
+                    public void onGetProgress(int i) {
+
+                        if (i == 100) {
+                            progress = 100;
+                        } else {
+                            if (progress != i) {
+                                progress = i;
+                            }
+                        }
+
+                        mhandler.post(changeProgress);
+                    }
+
+                    @Override
+                    public void onGetOperationResult(boolean b) {
+                        if (!b) {
+                            tvProgress.setText(STR(R.string.calibration4_step9_context10));
+                        }
+                    }
+
+                    @Override
+                    public void onGetCenterPoint(PointF pointF) {
+                    }
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     };
-
+    private Boolean isCalibrate = false;
+    private ArrayList<Point> points = null;
+    private int cameraID = 0;
+    private int cameraType = -1;
+    private int horizontal = -1;
+    private PowerManager.WakeLock sCpuWakeLock;
+    private float centerpointX = -2;
+    private float centerpointY = -2;
+    private String speed = "";
+    private boolean canTranslation = false;
     Runnable getcenterponint = new Runnable() {
         @Override
         public void run() {
@@ -239,7 +233,6 @@ public class VMainActivity extends BaseActivity {
             }
         }
     };
-
     Runnable getcenterponintag = new Runnable() {
         @Override
         public void run() {
@@ -258,7 +251,7 @@ public class VMainActivity extends BaseActivity {
                 }
 
                 @Override
-                public void onGetCenterPoint(final PointF pointF) {
+                public void onGetCenterPoint(PointF pointF) {
                     centerpointX = pointF.x;
                     centerpointY = pointF.y;
                     XuLog.e(TAG, "中心点坐标：" + pointF.x + "   " + pointF.y);
@@ -267,7 +260,37 @@ public class VMainActivity extends BaseActivity {
             });
         }
     };
+    Runnable changeProgress = new Runnable() {
+        @Override
+        public void run() {
+            if (progress != 100) {
+                if (linProgress != null && linProgress.getVisibility() == View.GONE) {
+                    linProgress.setVisibility(View.VISIBLE);
+                }
+                if (tvProgress != null) {
+                    tvProgress.setText(progress + "");
+                }
 
+                mhandler.postDelayed(getProgress, 2000);
+            } else {
+                mhandler.post(getcenterponintag);
+                i = -1;
+                linProgress.setVisibility(View.GONE);
+            }
+        }
+    };
+    //    //----------------------------------------
+//    BufferedOutputStream bo = null;
+//    //----------------------------------------
+    private List<Point> cameras = new ArrayList<>();
+    private int udpCamera = -1;
+
+    /**
+     * 此处接收从画线/框信息
+     */
+    private boolean isNewSensor = true;
+    //是否画ADAS信息
+    private boolean canGetAdas = true;
     Runnable showspeedRunnable = new Runnable() {
         @Override
         public void run() {
@@ -307,56 +330,6 @@ public class VMainActivity extends BaseActivity {
 
         }
     };
-
-
-    Runnable getProgress = new Runnable() {
-        @Override
-        public void run() {
-
-            try {
-                AppContext.getInstance().getDeviceHelper().getCorrectingProgress(new CorrectingCallback() {
-                    @Override
-                    public void onGetProgress(int i) {
-
-                        if (i == 100) {
-                            progress = 100;
-                        } else {
-                            if (progress != i) {
-                                progress = i;
-                            }
-                        }
-
-                        mhandler.post(changeProgress);
-                    }
-
-                    @Override
-                    public void onGetOperationResult(boolean b) {
-                        if (!b) {
-                            tvProgress.setText(STR(R.string.calibration4_step9_context10));
-                        }
-                    }
-
-                    @Override
-                    public void onGetCenterPoint(PointF pointF) {
-                    }
-                });
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    };
-
-
-    public static boolean isShowBackgroud;
-//    //----------------------------------------
-//    BufferedOutputStream bo = null;
-//    //----------------------------------------
-
-    /**
-     * 此处接收从画线/框信息
-     */
-    private boolean isNewSensor = true;
     private RealViewCallback realViewCallback = new RealViewCallback() {
         @Override
         public void onGetPixData(byte[] buf, int size) {
@@ -488,9 +461,35 @@ public class VMainActivity extends BaseActivity {
 
         }
     };
+    private OnGetShortVideoCallback callback = new OnGetShortVideoCallback() {
+        @Override
+        public void onFail() {
+            XuLog.e(TAG, "获取短视频失败");
 
-    //是否画ADAS信息
-    private boolean canGetAdas = true;
+        }
+
+        @Override
+        public void onGet(byte[] buff, int length) {
+            XuLog.e(TAG, "获取短视频成功  length：" + length);
+            Vispect_SDK_FileUtils.getFile(buff, AppContext.getInstance().getDeviceHelper().getDownloadDir(), "test.h264");
+        }
+    };
+
+    /**
+     * 当浮点型数据位数超过10位之后，数据变成科学计数法显示。用此方法可以使其正常显示。
+     *
+     * @param value
+     * @return Sting
+     */
+    public static String formatFloatNumber(float value) {
+        if (value != 0.00) {
+            DecimalFormat df = new DecimalFormat("##0.000000000000");
+            return df.format(value);
+        } else {
+            return "0.00";
+        }
+
+    }
 
     @Override
     public int getContentResource() {
@@ -503,14 +502,11 @@ public class VMainActivity extends BaseActivity {
 
     }
 
-    int i = 1;
-
     @OnClick(R.id.tv_speed)
     void changeShow() {
         AppContext.getInstance().getDeviceHelper().setADASInfoshowDetailsType((i % 2));
         i++;
     }
-
 
     @OnClick(R.id.tv_realview_got_it)
     void onclick(View v) {
@@ -524,7 +520,7 @@ public class VMainActivity extends BaseActivity {
         DialogHelp.getInstance().hideDialog();
 
         for (Point p : cameras) {
-            if (p.x == MainActivity.udpCamera) {
+            if (p.x == udpCamera) {
                 cameraType = p.y;
                 cameraID = p.x;
             }
@@ -719,15 +715,16 @@ public class VMainActivity extends BaseActivity {
                 @Override
                 public void onSuccess(Map map) {
                     for (int i = 0; i < map.size(); i++) {
-                        if (map.containsKey(i)){
+                        if (map.containsKey(i)) {
                             ArrayList<Point> pointsList = (ArrayList<Point>) map.get(i);
 
-                            }
                         }
+                    }
                 }
+
                 @Override
                 public void onFail() {
-                    XuLog.e("getDSMPointList onFail","getDSMPointList fail");
+                    XuLog.e("getDSMPointList onFail", "getDSMPointList fail");
                 }
             });
         } else {
@@ -743,7 +740,6 @@ public class VMainActivity extends BaseActivity {
         }
 
     }
-
 
     @OnClick({R.id.tv_back, R.id.tv_removeall, R.id.tv_sure, R.id.tv_cancle})
     public void onViewClick(View view) {
@@ -800,26 +796,12 @@ public class VMainActivity extends BaseActivity {
         }
     }
 
-    private OnGetShortVideoCallback callback = new OnGetShortVideoCallback() {
-        @Override
-        public void onFail() {
-            XuLog.e(TAG, "获取短视频失败");
-
-        }
-
-        @Override
-        public void onGet(byte[] buff, int length) {
-            XuLog.e(TAG, "获取短视频成功  length：" + length);
-            Vispect_SDK_FileUtils.getFile(buff, AppContext.getInstance().getDeviceHelper().getDownloadDir(), "test.h264");
-        }
-    };
-
     private void setSimulateClick(View view, float x, float y) {
         long downTime = SystemClock.uptimeMillis();
-        final MotionEvent downEvent = MotionEvent.obtain(downTime, downTime,
+        MotionEvent downEvent = MotionEvent.obtain(downTime, downTime,
                 MotionEvent.ACTION_DOWN, x, y, 0);
         downTime += 1000;
-        final MotionEvent upEvent = MotionEvent.obtain(downTime, downTime,
+        MotionEvent upEvent = MotionEvent.obtain(downTime, downTime,
                 MotionEvent.ACTION_UP, x, y, 0);
         view.onTouchEvent(downEvent);
         view.onTouchEvent(upEvent);
@@ -827,7 +809,6 @@ public class VMainActivity extends BaseActivity {
         upEvent.recycle();
 
     }
-
 
     private synchronized void checksensor(float x, float y) {
         XuLog.e(TAG, "获取的   x:" + x + "    y:" + y);
@@ -858,7 +839,6 @@ public class VMainActivity extends BaseActivity {
 
     }
 
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         XuLog.e(TAG, "按下了一个键:" + keyCode);
@@ -872,22 +852,6 @@ public class VMainActivity extends BaseActivity {
             return false;
         }
         return super.onKeyDown(keyCode, event);
-    }
-
-    /**
-     * 当浮点型数据位数超过10位之后，数据变成科学计数法显示。用此方法可以使其正常显示。
-     *
-     * @param value
-     * @return Sting
-     */
-    public static String formatFloatNumber(float value) {
-        if (value != 0.00) {
-            DecimalFormat df = new DecimalFormat("##0.000000000000");
-            return df.format(value);
-        } else {
-            return "0.00";
-        }
-
     }
 
     @Override
@@ -920,8 +884,7 @@ public class VMainActivity extends BaseActivity {
     protected void onStart() {
         super.onStart();
         //设置屏幕常亮
-        PowerManager pm = (PowerManager) this
-                .getSystemService(Context.POWER_SERVICE);
+        PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
         sCpuWakeLock = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK, "okTag");
         sCpuWakeLock.acquire();
         //表示正在看实时路况
@@ -1114,6 +1077,13 @@ public class VMainActivity extends BaseActivity {
 //        }
 //    }
 
+    @OnClick(R.id.tv_readyClick)
+    public void onViewClicke() {
+        findViewById(R.id.tv_readyClick).setVisibility(View.GONE);
+        findViewById(R.id.lin_click).setVisibility(View.VISIBLE);
+        drawdotView.setVisibility(View.VISIBLE);
+    }
+
     private class UpdateTask extends AsyncTask<byte[], Void, String> {
         @Override
         protected void onPreExecute() {
@@ -1132,13 +1102,6 @@ public class VMainActivity extends BaseActivity {
 
             return null;
         }
-    }
-
-    @OnClick(R.id.tv_readyClick)
-    public void onViewClicke() {
-        findViewById(R.id.tv_readyClick).setVisibility(View.GONE);
-        findViewById(R.id.lin_click).setVisibility(View.VISIBLE);
-        drawdotView.setVisibility(View.VISIBLE);
     }
 
 }

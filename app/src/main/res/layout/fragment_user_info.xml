@@ -40,13 +40,14 @@
         android:layout_height="@dimen/y160"
         android:layout_marginTop="@dimen/y40"
         android:background="@drawable/ripple_bg2"
-        android:paddingHorizontal="@dimen/x35">
+        android:paddingLeft="@dimen/x35">
 
         <TextView
             android:id="@+id/phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="@dimen/x35"
             android:text="phone"
             android:textColor="@color/textColor"
             android:textSize="@dimen/y50" />
@@ -56,6 +57,13 @@
             android:layout_height="@dimen/y90"
             android:layout_gravity="left|center_vertical"
             android:src="@drawable/phone" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y1"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="@dimen/x35"
+            android:background="@color/light_gray" />
     </FrameLayout>
 
     <FrameLayout
@@ -63,22 +71,29 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/y160"
         android:background="@drawable/ripple_bg2"
-        android:paddingHorizontal="@dimen/x35">
+        android:paddingLeft="@dimen/x35">
 
         <TextView
             android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="@dimen/x35"
             android:text="email"
             android:textColor="@color/textColor"
             android:textSize="@dimen/y50" />
-
         <ImageView
             android:layout_width="@dimen/x90"
             android:layout_height="@dimen/y90"
             android:layout_gravity="left|center_vertical"
             android:src="@drawable/email" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y1"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="@dimen/x35"
+            android:background="@color/light_gray" />
     </FrameLayout>
 
     <FrameLayout
@@ -110,6 +125,8 @@
         android:layout_height="@dimen/y160"
         android:layout_marginTop="@dimen/y40"
         android:background="@color/white"
+        android:clickable="true"
+        android:focusable="true"
         android:paddingHorizontal="@dimen/x35">
 
         <TextView

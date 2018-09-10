@@ -3,7 +3,6 @@ package com.vispect.android.vispect_g2_app.ui.activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.widget.EditText;
@@ -48,7 +47,7 @@ public class RegisterActivity extends BaseActivity {
             XuToast.show(RegisterActivity.this, STR(R.string.login_login_has_null));
             return;
         }
-        if (!XuString.checkpassword(password)) {
+        if (!XuString.checkPassword(password)) {
             XuToast.show(RegisterActivity.this, STR(R.string.login_login_password_format_error));
             return;
         }
