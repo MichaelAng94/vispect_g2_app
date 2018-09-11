@@ -2,20 +2,19 @@ package com.vispect.android.vispect_g2_app.ui.activity;
 
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
-import android.os.SystemClock;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import com.vispect.android.vispect_g2_app.R;
-import com.vispect.android.vispect_g2_app.adapter.ConnectDdeviceAdapter;
+import com.vispect.android.vispect_g2_app.adapter.DevicesAdapter;
 import com.vispect.android.vispect_g2_app.app.AppConfig;
 import com.vispect.android.vispect_g2_app.app.AppContext;
+import com.vispect.android.vispect_g2_app.controller.DeviceHelper;
 import com.vispect.android.vispect_g2_app.ui.widget.DialogHelp;
+import com.vispect.android.vispect_g2_app.ui.widget.MoListView;
 import com.vispect.android.vispect_g2_app.utils.XuLog;
 import com.vispect.android.vispect_g2_app.utils.XuToast;
 
@@ -25,45 +24,43 @@ import java.util.ArrayList;
 import bean.BLEDevice;
 import bean.Vispect_SDK_ErrorCode;
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import interf.BleLoginListener;
 import interf.OnScanDeviceLisetener;
 import interf.OnWifiOpenListener;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+import static com.vispect.android.vispect_g2_app.app.AppConfig.RESULT_CODE_OK;
+
 public class ConnectActivity extends BaseActivity {
 
-    @Bind(R.id.list_connect)
-    ListView listConnect;
-    @Bind(R.id.progressBar1)
-    ProgressBar progressBar1;
-    @Bind(R.id.img_connect)
-    ImageView imgConnect;
     ArrayList<BLEDevice> deviceList = new ArrayList<>();
-    ArrayList<BLEDevice> list = new ArrayList<>();
-    ConnectDdeviceAdapter adapter;
+    DevicesAdapter adapter;
+    @Bind(R.id.img_connect)
+    ImageView connect;
+    @Bind(R.id.progressBar)
+    ProgressBar progressBar;
+    @Bind(R.id.list_devices)
+    MoListView devicesListView;
     private String TAG = "ConnectActivity";
     private Handler myHandler = new Handler();
-    private BLEDevice currDevice;
-    private boolean isLogining = false;
-    private Runnable frequentoperations = new Runnable() {
+    private boolean isConnecting = false;
+
+    private Runnable connectFailed = new Runnable() {
         @Override
         public void run() {
-            XuToast.show(ConnectActivity.this, STR(R.string.frequent_operations));
-        }
-    };
-    private Runnable connectfail = new Runnable() {
-        @Override
-        public void run() {
-            isLogining = false;
+            if (isConnecting) {
+                isConnecting = false;
+                XuToast.show(ConnectActivity.this, STR(R.string.connect_connect_ble_fail));
+            }
             DialogHelp.getInstance().hideDialog();
-            XuToast.show(ConnectActivity.this, STR(R.string.connect_connect_ble_fail));
         }
     };
     private BleLoginListener loginListener = new BleLoginListener() {
         @Override
         public void onSuccess() {
-            AppContext.getInstance().setLastBleName(currDevice.getBluetoothDevice().getName());
+//            AppContext.getInstance().setLastBleName(currDevice.getBluetoothDevice().getName());
             if (!AppContext.getInstance().isS()) {
                 //获取设备的WIFI名称和密码
                 AppContext.getInstance().getDeviceHelper().getDeviceWifiNameAndPassword(new OnWifiOpenListener() {
@@ -84,20 +81,20 @@ public class ConnectActivity extends BaseActivity {
                     }
                 });
             }
-            isLogining = false;
+            isConnecting = false;
 
-           DialogHelp.getInstance().hideDialog();
-           myHandler.postDelayed(new Runnable() {
-               @Override
-               public void run() {
-                   finish();
-               }
-           },500);
+            DialogHelp.getInstance().hideDialog();
+            setResult(RESULT_CODE_OK);
+            myHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    finish();
+                }
+            }, 500);
         }
 
         @Override
         public void onFail(int i) {
-            isLogining = false;
             switch (i) {
                 case Vispect_SDK_ErrorCode.BLE_DEVICE_UNWORK:
                     XuLog.d(TAG, "发现S款设备当前的生成正在处于IAP区且跳转失败，内置应该可能已损坏");
@@ -110,42 +107,29 @@ public class ConnectActivity extends BaseActivity {
                     break;
                 case Vispect_SDK_ErrorCode.CONNECT_BLE_FAIL:
                     //连接失败
-                    myHandler.post(connectfail);
                     break;
             }
+            myHandler.post(connectFailed);
         }
 
         @Override
         public void onNotService() {
-            isLogining = false;
-            myHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    XuToast.show(AppContext.getInstance(), STR(R.string.not_find_service));
-                    DialogHelp.getInstance().hideDialog();
-                    myHandler.post(connectfail);
-                }
-            });
+            isConnecting = false;
+            XuToast.show(AppContext.getInstance(), STR(R.string.not_find_service));
+            myHandler.post(connectFailed);
             XuLog.e(TAG, "设备没服务");
         }
 
         @Override
         public void onPassworderro() {
             //密码错误
-            isLogining = false;
+            isConnecting = false;
+            XuToast.show(AppContext.getInstance(), STR(R.string.error_password));
+            myHandler.post(connectFailed);
         }
     };
-    private Runnable refreshRunnable = new Runnable() {
-        @Override
-        public void run() {
-            if (adapter == null || list == null) {
-                return;
-            }
-            deviceList = (ArrayList<BLEDevice>) list.clone();
-            adapter.refreshData(deviceList);
-        }
-    };
-    private OnScanDeviceLisetener scanLister = new OnScanDeviceLisetener() {
+
+    private OnScanDeviceLisetener scanListener = new OnScanDeviceLisetener() {
         @Override
         public void onSuccess() {
             XuLog.d(TAG, "start ble scan success！");
@@ -159,14 +143,22 @@ public class ConnectActivity extends BaseActivity {
         @Override
         public void onFindDevice(BLEDevice bleDevice) {
             XuLog.e(TAG, "find a ADASDevice ：" + bleDevice.getBluetoothDevice().getName() + "     " + bleDevice.getBluetoothDevice().getAddress());
-            addDevice(bleDevice);
+            boolean has = false;
+            for (BLEDevice device : deviceList) {
+                if (device.getBluetoothDevice().equals(bleDevice.getBluetoothDevice())) {
+                    has = true;
+                }
+            }
+            if (!has) deviceList.add(bleDevice);
+            if (adapter != null) adapter.setDevices(deviceList);
         }
     };
-    private Runnable cancleScan = new Runnable() {
+
+    private Runnable cancelScanDevice = new Runnable() {
         @Override
         public void run() {
-            progressBar1.setVisibility(View.GONE);
-            imgConnect.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(GONE);
+            connect.setVisibility(VISIBLE);
             AppContext.getInstance().getDeviceHelper().stopScanDevice();
         }
     };
@@ -178,171 +170,89 @@ public class ConnectActivity extends BaseActivity {
 
     @Override
     protected void initView(View view) {
-//        TextView title = findViewById(R.id.tv_title);
-//        title.setText((STR(R.string.road_live_choose_drive)));
-        list = new ArrayList<>();
-        AppConfig.getInstance(ConnectActivity.this).setDeviceName("unkonwDevoce");
-        adapter = new ConnectDdeviceAdapter(ConnectActivity.this, deviceList);
-        listConnect.setAdapter(adapter);
-        listConnect.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        adapter = new DevicesAdapter(this);
+        devicesListView.setAdapter(adapter);
+        devicesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                logintToDevice(deviceList.get(position));
-                myHandler.postDelayed(connectfail, 15000);
+                connectDevice(deviceList.get(position));
+                myHandler.postDelayed(connectFailed, 15000);
             }
         });
         openBluetoothScanDevice();
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-    }
-
     private void refreshScan() {
-        list.clear();
         deviceList.clear();
-        adapter.notifyDataSetChanged();
-        imgConnect.setVisibility(View.GONE);
-        progressBar1.setVisibility(View.VISIBLE);
-//        if (!AppContext.getInstance().getDeviceHelper().isConnectedDevice()) {
-        AppContext.getInstance().getDeviceHelper().stopScanDevice();
-        AppContext.getInstance().getDeviceHelper().startScanDevice(scanLister);
-        myHandler.postDelayed(cancleScan, 7000);
-//        }
+        adapter.setDevices(deviceList);
+        connect.setVisibility(GONE);
+        progressBar.setVisibility(VISIBLE);
+        myHandler.postDelayed(cancelScanDevice, 7000);
+        DeviceHelper.scanDevices(scanListener);
     }
 
-    private void logintToDevice(BLEDevice device) {
-        if (!isLogining) {
+    private void connectDevice(BLEDevice device) {
+        if (!isConnecting) {
+            isConnecting = true;
             DialogHelp.getInstance().connectDialog(ConnectActivity.this, STR(R.string.connecting));
-            currDevice = device;
-            isLogining = true;
             AppContext.getInstance().setBleRssi(device.getRssi());
             BluetoothAdapter.getDefaultAdapter().cancelDiscovery();
-            AppContext.getInstance().getDeviceHelper().loginDevice(device, loginListener);
+            DeviceHelper.loginDevice(device, loginListener);
         } else {
-            myHandler.post(frequentoperations);
+            XuToast.show(ConnectActivity.this, STR(R.string.frequent_operations));
         }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        AppContext.getInstance().getDeviceHelper().stopScanDevice();
-        myHandler.removeCallbacks(cancleScan);
-        myHandler.removeCallbacks(refreshRunnable);
-        myHandler.removeCallbacks(connectfail);
-        if (isLogining) {
+        DeviceHelper.stopScanDevice();
+        myHandler.removeCallbacks(cancelScanDevice);
+        myHandler.removeCallbacks(connectFailed);
+        if (isConnecting) {
             AppContext.getInstance().getDeviceHelper().disconnectDevice();
         }
     }
 
-    void openBluetoothScanDevice() {
+    private void openBluetoothScanDevice() {
         if (!BluetoothAdapter.getDefaultAdapter().isEnabled()) {
-            boolean openresult = toEnable(BluetoothAdapter.getDefaultAdapter());
-            if (!openresult) {
-                XuToast.show(ConnectActivity.this, "打开蓝牙失败1");
+            boolean result = toEnable(BluetoothAdapter.getDefaultAdapter());
+            if (!result) {
+                XuToast.show(ConnectActivity.this, R.string.open_bluetooth_fail);
                 finish();
                 return;
             }
-
-            SystemClock.sleep(500);
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    int i = 0;
-                    while (!BluetoothAdapter.getDefaultAdapter().isEnabled()) {
-                        try {
-                            Thread.sleep(500);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        if (i >= 15) {
-                            XuToast.show(ConnectActivity.this, "打开蓝牙失败");
-                            finish();
-                            break;
-                        } else {
-                            i++;
-                        }
-                    }
-                    refreshScan();
-                }
-            });
-        } else {
-            refreshScan();
         }
+        refreshScan();
     }
 
-    private boolean toEnable(BluetoothAdapter bluertoothadapter) {
-        //TODO 启动蓝牙
+    private boolean toEnable(BluetoothAdapter adapter) {
+        //启动蓝牙
         boolean result = false;
         try {
-            for (Method temp : Class.forName(bluertoothadapter.getClass().getName()).getMethods()) {
+            for (Method temp : Class.forName(adapter.getClass().getName()).getMethods()) {
                 if (temp.getName().equals("enableNoAutoConnect")) {
-                    result = (boolean) temp.invoke(bluertoothadapter);
+                    result = (boolean) temp.invoke(adapter);
                 }
             }
         } catch (Exception e) {
             //反射调用失败就启动通过enable()启动;
-            result = bluertoothadapter.enable();
+            result = adapter.enable();
             XuLog.d(TAG, "启动蓝牙的结果:" + result);
             e.printStackTrace();
-
         }
         return result;
-
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode != RESULT_OK || requestCode == -1) {
-            return;
-        }
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
-
-    @OnClick(R.id.img_connect)
-    public void onViewClicked() {
-        AppContext.getInstance().getDeviceHelper().stopScanDevice();
-        AppContext.getInstance().getDeviceHelper().startScanDevice(scanLister);
-    }
-
-    private void addDevice(final BLEDevice bleDevice) {
-        // ADASDevice found
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                boolean isadd = true;
-                for (BLEDevice temp : list) {
-                    if (temp.getBluetoothDevice().equals(bleDevice.getBluetoothDevice())) {
-                        isadd = false;
-                    }
-                }
-                if (isadd) {
-                    list.add(bleDevice);
-                    myHandler.post(refreshRunnable);
-                }
-            }
-        });
-    }
-
-    @OnClick({R.id.img_connect,R.id.img_back_main})
+    @OnClick({R.id.img_back, R.id.img_connect})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.img_back:
+                finish();
+                break;
             case R.id.img_connect:
                 refreshScan();
                 break;
-            case R.id.img_back_main:
-                finish();
-                break;
         }
     }
-
 }

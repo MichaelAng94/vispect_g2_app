@@ -149,6 +149,7 @@ public abstract class BaseActivity extends FragmentActivity implements ActivityC
 
         getActivityHelper().onCreate(savedInstanceState);
 
+        ButterKnife.bind(this);
         // 初始化
         initData();
         initView(view);

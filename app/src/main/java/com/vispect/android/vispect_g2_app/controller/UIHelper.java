@@ -30,6 +30,11 @@ import java.util.ArrayList;
  * Created by xu on 2016/03/11.
  */
 public class UIHelper {
+    private static DialogInterface askDialog;
+
+    private UIHelper() {
+    }
+
     /**
      * 启动class对应的Activity
      *
@@ -41,8 +46,6 @@ public class UIHelper {
         activity.startActivity(intent);
     }
 
-
-
     /**
      * startActivityForResult启动class对应的Activity
      *
@@ -50,12 +53,9 @@ public class UIHelper {
      * @param clazz
      * @param requestCode
      */
-    public static void startActivityForresult(Activity activity, Class<? extends Activity> clazz, int requestCode) {
+    public static void startActivityForResult(Activity activity, Class<? extends Activity> clazz, int requestCode) {
         Intent intent = new Intent(activity, clazz);
         activity.startActivityForResult(intent, requestCode);
-    }
-
-    private UIHelper() {
     }
 
     public static void showDoc(Activity activity) {
@@ -92,11 +92,9 @@ public class UIHelper {
     }
 
     public static int dp2px(Context context, float dpValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
+        float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
-
-    private static DialogInterface askDialog;
 
     public static DialogInterface showAsk(Context context, String msg,Boolean CanceledOnTouchOutside, final OnClickYesOrNoListener listener) {
 

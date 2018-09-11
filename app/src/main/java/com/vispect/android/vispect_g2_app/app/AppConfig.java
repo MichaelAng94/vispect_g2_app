@@ -29,6 +29,8 @@ public class AppConfig {
     public static final int REQUEST_CODE_CAMERA = 2;//拍照
     public static final int REQUEST_CODE_ALBUM = 3;//从相册中选择
     public static final int REQUEST_CODE_CROP_IMAGE = 4;//裁剪图片
+    //resultCode
+    public static final int RESULT_CODE_OK = 100;//连接设备成功
     /**
      * Socker的配置参数
      */

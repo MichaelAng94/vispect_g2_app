@@ -1219,4 +1219,5 @@ Vispect Team</string>
     <string name="upload_success">Upload Success</string>
     <string name="upload_fail">Upload Failed !</string>
     <string name="get_camera_list_failed">get camera list failed</string>
+    <string name="error_password">error password</string>
 </resources>

@@ -41,6 +41,7 @@
                     android:layout_width="@dimen/x120"
                     android:layout_height="@dimen/y120"
                     android:layout_gravity="center_vertical|right"
+                    android:layout_marginRight="@dimen/x20"
                     android:padding="@dimen/x30"
                     android:src="@drawable/disconnect" />
             </FrameLayout>

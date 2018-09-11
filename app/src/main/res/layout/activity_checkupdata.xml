@@ -10,8 +10,7 @@
 
     <include
         android:id="@+id/title"
-        layout="@layout/include_title"
-        />
+        layout="@layout/include_title" />
 
     <LinearLayout
         android:id="@+id/li"
@@ -30,6 +29,7 @@
             android:text="@string/logout"
             android:textColor="@color/white"
             android:textSize="@dimen/x50" />
+
         <Button
             android:id="@+id/btn_setting_login"
             android:layout_width="@dimen/x1000"
@@ -49,12 +49,12 @@
         android:layout_marginTop="@dimen/y40">
 
         <com.vispect.android.vispect_g2_app.ui.widget.MoListView
-        android:id="@+id/list_setting_menu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:divider="@null"
-        android:dividerHeight="0dp"
-        android:scrollbars="none"></com.vispect.android.vispect_g2_app.ui.widget.MoListView>
+            android:id="@+id/list_setting_menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:scrollbars="none" />
 
     </com.vispect.android.vispect_g2_app.ui.widget.MoScroller>
 

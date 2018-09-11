@@ -1,117 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:background="@drawable/ripple_bg">
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/signal"
+        android:layout_width="@dimen/x140"
+        android:layout_height="@dimen/y140"
+        android:layout_marginLeft="@dimen/x20"
+        android:padding="@dimen/x30"
+        android:src="@mipmap/signal0" />
+
+    <TextView
+        android:id="@+id/device_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/x200"
+        android:text="Device Name"
+        android:textColor="@color/white"
+        android:textSize="@dimen/x48" />
+
+    <View
+        android:id="@+id/divider"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y150"
-        android:gravity="center_vertical"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/x50"
-        android:paddingRight="@dimen/x50">
+        android:layout_height="1dp"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="@dimen/x50"
+        android:background="@color/light_gray" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center">
-
-            <ImageView
-                android:id="@+id/signal"
-                android:layout_width="@dimen/x80"
-                android:layout_height="@dimen/y80"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/x25"
-                android:src="@mipmap/signal0" />
-
-            <TextView
-                android:id="@+id/tv_item_connect_device_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/signal"
-                android:text="设备名"
-                android:textColor="@color/white"
-                android:textSize="@dimen/x48" />
-
-            <TextView
-                android:id="@+id/tv_item_ssid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/tv_item_connect_device_name"
-                android:textSize="@dimen/x48"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/tv_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x20"
-                android:layout_toRightOf="@id/tv_item_connect_device_name"
-                android:textSize="@dimen/x48" />
-
-            <ImageView
-                android:id="@+id/iv_new"
-                android:layout_width="@dimen/x100"
-                android:layout_height="@dimen/y80"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/tv_item_connect_device_name"
-                android:visibility="gone" />
-
-            <ImageView
-                android:id="@+id/iv_arrow"
-                android:layout_width="@dimen/x80"
-                android:layout_height="@dimen/y80"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true" />
-
-            <TextView
-                android:id="@+id/iv_newversionname"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/y100"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/x50"
-                android:gravity="center_vertical"
-                android:textSize="@dimen/x42"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/btn_downorupdate"
-                android:layout_width="@dimen/x200"
-                android:layout_height="@dimen/y100"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/x50"
-                android:gravity="center"
-                android:text="update"
-                android:textColor="@color/white"
-                android:textSize="@dimen/x42"
-                android:visibility="gone" />
-
-        </RelativeLayout>
-
-        <View
-            android:paddingLeft="@dimen/x55"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/y1"
-            android:background="@color/hintColor"
-            />
-
-    </LinearLayout>
-
-    <ProgressBar
-        android:id="@+id/updata_progress"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:layout_alignParentBottom="true"
-        android:max="100"
-
-        android:visibility="gone" />
-
-</LinearLayout>
+</FrameLayout>

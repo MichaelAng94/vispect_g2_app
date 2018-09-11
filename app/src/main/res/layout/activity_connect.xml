@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/hint_bg"
-    android:orientation="vertical"
     tools:context="com.vispect.android.vispect_g2_app.ui.activity.ConnectActivity">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y115"
+        android:layout_height="@dimen/y120"
         android:background="@color/black"
         app:contentInsetStart="5dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true">
 
             <ImageView
-                android:id="@+id/img_back_main"
+                android:id="@+id/img_back"
                 android:layout_width="@dimen/x100"
                 android:layout_height="@dimen/y100"
                 android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
                 android:padding="@dimen/x20"
                 android:src="@mipmap/ico_back" />
 
@@ -41,18 +40,18 @@
                 android:layout_width="@dimen/x100"
                 android:layout_height="@dimen/y100"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/x30"
                 android:padding="@dimen/x20"
                 android:src="@mipmap/refresh"
                 android:tint="@color/white" />
 
             <ProgressBar
-                android:id="@+id/progressBar1"
+                android:id="@+id/progressBar"
                 style="?android:attr/progressBarStyleInverse"
                 android:layout_width="@dimen/x60"
                 android:layout_height="@dimen/y60"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:layout_marginRight="@dimen/x50"
                 android:background="@android:color/transparent"
@@ -62,33 +61,36 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <ListView
-        android:id="@+id/list_connect"
+    <com.vispect.android.vispect_g2_app.ui.widget.MoScroller
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/y55"
-        android:background="@color/list_bg"
-        android:divider="#ffffff"
-        android:listSelector="@drawable/selector" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/y145">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/table_check"
-        android:gravity="center"
-        android:minHeight="@dimen/y160">
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/x100"
-            android:layout_marginTop="@dimen/y10"
-            android:gravity="left"
-            android:lineSpacingExtra="@dimen/y20"
-            android:text="@string/connect_bottom_tips"
-            android:textColor="@color/white"
-            android:textSize="@dimen/x40" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <com.vispect.android.vispect_g2_app.ui.widget.MoListView
+                android:id="@+id/list_devices"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/list_bg"
+                android:divider="#ffffff" />
+            <!--android:listSelector="@drawable/selector"-->
 
-</LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/table_check"
+                android:lineSpacingExtra="@dimen/y20"
+                android:paddingHorizontal="@dimen/x100"
+                android:paddingVertical="@dimen/y10"
+                android:text="@string/connect_bottom_tips"
+                android:textColor="@color/white"
+                android:textSize="@dimen/x40" />
+        </LinearLayout>
+
+    </com.vispect.android.vispect_g2_app.ui.widget.MoScroller>
+
+</FrameLayout>
