@@ -16,7 +16,7 @@ import com.vispect.android.vispect_g2_app.app.AppConfig;
 import com.vispect.android.vispect_g2_app.app.AppContext;
 import com.vispect.android.vispect_g2_app.controller.UIHelper;
 import com.vispect.android.vispect_g2_app.ui.widget.DialogHelp;
-import com.vispect.android.vispect_g2_app.ui.widget.MoListview;
+import com.vispect.android.vispect_g2_app.ui.widget.MoListView;
 import com.vispect.android.vispect_g2_app.utils.XuLog;
 import com.vispect.android.vispect_g2_app.utils.XuNetWorkUtils;
 import com.vispect.android.vispect_g2_app.utils.XuString;
@@ -40,7 +40,7 @@ public class CalibrateFragment extends BaseFragment {
     public static Point selectCamera;
     private final int REQUESRST_LIVE = 101;
     @Bind(R.id.list_select_camera)
-    MoListview listSelectCamera;
+    MoListView listSelectCamera;
     Thread openliveThread = null;
     private String TAG = "CalibrateFragment";
     private CalibrateAdapter calibrateAdapter;

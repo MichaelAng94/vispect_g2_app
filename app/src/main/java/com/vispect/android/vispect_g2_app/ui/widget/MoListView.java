@@ -10,22 +10,22 @@ import android.widget.ListView;
  * Created by mo on 2018/4/11.
  */
 
-public class MoListview extends ListView {
+public class MoListView extends ListView {
 
-    public MoListview(Context context) {
+    public MoListView(Context context) {
         super(context);
     }
 
-    public MoListview(Context context, AttributeSet attrs) {
+    public MoListView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public MoListview(Context context, AttributeSet attrs, int defStyleAttr) {
+    public MoListView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public MoListview(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public MoListView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 

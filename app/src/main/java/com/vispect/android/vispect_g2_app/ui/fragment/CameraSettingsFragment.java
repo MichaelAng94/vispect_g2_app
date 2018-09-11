@@ -12,9 +12,8 @@ import com.vispect.android.vispect_g2_app.R;
 import com.vispect.android.vispect_g2_app.adapter.CalibrateAdapter;
 import com.vispect.android.vispect_g2_app.app.AppContext;
 import com.vispect.android.vispect_g2_app.ui.activity.SettingsActivity;
-import com.vispect.android.vispect_g2_app.ui.widget.MoListview;
+import com.vispect.android.vispect_g2_app.ui.widget.MoListView;
 import com.vispect.android.vispect_g2_app.utils.XuLog;
-import com.vispect.android.vispect_g2_app.utils.XuString;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,7 +32,7 @@ import interf.GetG2CameraList;
 public class CameraSettingsFragment extends BaseFragment {
     public static int listitem;
     @Bind(R.id.list_select_camera)
-    MoListview listSelectCamera;
+    MoListView listSelectCamera;
     private CalibrateAdapter calibrateAdapter ;
     private List<String> data = new ArrayList<>();
     private List<Point> cameras = new ArrayList<>();

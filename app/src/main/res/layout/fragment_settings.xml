@@ -4,15 +4,15 @@
     android:layout_height="match_parent">
 
     <com.vispect.android.vispect_g2_app.ui.widget.MoScroller
-        android:background="@color/main_background"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/main_background">
 
-        <com.vispect.android.vispect_g2_app.ui.widget.MoListview
+        <com.vispect.android.vispect_g2_app.ui.widget.MoListView
             android:id="@+id/list_settings"
-            android:divider="@null"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:divider="@null" />
 
     </com.vispect.android.vispect_g2_app.ui.widget.MoScroller>
 

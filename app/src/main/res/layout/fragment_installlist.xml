@@ -5,11 +5,11 @@
     android:orientation="vertical">
 
     <com.vispect.android.vispect_g2_app.ui.widget.MoScroller
-        android:background="@color/list_bg"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/list_bg">
 
-        <com.vispect.android.vispect_g2_app.ui.widget.MoListview
+        <com.vispect.android.vispect_g2_app.ui.widget.MoListView
             android:id="@+id/list_install"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

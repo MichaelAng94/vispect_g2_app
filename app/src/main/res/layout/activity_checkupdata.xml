@@ -48,14 +48,13 @@
         android:layout_below="@id/title"
         android:layout_marginTop="@dimen/y40">
 
-    <com.vispect.android.vispect_g2_app.ui.widget.MoListview
+        <com.vispect.android.vispect_g2_app.ui.widget.MoListView
         android:id="@+id/list_setting_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@null"
         android:dividerHeight="0dp"
-        android:scrollbars="none">
-    </com.vispect.android.vispect_g2_app.ui.widget.MoListview>
+        android:scrollbars="none"></com.vispect.android.vispect_g2_app.ui.widget.MoListView>
 
     </com.vispect.android.vispect_g2_app.ui.widget.MoScroller>
 

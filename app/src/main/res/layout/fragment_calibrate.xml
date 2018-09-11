@@ -2,9 +2,9 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
+    android:layout_height="match_parent"
     android:background="@color/main_background"
-    android:layout_height="match_parent">
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
@@ -16,15 +16,15 @@
         />
 
     <com.vispect.android.vispect_g2_app.ui.widget.MoScroller
-        android:background="@color/main_background"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/main_background">
 
-    <com.vispect.android.vispect_g2_app.ui.widget.MoListview
+        <com.vispect.android.vispect_g2_app.ui.widget.MoListView
         android:id="@+id/list_select_camera"
-        android:divider="@null"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:divider="@null" />
 
     </com.vispect.android.vispect_g2_app.ui.widget.MoScroller>
 

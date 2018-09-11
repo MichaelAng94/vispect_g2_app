@@ -19,7 +19,7 @@ import com.vispect.android.vispect_g2_app.ui.activity.DrivingBehaviorSettingActi
 import com.vispect.android.vispect_g2_app.ui.activity.EngineeringModelActivity;
 import com.vispect.android.vispect_g2_app.ui.activity.SettingsActivity;
 import com.vispect.android.vispect_g2_app.ui.widget.DialogHelp;
-import com.vispect.android.vispect_g2_app.ui.widget.MoListview;
+import com.vispect.android.vispect_g2_app.ui.widget.MoListView;
 import com.vispect.android.vispect_g2_app.utils.XuString;
 import com.vispect.android.vispect_g2_app.utils.XuToast;
 
@@ -39,7 +39,7 @@ import interf.SetDeviceInfoCallback;
 public class SettingsListFragment extends BaseFragment {
 
     @Bind(R.id.list_settings)
-    MoListview listSettings;
+    MoListView listSettings;
     Boolean isFrist = true;
     private ArrayList<String> data;
     private boolean isZh = XuString.isZh(AppContext.getInstance());
