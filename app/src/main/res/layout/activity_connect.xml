@@ -20,9 +20,11 @@
 
             <ImageView
                 android:id="@+id/img_back_main"
-                android:layout_width="@dimen/x60"
-                android:layout_height="@dimen/y60"
+                android:layout_width="@dimen/x100"
+                android:layout_height="@dimen/y100"
                 android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/x20"
                 android:src="@mipmap/ico_back" />
 
             <TextView
@@ -36,10 +38,12 @@
 
             <ImageView
                 android:id="@+id/img_connect"
-                android:layout_width="@dimen/x60"
-                android:layout_height="@dimen/y60"
+                android:layout_width="@dimen/x100"
+                android:layout_height="@dimen/y100"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/x50"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x30"
+                android:padding="@dimen/x20"
                 android:src="@mipmap/refresh"
                 android:tint="@color/white" />
 
@@ -86,6 +90,5 @@
             android:textSize="@dimen/x40" />
 
     </LinearLayout>
-
 
 </LinearLayout>

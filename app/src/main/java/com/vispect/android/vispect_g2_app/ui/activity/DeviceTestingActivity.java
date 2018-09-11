@@ -36,11 +36,9 @@ import interf.onGetTemperatureCallback;
  */
 public class DeviceTestingActivity extends BaseActivity {
     private final static String TAG = "DeviceTestingActivity";
-
-
+    private final int REQUESRST_LIVE = 101;
     @Bind(R.id.iv_titlebar_title)
     TextView title;
-
     @Bind(R.id.tv_device_testing_model_tf_card_status)
     TextView tv_device_testing_model_tf_card_status;
     @Bind(R.id.tv_device_testing_model_battery)
@@ -61,10 +59,14 @@ public class DeviceTestingActivity extends BaseActivity {
     TextView tv_device_testing_model_wifi_rssi;
     @Bind(R.id.tv_device_testing_model_ble_rssi)
     TextView tv_device_testing_model_ble_rssi;
-
-
     Handler mHandler = new Handler();
-
+    Runnable setBleRssi = new Runnable() {
+        @Override
+        public void run() {
+            tv_device_testing_model_ble_rssi.setText(AppContext.getInstance().getBleRssi() + "");
+        }
+    };
+    Thread openliveThread = null;
     private String TCardStatus;
     Runnable setTCardStatus = new Runnable() {
         @Override
@@ -72,7 +74,6 @@ public class DeviceTestingActivity extends BaseActivity {
             tv_device_testing_model_tf_card_status.setText(TCardStatus);
         }
     };
-
     private float battery = 0;
     Runnable setBattery = new Runnable() {
         @Override
@@ -125,7 +126,6 @@ public class DeviceTestingActivity extends BaseActivity {
             tv_device_testing_model_gps.setText(gpsStatus);
         }
     };
-
     private String senserStatus;
     Runnable setSenserStatus = new Runnable() {
         @Override
@@ -133,7 +133,6 @@ public class DeviceTestingActivity extends BaseActivity {
             tv_device_testing_model_senser.setText(senserStatus);
         }
     };
-
     private String curWIFISSID = "";
     private String curWIFIPassword = "";
     private int wifiRssi;
@@ -143,20 +142,30 @@ public class DeviceTestingActivity extends BaseActivity {
             tv_device_testing_model_wifi_rssi.setText(wifiRssi + "");
         }
     };
-
-    Runnable setBleRssi = new Runnable() {
+    private boolean canGetData = false;
+    private boolean canshowlongtime = false;
+    private Runnable mRunnable_toas_waiitingtoolong = new Runnable() {
         @Override
         public void run() {
-            tv_device_testing_model_ble_rssi.setText(AppContext.getInstance().getBleRssi() + "");
+            //时间过长的话就提示让用户手动连
+            if (canshowlongtime) {
+                //showProgress(true, STR(R.string.wifi_waiting_too_long) + AppConfig.getInstance(AppContext.getInstance()).getWifi_name() + STR(R.string.wifi_waiting_too_long2) + AppConfig.getInstance(AppContext.getInstance()).getWifi_paw());
+            }
+        }
+    };
+    private Runnable toRealView = new Runnable() {
+        @Override
+        public void run() {
+            //  hideProgress();
+            UIHelper.showLiveForResult(DeviceTestingActivity.this, REQUESRST_LIVE, false);
+//            AppContext.getInstance().setLocation(180000);
         }
     };
 
-    private boolean canGetData = false;
     @Override
     public int getContentResource() {
         return R.layout.activity_device_testing;
     }
-
 
     @Override
     protected void initView(View view) {
@@ -223,7 +232,6 @@ public class DeviceTestingActivity extends BaseActivity {
 
     }
 
-
     private void getAllData() throws InterruptedException {
         getCPUTemperature();
         Thread.sleep(300);
@@ -246,7 +254,6 @@ public class DeviceTestingActivity extends BaseActivity {
         getBatteryTemperature();
 
     }
-
 
     @OnClick({R.id.rl_device_testing_model_tf_card_status, R.id.rl_device_testing_model_battery, R.id.rl_device_testing_model_485_status, R.id.rl_device_testing_model_camera_status, R.id.rl_device_testing_model_cpu_temperature,R.id.rl_device_testing_model_battery_temperature, R.id.rl_device_testing_model_gps, R.id.rl_device_testing_model_senser, R.id.rl_device_testing_model_wifi_rssi, R.id.rl_device_testing_model_ble_rssi, R.id.rl_device_testing_model_to_real_view})
     void onClick(View v) {
@@ -289,28 +296,6 @@ public class DeviceTestingActivity extends BaseActivity {
 
     }
 
-
-    Thread openliveThread = null;
-    private final int REQUESRST_LIVE = 101;
-    private boolean canshowlongtime = false;
-    private Runnable mRunnable_toas_waiitingtoolong = new Runnable() {
-        @Override
-        public void run() {
-            //时间过长的话就提示让用户手动连
-            if (canshowlongtime) {
-                //showProgress(true, STR(R.string.wifi_waiting_too_long) + AppConfig.getInstance(AppContext.getInstance()).getWifi_name() + STR(R.string.wifi_waiting_too_long2) + AppConfig.getInstance(AppContext.getInstance()).getWifi_paw());
-            }
-        }
-    };
-    private Runnable toRealView = new Runnable() {
-        @Override
-        public void run() {
-          //  hideProgress();
-            UIHelper.showLiveForResult(DeviceTestingActivity.this, REQUESRST_LIVE, false);
-//            AppContext.getInstance().setLocation(180000);
-        }
-    };
-
     int openlivemode() {
         //TODO 开启实时路况
         if (!AppContext.getInstance().getDeviceHelper().isConnectedDevice()) {
@@ -318,7 +303,7 @@ public class DeviceTestingActivity extends BaseActivity {
             return 1;
         }
         if (AppContext.getInstance().isERROR_CAMERA()) {
-            XuToast.show(AppContext.getInstance(), STR(R.string.camera_erro));
+            XuToast.show(AppContext.getInstance(), STR(R.string.camera_error));
             return 2;
         }
        // showProgress(R.string.to_rel_view_loading_title);

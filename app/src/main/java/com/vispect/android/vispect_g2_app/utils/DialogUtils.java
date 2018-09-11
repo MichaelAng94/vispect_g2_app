@@ -77,14 +77,15 @@ public class DialogUtils {
         TextView local = dialog.findViewById(R.id.local_video);
         TextView cancel = dialog.findViewById(R.id.tv_cancel);
 
-        alarm.setOnClickListener(new OnClickListener() {
+        driving.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 callback.callback(0);
                 dialog.dismiss();
             }
         });
-        driving.setOnClickListener(new OnClickListener() {
+
+        alarm.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 callback.callback(1);

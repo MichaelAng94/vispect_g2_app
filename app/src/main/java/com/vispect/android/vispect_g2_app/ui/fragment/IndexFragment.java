@@ -1,15 +1,11 @@
 package com.vispect.android.vispect_g2_app.ui.fragment;
 
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
+import android.graphics.Point;
 import android.os.Handler;
 import android.os.Message;
-import android.text.method.KeyListener;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.vispect.android.vispect_g2_app.R;
 import com.vispect.android.vispect_g2_app.app.AppConfig;
@@ -18,11 +14,9 @@ import com.vispect.android.vispect_g2_app.controller.DeviceHelper;
 import com.vispect.android.vispect_g2_app.controller.UIHelper;
 import com.vispect.android.vispect_g2_app.interf.Callback;
 import com.vispect.android.vispect_g2_app.interf.GetListCallback;
-import com.vispect.android.vispect_g2_app.ui.activity.ConnectActivity;
 import com.vispect.android.vispect_g2_app.ui.activity.DocActivity;
 import com.vispect.android.vispect_g2_app.ui.activity.InstallActivity;
 import com.vispect.android.vispect_g2_app.ui.activity.LocalVideoSeltActivity;
-import com.vispect.android.vispect_g2_app.ui.activity.MainActivity;
 import com.vispect.android.vispect_g2_app.ui.activity.SettingsActivity;
 import com.vispect.android.vispect_g2_app.ui.widget.DialogHelp;
 import com.vispect.android.vispect_g2_app.utils.DialogUtils;
@@ -31,20 +25,20 @@ import com.vispect.android.vispect_g2_app.utils.XuNetWorkUtils;
 import com.vispect.android.vispect_g2_app.utils.XuToast;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import interf.OnWifiOpenListener;
 
+import static com.vispect.android.vispect_g2_app.controller.DeviceHelper.isConnected;
+import static com.vispect.android.vispect_g2_app.controller.DeviceHelper.isG2;
+
 public class IndexFragment extends BaseFragment {
-    public static final int MESSAGE_CODE_GET_CAMERA_LIST = 0;
-    public static final int MESSAGE_CODE_CONNECT_WIFI = 1;
-    public static final int MESSAGE_CODE_TO_REAL_VIEW = 2;
-    private static final int ADAS = 0;
-    private static final int DSM = 1;
-    private static final int SPML = 2;
-    private static final int SPMR = 3;
+    private static final int MESSAGE_CODE_GET_CAMERA_LIST = 0;
+    private static final int MESSAGE_CODE_CONNECT_WIFI = 1;
+    private static final int MESSAGE_CODE_TO_REAL_VIEW = 2;
+    public static List<Point> cameras = new ArrayList<>();
     public int _count = 0;
     public int _videoType = -1;
     public int _deviceType = -1;
@@ -56,10 +50,16 @@ public class IndexFragment extends BaseFragment {
             switch (msg.what) {
                 case MESSAGE_CODE_GET_CAMERA_LIST:
                     getCameraList();
+                    break;
                 case MESSAGE_CODE_CONNECT_WIFI:
                     showConnectWifiDialog();
+                    break;
                 case MESSAGE_CODE_TO_REAL_VIEW:
-                    UIHelper.showLiveForResult(getActivity(), 100, false);
+                    if (DeviceHelper.isG2Connected(getActivity())) {
+                        DialogHelp.getInstance().hideDialog();
+                        UIHelper.showLiveForResult(getActivity(), 100, false);
+                    }
+                    break;
             }
             super.handleMessage(msg);
         }
@@ -71,7 +71,7 @@ public class IndexFragment extends BaseFragment {
     }
 
     @Override
-    protected void initView(View view) throws IOException {
+    protected void initView(View view) {
 
     }
 
@@ -134,6 +134,8 @@ public class IndexFragment extends BaseFragment {
             @Override
             public void onGetListSuccess(List list) {
                 if (list != null && list.size() > 0) {
+                    cameras.clear();
+                    cameras.addAll(list);
                     handler.removeMessages(MESSAGE_CODE_GET_CAMERA_LIST);
                     openLiveMode();
                 } else {
@@ -144,9 +146,11 @@ public class IndexFragment extends BaseFragment {
             @Override
             public void onGetListFailed() {
                 if (_count < 5) {
+                    _count++;
                     handler.sendEmptyMessage(MESSAGE_CODE_GET_CAMERA_LIST);
                 } else {
                     _count = 0;
+                    handler.removeMessages(MESSAGE_CODE_GET_CAMERA_LIST);
                     XuToast.show(getActivity(), R.string.get_camera_list_failed);
                 }
             }
@@ -163,14 +167,14 @@ public class IndexFragment extends BaseFragment {
         super.onDestroy();
     }
 
+    //开启实时路况
     private void openLiveMode() {
-        //开启实时路况
-        if (!AppContext.getInstance().getDeviceHelper().isConnectedDevice()) {
+        if (!(isConnected() && isG2())) {
             XuToast.show(AppContext.getInstance(), STR(R.string.road_live_notconnect));
             return;
         }
         if (AppContext.getInstance().isERROR_CAMERA()) {
-            XuToast.show(AppContext.getInstance(), STR(R.string.camera_erro));
+            XuToast.show(AppContext.getInstance(), STR(R.string.camera_error));
             return;
         }
 
@@ -203,7 +207,6 @@ public class IndexFragment extends BaseFragment {
 
     //手机连设备WiFi
     private void openRealViewOld() {
-        System.out.println();
         AppContext.getInstance().getDeviceHelper().openDeviceRealViewMode(new OnWifiOpenListener() {
             @Override
             public void onSuccess(final String wifiName, final String password) {
@@ -213,10 +216,7 @@ public class IndexFragment extends BaseFragment {
                     public void run() {
                         if (XuNetWorkUtils.connectWIFI(wifiName, password)) {
                             //成功连上WIFI  开始进入实时路况
-                            if (DeviceHelper.isG2Connected(getActivity())) {
-                                DialogHelp.getInstance().hideDialog();
-                                handler.sendEmptyMessage(MESSAGE_CODE_TO_REAL_VIEW);
-                            }
+                            handler.sendEmptyMessage(MESSAGE_CODE_TO_REAL_VIEW);
                         }
                     }
                 });

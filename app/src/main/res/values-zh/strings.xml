@@ -348,7 +348,7 @@
 
 
     <!--硬件错误提示-->
-    <string name="camera_erro">设备的相机模块无法正常工作，请检查！</string>
+    <string name="camera_error">设备的相机模块无法正常工作，请检查！</string>
     <string name="gps_erro">设备的GPS模块无法正常工作，请检查！</string>
     <string name="s_app_erro"> 检测到智能硬件的内置程序已损坏，是否进入更新模式进行更新？</string>
 

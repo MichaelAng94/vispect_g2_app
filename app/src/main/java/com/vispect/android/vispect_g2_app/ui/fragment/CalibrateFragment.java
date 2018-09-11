@@ -178,7 +178,7 @@ public class CalibrateFragment extends BaseFragment {
             return 1;
         }
         if (AppContext.getInstance().isERROR_CAMERA()) {
-            XuToast.show(AppContext.getInstance(), STR(R.string.camera_erro));
+            XuToast.show(AppContext.getInstance(), STR(R.string.camera_error));
             return 2;
         }
         changeDialog = new changeDialog();

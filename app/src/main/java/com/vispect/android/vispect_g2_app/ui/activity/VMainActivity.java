@@ -35,6 +35,7 @@ import com.vispect.android.vispect_g2_app.interf.OnGetShortVideoCallback;
 import com.vispect.android.vispect_g2_app.interf.SurfaceViewWidthChangeCallback;
 import com.vispect.android.vispect_g2_app.ui.fragment.CalibrateFragment;
 import com.vispect.android.vispect_g2_app.ui.fragment.CenterCalibrationFragment;
+import com.vispect.android.vispect_g2_app.ui.fragment.IndexFragment;
 import com.vispect.android.vispect_g2_app.ui.widget.DialogHelp;
 import com.vispect.android.vispect_g2_app.ui.widget.DrawAdas;
 import com.vispect.android.vispect_g2_app.ui.widget.DrawDotView;
@@ -157,6 +158,25 @@ public class VMainActivity extends BaseActivity {
     private boolean onStart = false;
     private OnGetShortVideoCallback onGetShortVideoCallback;
     private volatile int progress = -1;
+    Runnable changeProgress = new Runnable() {
+        @Override
+        public void run() {
+            if (progress != 100) {
+                if (linProgress != null && linProgress.getVisibility() == View.GONE) {
+                    linProgress.setVisibility(View.VISIBLE);
+                }
+                if (tvProgress != null) {
+                    tvProgress.setText(progress + "");
+                }
+
+                mhandler.postDelayed(getProgress, 2000);
+            } else {
+                mhandler.post(getcenterponintag);
+                i = -1;
+                linProgress.setVisibility(View.GONE);
+            }
+        }
+    };
     Runnable getProgress = new Runnable() {
         @Override
         public void run() {
@@ -258,25 +278,6 @@ public class VMainActivity extends BaseActivity {
                     canTranslation = true;
                 }
             });
-        }
-    };
-    Runnable changeProgress = new Runnable() {
-        @Override
-        public void run() {
-            if (progress != 100) {
-                if (linProgress != null && linProgress.getVisibility() == View.GONE) {
-                    linProgress.setVisibility(View.VISIBLE);
-                }
-                if (tvProgress != null) {
-                    tvProgress.setText(progress + "");
-                }
-
-                mhandler.postDelayed(getProgress, 2000);
-            } else {
-                mhandler.post(getcenterponintag);
-                i = -1;
-                linProgress.setVisibility(View.GONE);
-            }
         }
     };
     //    //----------------------------------------
@@ -518,6 +519,7 @@ public class VMainActivity extends BaseActivity {
     protected void initView(View view) {
 
         DialogHelp.getInstance().hideDialog();
+        cameras = IndexFragment.cameras;
 
         for (Point p : cameras) {
             if (p.x == udpCamera) {
@@ -711,7 +713,7 @@ public class VMainActivity extends BaseActivity {
                 }, 500);
             }
         } else if (cameraType == 3) {
-            AppContext.getInstance().getDeviceHelper().getDSMPointList(new GetDSMPointMap() {
+            AppContext.getInstance().getDeviceHelper().getDSMPointMap(new GetDSMPointMap() {
                 @Override
                 public void onSuccess(Map map) {
                     for (int i = 0; i < map.size(); i++) {
@@ -877,7 +879,7 @@ public class VMainActivity extends BaseActivity {
             AppContext.getInstance().getDeviceHelper().initRealView(realViewCallback);
         }
 
-        speedHandler.post(showspeedRunnable);
+//        speedHandler.post(showspeedRunnable);
     }
 
     @Override
@@ -1044,7 +1046,7 @@ public class VMainActivity extends BaseActivity {
 
                     @Override
                     public void onFail(int i) {
-
+                        XuLog.e(TAG, "setUDPCamera onFail");
                     }
                 }, getID());
                 break;

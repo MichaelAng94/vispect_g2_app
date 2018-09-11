@@ -5,14 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.util.Log;
 import android.view.View;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.vispect.android.vispect_g2_app.R;
 import com.vispect.android.vispect_g2_app.adapter.ConnectDdeviceAdapter;
@@ -31,7 +28,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import interf.BleLoginListener;
-import interf.GetBleInfoVersionCallback;
 import interf.OnScanDeviceLisetener;
 import interf.OnWifiOpenListener;
 
@@ -43,8 +39,8 @@ public class ConnectActivity extends BaseActivity {
     ProgressBar progressBar1;
     @Bind(R.id.img_connect)
     ImageView imgConnect;
-    ArrayList<BLEDevice> devicelist;
-    ArrayList<BLEDevice> list;
+    ArrayList<BLEDevice> deviceList = new ArrayList<>();
+    ArrayList<BLEDevice> list = new ArrayList<>();
     ConnectDdeviceAdapter adapter;
     private String TAG = "ConnectActivity";
     private Handler myHandler = new Handler();
@@ -145,8 +141,8 @@ public class ConnectActivity extends BaseActivity {
             if (adapter == null || list == null) {
                 return;
             }
-            devicelist = (ArrayList<BLEDevice>) list.clone();
-            adapter.refreshData(devicelist);
+            deviceList = (ArrayList<BLEDevice>) list.clone();
+            adapter.refreshData(deviceList);
         }
     };
     private OnScanDeviceLisetener scanLister = new OnScanDeviceLisetener() {
@@ -182,17 +178,16 @@ public class ConnectActivity extends BaseActivity {
 
     @Override
     protected void initView(View view) {
-        TextView title = findViewById(R.id.tv_title);
-        title.setText((STR(R.string.road_live_choose_drive)));
-        devicelist = new ArrayList<>();
+//        TextView title = findViewById(R.id.tv_title);
+//        title.setText((STR(R.string.road_live_choose_drive)));
         list = new ArrayList<>();
         AppConfig.getInstance(ConnectActivity.this).setDeviceName("unkonwDevoce");
-        adapter = new ConnectDdeviceAdapter(ConnectActivity.this, devicelist);
+        adapter = new ConnectDdeviceAdapter(ConnectActivity.this, deviceList);
         listConnect.setAdapter(adapter);
         listConnect.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                logintToDevice(devicelist.get(position));
+                logintToDevice(deviceList.get(position));
                 myHandler.postDelayed(connectfail, 15000);
             }
         });
@@ -207,7 +202,7 @@ public class ConnectActivity extends BaseActivity {
 
     private void refreshScan() {
         list.clear();
-        devicelist.clear();
+        deviceList.clear();
         adapter.notifyDataSetChanged();
         imgConnect.setVisibility(View.GONE);
         progressBar1.setVisibility(View.VISIBLE);

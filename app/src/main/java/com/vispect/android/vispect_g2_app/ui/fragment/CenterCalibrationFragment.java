@@ -46,6 +46,8 @@ import interf.OnWifiOpenListener;
  */
 public class CenterCalibrationFragment extends BaseFragment {
     private static final String TAG = "CenterCalibrationFragment";
+    public static boolean isrunning = false;
+    private final int REQUESRST_LIVE = 101;
 //    @Bind(R.id.iv_titlebar_save_frame)
 //    TextView iv_titlebar_save_frame;
     @Bind(R.id.iv_titlebar_title)
@@ -60,10 +62,6 @@ public class CenterCalibrationFragment extends BaseFragment {
     TextView tv_center_calibrationing_tips;
     @Bind(R.id.rel_correcting_progress)
     RelativeLayout rel_correcting_progress;
-
-
-
-
     boolean cantoget = true;
     long newtime = 0;
     private boolean corrcting = false;
@@ -92,7 +90,6 @@ public class CenterCalibrationFragment extends BaseFragment {
 //            AppContext.getInstance().setLocation(180000);
         }
     };
-    private final int REQUESRST_LIVE = 101;
     private boolean cantoconnect = true;
     private XuTimeOutUtil timeoututil = new XuTimeOutUtil(new XuTimeOutCallback() {
         @Override
@@ -126,8 +123,6 @@ public class CenterCalibrationFragment extends BaseFragment {
             }
         }
     };
-
-    public static boolean isrunning = false;
     private OnNeedScroll needScrollCallback;
     @Override
     public int getContentResource() {
@@ -296,7 +291,7 @@ public class CenterCalibrationFragment extends BaseFragment {
             return 1;
         }
         if(AppContext.getInstance().isERROR_CAMERA()){
-            XuToast.show(AppContext.getInstance(),  STR(R.string.camera_erro));
+            XuToast.show(AppContext.getInstance(), STR(R.string.camera_error));
             return 2;
         }
 

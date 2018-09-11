@@ -568,7 +568,7 @@ Vispect Team</string>
     <string name="edit_input_8_number_password">Please enter your wifi password(8 digit number)</string>
 
     <!--硬件错误提示-->
-    <string name="camera_erro">System camera become loose, please check your device. </string>
+    <string name="camera_error">System camera become loose, please check your device. </string>
     <string name="gps_erro">System GPS become loose, please check your device. </string>
     <string name="s_app_erro">Built-in program has been damaged, please Updates. </string>
 

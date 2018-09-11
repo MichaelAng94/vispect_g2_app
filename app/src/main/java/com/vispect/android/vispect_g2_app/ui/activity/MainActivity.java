@@ -3,6 +3,7 @@ package com.vispect.android.vispect_g2_app.ui.activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.Build;
@@ -49,6 +50,8 @@ import static com.vispect.android.vispect_g2_app.app.AppConfig.IMAGE_USER_AVATAR
 import static com.vispect.android.vispect_g2_app.app.AppConfig.REQUEST_CODE_CAMERA;
 import static com.vispect.android.vispect_g2_app.app.AppConfig.REQUEST_CODE_CAMERA_PERMISSION;
 import static com.vispect.android.vispect_g2_app.app.AppConfig.REQUEST_CODE_GLOBAL_PERMISSION;
+import static com.vispect.android.vispect_g2_app.controller.DeviceHelper.isConnected;
+import static com.vispect.android.vispect_g2_app.controller.DeviceHelper.isG2;
 
 public class MainActivity extends BaseActivity {
 
@@ -73,6 +76,10 @@ public class MainActivity extends BaseActivity {
                 if (i == 0) {
 //                    imgConnect.setColorFilter(null);
                     XuToast.show(MainActivity.this, "Disconnect");
+                    if (imgRight != null) {
+                        imgRight.setImageResource(R.drawable.disconnect);
+                        imgRight.clearColorFilter();
+                    }
                     XuLog.e(TAG, "需要退回到首页");
                     AppContext.getInstance().getDeviceHelper().closeWIFIMode();
                     AppContext.getInstance().getDeviceHelper().closeDeviceRealViewMode();
@@ -110,6 +117,20 @@ public class MainActivity extends BaseActivity {
 
         addUserInfoFragment();
         addIndexFragment();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (isConnected() && isG2()) {
+            imgRight.setImageResource(R.mipmap.connet_ble);
+            imgRight.setColorFilter(Color.parseColor("#00CCCC"));
+        } else {
+            imgRight.setImageResource(R.drawable.disconnect);
+            imgRight.clearColorFilter();
+        }
+
     }
 
     @Override
@@ -189,7 +210,7 @@ public class MainActivity extends BaseActivity {
                 }
                 break;
             case R.id.img_right:
-                if (DeviceHelper.isConnected()) {
+                if (isConnected()) {
                     DeviceHelper.cancelConnect();
                     imgRight.setImageResource(R.drawable.disconnect);
                     imgRight.clearColorFilter();
