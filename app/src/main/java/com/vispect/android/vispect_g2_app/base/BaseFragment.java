@@ -28,6 +28,7 @@ public abstract class BaseFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         initView();
+        setTitle();
         return view;
     }
 
@@ -35,9 +36,19 @@ public abstract class BaseFragment extends Fragment {
 
     }
 
-    protected void setTitle(@StringRes int title) {
-        TextView titleView = getActivity().findViewById(R.id.tv_title);
-        if (titleView != null) titleView.setText(title);
+    protected void setTitle() {
+        TextView titleView = getActivity().findViewById(R.id.title);
+        if (titleView != null) titleView.setText(getTitleResource());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @StringRes
+    protected int getTitleResource() {
+        return R.string.app_name;
     }
 
     /**

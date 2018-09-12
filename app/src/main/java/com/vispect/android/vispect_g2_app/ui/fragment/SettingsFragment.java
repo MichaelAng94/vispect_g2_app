@@ -57,6 +57,11 @@ public class SettingsFragment extends BaseFragment {
     }
 
     @Override
+    protected int getTitleResource() {
+        return R.string.setting;
+    }
+
+    @Override
     protected void initView() {
 
         if (isZh) settings.remove(2);//中文版隐藏侧边摄像头

@@ -447,7 +447,6 @@ Vispect Team</string>
     <string name="notifyMsg"> The current application lacks the necessary permissions. Please click\settings\permissions\Open the required permissions. </string>
     <string name="setting">Settings</string>
 
-
     <string name="recommended_login">Recommend login method</string>
     <string name="login_by_eamil">Login by email</string>
     <string name="register_by_eamil">Register the email</string>
@@ -1074,6 +1073,7 @@ Vispect Team</string>
     <string name="check_device">to upgrade the ADAS devices</string>
     <string name="check_version">to check the versions of the ADAS devices</string>
     <string name="set_side_cameras">to set the side cameras</string>
+    <string name="side_cameras_setting">side cameras setting</string>
     <string name="adjust_camera_atlow">Set the Speed to adjust automatically</string>
     <string name="driving_behavior_setting">Driving behaviod settings</string>
     <string name="engineering_setting">Engineering settings</string>

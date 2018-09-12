@@ -1,36 +1,28 @@
 package com.vispect.android.vispect_g2_app.ui.fragment;
 
-import android.content.DialogInterface;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.rey.material.app.BottomSheetDialog;
 import com.vispect.android.vispect_g2_app.R;
 import com.vispect.android.vispect_g2_app.app.AppContext;
 import com.vispect.android.vispect_g2_app.base.BaseFragment;
 import com.vispect.android.vispect_g2_app.controller.DeviceHelper;
-import com.vispect.android.vispect_g2_app.controller.UIHelper;
 import com.vispect.android.vispect_g2_app.interf.Callback;
-import com.vispect.android.vispect_g2_app.interf.OnClickYesOrNoListener;
 import com.vispect.android.vispect_g2_app.utils.DialogUtils;
 import com.vispect.android.vispect_g2_app.utils.XuLog;
 import com.vispect.android.vispect_g2_app.utils.XuToast;
-import com.weigan.loopview.LoopView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import interf.GetSPMSpeedSpace;
 import interf.ResultListner;
+
+import static android.view.View.VISIBLE;
 
 /**
  * Created by mo on 2018/7/19.
@@ -71,6 +63,11 @@ public class SideFragment extends BaseFragment {
     }
 
     @Override
+    protected int getTitleResource() {
+        return R.string.side_cameras_setting;
+    }
+
+    @Override
     protected void initView() {
         AppContext.getInstance().getDeviceHelper().getSPMSpeedSpace(new GetSPMSpeedSpace() {
             @Override
@@ -88,12 +85,15 @@ public class SideFragment extends BaseFragment {
         }, 0);
 
         Button save = getActivity().findViewById(R.id.btn_save);
-        if (save != null) save.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                saveData();
-            }
-        });
+        if (save != null) {
+            save.setVisibility(VISIBLE);
+            save.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    saveData();
+                }
+            });
+        }
     }
 
     public void saveData() {
@@ -104,18 +104,23 @@ public class SideFragment extends BaseFragment {
             finish();
             return;
         }
+        if (!DeviceHelper.isG2Connected()) {
+            XuToast.show(getActivity(), R.string.device_disconnected);
+            return;
+        }
         DialogUtils.confirmDialog(getActivity(), STR(R.string.ask_save_data), new Runnable() {
             @Override
             public void run() {
                 DeviceHelper.setSPMSpeedSpace(new ResultListner() {
                     @Override
                     public void onSuccess() {
-
+                        XuToast.show(getActivity(), R.string.save_success);
+                        finish();
                     }
 
                     @Override
                     public void onFail(int i) {
-
+                        XuToast.show(getActivity(), R.string.save_fail);
                     }
                 }, start, end);
             }
