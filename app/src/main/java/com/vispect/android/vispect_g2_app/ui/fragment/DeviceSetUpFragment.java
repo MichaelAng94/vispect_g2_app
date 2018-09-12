@@ -106,9 +106,7 @@ public class DeviceSetUpFragment extends BaseFragment {
                     public void isyes(boolean b, DialogInterface dialog) {
                         if (b) {
                             saveData();
-                            Message msg = new Message();
-                            msg.arg2 = -1;
-                            SettingsActivity.transHandler.sendMessage(msg);
+                            finish();
                         }
                         dialog.dismiss();
                     }
@@ -234,10 +232,10 @@ public class DeviceSetUpFragment extends BaseFragment {
                 return;
             }
 
-            mHandler.post(show);
-            Message msg = new Message();
-            msg.arg2 = -1;
-            SettingsActivity.transHandler.sendMessage(msg);
+//            mHandler.post(show);
+//            Message msg = new Message();
+//            msg.arg2 = -1;
+//            SettingsActivity.transHandler.sendMessage(msg);
             AppContext.getInstance().getCachedThreadPool().execute(new Runnable() {
                 @Override
                 public void run() {

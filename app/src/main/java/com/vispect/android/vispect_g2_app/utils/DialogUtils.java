@@ -6,8 +6,6 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -15,7 +13,9 @@ import com.rey.material.app.BottomSheetDialog;
 import com.vispect.android.vispect_g2_app.R;
 import com.vispect.android.vispect_g2_app.controller.UIHelper;
 import com.vispect.android.vispect_g2_app.interf.Callback;
-import com.vispect.android.vispect_g2_app.interf.CarDialogClickListener;
+import com.weigan.loopview.LoopView;
+
+import java.util.List;
 
 public class DialogUtils {
 
@@ -167,6 +167,14 @@ public class DialogUtils {
         });
     }
 
+    /**
+     * 确认框
+     *
+     * @param activity
+     * @param title    标题
+     * @param confirm  点击确认
+     * @param cancel   点击取消
+     */
     public static MaterialDialog confirmDialog(@NonNull Activity activity, @Nullable String title, @NonNull final Runnable confirm, @Nullable final Runnable cancel) {
         MaterialDialog.Builder builder = new MaterialDialog.Builder(activity);
         final MaterialDialog confirmDialog = builder
@@ -191,6 +199,41 @@ public class DialogUtils {
             }
         });
         return confirmDialog;
+    }
+
+    /**
+     * 滚轮选择框
+     *
+     * @param activity
+     * @param list     数据源
+     */
+    public static void showLooperDialog(@NonNull Activity activity, @NonNull final List<String> list, @NonNull final Callback<String> callback) {
+        View dialog = activity.getLayoutInflater().inflate(R.layout.dialog_loop, null);
+        final BottomSheetDialog bottomInterPasswordDialog = new BottomSheetDialog(activity);
+        bottomInterPasswordDialog.contentView(dialog)
+                .heightParam(UIHelper.dp2px(activity, 205))
+                .inDuration(100).outDuration(100)
+                .cancelable(true).show();
+
+        final LoopView loopView = dialog.findViewById(R.id.loop);
+        loopView.setItems(list);
+        loopView.setTextSize(20);
+        loopView.setNotLoop();
+
+        dialog.findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomInterPasswordDialog.dismiss();
+            }
+        });
+
+        dialog.findViewById(R.id.tv_ok).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callback.callback(list.get(loopView.getSelectedItem()));
+                bottomInterPasswordDialog.dismiss();
+            }
+        });
     }
 
 }

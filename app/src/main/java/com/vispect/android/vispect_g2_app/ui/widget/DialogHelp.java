@@ -183,13 +183,5 @@ public class DialogHelp {
         });
     }
 
-    public void loopDialog(Activity ac, View view) {
-        this.ac = ac;
-        mBuilder = new MaterialDialog.Builder(ac);
-        mMaterialDialog = new MaterialDialog.Builder(ac)
-                .customView(R.layout.dialog_loop, false)
-                .show();
-    }
-
 
 }

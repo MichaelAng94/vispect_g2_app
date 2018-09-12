@@ -133,9 +133,9 @@ public class CameraTypeFragment extends BaseFragment {
 
                     }
                 }, points);
-                Message msg = new Message();
-                msg.arg2 = 4;
-                SettingsActivity.transHandler.sendMessage(msg);
+//                Message msg = new Message();
+//                msg.arg2 = 4;
+//                SettingsActivity.transHandler.sendMessage(msg);
             }
         });
     }

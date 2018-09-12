@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.vispect.android.vispect_g2_app.R;
+import com.vispect.android.vispect_g2_app.bean.Setting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,27 +19,28 @@ import java.util.List;
  * Created by mo on 2018/7/12.
  */
 
-public class CalibrateAdapter  extends BaseAdapter{
-    private List<String> datas = new ArrayList<String>();
-    private Context context;
+public class CalibrateAdapter extends BaseAdapter {
+    private List<String> _data = new ArrayList<>();
+    private Context _context;
 
     public CalibrateAdapter(Context context) {
-        this.context = context;
+        _context = context;
     }
 
-    public void setData( List<String> data){
-        this.datas = data;
+    public void setData(List<String> data) {
+        _data.clear();
+        if (data != null && data.size() > 0) _data.addAll(data);
         notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
-        return datas.size();
+        return _data.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return datas.get(i);
+        return _data.get(i);
     }
 
     @Override
@@ -48,19 +50,19 @@ public class CalibrateAdapter  extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        CalibrateAdapter.ViewHolder holder = null;
+        ViewHolder holder = null;
         if (convertView == null) {
             // 如果是第一次显示该页面(要记得保存到viewholder中供下次直接从缓存中调用)
-            holder = new CalibrateAdapter.ViewHolder();
-            convertView = LayoutInflater.from(context).inflate(R.layout.list_item_dot, null);
+            holder = new ViewHolder();
+            convertView = LayoutInflater.from(_context).inflate(R.layout.list_item_dot, null);
             holder.tvContext = convertView.findViewById(R.id.tv_choose_cammera);
             holder.dotView = convertView.findViewById(R.id.img_dot);
             convertView.setTag(holder);
         } else {
-            holder = (CalibrateAdapter.ViewHolder) convertView.getTag();
+            holder = (ViewHolder) convertView.getTag();
         }
         holder.dotView.setColorFilter(Color.parseColor(position % 2 == 0 ? "#00CCCC" : "#0099CC"));
-        holder.tvContext.setText(datas.get(position));
+        holder.tvContext.setText(_data.get(position));
         return convertView;
     }
 

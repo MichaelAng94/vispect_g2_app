@@ -156,9 +156,9 @@ public class DSMSettings extends BaseFragment {
 
                                         }
                                     });
-                                    Message msg = new Message();
-                                    msg.arg2 = -1;
-                                    SettingsActivity.transHandler.sendMessage(msg);
+//                                    Message msg = new Message();
+//                                    msg.arg2 = -1;
+//                                    SettingsActivity.transHandler.sendMessage(msg);
                                 }
                             }else {
                                 XuToast.show(getActivity(),STR(R.string.input_illegal));

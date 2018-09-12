@@ -312,7 +312,7 @@ public abstract class BaseFragment extends Fragment implements ProgressControlle
         return str;
     }
 
-    public String STR(@StringRes int stringRes, String... value) {
+    public String STR(@StringRes int stringRes, String value) {
         return String.format(getResources().getString(stringRes), value);
     }
 
@@ -374,6 +374,13 @@ public abstract class BaseFragment extends Fragment implements ProgressControlle
         });
     }
 
+
+    protected void finish() {
+        int entryCount = getFragmentManager().getBackStackEntryCount();
+        if (entryCount > 1) {
+            getFragmentManager().popBackStackImmediate();
+        }
+    }
 
     public interface OnInputStatusChange {
         public void InputStatusChange(boolean status);

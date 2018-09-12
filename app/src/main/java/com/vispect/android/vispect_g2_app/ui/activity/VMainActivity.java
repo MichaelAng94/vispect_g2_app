@@ -158,25 +158,6 @@ public class VMainActivity extends BaseActivity {
     private boolean onStart = false;
     private OnGetShortVideoCallback onGetShortVideoCallback;
     private volatile int progress = -1;
-    Runnable changeProgress = new Runnable() {
-        @Override
-        public void run() {
-            if (progress != 100) {
-                if (linProgress != null && linProgress.getVisibility() == View.GONE) {
-                    linProgress.setVisibility(View.VISIBLE);
-                }
-                if (tvProgress != null) {
-                    tvProgress.setText(progress + "");
-                }
-
-                mhandler.postDelayed(getProgress, 2000);
-            } else {
-                mhandler.post(getcenterponintag);
-                i = -1;
-                linProgress.setVisibility(View.GONE);
-            }
-        }
-    };
     Runnable getProgress = new Runnable() {
         @Override
         public void run() {
@@ -278,6 +259,25 @@ public class VMainActivity extends BaseActivity {
                     canTranslation = true;
                 }
             });
+        }
+    };
+    Runnable changeProgress = new Runnable() {
+        @Override
+        public void run() {
+            if (progress != 100) {
+                if (linProgress != null && linProgress.getVisibility() == View.GONE) {
+                    linProgress.setVisibility(View.VISIBLE);
+                }
+                if (tvProgress != null) {
+                    tvProgress.setText(progress + "");
+                }
+
+                mhandler.postDelayed(getProgress, 2000);
+            } else {
+                mhandler.post(getcenterponintag);
+                i = -1;
+                linProgress.setVisibility(View.GONE);
+            }
         }
     };
     //    //----------------------------------------

@@ -220,13 +220,11 @@ public class ConnectActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         DeviceHelper.stopScanDevice();
         myHandler.removeCallbacks(cancelScanDevice);
         myHandler.removeCallbacks(connectFailed);
-        if (isConnecting) {
-            AppContext.getInstance().getDeviceHelper().disconnectDevice();
-        }
+        if (isConnecting) AppContext.getInstance().getDeviceHelper().disconnectDevice();
+        super.onDestroy();
     }
 
     private void openBluetoothScanDevice() {

@@ -1,145 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/hintColor"
-    >
+    android:background="@color/hintColor">
 
     <LinearLayout
-        android:layout_marginTop="@dimen/y30"
         android:id="@+id/disabled_view_foo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y30"
         android:background="#FFFFFF"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_marginTop="@dimen/y30"
-            android:layout_width="wrap_content"
+        <FrameLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
+            android:layout_margin="@dimen/y30">
 
             <ImageView
-                android:layout_gravity="center"
-                android:src="@drawable/dot"
-                android:tint="@color/table_check"
                 android:layout_width="@dimen/y90"
-                android:layout_height= "@dimen/y90" />
+                android:layout_height="@dimen/y90"
+                android:src="@drawable/dot"
+                android:tint="@color/table_check" />
 
             <TextView
-                android:textSize="@dimen/y50"
-                android:textColor="@color/black"
-                android:layout_gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/y100"
                 android:text="@string/side_cameras"
-                />
-        </LinearLayout>
+                android:textColor="@color/black"
+                android:textSize="@dimen/y50" />
+        </FrameLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/y45"
-            android:layout_marginRight="@dimen/y45"
-            android:textSize="@dimen/y40"
-            android:textColor="@color/table_check"
+            android:layout_marginHorizontal="@dimen/y45"
             android:text="@string/note_side_cameras"
-            />
+            android:textColor="@color/table_check"
+            android:textSize="@dimen/y40" />
 
-        <RelativeLayout
-            android:layout_marginTop="@dimen/y30"
-            android:layout_marginBottom="@dimen/y50"
-            android:layout_marginLeft="@dimen/y90"
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/y50">
 
             <TextView
-                android:layout_centerVertical="true"
-                android:textSize="@dimen/deiver_status_small_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:text="@string/start_speed"
-                />
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/deiver_status_small_size" />
 
-            <LinearLayout
-                android:id="@+id/lin_start_speed"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/x40"
+            <FrameLayout
+                android:id="@+id/fl_start_speed"
+                android:layout_width="@dimen/x160"
+                android:layout_height="@dimen/y80"
                 android:layout_gravity="right"
                 android:background="@drawable/solid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:padding="@dimen/x10">
 
                 <TextView
                     android:id="@+id/tv_start_speed"
-                    android:layout_margin="@dimen/y10"
-                    android:layout_width="@dimen/x55"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:text="50"
-                    android:textSize="@dimen/deiver_status_small_size"
-                    />
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/deiver_status_small_size" />
 
                 <ImageView
-                    android:layout_gravity="center"
                     android:layout_width="@dimen/x40"
                     android:layout_height="@dimen/x40"
-                    android:src="@drawable/remix"
-                    />
+                    android:layout_gravity="center"
+                    android:src="@drawable/remix" />
 
-            </LinearLayout>
+            </FrameLayout>
 
-        </RelativeLayout>
+        </FrameLayout>
 
-        <RelativeLayout
-            android:layout_marginBottom="@dimen/y45"
-            android:layout_marginLeft="@dimen/y90"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/y50"
+            android:layout_marginHorizontal="@dimen/y50">
 
             <TextView
-                android:layout_centerVertical="true"
-                android:textSize="@dimen/deiver_status_small_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:text="@string/end_speed"
-                />
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/deiver_status_small_size" />
 
-            <LinearLayout
-                android:id="@+id/lin_end_speed"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/x40"
+            <FrameLayout
+                android:id="@+id/fl_end_speed"
+                android:layout_width="@dimen/x160"
+                android:layout_height="@dimen/y80"
                 android:layout_gravity="right"
                 android:background="@drawable/solid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:padding="@dimen/x10">
 
                 <TextView
                     android:id="@+id/tv_end_speed"
-                    android:layout_margin="@dimen/y10"
-                    android:layout_width="@dimen/x55"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:text="50"
-                    android:textSize="@dimen/deiver_status_small_size"
-                    />
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/deiver_status_small_size" />
 
                 <ImageView
-                    android:layout_gravity="center"
                     android:layout_width="@dimen/x40"
                     android:layout_height="@dimen/x40"
-                    android:src="@drawable/remix"
-                    />
+                    android:layout_gravity="center"
+                    android:src="@drawable/remix" />
 
-            </LinearLayout>
+            </FrameLayout>
 
-        </RelativeLayout>
+        </FrameLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+</FrameLayout>

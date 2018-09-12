@@ -12,7 +12,8 @@
             android:id="@+id/list_settings"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="@null" />
+            android:divider="@null"
+            android:padding="@dimen/x10" />
 
     </com.vispect.android.vispect_g2_app.ui.widget.MoScroller>
 

@@ -82,7 +82,6 @@ public class IndexFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.menu_user_guide:
-                // 跳到文档页面
                 UIHelper.startActivity(getActivity(), DocActivity.class);
                 break;
             case R.id.menu_installation:
@@ -90,8 +89,8 @@ public class IndexFragment extends BaseFragment {
                     UIHelper.startActivity(getActivity(), InstallActivity.class);
                 break;
             case R.id.menu_settings:
-                if (DeviceHelper.isG2Connected(getActivity(), EXTRA_TO_SETTING))
-                    UIHelper.startActivity(getActivity(), SettingsActivity.class);
+//                if (DeviceHelper.isG2Connected(getActivity(), EXTRA_TO_SETTING))
+                UIHelper.startActivity(getActivity(), SettingsActivity.class);
                 break;
             case R.id.menu_live:
                 if (DeviceHelper.isG2Connected(getActivity(), null))
@@ -250,8 +249,10 @@ public class IndexFragment extends BaseFragment {
     private void showConnectWifiDialog() {
         DialogHelp.getInstance().hideDialog();
         DialogHelp.getInstance().connectDialog(getActivity(), STR(R.string.dialog_tips_connecting),
-                STR(R.string.connect_wifi, AppConfig.getInstance(getActivity()).getWifi_name()
-                        , AppConfig.getInstance(getActivity()).getWifi_paw()))
+
+                String.format(getResources().getString(R.string.connect_wifi),
+                        AppConfig.getInstance(getActivity()).getWifi_name(),
+                        AppConfig.getInstance(getActivity()).getWifi_paw()))
                 .setOnKeyListener(keyListener);
     }
 

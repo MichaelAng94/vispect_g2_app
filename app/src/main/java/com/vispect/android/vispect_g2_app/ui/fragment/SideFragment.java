@@ -2,23 +2,29 @@ package com.vispect.android.vispect_g2_app.ui.fragment;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.os.Message;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.rey.material.app.BottomSheetDialog;
 import com.vispect.android.vispect_g2_app.R;
 import com.vispect.android.vispect_g2_app.app.AppContext;
+import com.vispect.android.vispect_g2_app.base.BaseFragment;
+import com.vispect.android.vispect_g2_app.controller.DeviceHelper;
 import com.vispect.android.vispect_g2_app.controller.UIHelper;
+import com.vispect.android.vispect_g2_app.interf.Callback;
 import com.vispect.android.vispect_g2_app.interf.OnClickYesOrNoListener;
-import com.vispect.android.vispect_g2_app.ui.activity.SettingsActivity;
+import com.vispect.android.vispect_g2_app.utils.DialogUtils;
 import com.vispect.android.vispect_g2_app.utils.XuLog;
+import com.vispect.android.vispect_g2_app.utils.XuToast;
 import com.weigan.loopview.LoopView;
 
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -35,10 +41,29 @@ import interf.ResultListner;
 public class SideFragment extends BaseFragment {
 
     @Bind(R.id.tv_start_speed)
-    TextView tvStartSpeed;
+    TextView startSpeed;
     @Bind(R.id.tv_end_speed)
-    TextView tvEndSpeed;
-    private ArrayList<String> list;
+    TextView endSpeed;
+    private List<String> startList = new ArrayList<>();
+    private List<String> endList = new ArrayList<>();
+    private int _startSpeed;
+    private int _endSpeed;
+
+    {
+        startList.add("0");
+        startList.add("5");
+        startList.add("10");
+        startList.add("15");
+        startList.add("20");
+        startList.add("25");
+        startList.add("30");
+
+        endList.add("40");
+        endList.add("50");
+        endList.add("60");
+        endList.add("70");
+        endList.add("80");
+    }
 
     @Override
     public int getContentResource() {
@@ -46,129 +71,75 @@ public class SideFragment extends BaseFragment {
     }
 
     @Override
-    protected void initView(View view) throws IOException {
-    }
-
-    public void showLoopDialog(final TextView textView, final ArrayList<String> stringArrayList) {
-        final View dialog = getLayoutInflater().inflate(R.layout.dialog_loop, null);
-        final BottomSheetDialog bottomInterPasswordDialog = new BottomSheetDialog(getActivity());
-        bottomInterPasswordDialog
-                .contentView(dialog)
-                .heightParam(UIHelper.dp2px(getActivity(), 205))
-                .inDuration(100)
-                .outDuration(100)
-                .cancelable(true)
-                .show();
-
-        final LoopView loopView = dialog.findViewById(R.id.loop);
-        loopView.setItems(stringArrayList);
-        loopView.setTextSize(20);
-        loopView.setNotLoop();
-
-        dialog.findViewById(R.id.tv_cancle).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                bottomInterPasswordDialog.dismiss();
-            }
-        });
-
-        dialog.findViewById(R.id.tv_ok).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                textView.setText(stringArrayList.get(loopView.getSelectedItem()));
-                bottomInterPasswordDialog.dismiss();
-            }
-        });
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        getActivity().findViewById(R.id.btn_save).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                UIHelper.showAsk(getActivity(), STR(R.string.ask_save_data), true, new OnClickYesOrNoListener() {
-                    @Override
-                    public void isyes(boolean b, DialogInterface dialog) {
-                        if (b) {
-                            saveData();
-                            Message msg = new Message();
-                            msg.arg2 = -1;
-                            SettingsActivity.transHandler.sendMessage(msg);
-                        }
-                        dialog.dismiss();
-                    }
-                });
-            }
-        });
-
+    protected void initView() {
         AppContext.getInstance().getDeviceHelper().getSPMSpeedSpace(new GetSPMSpeedSpace() {
             @Override
-            public void onSuccess(int i, int i1) {
-                XuLog.e("i" + i + "i1" + i1);
-                tvStartSpeed.setText(i + "");
-                tvEndSpeed.setText(i1 + "");
+            public void onSuccess(int start, int end) {
+                XuLog.e("start" + start + "end" + end);
+                startSpeed.setText(start + "");
+                endSpeed.setText(end + "");
+                _startSpeed = start;
+                _endSpeed = end;
             }
 
             @Override
             public void onFail(int i) {
-
             }
         }, 0);
-    }
 
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if (!hidden) {
-            onResume();
-        }
+        Button save = getActivity().findViewById(R.id.btn_save);
+        if (save != null) save.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveData();
+            }
+        });
     }
 
     public void saveData() {
-        AppContext.getInstance().getDeviceHelper().setSPMSpeedSpace(new ResultListner() {
+        final int start = Integer.parseInt(startSpeed.getText().toString());
+        final int end = Integer.parseInt(endSpeed.getText().toString());
+        if (start == _startSpeed && end == _endSpeed) {
+            XuToast.show(getActivity(), R.string.save_success);
+            finish();
+            return;
+        }
+        DialogUtils.confirmDialog(getActivity(), STR(R.string.ask_save_data), new Runnable() {
             @Override
-            public void onSuccess() {
+            public void run() {
+                DeviceHelper.setSPMSpeedSpace(new ResultListner() {
+                    @Override
+                    public void onSuccess() {
 
+                    }
+
+                    @Override
+                    public void onFail(int i) {
+
+                    }
+                }, start, end);
             }
-
-            @Override
-            public void onFail(int i) {
-
-            }
-        }, 0, Integer.parseInt(tvStartSpeed.getText().toString()), Integer.parseInt(tvEndSpeed.getText().toString()));
+        }, null);
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
-
-    @OnClick({R.id.lin_start_speed, R.id.lin_end_speed})
+    @OnClick({R.id.fl_start_speed, R.id.fl_end_speed})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.lin_start_speed:
-                list = new ArrayList<>();
-                for (int i = 0; i < 35; i += 5) {
-                    list.add("" + i);
-                }
-                showLoopDialog(tvStartSpeed, list);
+            case R.id.fl_start_speed:
+                DialogUtils.showLooperDialog(getActivity(), startList, new Callback<String>() {
+                    @Override
+                    public void callback(String value) {
+                        startSpeed.setText(value);
+                    }
+                });
                 break;
-            case R.id.lin_end_speed:
-                list = new ArrayList<>();
-                for (int i = 40; i < 80; i += 10) {
-                    list.add("" + i);
-                }
-                showLoopDialog(tvEndSpeed, list);
+            case R.id.fl_end_speed:
+                DialogUtils.showLooperDialog(getActivity(), endList, new Callback<String>() {
+                    @Override
+                    public void callback(String value) {
+                        endSpeed.setText(value);
+                    }
+                });
                 break;
         }
     }

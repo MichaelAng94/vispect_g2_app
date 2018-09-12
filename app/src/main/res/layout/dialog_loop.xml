@@ -1,43 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/white"
-    android:layout_height="300dp">
+    android:layout_height="300dp"
+    android:background="@color/white">
 
     <RelativeLayout
         android:id="@+id/re_top"
-        android:layout_alignParentTop="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
 
         <TextView
-            android:id="@+id/tv_cancle"
-            android:textSize="@dimen/y45"
-            android:layout_margin="@dimen/x30"
-            android:text="cancel"
+            android:id="@+id/tv_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            />
+            android:layout_margin="@dimen/x30"
+            android:padding="@dimen/x20"
+            android:text="cancel"
+            android:textSize="@dimen/y45" />
 
         <TextView
             android:id="@+id/tv_ok"
-            android:textSize="@dimen/y45"
-            android:layout_margin="@dimen/x30"
-            android:text="ok"
-            android:textColor="@color/table_check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            />
+            android:layout_margin="@dimen/x30"
+            android:padding="@dimen/x20"
+            android:text="ok"
+            android:textColor="@color/table_check"
+            android:textSize="@dimen/y45" />
 
     </RelativeLayout>
 
     <com.weigan.loopview.LoopView
         android:id="@+id/loop"
-        android:layout_below="@id/re_top"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/re_top" />
 
 </RelativeLayout>

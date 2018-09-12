@@ -15,7 +15,20 @@ import android.widget.PopupWindow;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-
+import com.vispect.android.vispect_g2_app.R;
+import com.vispect.android.vispect_g2_app.app.AppConfig;
+import com.vispect.android.vispect_g2_app.app.AppContext;
+import com.vispect.android.vispect_g2_app.bean.ARG;
+import com.vispect.android.vispect_g2_app.controller.UIHelper;
+import com.vispect.android.vispect_g2_app.interf.OnClickYesOrNoListener;
+import com.vispect.android.vispect_g2_app.interf.XuTimeOutCallback;
+import com.vispect.android.vispect_g2_app.ui.activity.SettingsActivity;
+import com.vispect.android.vispect_g2_app.ui.widget.PickerView;
+import com.vispect.android.vispect_g2_app.utils.CodeUtil;
+import com.vispect.android.vispect_g2_app.utils.XuLog;
+import com.vispect.android.vispect_g2_app.utils.XuTimeOutUtil;
+import com.vispect.android.vispect_g2_app.utils.XuToast;
+import com.vispect.android.vispect_g2_app.utils.XuView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,22 +38,6 @@ import butterknife.OnClick;
 import interf.GetADASInfoCallback;
 import interf.SetDeviceInfoCallback;
 import interf.onGetHMWTimeCallback;
-
-import com.vispect.android.vispect_g2_app.R;
-import com.vispect.android.vispect_g2_app.controller.UIHelper;
-import com.vispect.android.vispect_g2_app.interf.OnClickYesOrNoListener;
-import com.vispect.android.vispect_g2_app.ui.activity.SettingsActivity;
-import com.vispect.android.vispect_g2_app.ui.widget.DialogHelp;
-import com.vispect.android.vispect_g2_app.utils.CodeUtil;
-import com.vispect.android.vispect_g2_app.utils.XuLog;
-import com.vispect.android.vispect_g2_app.utils.XuTimeOutUtil;
-import com.vispect.android.vispect_g2_app.utils.XuToast;
-import com.vispect.android.vispect_g2_app.utils.XuView;
-import com.vispect.android.vispect_g2_app.app.AppConfig;
-import com.vispect.android.vispect_g2_app.app.AppContext;
-import com.vispect.android.vispect_g2_app.bean.ARG;
-import com.vispect.android.vispect_g2_app.interf.XuTimeOutCallback;
-import com.vispect.android.vispect_g2_app.ui.widget.PickerView;
 
 /**
  * 报警参数设置
@@ -73,54 +70,28 @@ public class WarSetUpFragment extends BaseFragment {
 
     @Bind(R.id.ll_mask)
     LinearLayout ll_mask;
-
-
-    private boolean canToSave = true;
-
-
     Handler mHandler = new Handler();
-    private float HMWTime = -1;
-    Runnable setHMWTime = new Runnable() {
-        @Override
-        public void run() {
-            if( edt_hmw_fcw != null){
-                edt_hmw_fcw.setText(HMWTime+"");
-            }
-
-        }
-    };
-
-
     String edit_sensitivityOfSolidModes = "2";
     String edit_sensitivityOfDashModes = "2";
     String edit_warningStartSpeedOfSolidModes = "50";
     String edit_warningStartSpeedOfDashModes = "50";
     String edit_warningStartSpeedOfWanderingAcrosss = "50";
     String edit_wanderingAcrossLaneTimeThreshs = "60";
-
     String sensitivityOfTTCS = "2";
     String sensitivityOfHeadwayS = "2";
     String sensitivityOfVirtualBumperS = "2";
     String warningStartSpeedOfTTCS = "20";
     String warningStartSpeedOfHeadwayS = "20";
     String frontVehicleMovingDistanceThreshS = "100";
-
-
     int ss_ldw = 50;
     int ss_fcw = 30;
     int ss_pcw = 70;
-
     int sl_ldw = 3;
     int sl_fcw = 3;
     int sl_pcw = 3;
-
     String nowsectle = "0";
     TextView seekbar_level;
     boolean isallsuccess = true;
-
-    private AppConfig appconfig;
-
-    private int screenWidth;
     Runnable successRunnable = new Runnable() {
         @Override
         public void run() {
@@ -141,15 +112,6 @@ public class WarSetUpFragment extends BaseFragment {
 
         }
     };
-
-    private XuTimeOutUtil timeoutUtil = new XuTimeOutUtil(new XuTimeOutCallback() {
-        @Override
-        public void onTimeOut() {
-            hideProgress();
-
-        }
-    });
-
     Runnable getValueRunnableSS = new Runnable() {
         @Override
         public void run() {
@@ -161,8 +123,6 @@ public class WarSetUpFragment extends BaseFragment {
 
         }
     };
-
-
     Runnable getValueRunnableSL = new Runnable() {
         @Override
         public void run() {
@@ -174,9 +134,34 @@ public class WarSetUpFragment extends BaseFragment {
 
         }
     };
+    private boolean canToSave = true;
+    private float HMWTime = -1;
+    Runnable setHMWTime = new Runnable() {
+        @Override
+        public void run() {
+            if (edt_hmw_fcw != null) {
+                edt_hmw_fcw.setText(HMWTime + "");
+            }
 
+        }
+    };
+    private AppConfig appconfig;
+    private int screenWidth;
+    private XuTimeOutUtil timeoutUtil = new XuTimeOutUtil(new XuTimeOutCallback() {
+        @Override
+        public void onTimeOut() {
+            hideProgress();
 
-
+        }
+    });
+    private boolean canShowHMW = false;
+    Runnable showHMW = new Runnable() {
+        @Override
+        public void run() {
+            XuView.setViewVisible(ll_fcw_hmw, canShowHMW);
+            XuView.setViewVisible(ll_fcw_sensivitivity_level, !canShowHMW);
+        }
+    };
 
     @OnClick({R.id.edt_starspeed_ldw, R.id.edt_starspeed_fcw, R.id.edt_starspeed_pcw ,R.id.edt_hmw_fcw})
     void showPopupWindowbytimeSS(View v) {
@@ -353,13 +338,14 @@ public class WarSetUpFragment extends BaseFragment {
         popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         popupWindow.showAtLocation(ll_mask, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
     }
+
     @OnClick({R.id.edt_sensitivity_ldw, R.id.edt_sensitivity_fcw, R.id.edt_sensitivity_pcw})
     void showPopupWindowSL(View v) {
         final int viewId = v.getId();
         screenWidth = getActivity().getWindowManager().getDefaultDisplay().getWidth();
         // 一个自定义的布局，作为显示的内容
         View contentView = LayoutInflater.from(getActivity()).inflate(R.layout.popupwindow_sensitivity, null);
-        final PopupWindow popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.WRAP_CONTENT,
+        PopupWindow popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT, true);
 
         final SeekBar seekbar_sensitivity = (SeekBar) contentView.findViewById(R.id.seekbar_sensitivity);
@@ -447,22 +433,10 @@ public class WarSetUpFragment extends BaseFragment {
         popupWindow.showAtLocation(ll_mask, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
     }
 
-
-
     @Override
     public int getContentResource() {
         return R.layout.fragment_setup_war;
     }
-
-    private boolean canShowHMW = false;
-
-    Runnable showHMW = new Runnable() {
-        @Override
-        public void run() {
-            XuView.setViewVisible(ll_fcw_hmw,canShowHMW);
-            XuView.setViewVisible(ll_fcw_sensivitivity_level,!canShowHMW);
-        }
-    };
 
     @Override
     protected void initView(View view) {
@@ -490,9 +464,7 @@ public class WarSetUpFragment extends BaseFragment {
                     public void isyes(boolean b, DialogInterface dialog) {
                         if (b) {
                             saveData();
-                            Message msg = new Message();
-                            msg.arg2 = -1;
-                            SettingsActivity.transHandler.sendMessage(msg);
+                            finish();
                         }
                         dialog.dismiss();
                     }

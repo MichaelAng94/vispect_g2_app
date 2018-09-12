@@ -198,9 +198,7 @@ public class DriverStatusFragment extends BaseFragment {
                         public void isyes(boolean b, DialogInterface dialog) {
                             if (b) {
                                 saveData();
-                                Message msg = new Message();
-                                msg.arg2 = -1;
-                                SettingsActivity.transHandler.sendMessage(msg);
+                                finish();
                             }
                             dialog.dismiss();
                         }
@@ -251,7 +249,7 @@ public class DriverStatusFragment extends BaseFragment {
             timeCamera = (int) (f*10);
         }
         if (coolSwitchFoo8.isChecked()){
-            Float f = Float.parseFloat(this.timeDrinking.getText().toString());
+            Float f = Float.parseFloat(timeDrinking.getText().toString());
             timeDrink = (int) (f*10);
         }
 
@@ -420,7 +418,7 @@ public class DriverStatusFragment extends BaseFragment {
     }
 
     public void showLoopDialog(final TextView textView, final ArrayList<String> stringArrayList) {
-        final View dialog = getLayoutInflater().inflate(R.layout.dialog_loop, null);
+        View dialog = getLayoutInflater().inflate(R.layout.dialog_loop, null);
         final BottomSheetDialog bottomInterPasswordDialog = new BottomSheetDialog(getActivity());
         bottomInterPasswordDialog
                 .contentView(dialog)
@@ -435,7 +433,7 @@ public class DriverStatusFragment extends BaseFragment {
         loopView.setTextSize(20);
         loopView.setNotLoop();
 
-        dialog.findViewById(R.id.tv_cancle).setOnClickListener(new View.OnClickListener() {
+        dialog.findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 bottomInterPasswordDialog.dismiss();

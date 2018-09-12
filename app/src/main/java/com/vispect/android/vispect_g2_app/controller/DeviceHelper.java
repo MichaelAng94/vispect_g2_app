@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.vispect.android.vispect_g2_app.R;
+import com.vispect.android.vispect_g2_app.app.AppConfig;
 import com.vispect.android.vispect_g2_app.app.AppContext;
 import com.vispect.android.vispect_g2_app.interf.GetListCallback;
 import com.vispect.android.vispect_g2_app.ui.activity.ConnectActivity;
@@ -16,6 +17,7 @@ import bean.BLEDevice;
 import interf.BleLoginListener;
 import interf.GetG2CameraList;
 import interf.OnScanDeviceLisetener;
+import interf.ResultListner;
 
 public class DeviceHelper {
     public static boolean isConnected() {
@@ -70,5 +72,9 @@ public class DeviceHelper {
 
     public static void loginDevice(@NonNull BLEDevice device, BleLoginListener loginListener) {
         AppContext.getInstance().getDeviceHelper().loginDevice(device, loginListener);
+    }
+
+    public static void setSPMSpeedSpace(ResultListner resultListner, int start, int end) {
+        AppContext.getInstance().getDeviceHelper().setSPMSpeedSpace(resultListner, 0, start, end);
     }
 }
