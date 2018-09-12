@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 
-import com.vispect.android.vispect_g2_app.R;
 import com.vispect.android.vispect_g2_app.controller.FragmentHelper;
 import com.vispect.android.vispect_g2_app.interf.OnSoftKeyboardChangeListener;
 import com.vispect.android.vispect_g2_app.interf.ProgressController;
@@ -313,7 +312,7 @@ public abstract class BaseFragment extends Fragment implements ProgressControlle
         return str;
     }
 
-    public String STR(@StringRes int stringRes, String value) {
+    public String STR(@StringRes int stringRes, String... value) {
         return String.format(getResources().getString(stringRes), value);
     }
 

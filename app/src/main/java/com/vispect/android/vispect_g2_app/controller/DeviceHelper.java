@@ -2,12 +2,12 @@ package com.vispect.android.vispect_g2_app.controller;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.vispect.android.vispect_g2_app.R;
 import com.vispect.android.vispect_g2_app.app.AppContext;
 import com.vispect.android.vispect_g2_app.interf.GetListCallback;
 import com.vispect.android.vispect_g2_app.ui.activity.ConnectActivity;
-import com.vispect.android.vispect_g2_app.ui.activity.InstallActivity;
 import com.vispect.android.vispect_g2_app.utils.XuToast;
 
 import java.util.ArrayList;
@@ -26,29 +26,33 @@ public class DeviceHelper {
         return AppContext.getInstance().getDeviceHelper().isG2();
     }
 
-    public static boolean isG2Connected(@NonNull Activity activity, int requestCode) {
-        if (isConnected() && isG2()) {
+    public static boolean isG2Connected() {
+        return isConnected() && isG2();
+    }
+
+    public static boolean isG2Connected(@NonNull Activity activity, @Nullable String extra) {
+        if (isG2Connected()) {
             return true;
         } else {
             XuToast.show(activity, R.string.please_connect_G2);
-            UIHelper.startActivityForResult(activity, ConnectActivity.class, requestCode);
+            UIHelper.startActivity(activity, ConnectActivity.class, extra);
         }
         return false;
     }
 
     public static void getCameraList(@NonNull final GetListCallback callback) {
-            AppContext.getInstance().getDeviceHelper().getG2CameraList(new GetG2CameraList() {
-                @Override
-                public void onSuccess(ArrayList arrayList) {
-                    callback.onGetListSuccess(arrayList);
-                }
+        AppContext.getInstance().getDeviceHelper().getG2CameraList(new GetG2CameraList() {
+            @Override
+            public void onSuccess(ArrayList arrayList) {
+                callback.onGetListSuccess(arrayList);
+            }
 
-                @Override
-                public void onFail() {
-                    callback.onGetListFailed();
-                }
-            });
-        }
+            @Override
+            public void onFail() {
+                callback.onGetListFailed();
+            }
+        });
+    }
 
     public static void cancelConnect() {
         AppContext.getInstance().getDeviceHelper().canCelLoginDevice();

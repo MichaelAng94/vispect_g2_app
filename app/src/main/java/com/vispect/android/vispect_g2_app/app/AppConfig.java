@@ -31,6 +31,10 @@ public class AppConfig {
     public static final int REQUEST_CODE_CROP_IMAGE = 4;//裁剪图片
     //resultCode
     public static final int RESULT_CODE_OK = 100;//连接设备成功
+    //String Extra
+    public static final String STRING_EXTRA = "stringExtra";
+    public static final String EXTRA_TO_INSTALLATION = "toInstallation";
+    public static final String EXTRA_TO_SETTING = "toSetting";
     /**
      * Socker的配置参数
      */

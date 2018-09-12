@@ -1,7 +1,6 @@
 package com.vispect.android.vispect_g2_app.ui.activity;
 
 import android.bluetooth.BluetoothAdapter;
-import android.content.Intent;
 import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,9 +12,11 @@ import com.vispect.android.vispect_g2_app.adapter.DevicesAdapter;
 import com.vispect.android.vispect_g2_app.app.AppConfig;
 import com.vispect.android.vispect_g2_app.app.AppContext;
 import com.vispect.android.vispect_g2_app.controller.DeviceHelper;
+import com.vispect.android.vispect_g2_app.controller.UIHelper;
 import com.vispect.android.vispect_g2_app.ui.widget.DialogHelp;
 import com.vispect.android.vispect_g2_app.ui.widget.MoListView;
 import com.vispect.android.vispect_g2_app.utils.XuLog;
+import com.vispect.android.vispect_g2_app.utils.XuString;
 import com.vispect.android.vispect_g2_app.utils.XuToast;
 
 import java.lang.reflect.Method;
@@ -31,7 +32,9 @@ import interf.OnWifiOpenListener;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static com.vispect.android.vispect_g2_app.app.AppConfig.RESULT_CODE_OK;
+import static com.vispect.android.vispect_g2_app.app.AppConfig.EXTRA_TO_INSTALLATION;
+import static com.vispect.android.vispect_g2_app.app.AppConfig.EXTRA_TO_SETTING;
+import static com.vispect.android.vispect_g2_app.app.AppConfig.STRING_EXTRA;
 
 public class ConnectActivity extends BaseActivity {
 
@@ -46,6 +49,7 @@ public class ConnectActivity extends BaseActivity {
     private String TAG = "ConnectActivity";
     private Handler myHandler = new Handler();
     private boolean isConnecting = false;
+    private String _extra;
 
     private Runnable connectFailed = new Runnable() {
         @Override
@@ -55,6 +59,22 @@ public class ConnectActivity extends BaseActivity {
                 XuToast.show(ConnectActivity.this, STR(R.string.connect_connect_ble_fail));
             }
             DialogHelp.getInstance().hideDialog();
+        }
+    };
+    private Runnable handleSuccess = new Runnable() {
+        @Override
+        public void run() {
+            if (!XuString.isEmpty(_extra)) {
+                switch (_extra) {
+                    case EXTRA_TO_INSTALLATION:
+                        UIHelper.startActivity(ConnectActivity.this, InstallActivity.class);
+                        break;
+                    case EXTRA_TO_SETTING:
+                        UIHelper.startActivity(ConnectActivity.this, SettingsActivity.class);
+                        break;
+                }
+            }
+            finish();
         }
     };
     private BleLoginListener loginListener = new BleLoginListener() {
@@ -84,13 +104,7 @@ public class ConnectActivity extends BaseActivity {
             isConnecting = false;
 
             DialogHelp.getInstance().hideDialog();
-            setResult(RESULT_CODE_OK);
-            myHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    finish();
-                }
-            }, 500);
+            myHandler.postDelayed(handleSuccess, 500);
         }
 
         @Override
@@ -170,6 +184,7 @@ public class ConnectActivity extends BaseActivity {
 
     @Override
     protected void initView(View view) {
+        _extra = getIntent().getStringExtra(STRING_EXTRA);
         adapter = new DevicesAdapter(this);
         devicesListView.setAdapter(adapter);
         devicesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

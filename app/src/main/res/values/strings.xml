@@ -335,6 +335,7 @@ Vispect Team</string>
 
     <string name="wifi_waiting_too_long">Please manually connect your phone to the ADAS Main Unit’s WIFI net. Wi-Fi name: </string>
     <string name="wifi_waiting_too_long2">, Password:  </string>
+    <string name="connect_wifi">Please manually connect your phone to the ADAS Main Unit’s WIFI net. Wi-Fi name: %1$s \n  Password: %2$s</string>
     <string name="calibration_correcting_done">Adjust Successfully</string>
 
 

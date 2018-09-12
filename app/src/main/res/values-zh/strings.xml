@@ -452,6 +452,7 @@
 
     <string name="wifi_waiting_too_long">请手动接入ADAS系统的WIFI。WIFI名称：</string>
     <string name="wifi_waiting_too_long2">密码：</string>
+    <string name="connect_wifi">请手动接入ADAS系统的WIFI。WIFI名称: %1$s \n 密码: %2$s</string>
     <string name="calibration_correcting_done">校正成功！</string>
     <string name="calibration_start_correcting_fail">开启校正失败！</string>
     <string name="calibration_has_correcting">设备正在校正！</string>

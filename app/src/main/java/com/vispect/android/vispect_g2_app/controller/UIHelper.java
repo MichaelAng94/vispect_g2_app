@@ -6,9 +6,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.Display;
 
 import com.vispect.android.vispect_g2_app.R;
+import com.vispect.android.vispect_g2_app.app.AppConfig;
 import com.vispect.android.vispect_g2_app.app.AppContext;
 import com.vispect.android.vispect_g2_app.bean.ARG;
 import com.vispect.android.vispect_g2_app.interf.OnClickYesOrNoListener;
@@ -21,8 +24,11 @@ import com.vispect.android.vispect_g2_app.ui.activity.VMainActivity;
 import com.vispect.android.vispect_g2_app.ui.activity.VideoPlayerActivity;
 import com.vispect.android.vispect_g2_app.ui.widget.NotconnectDialog;
 import com.vispect.android.vispect_g2_app.utils.XuLog;
+import com.vispect.android.vispect_g2_app.utils.XuString;
 
 import java.util.ArrayList;
+
+import static com.vispect.android.vispect_g2_app.app.AppConfig.STRING_EXTRA;
 
 
 /**
@@ -38,11 +44,20 @@ public class UIHelper {
     /**
      * 启动class对应的Activity
      *
-     * @param activity
-     * @param clazz
+     * @param activity 上下文
+     * @param clazz    目标 Activity
      */
     public static void startActivity(Activity activity, Class<? extends Activity> clazz) {
         Intent intent = new Intent(activity, clazz);
+        activity.startActivity(intent);
+    }
+
+    /**
+     * @param extra 可为空 String 类型参数
+     */
+    public static void startActivity(@NonNull Activity activity, @NonNull Class<? extends Activity> clazz, @Nullable String extra) {
+        Intent intent = new Intent(activity, clazz);
+        if (!XuString.isEmpty(extra)) intent.putExtra(STRING_EXTRA, extra);
         activity.startActivity(intent);
     }
 
@@ -64,10 +79,10 @@ public class UIHelper {
         activity.startActivityForResult(intent, 999);
     }
 
-    public static void showSelectVideoActivity(Activity activity, ArrayList<String> mData){
+    public static void showSelectVideoActivity(Activity activity, ArrayList<String> mData) {
         Intent intent = new Intent(activity, SelectVideoActivity.class);
         Bundle b = new Bundle();
-        b.putStringArrayList(ARG.VIDEO_LIST,mData);
+        b.putStringArrayList(ARG.VIDEO_LIST, mData);
         intent.putExtra(ARG.VIDEO_LIST, b);
         activity.startActivity(intent);
     }
@@ -81,12 +96,12 @@ public class UIHelper {
         activity.startActivity(intent);
     }
 
-    public static void showVideosActivity(Activity activity,int videoType,int type) {
+    public static void showVideosActivity(Activity activity, int videoType, int type) {
         // TODO 跳到文档页面
         Intent intent = new Intent(activity, ADASWarringVideosActivity.class);
         Bundle b = new Bundle();
-        b.putInt("videoType",videoType);
-        b.putInt("type",type);
+        b.putInt("videoType", videoType);
+        b.putInt("type", type);
         intent.putExtras(b);
         activity.startActivity(intent);
     }
@@ -96,7 +111,7 @@ public class UIHelper {
         return (int) (dpValue * scale + 0.5f);
     }
 
-    public static DialogInterface showAsk(Context context, String msg,Boolean CanceledOnTouchOutside, final OnClickYesOrNoListener listener) {
+    public static DialogInterface showAsk(Context context, String msg, Boolean CanceledOnTouchOutside, final OnClickYesOrNoListener listener) {
 
         try {
             if (askDialog != null) {
@@ -117,7 +132,7 @@ public class UIHelper {
                     listener.isyes(false, dialog);
                 }
             });
-            NotconnectDialog notconnectDialog=builder.create();
+            NotconnectDialog notconnectDialog = builder.create();
             notconnectDialog.setCanceledOnTouchOutside(CanceledOnTouchOutside);
             notconnectDialog.show();
             return askDialog;

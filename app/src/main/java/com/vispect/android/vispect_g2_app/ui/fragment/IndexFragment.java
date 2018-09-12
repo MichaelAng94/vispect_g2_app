@@ -1,12 +1,9 @@
 package com.vispect.android.vispect_g2_app.ui.fragment;
 
-import android.app.Activity;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Point;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
 import android.view.KeyEvent;
 import android.view.View;
 
@@ -17,7 +14,6 @@ import com.vispect.android.vispect_g2_app.controller.DeviceHelper;
 import com.vispect.android.vispect_g2_app.controller.UIHelper;
 import com.vispect.android.vispect_g2_app.interf.Callback;
 import com.vispect.android.vispect_g2_app.interf.GetListCallback;
-import com.vispect.android.vispect_g2_app.ui.activity.ConnectActivity;
 import com.vispect.android.vispect_g2_app.ui.activity.DocActivity;
 import com.vispect.android.vispect_g2_app.ui.activity.InstallActivity;
 import com.vispect.android.vispect_g2_app.ui.activity.LocalVideoSeltActivity;
@@ -34,7 +30,9 @@ import java.util.List;
 import butterknife.OnClick;
 import interf.OnWifiOpenListener;
 
-import static com.vispect.android.vispect_g2_app.app.AppConfig.RESULT_CODE_OK;
+import static android.view.KeyEvent.KEYCODE_BACK;
+import static com.vispect.android.vispect_g2_app.app.AppConfig.EXTRA_TO_INSTALLATION;
+import static com.vispect.android.vispect_g2_app.app.AppConfig.EXTRA_TO_SETTING;
 import static com.vispect.android.vispect_g2_app.controller.DeviceHelper.isConnected;
 import static com.vispect.android.vispect_g2_app.controller.DeviceHelper.isG2;
 
@@ -42,9 +40,6 @@ public class IndexFragment extends BaseFragment {
     private static final int MESSAGE_CODE_GET_CAMERA_LIST = 0;
     private static final int MESSAGE_CODE_CONNECT_WIFI = 1;
     private static final int MESSAGE_CODE_TO_REAL_VIEW = 2;
-    private static final int REQUEST_CODE_TO_INSTALLATION = 3;
-    private static final int REQUEST_CODE_TO_SETTING = 4;
-    private static final int REQUEST_CODE_TO_LIVE_MODE = 5;
     public static List<Point> cameras = new ArrayList<>();
     public int _count = 0;
     public int _videoType = -1;
@@ -62,9 +57,11 @@ public class IndexFragment extends BaseFragment {
                     showConnectWifiDialog();
                     break;
                 case MESSAGE_CODE_TO_REAL_VIEW:
-                    if (DeviceHelper.isG2Connected(getActivity(), REQUEST_CODE_TO_LIVE_MODE)) {
+                    if (DeviceHelper.isG2Connected()) {
                         DialogHelp.getInstance().hideDialog();
                         UIHelper.showLiveForResult(getActivity(), 100, false);
+                    } else {
+                        XuToast.show(getActivity(), R.string.device_disconnected);
                     }
                     break;
             }
@@ -89,15 +86,15 @@ public class IndexFragment extends BaseFragment {
                 UIHelper.startActivity(getActivity(), DocActivity.class);
                 break;
             case R.id.menu_installation:
-                if (DeviceHelper.isG2Connected(getActivity(), REQUEST_CODE_TO_INSTALLATION))
+                if (DeviceHelper.isG2Connected(getActivity(), EXTRA_TO_INSTALLATION))
                     UIHelper.startActivity(getActivity(), InstallActivity.class);
                 break;
             case R.id.menu_settings:
-                if (DeviceHelper.isG2Connected(getActivity(), REQUEST_CODE_TO_SETTING))
+                if (DeviceHelper.isG2Connected(getActivity(), EXTRA_TO_SETTING))
                     UIHelper.startActivity(getActivity(), SettingsActivity.class);
                 break;
             case R.id.menu_live:
-                if (DeviceHelper.isG2Connected(getActivity(), REQUEST_CODE_TO_LIVE_MODE))
+                if (DeviceHelper.isG2Connected(getActivity(), null))
                     getCameraList();
                 break;
             case R.id.menu_video:
@@ -165,13 +162,14 @@ public class IndexFragment extends BaseFragment {
     }
 
     @Override
-    public void onDestroy() {
+    public void onPause() {
         if (handler != null) {
             handler.removeMessages(MESSAGE_CODE_GET_CAMERA_LIST);
             handler.removeMessages(MESSAGE_CODE_CONNECT_WIFI);
             handler.removeMessages(MESSAGE_CODE_TO_REAL_VIEW);
         }
-        super.onDestroy();
+        DialogHelp.getInstance().hideDialog();
+        super.onPause();
     }
 
     //开启实时路况
@@ -220,6 +218,8 @@ public class IndexFragment extends BaseFragment {
                     @Override
                     public void run() {
                         if (XuNetWorkUtils.connectWIFI(wifiName, password)) {
+                            handler.removeMessages(MESSAGE_CODE_CONNECT_WIFI);
+                            DialogHelp.getInstance().hideDialog();
                             //成功连上WIFI  开始进入实时路况
                             handler.sendEmptyMessage(MESSAGE_CODE_TO_REAL_VIEW);
                         }
@@ -242,6 +242,7 @@ public class IndexFragment extends BaseFragment {
     public void cancelConnect() {
         //断开连接
         handler.removeMessages(MESSAGE_CODE_CONNECT_WIFI);
+        DialogHelp.getInstance().hideDialog();
         XuNetWorkUtils.cancelConnectWIFI();
         AppContext.getInstance().getDeviceHelper().closeDeviceRealViewMode();
     }
@@ -249,34 +250,16 @@ public class IndexFragment extends BaseFragment {
     private void showConnectWifiDialog() {
         DialogHelp.getInstance().hideDialog();
         DialogHelp.getInstance().connectDialog(getActivity(), STR(R.string.dialog_tips_connecting),
-                STR(R.string.wifi_waiting_too_long) + AppConfig.getInstance(getActivity()).getWifi_name()
-                        + STR(R.string.wifi_waiting_too_long2) + AppConfig.getInstance(getActivity()).getWifi_paw())
+                STR(R.string.connect_wifi, AppConfig.getInstance(getActivity()).getWifi_name()
+                        , AppConfig.getInstance(getActivity()).getWifi_paw()))
                 .setOnKeyListener(keyListener);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_CODE_OK) {
-            switch (requestCode) {
-                case REQUEST_CODE_TO_INSTALLATION:
-                    UIHelper.startActivity(getActivity(), InstallActivity.class);
-                    break;
-                case REQUEST_CODE_TO_SETTING:
-                    UIHelper.startActivity(getActivity(), SettingsActivity.class);
-                    break;
-                case REQUEST_CODE_TO_LIVE_MODE:
-                    getCameraList();
-                    break;
-            }
-        }
-        super.onActivityResult(requestCode, resultCode, data);
     }
 
     class KeyListener implements DialogInterface.OnKeyListener {
         //Dialog的返回键监听
         @Override
-        public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
-            if (i == KeyEvent.KEYCODE_BACK) {
+        public boolean onKey(DialogInterface dialogInterface, int keyCode, KeyEvent keyEvent) {
+            if (keyCode == KEYCODE_BACK) {
                 cancelConnect();
                 if (dialogInterface != null) dialogInterface.dismiss();
                 return true;
