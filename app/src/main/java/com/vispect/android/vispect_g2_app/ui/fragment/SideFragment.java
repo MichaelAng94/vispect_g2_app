@@ -1,5 +1,6 @@
 package com.vispect.android.vispect_g2_app.ui.fragment;
 
+import android.content.DialogInterface;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -9,7 +10,9 @@ import com.vispect.android.vispect_g2_app.R;
 import com.vispect.android.vispect_g2_app.app.AppContext;
 import com.vispect.android.vispect_g2_app.base.BaseFragment;
 import com.vispect.android.vispect_g2_app.controller.DeviceHelper;
+import com.vispect.android.vispect_g2_app.controller.UIHelper;
 import com.vispect.android.vispect_g2_app.interf.Callback;
+import com.vispect.android.vispect_g2_app.interf.OnClickYesOrNoListener;
 import com.vispect.android.vispect_g2_app.utils.DialogUtils;
 import com.vispect.android.vispect_g2_app.utils.XuLog;
 import com.vispect.android.vispect_g2_app.utils.XuToast;
@@ -63,12 +66,7 @@ public class SideFragment extends BaseFragment {
     }
 
     @Override
-    protected int getTitleResource() {
-        return R.string.side_cameras_setting;
-    }
-
-    @Override
-    protected void initView() {
+    protected void initView(View view) {
         AppContext.getInstance().getDeviceHelper().getSPMSpeedSpace(new GetSPMSpeedSpace() {
             @Override
             public void onSuccess(int start, int end) {
@@ -84,16 +82,20 @@ public class SideFragment extends BaseFragment {
             }
         }, 0);
 
-        Button save = getActivity().findViewById(R.id.btn_save);
-        if (save != null) {
-            save.setVisibility(VISIBLE);
-            save.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    saveData();
-                }
-            });
-        }
+        Button save = view.findViewById(R.id.btn_save);
+
+        save.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveData();
+            }
+        });
+        view.findViewById(R.id.img_back_main).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     public void saveData() {

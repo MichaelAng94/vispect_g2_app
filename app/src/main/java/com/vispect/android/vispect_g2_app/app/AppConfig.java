@@ -32,8 +32,9 @@ public class AppConfig {
     public static final int REQUEST_CODE_CAMERA = 2;//拍照
     public static final int REQUEST_CODE_ALBUM = 3;//从相册中选择
     public static final int REQUEST_CODE_CROP_IMAGE = 4;//裁剪图片
+    public static final int REQUEST_CODE_CONNECT_DEVICE = 101;//连接设备
     //resultCode
-    public static final int RESULT_CODE_OK = 100;//连接设备成功
+    public static final int CONNECT_DEVICE_OK = 102;//连接设备成功
     //String Extra
     public static final String STRING_EXTRA = "stringExtra";
     public static final String EXTRA_TO_INSTALLATION = "toInstallation";

@@ -168,7 +168,6 @@ public class IndexFragment extends BaseFragment {
             handler.removeMessages(MESSAGE_CODE_CONNECT_WIFI);
             handler.removeMessages(MESSAGE_CODE_TO_REAL_VIEW);
         }
-        DialogHelp.getInstance().hideDialog();
         super.onPause();
     }
 

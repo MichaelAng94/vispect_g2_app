@@ -11,7 +11,8 @@ import android.widget.AdapterView;
 import com.vispect.android.vispect_g2_app.R;
 import com.vispect.android.vispect_g2_app.adapter.CalibrateAdapter;
 import com.vispect.android.vispect_g2_app.app.AppContext;
-import com.vispect.android.vispect_g2_app.ui.activity.SettingsActivity;
+import com.vispect.android.vispect_g2_app.controller.UIHelper;
+import com.vispect.android.vispect_g2_app.ui.activity.CameraTypeActivity;
 import com.vispect.android.vispect_g2_app.ui.widget.MoListView;
 import com.vispect.android.vispect_g2_app.utils.XuLog;
 
@@ -33,7 +34,7 @@ public class CameraSettingsFragment extends BaseFragment {
     public static int listitem;
     @Bind(R.id.list_select_camera)
     MoListView listSelectCamera;
-    private CalibrateAdapter calibrateAdapter ;
+    private CalibrateAdapter calibrateAdapter;
     private List<String> data = new ArrayList<>();
     private List<Point> cameras = new ArrayList<>();
 
@@ -48,10 +49,16 @@ public class CameraSettingsFragment extends BaseFragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 listitem = cameras.get(i).x;
-                finish();
+                UIHelper.startActivity(getActivity(), CameraTypeActivity.class);
             }
         });
 
+        view.findViewById(R.id.img_back_main).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         calibrateAdapter = new CalibrateAdapter(getContext());
         listSelectCamera.setAdapter(calibrateAdapter);
     }

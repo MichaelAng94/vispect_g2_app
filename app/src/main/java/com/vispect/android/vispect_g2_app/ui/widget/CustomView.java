@@ -1,6 +1,5 @@
 package com.vispect.android.vispect_g2_app.ui.widget;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -10,26 +9,34 @@ import android.graphics.Point;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.vispect.android.vispect_g2_app.controller.UIHelper.dp2px;
+
 public class CustomView extends View {
 
     private List<Point> _points = new ArrayList<>();
     private Paint paint = new Paint();
+    private Paint redPaint = new Paint();
     private Context _context;
     private int _screenWidth;
     private int _screenHeight;
+    private int _startY = 0;
+    private int _startX = 0;
 
     {
         paint.setColor(Color.BLUE);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(3);
         paint.setAntiAlias(true);
+        redPaint.setColor(Color.RED);
+        redPaint.setStyle(Paint.Style.STROKE);
+        redPaint.setStrokeWidth(20);
+        redPaint.setAntiAlias(true);
     }
 
     public CustomView(Context context) {
@@ -71,6 +78,8 @@ public class CustomView extends View {
             path.lineTo(point0.x, point0.y);
         }
         canvas.drawPath(path, paint);
+        if (_startX != 0 && _startY != 0)
+            canvas.drawLine(_startX, _startY, _startX + dp2px(_context, 100), 0, redPaint);
     }
 
     public void setPointList(List<Point> points) {
@@ -100,5 +109,11 @@ public class CustomView extends View {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         windowManager.getDefaultDisplay().getMetrics(displayMetrics);
         return displayMetrics.heightPixels;
+    }
+
+    public void addRedLine(int y) {
+        _startY = y * _screenHeight / 720;
+        _startX = _screenWidth / 2 - dp2px(_context, 50);
+        invalidate();
     }
 }

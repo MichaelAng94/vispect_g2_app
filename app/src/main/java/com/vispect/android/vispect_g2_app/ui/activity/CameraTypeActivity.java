@@ -6,6 +6,7 @@ import android.view.KeyEvent;
 import android.view.View;
 
 import com.vispect.android.vispect_g2_app.R;
+import com.vispect.android.vispect_g2_app.ui.fragment.CameraTypeFragment;
 import com.vispect.android.vispect_g2_app.ui.fragment.SettingsFragment;
 
 import butterknife.OnClick;
@@ -14,7 +15,7 @@ import butterknife.OnClick;
  * Created by mo on 2018/7/12.
  */
 
-public class SettingsActivity extends BaseActivity {
+public class CameraTypeActivity extends BaseActivity {
 
     private FragmentManager _fragmentManager;
 
@@ -27,24 +28,7 @@ public class SettingsActivity extends BaseActivity {
     protected void initView(View view) {
         _fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = _fragmentManager.beginTransaction();
-        transaction.add(R.id.content, new SettingsFragment(), SettingsFragment.class.getSimpleName()).commit();
+        transaction.add(R.id.content, new CameraTypeFragment(), CameraTypeFragment.class.getSimpleName()).commit();
     }
 
-    private void handleBack() {
-        int entryCount = _fragmentManager.getBackStackEntryCount();
-        if (entryCount > 0) {
-            _fragmentManager.popBackStackImmediate();
-        } else {
-            finish();
-        }
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            handleBack();
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
 }

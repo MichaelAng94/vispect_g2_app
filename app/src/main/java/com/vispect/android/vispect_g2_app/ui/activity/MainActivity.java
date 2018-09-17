@@ -4,7 +4,6 @@ import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.graphics.Point;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +18,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.vispect.android.vispect_g2_app.R;
 import com.vispect.android.vispect_g2_app.app.AppContext;
 import com.vispect.android.vispect_g2_app.app.AppManager;
@@ -33,7 +33,6 @@ import com.vispect.android.vispect_g2_app.utils.XuLog;
 import com.vispect.android.vispect_g2_app.utils.XuToast;
 
 import java.io.File;
-import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -46,9 +45,11 @@ import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.READ_PHONE_STATE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.provider.MediaStore.ACTION_IMAGE_CAPTURE;
+import static com.vispect.android.vispect_g2_app.app.AppConfig.CONNECT_DEVICE_OK;
 import static com.vispect.android.vispect_g2_app.app.AppConfig.IMAGE_USER_AVATAR_NAME;
 import static com.vispect.android.vispect_g2_app.app.AppConfig.REQUEST_CODE_CAMERA;
 import static com.vispect.android.vispect_g2_app.app.AppConfig.REQUEST_CODE_CAMERA_PERMISSION;
+import static com.vispect.android.vispect_g2_app.app.AppConfig.REQUEST_CODE_CONNECT_DEVICE;
 import static com.vispect.android.vispect_g2_app.app.AppConfig.REQUEST_CODE_GLOBAL_PERMISSION;
 import static com.vispect.android.vispect_g2_app.controller.DeviceHelper.isConnected;
 import static com.vispect.android.vispect_g2_app.controller.DeviceHelper.isG2;
@@ -217,10 +218,21 @@ public class MainActivity extends BaseActivity {
                     XuToast.show(this, R.string.device_disconnected);
                     break;
                 }
-                UIHelper.startActivity(MainActivity.this, ConnectActivity.class);
+                UIHelper.startActivityForResult(MainActivity.this, ConnectActivity.class, REQUEST_CODE_CONNECT_DEVICE);
                 break;
         }
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case REQUEST_CODE_CONNECT_DEVICE:
+                if (resultCode == CONNECT_DEVICE_OK) {
+                    imgRight.setImageResource(R.mipmap.connet_ble);
+                    imgRight.setColorFilter(Color.parseColor("#00CCCC"));
+                }
+                break;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }

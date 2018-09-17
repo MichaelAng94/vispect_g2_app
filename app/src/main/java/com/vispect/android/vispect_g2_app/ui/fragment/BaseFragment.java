@@ -380,7 +380,7 @@ public abstract class BaseFragment extends Fragment implements ProgressControlle
 
     protected void finish() {
         int entryCount = getFragmentManager().getBackStackEntryCount();
-        if (entryCount > 1) {
+        if (entryCount > 0) {
             getFragmentManager().popBackStackImmediate();
         }
     }

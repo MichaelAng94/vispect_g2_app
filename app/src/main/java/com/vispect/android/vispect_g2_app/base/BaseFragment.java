@@ -27,28 +27,17 @@ public abstract class BaseFragment extends Fragment {
         View view = getContentResource() != 0 ? inflater.inflate(getContentResource(), container, false) : null;
         ButterKnife.bind(this, view);
 
-        initView();
+        initView(view);
         return view;
     }
 
-    protected void initView() {
+    protected void initView(View view) {
 
-    }
-
-    protected void setTitle() {
-        TextView titleView = getActivity().findViewById(R.id.title);
-        if (titleView != null) titleView.setText(getTitleResource());
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        setTitle();
-    }
-
-    @StringRes
-    protected int getTitleResource() {
-        return R.string.app_name;
     }
 
     /**
@@ -73,7 +62,7 @@ public abstract class BaseFragment extends Fragment {
     protected void pushToFragment(@NonNull Fragment fragment) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.content, fragment, BaseFragment.class.getSimpleName())
-                .addToBackStack(BaseFragment.class.getSimpleName()).commit();
+                .addToBackStack(BaseFragment.class.getSimpleName()).show(fragment).commit();
     }
 
     protected String STR(@StringRes int res) {

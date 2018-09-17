@@ -258,10 +258,10 @@ public class DrawDotView extends RelativeLayout {
     }
 
     public void showSnag() {
-        view1.setVisibility(VISIBLE);
-        view2.setVisibility(VISIBLE);
-        view3.setVisibility(VISIBLE);
-        view4.setVisibility(VISIBLE);
+        if (view1 != null) view1.setVisibility(VISIBLE);
+        if (view2 != null) view2.setVisibility(VISIBLE);
+        if (view3 != null) view3.setVisibility(VISIBLE);
+        if (view4 != null) view4.setVisibility(VISIBLE);
     }
 
     public void addHorizontal(Activity ct, int y) {

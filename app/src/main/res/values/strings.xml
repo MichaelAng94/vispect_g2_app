@@ -446,6 +446,9 @@ Vispect Team</string>
     <string name="notifyTitle">Tips</string>
     <string name="notifyMsg"> The current application lacks the necessary permissions. Please click\settings\permissions\Open the required permissions. </string>
     <string name="setting">Settings</string>
+    <string name="set_side_camera">Side Camera Setting</string>
+    <string name="check_update">Check Update</string>
+    <string name="set_camera">Set Camera Type</string>
 
     <string name="recommended_login">Recommend login method</string>
     <string name="login_by_eamil">Login by email</string>

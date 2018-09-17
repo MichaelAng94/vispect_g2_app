@@ -29,6 +29,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import interf.GetG2CameraList;
 import interf.OnWifiOpenListener;
+import interf.ResultListner;
 
 /**
  * Created by mo on 2018/7/12.

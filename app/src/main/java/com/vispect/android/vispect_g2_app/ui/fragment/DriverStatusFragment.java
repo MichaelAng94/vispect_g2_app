@@ -99,7 +99,27 @@ public class DriverStatusFragment extends BaseFragment {
 
     @Override
     protected void initView(View view) throws IOException {
-
+        view.findViewById(R.id.btn_save).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UIHelper.showAsk(getActivity(), STR(R.string.ask_save_data), true, new OnClickYesOrNoListener() {
+                    @Override
+                    public void isyes(boolean b, DialogInterface dialog) {
+                        if (b) {
+                            saveData();
+                            finish();
+                        }
+                        dialog.dismiss();
+                    }
+                });
+            }
+        });
+        view.findViewById(R.id.img_back_main).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     @Override
@@ -190,21 +210,6 @@ public class DriverStatusFragment extends BaseFragment {
             }
         });
 
-            getActivity().findViewById(R.id.btn_save).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    UIHelper.showAsk(getActivity(), STR(R.string.ask_save_data), true, new OnClickYesOrNoListener() {
-                        @Override
-                        public void isyes(boolean b, DialogInterface dialog) {
-                            if (b) {
-                                saveData();
-                                finish();
-                            }
-                            dialog.dismiss();
-                        }
-                    });
-                }
-            });
     }
 
     @Override

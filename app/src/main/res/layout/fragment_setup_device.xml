@@ -1,10 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_new">
+    android:background="@color/bg_new"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y120"
+        android:background="@color/black"
+        app:contentInsetStart="5dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_back_main"
+                android:layout_width="@dimen/x120"
+                android:layout_height="@dimen/y120"
+                android:layout_gravity="center_vertical"
+                android:padding="@dimen/x30"
+                android:src="@mipmap/ico_back" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/setting"
+                android:textColor="@color/white"
+                android:textSize="@dimen/y45" />
+
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="@dimen/x110"
+                android:layout_height="@dimen/y70"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginRight="@dimen/x20"
+                android:background="@drawable/outside"
+                android:text="@string/adjustments_save"
+                android:textColor="@color/white"
+                android:textSize="@dimen/y35" />
+
+        </FrameLayout>
+
+    </android.support.v7.widget.Toolbar>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,28 +63,28 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_marginTop="@dimen/y50"
                 android:background="@color/white"
-                android:layout_marginTop="@dimen/y50">
+                android:orientation="vertical">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingRight="@dimen/x20"
                     android:layout_marginLeft="@dimen/x50"
                     android:layout_marginTop="@dimen/y50"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingRight="@dimen/x20">
                     <ImageView
                         android:layout_width="@dimen/x30"
                         android:layout_height="@dimen/y30"
-                        android:src="@mipmap/img_dot_bllue"
+                        android:layout_marginRight="@dimen/x20"
                         android:layout_marginTop="@dimen/y20"
-                        android:layout_marginRight="@dimen/x20"/>
+                        android:src="@mipmap/img_dot_bllue" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/x50"
+                        android:text="@string/setting_parmater_edit_ble_name"
                         android:textColor="@color/text_color_calendar_number"
-                        android:text="@string/setting_parmater_edit_ble_name"/>
+                        android:textSize="@dimen/x50" />
                 </LinearLayout>
 
                 <EditText
@@ -50,36 +93,36 @@
                     android:layout_height="@dimen/y150"
                     android:layout_marginLeft="@dimen/x50"
                     android:layout_marginRight="@dimen/x50"
-                    android:hint="@string/setting_drive_setting_hint"
                     android:background="@null"
+                    android:hint="@string/setting_drive_setting_hint"
+                    android:maxLength="24"
                     android:maxLines="1"
-                    android:textSize="@dimen/x48"
                     android:textColor="@color/text_color_default"
-                    android:maxLength="24"/>
+                    android:textSize="@dimen/x48" />
                 <View style="@style/h_divider"
                     android:layout_marginBottom="1px"
                     android:layout_marginLeft="@dimen/x50"/>
 
 
                 <LinearLayout
-                    android:layout_marginTop="@dimen/y50"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y50"
+                    android:orientation="horizontal"
                     android:paddingLeft="@dimen/x50"
-                    android:paddingRight="@dimen/x20"
-                    android:orientation="horizontal">
+                    android:paddingRight="@dimen/x20">
                     <ImageView
                         android:layout_width="@dimen/x30"
                         android:layout_height="@dimen/y30"
-                        android:src="@mipmap/img_dot_bllue"
+                        android:layout_marginRight="@dimen/x20"
                         android:layout_marginTop="@dimen/y20"
-                        android:layout_marginRight="@dimen/x20"/>
+                        android:src="@mipmap/img_dot_bllue" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/x50"
+                        android:text="@string/setting_parmater_edit_ble_pas"
                         android:textColor="@color/text_color_calendar_number"
-                        android:text="@string/setting_parmater_edit_ble_pas"/>
+                        android:textSize="@dimen/x50" />
                 </LinearLayout>
 
                 <EditText
@@ -88,11 +131,11 @@
                     android:layout_height="@dimen/y150"
                     android:layout_marginLeft="@dimen/x50"
                     android:layout_marginRight="@dimen/x50"
+                    android:background="@null"
                     android:hint="@string/setting_drive_setting_hint"
                     android:maxLines="1"
                     android:textColor="@color/text_color_default"
-                    android:textSize="@dimen/x48"
-                    android:background="@null" />
+                    android:textSize="@dimen/x48" />
                 <View style="@style/h_divider"
                     android:layout_marginBottom="1px"
                     android:layout_marginLeft="@dimen/x50"/>
@@ -105,29 +148,29 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_marginTop="@dimen/y50"
             android:background="@color/white"
-            android:layout_marginTop="@dimen/y50">
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_marginTop="@dimen/y50"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y50"
+                android:orientation="horizontal"
                 android:paddingLeft="@dimen/x50"
-                android:paddingRight="@dimen/x20"
-                android:orientation="horizontal">
+                android:paddingRight="@dimen/x20">
                 <ImageView
                     android:layout_width="@dimen/x30"
                     android:layout_height="@dimen/y30"
-                    android:src="@mipmap/img_dot_bllue"
+                    android:layout_marginRight="@dimen/x20"
                     android:layout_marginTop="@dimen/y20"
-                    android:layout_marginRight="@dimen/x20"/>
+                    android:src="@mipmap/img_dot_bllue" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/x50"
+                    android:text="@string/setting_parmater_edit_wifi_name"
                     android:textColor="@color/text_color_calendar_number"
-                    android:text="@string/setting_parmater_edit_wifi_name"/>
+                    android:textSize="@dimen/x50" />
             </LinearLayout>
 
             <EditText
@@ -136,36 +179,36 @@
                 android:layout_height="@dimen/y150"
                 android:layout_marginLeft="@dimen/x50"
                 android:layout_marginRight="@dimen/x50"
-                android:hint="@string/setting_drive_setting_hint"
-                android:textColor="@color/text_color_default"
-                android:textSize="@dimen/x48"
                 android:background="@null"
+                android:hint="@string/setting_drive_setting_hint"
+                android:maxLength="24"
                 android:maxLines="1"
-                android:maxLength="24"/>
+                android:textColor="@color/text_color_default"
+                android:textSize="@dimen/x48" />
 
             <View style="@style/h_divider"
                 android:layout_marginBottom="1px"
                 android:layout_marginLeft="@dimen/x50"/>
 
             <LinearLayout
-                android:layout_marginTop="@dimen/y50"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y50"
+                android:orientation="horizontal"
                 android:paddingLeft="@dimen/x50"
-                android:paddingRight="@dimen/x20"
-                android:orientation="horizontal">
+                android:paddingRight="@dimen/x20">
                 <ImageView
                     android:layout_width="@dimen/x30"
                     android:layout_height="@dimen/y30"
-                    android:src="@mipmap/img_dot_bllue"
+                    android:layout_marginRight="@dimen/x20"
                     android:layout_marginTop="@dimen/y20"
-                    android:layout_marginRight="@dimen/x20"/>
+                    android:src="@mipmap/img_dot_bllue" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/x50"
+                    android:text="@string/setting_parmater_edit_wifi_pas"
                     android:textColor="@color/text_color_calendar_number"
-                    android:text="@string/setting_parmater_edit_wifi_pas"/>
+                    android:textSize="@dimen/x50" />
             </LinearLayout>
 
             <EditText
@@ -174,11 +217,11 @@
                 android:layout_height="@dimen/y150"
                 android:layout_marginLeft="@dimen/x50"
                 android:layout_marginRight="@dimen/x50"
-                android:hint="@string/setting_drive_setting_hint"
                 android:background="@null"
+                android:hint="@string/setting_drive_setting_hint"
+                android:maxLines="1"
                 android:textColor="@color/text_color_default"
-                android:textSize="@dimen/x48"
-                android:maxLines="1"/>
+                android:textSize="@dimen/x48" />
             <View style="@style/h_divider"
                 android:layout_marginBottom="1px"
                 android:layout_marginLeft="@dimen/x50"/>

@@ -1,6 +1,7 @@
 package com.vispect.android.vispect_g2_app.ui.fragment;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -49,7 +50,7 @@ public class SettingsFragment extends BaseFragment {
         settings.add(new Setting(R.string.set_driver_status, new DriverStatusFragment()));//设置疲劳驾驶监测
         settings.add(new Setting(R.string.set_side_cameras, new SideFragment()));//设置侧边摄像头
         settings.add(new Setting(R.string.set_password_wifi, new DeviceSetUpFragment()));//设置蓝牙和WiFi密码
-        settings.add(new Setting(R.string.set_camera_socket, new CameraTypeFragment()));//设置Cam1接口和Cam2接口
+        settings.add(new Setting(R.string.set_camera_socket, new CameraSettingsFragment()));//设置Cam1接口和Cam2接口
         settings.add(new Setting(R.string.about_updates, new CheckUpdataFragment()));//检测升级
         settings.add(new Setting(R.string.about_this_app, new BleInfoFragment()));//检测当前版本
     }
@@ -69,12 +70,7 @@ public class SettingsFragment extends BaseFragment {
     }
 
     @Override
-    protected int getTitleResource() {
-        return R.string.setting;
-    }
-
-    @Override
-    protected void initView() {
+    protected void initView(View view) {
 
         if (isZh) settings.remove(2);//中文版隐藏侧边摄像头
 
@@ -83,24 +79,30 @@ public class SettingsFragment extends BaseFragment {
         settingsView.setAdapter(_adapter);
 
         settingsView.setOnItemClickListener(new itemClick());
+
+        view.findViewById(R.id.img_back_main).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        getActivity().findViewById(R.id.btn_save).setVisibility(GONE);
-//        if (AppContext.getInstance().isDeveloperMode()) {
-//            if (!developerMode) {
-//                developerMode = true;
-//                settings.add(new Setting(R.string.adjust_camera_atlow, null));
-//                settings.add(new Setting(R.string.driving_behavior_setting, null));
-//                settings.add(new Setting(R.string.engineering_setting, null));
-//                settings.add(new Setting(R.string.DSM_settings, new DSMSettings()));
-//                settings.add(new Setting(R.string.status_of_parts, null));
-//                settings.add(new Setting(R.string.restore_initial, null));
-//                _adapter.setData(settings);
-//            }
-//        }
+        if (AppContext.getInstance().isDeveloperMode()) {
+            if (!developerMode) {
+                developerMode = true;
+                settings.add(new Setting(R.string.adjust_camera_atlow, null));
+                settings.add(new Setting(R.string.driving_behavior_setting, null));
+                settings.add(new Setting(R.string.engineering_setting, null));
+                settings.add(new Setting(R.string.DSM_settings, new DSMSettings()));
+                settings.add(new Setting(R.string.status_of_parts, null));
+                settings.add(new Setting(R.string.restore_initial, null));
+                _adapter.setData(settings);
+            }
+        }
     }
 
     @Override

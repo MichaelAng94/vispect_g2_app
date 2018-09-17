@@ -13,6 +13,8 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -49,6 +51,7 @@ import interf.ResultListner;
 import interf.SideAlarmEvent;
 
 import static android.view.View.GONE;
+import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
 
@@ -81,9 +84,9 @@ public class VMainActivity extends BaseActivity {
     DrawShape sensor = null;
     ArrayList<DrawShape> adas = null;
     float c_x = 0;
-    int i = 1;
     @Bind(R.id.customView)
     CustomView customView;
+    int i = 1;
     private Handler mhandler = new Handler();
     Runnable check_network = new Runnable() {
         @Override
@@ -121,6 +124,7 @@ public class VMainActivity extends BaseActivity {
     private float yCenter = -1;
     private String speed = "";
     private int index = 0;
+
     private List<Point> cameras = new ArrayList<>();
     private Point _currentCamera = new Point();
     /**
@@ -204,15 +208,14 @@ public class VMainActivity extends BaseActivity {
         }
     };
     //是否已经初始化realView
-    private boolean isRealViewInited = false;
     private boolean isShowConnecting = false;
     private RealViewCallback realViewCallback = new RealViewCallback() {
         @Override
         public void onGetPixData(byte[] buf, int size) {
-            if (isShowConnecting) {
-                isShowConnecting = false;
-                DialogHelp.getInstance().hideDialog();
-            }
+//            if (isShowConnecting) {
+//                isShowConnecting = false;
+//                DialogHelp.getInstance().hideDialog();
+//            }
 
             XuLog.e(TAG, "onGetPixData buf : " + buf + "size : " + size);
             if (surfaceView != null) {
@@ -310,11 +313,6 @@ public class VMainActivity extends BaseActivity {
         @Override
         public void onSuccess() {
             XuLog.e(TAG, "setUDPCamera Success");
-            if (!isRealViewInited) {
-                XuLog.e(TAG, "initRealView");
-                AppContext.getInstance().getDeviceHelper().initRealView(realViewCallback);
-                isRealViewInited = true;
-            }
         }
 
         @Override
@@ -352,6 +350,8 @@ public class VMainActivity extends BaseActivity {
         if (cameras == null || cameras.size() <= 0) finish();
         _currentCamera = cameras.get(0);
 
+        AppContext.getInstance().getDeviceHelper().initRealView(realViewCallback);
+
         AppContext.getInstance().getDeviceHelper().setUDPCamera(resultListener, _currentCamera.x, _currentCamera.y);
 
         DialogHelp.getInstance().connectDialog(this, "Connecting");
@@ -368,8 +368,11 @@ public class VMainActivity extends BaseActivity {
 
         XuLog.e("screenWidth=" + screenWidth + "         screenHeight=" + screenHeight);
 
-        if (blueCenter != null)
-            blueCenter.setLayoutParams(new RelativeLayout.LayoutParams(screenWidth / 4, blueCenter.getHeight()));
+        if (blueCenter != null) {
+            LayoutParams params = blueCenter.getLayoutParams();
+            params.width = screenWidth / 4;
+            blueCenter.setLayoutParams(params);
+        }
 
         drawAdas.setScreenWidth(screenWidth);
         drawAdas.setScreenHeight(screenHeight);
@@ -417,6 +420,7 @@ public class VMainActivity extends BaseActivity {
 
     public void drawAlarmInfo() {
         XuLog.e(TAG, "改变了镜头,镜头ID:" + _currentCamera.x + "镜头类型:" + _currentCamera.y);
+        hiddenViews();
         switch (_currentCamera.y) {
             case 1:
                 showAdasInfo();
@@ -427,31 +431,23 @@ public class VMainActivity extends BaseActivity {
             case 7:
                 drawSideInfo(_currentCamera.x);
                 break;
-            default:
-                hiddenViews();
-                break;
         }
     }
 
     private void hiddenViews() {
-        tvHorizontal.setVisibility(GONE);
-        tvVertical.setVisibility(GONE);
-        blueCenter.setVisibility(GONE);
-        customView.setVisibility(GONE);
+        tvHorizontal.setVisibility(INVISIBLE);
+        tvVertical.setVisibility(INVISIBLE);
+        blueCenter.setVisibility(INVISIBLE);
+        customView.setVisibility(INVISIBLE);
     }
 
     private void showAdasInfo() {
         tvHorizontal.setVisibility(VISIBLE);
         tvVertical.setVisibility(VISIBLE);
         blueCenter.setVisibility(VISIBLE);
-        customView.setVisibility(GONE);
     }
 
     private void drawSideInfo(final int cameraID) {
-
-        tvHorizontal.setVisibility(GONE);
-        tvVertical.setVisibility(GONE);
-        blueCenter.setVisibility(GONE);
         customView.setVisibility(VISIBLE);
 
         DeviceHelper.getPointOfArea(new GetListCallback() {
@@ -480,9 +476,14 @@ public class VMainActivity extends BaseActivity {
                 public void run() {
                     DeviceHelper.getHorizontal(new Callback<Integer>() {
                         @Override
-                        public void callback(Integer integer) {
-                            XuLog.e(TAG, "获取到水平线 i :" + i);
-//                            drawdotView.addHorizontal(VMainActivity.this, i);
+                        public void callback(final Integer value) {
+                            XuLog.e(TAG, "获取到水平线 i :" + value + "Camera ID : " + cameraID);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    customView.addRedLine(value);
+                                }
+                            });
                         }
                     }, cameraID);
                 }
@@ -645,7 +646,12 @@ public class VMainActivity extends BaseActivity {
         DeviceHelper.setUDPCamera(new Runnable() {
             @Override
             public void run() {
-                drawAlarmInfo();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        drawAlarmInfo();
+                    }
+                });
             }
         }, _currentCamera.x, _currentCamera.y);
     }

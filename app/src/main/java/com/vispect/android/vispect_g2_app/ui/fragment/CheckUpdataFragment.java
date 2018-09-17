@@ -57,25 +57,30 @@ public class CheckUpdataFragment extends BaseFragment {
     public boolean canupdata = true;
     @Bind(R.id.list_updata)
     ListView listUpdata;
+    String device_software = null;
+    String device_system = null;
+    String device_software_s = null;
+    int device_obd = -1;
+    int updataposition = -1;
+    int progress = 0;
+    Handler mhandler = new Handler();
+    Runnable nofile = new Runnable() {
+        @Override
+        public void run() {
+            XuToast.show(getActivity(), STR(R.string.update_not_find_file));
+        }
+    };
+    boolean isGetProgress = false;
     private Checknet checknet = new Checknet();
-
     private VispectUpdateFile newUpdaFile_firmware = null;
     private VispectUpdateFile newUpdaFile_system = null;
     private VispectUpdateFile newUpdaFile_software = null;
     private VispectUpdateFile newUpdaFile_app = null;
     private VispectUpdateFile newUpdaFile_s = null;
     private VispectUpdateFile newUpdaFile_obd = null;
-
-    String device_software = null;
-    String device_system = null;
-    String device_software_s = null;
-    int device_obd = -1;
     private
 
     SettingMenuAdapter adapter;
-    int updataposition = -1;
-    int progress = 0;
-    Handler mhandler = new Handler();
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -111,7 +116,99 @@ public class CheckUpdataFragment extends BaseFragment {
             }
         }
     };
+    //下载进度callback
+    ReqProgressCallBack progressCallBack = new ReqProgressCallBack() {
+        @Override
+        public void onProgress(long total, long current) {
+            XuLog.d(TAG, "total:" + total + "     current:" + current);
+            Message message = new Message();
+            message.what = ARG.DOWNLOAD_PROGRESS;
+            HashMap<String, String> map = new HashMap<>();
+            map.put("progress", (100 * current / (total)) + "");
+            message.obj = map;
+            handler.handleMessage(message);
+        }
 
+        @Override
+        public void onFile(String errorMessage) {
+            Message message = new Message();
+            message.what = ARG.DOWNLOAD_PROGRESS;
+            HashMap<String, String> map = new HashMap<>();
+            map.put("progress", ARG.DOWNLOAD_DONE);
+            message.obj = map;
+            handler.handleMessage(message);
+        }
+
+        @Override
+        public void onDone() {
+            XuLog.e(TAG, "完成了");
+            Message message = new Message();
+            message.what = ARG.DOWNLOAD_PROGRESS;
+            HashMap<String, String> map = new HashMap<>();
+            map.put("progress", ARG.DOWNLOAD_DONE);
+            message.obj = map;
+            handler.handleMessage(message);
+        }
+    };
+    //OBD更新的callback
+    ProgressCallback updateOBDPrigressCallback = new ProgressCallback() {
+        @Override
+        public void onProgressChange(long l) {
+            XuLog.e(TAG, "进度：" + l);
+            Message message = new Message();
+            message.what = ARG.DOWNLOAD_PROGRESS;
+            HashMap<String, String> map = new HashMap<>();
+            map.put("progress", l + "");
+            message.obj = map;
+            handler.handleMessage(message);
+        }
+
+        @Override
+        public void onErro(int i) {
+
+        }
+
+        @Override
+        public void onDone(String s, String s1) {
+            XuLog.e(TAG, "onDone");
+            Message message = new Message();
+            message.what = ARG.DOWNLOAD_PROGRESS;
+            HashMap<String, String> map = new HashMap<>();
+            map.put("progress", ARG.DOWNLOAD_DONE);
+            message.obj = map;
+            handler.handleMessage(message);
+            //开始获取更新进度
+            if (!isGetProgress) {
+                AppContext.getInstance().getDeviceHelper().startGetOBDUpdataProgress(updateOBDPrigressCallback, 1000);
+                isGetProgress = true;
+            } else {
+                AppContext.getInstance().getDeviceHelper().stopGetOBDUpdataProgress();
+                isGetProgress = false;
+//                checkupdate();
+                mhandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        XuToast.show(getActivity(), STR(R.string.update_done));
+                        mhandler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                getActivity().finish();
+                            }
+                        }, 1000);
+                    }
+                });
+            }
+        }
+    };
+    Runnable toShowUpda = new Runnable() {
+        @Override
+        public void run() {
+            String[] newValue = {
+                    newUpdaFile_software != null ? STR(R.string.update_software_system) + ";1;" + newUpdaFile_software.getVersionname() + ";" + newUpdaFile_software.getFilename() + ";" + newUpdaFile_software.getMd5() : STR(R.string.update_software_system), newUpdaFile_obd != null ? "OBD" + ";1;" + newUpdaFile_obd.getVersionname() + ";" + newUpdaFile_obd.getFilename() + ";" + newUpdaFile_obd.getMd5() : "OBD",
+            };
+            adapter.refreshData(newValue);
+        }
+    };
     private boolean canshowlongtime = false;
     private Runnable mRunnable_toas_waiitingtoolong = new Runnable() {
         @Override
@@ -121,12 +218,77 @@ public class CheckUpdataFragment extends BaseFragment {
             }
         }
     };
-
-    Runnable nofile = new Runnable() {
+    private Runnable mRunnable = new Runnable() {
         @Override
         public void run() {
+            //开始可以显示进度条了
+            DialogHelp.getInstance().hideDialog();
+        }
+    };
+    private Runnable onFielError = new Runnable() {
+        @Override
+        public void run() {
+            //文件损坏
+            DialogHelp.getInstance().hideDialog();
+            XuToast.show(getActivity(), STR(R.string.file_corrupted));
+        }
+    };
+    private Runnable nowfilemRunnable = new Runnable() {
+        @Override
+        public void run() {
+            //没找到文件的提示
+            DialogHelp.getInstance().hideDialog();
             XuToast.show(getActivity(), STR(R.string.update_not_find_file));
         }
+    };
+    private XuTimeOutUtil timeoutUtil = new XuTimeOutUtil(new XuTimeOutCallback() {
+        @Override
+        public void onTimeOut() {
+            toCancelUpdate();
+        }
+    });
+    private boolean canCancelconnection = false;
+    private Runnable mRunnable_cancel_connectwifi = new Runnable() {
+        @Override
+        public void run() {
+            //时间过长的话就提示让用户手动连
+            if (canCancelconnection) {
+                XuLog.d(TAG, "超时取消wifi连接");
+                canshowlongtime = false;
+                XuNetWorkUtils.cancelConnectWIFI();
+                XuToast.show(AppContext.getInstance(), STR(R.string.connect_timeout));
+                DialogHelp.getInstance().hideDialog();
+            }
+        }
+    };
+    private ProgressCallback updatePrigressCallback = new ProgressCallback() {
+        @Override
+        public void onProgressChange(long l) {
+            XuLog.e(TAG, "进度：" + l);
+            Message message = new Message();
+            message.what = ARG.DOWNLOAD_PROGRESS;
+            HashMap<String, String> map = new HashMap<>();
+            map.put("progress", l + "");
+            message.obj = map;
+            handler.handleMessage(message);
+        }
+
+        @Override
+        public void onErro(int i) {
+
+        }
+
+        @Override
+        public void onDone(String s, String s1) {
+            XuLog.e(TAG, "onDone");
+            Message message = new Message();
+            message.what = ARG.DOWNLOAD_PROGRESS;
+            HashMap<String, String> map = new HashMap<>();
+            map.put("progress", ARG.DOWNLOAD_DONE);
+            message.obj = map;
+            handler.handleMessage(message);
+        }
+
     };
 
     @Override
@@ -160,13 +322,12 @@ public class CheckUpdataFragment extends BaseFragment {
         });
 
         checkupdate();
-    }
-
-    public class Checknet implements Runnable{
-        @Override
-        public void run() {
-            XuToast.show(getActivity(), STR(R.string.not_net_work));
-        }
+        view.findViewById(R.id.img_back_main).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     void tomenu(int position) {
@@ -202,8 +363,8 @@ public class CheckUpdataFragment extends BaseFragment {
                                     @Override
                                     public void run() {
                                         try {
-                                            final String path = Environment.getExternalStorageDirectory().getPath();
-                                            final File f = new File(path + "/"+newUpdaFile_software.getFilename());
+                                            String path = Environment.getExternalStorageDirectory().getPath();
+                                            File f = new File(path + "/" + newUpdaFile_software.getFilename());
                                             if (f.exists()) {
                                                 switch (AppContext.getInstance().getDeviceHelper().getCommunicationType()){
                                                     case 0:
@@ -267,7 +428,7 @@ public class CheckUpdataFragment extends BaseFragment {
                                 public void run() {
                                     try {
 
-                                        final File f = new File(Environment.getExternalStorageDirectory().getPath() + File.separator + newUpdaFile_obd.getFilename());
+                                        File f = new File(Environment.getExternalStorageDirectory().getPath() + File.separator + newUpdaFile_obd.getFilename());
                                         if (f.exists()) {
                                             switch (AppContext.getInstance().getDeviceHelper().getCommunicationType()){
                                                 case 0:
@@ -312,7 +473,7 @@ public class CheckUpdataFragment extends BaseFragment {
                 break;
         }
     }
-    
+
     private void toCancelUpdate() {
         DialogHelp.getInstance().hideDialog();
         adapter.setIsupdataing(false);
@@ -496,17 +657,7 @@ public class CheckUpdataFragment extends BaseFragment {
 
     }
 
-    Runnable toShowUpda = new Runnable() {
-        @Override
-        public void run() {
-                String[] newValue = {
-                        newUpdaFile_software != null ? STR(R.string.update_software_system) + ";1;" + newUpdaFile_software.getVersionname() + ";" + newUpdaFile_software.getFilename() + ";" + newUpdaFile_software.getMd5() : STR(R.string.update_software_system), newUpdaFile_obd != null ? "OBD" + ";1;" + newUpdaFile_obd.getVersionname() + ";" + newUpdaFile_obd.getFilename() + ";" + newUpdaFile_obd.getMd5() : "OBD",
-              };
-                adapter.refreshData(newValue);
-        }
-    };
-
-    private void showDialogForUpdateFail(final String title, final int type) {
+    private void showDialogForUpdateFail(String title, final int type) {
         try {
             NotconnectDialog.Builder builder = new NotconnectDialog.Builder(getActivity());
             builder.setMessage(title);
@@ -566,40 +717,6 @@ public class CheckUpdataFragment extends BaseFragment {
         }
     }
 
-    private Runnable mRunnable = new Runnable() {
-        @Override
-        public void run() {
-            //开始可以显示进度条了
-            DialogHelp.getInstance().hideDialog();
-        }
-    };
-
-    private Runnable onFielError = new Runnable() {
-        @Override
-        public void run() {
-            //文件损坏
-            DialogHelp.getInstance().hideDialog();
-            XuToast.show(getActivity(), STR(R.string.file_corrupted));
-        }
-    };
-
-    private Runnable nowfilemRunnable = new Runnable() {
-        @Override
-        public void run() {
-            //没找到文件的提示
-            DialogHelp.getInstance().hideDialog();
-            XuToast.show(getActivity(), STR(R.string.update_not_find_file));
-        }
-    };
-
-    private XuTimeOutUtil timeoutUtil = new XuTimeOutUtil(new XuTimeOutCallback() {
-        @Override
-        public void onTimeOut() {
-            toCancelUpdate();
-        }
-    });
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO: inflate a fragment view
@@ -627,6 +744,7 @@ public class CheckUpdataFragment extends BaseFragment {
             }
         });
     }
+
     private void updateDeviceAPKOld(final String path){
         //打开设备的升级模式
         AppContext.getInstance().getDeviceHelper().openDeviceUpdateMode(new OnWifiOpenListener() {
@@ -663,7 +781,6 @@ public class CheckUpdataFragment extends BaseFragment {
         });
     }
 
-
     private void updateOBDOld(final String path){
         //打开设备的升级模式
         AppContext.getInstance().getDeviceHelper().openDeviceUpdateMode(new OnWifiOpenListener() {
@@ -699,9 +816,6 @@ public class CheckUpdataFragment extends BaseFragment {
             }
         });
     }
-
-
-
 
     private void updateOBD(final String path){
         AppContext.getInstance()
@@ -767,108 +881,6 @@ public class CheckUpdataFragment extends BaseFragment {
         });
     }
 
-    private boolean canCancelconnection = false;
-    private Runnable mRunnable_cancel_connectwifi = new Runnable() {
-        @Override
-        public void run() {
-            //时间过长的话就提示让用户手动连
-            if(canCancelconnection){
-                XuLog.d(TAG,"超时取消wifi连接");
-                canshowlongtime = false;
-                XuNetWorkUtils.cancelConnectWIFI();
-                XuToast.show(AppContext.getInstance(), STR(R.string.connect_timeout));
-                DialogHelp.getInstance().hideDialog();
-            }
-        }
-    };
-    //下载进度callback
-    ReqProgressCallBack progressCallBack = new ReqProgressCallBack() {
-        @Override
-        public void onProgress(long total, long current) {
-            XuLog.d(TAG, "total:" + total + "     current:" + current);
-            Message message = new Message();
-            message.what = ARG.DOWNLOAD_PROGRESS;
-            HashMap<String, String> map = new HashMap<>();
-            map.put("progress", (100 * current / (total)) + "");
-            message.obj = map;
-            handler.handleMessage(message);
-        }
-
-        @Override
-        public void onFile(String errorMessage) {
-            Message message = new Message();
-            message.what = ARG.DOWNLOAD_PROGRESS;
-            HashMap<String, String> map = new HashMap<>();
-            map.put("progress", ARG.DOWNLOAD_DONE);
-            message.obj = map;
-            handler.handleMessage(message);
-        }
-
-        @Override
-        public void onDone() {
-            XuLog.e(TAG,"完成了");
-            Message message = new Message();
-            message.what = ARG.DOWNLOAD_PROGRESS;
-            HashMap<String, String> map = new HashMap<>();
-            map.put("progress", ARG.DOWNLOAD_DONE);
-            message.obj = map;
-            handler.handleMessage(message);
-        }
-    };
-
-    boolean isGetProgress = false;
-    //OBD更新的callback
-    ProgressCallback updateOBDPrigressCallback = new ProgressCallback() {
-        @Override
-        public void onProgressChange(long l) {
-            XuLog.e(TAG, "进度：" + l);
-            Message message = new Message();
-            message.what = ARG.DOWNLOAD_PROGRESS;
-            HashMap<String, String> map = new HashMap<>();
-            map.put("progress", l + "");
-            message.obj = map;
-            handler.handleMessage(message);
-        }
-
-        @Override
-        public void onErro(int i) {
-
-        }
-
-        @Override
-        public void onDone(String s, String s1) {
-            XuLog.e(TAG, "onDone");
-            Message message = new Message();
-            message.what = ARG.DOWNLOAD_PROGRESS;
-            HashMap<String, String> map = new HashMap<>();
-            map.put("progress", ARG.DOWNLOAD_DONE);
-            message.obj = map;
-            handler.handleMessage(message);
-            //开始获取更新进度
-            if(!isGetProgress){
-                AppContext.getInstance().getDeviceHelper().startGetOBDUpdataProgress(updateOBDPrigressCallback,1000);
-                isGetProgress = true;
-            }else{
-                AppContext.getInstance().getDeviceHelper().stopGetOBDUpdataProgress();
-                isGetProgress = false;
-//                checkupdate();
-                mhandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        XuToast.show(getActivity(), STR(R.string.update_done));
-                        mhandler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                getActivity().finish();
-                            }
-                        }, 1000);
-                    }
-                });
-            }
-        }
-    };
-
-
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
@@ -878,34 +890,11 @@ public class CheckUpdataFragment extends BaseFragment {
         }
     }
 
-    private ProgressCallback updatePrigressCallback  = new ProgressCallback() {
+    public class Checknet implements Runnable {
         @Override
-        public void onProgressChange(long l) {
-            XuLog.e(TAG,"进度："+l);
-            Message message = new Message();
-            message.what = ARG.DOWNLOAD_PROGRESS;
-            HashMap<String, String> map = new HashMap<>();
-            map.put("progress", l + "");
-            message.obj = map;
-            handler.handleMessage(message);
+        public void run() {
+            XuToast.show(getActivity(), STR(R.string.not_net_work));
         }
-
-        @Override
-        public void onErro(int i) {
-
-        }
-
-        @Override
-        public void onDone(String s, String s1) {
-            XuLog.e(TAG,"onDone");
-            Message message = new Message();
-            message.what = ARG.DOWNLOAD_PROGRESS;
-            HashMap<String, String> map = new HashMap<>();
-            map.put("progress", ARG.DOWNLOAD_DONE);
-            message.obj = map;
-            handler.handleMessage(message);
-        }
-
-    };
+    }
 
 }

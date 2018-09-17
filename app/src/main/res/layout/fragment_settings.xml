@@ -1,8 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y120"
+        android:background="@color/black"
+        app:contentInsetStart="5dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_back_main"
+                android:layout_width="@dimen/x120"
+                android:layout_height="@dimen/y120"
+                android:layout_gravity="center_vertical"
+                android:padding="@dimen/x30"
+                android:src="@mipmap/ico_back" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/setting"
+                android:textColor="@color/white"
+                android:textSize="@dimen/y45" />
+
+        </FrameLayout>
+
+    </android.support.v7.widget.Toolbar>
     <com.vispect.android.vispect_g2_app.ui.widget.MoScroller
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,4 +49,4 @@
 
     </com.vispect.android.vispect_g2_app.ui.widget.MoScroller>
 
-</RelativeLayout>
+</LinearLayout>

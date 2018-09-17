@@ -14,6 +14,7 @@ import com.vispect.android.vispect_g2_app.adapter.CalibrateAdapter;
 import com.vispect.android.vispect_g2_app.app.AppContext;
 import com.vispect.android.vispect_g2_app.ui.activity.SettingsActivity;
 import com.vispect.android.vispect_g2_app.utils.XuString;
+import com.vispect.android.vispect_g2_app.utils.XuToast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,19 +34,17 @@ public class CameraTypeFragment extends BaseFragment {
 
     @Bind(R.id.list_camera_type)
     ListView listCameraType;
-    private ArrayList<Integer> data;
+    private ArrayList<Integer> data = new ArrayList<>();
     private CalibrateAdapter calibrateAdapter;
 
     @Override
     public int getContentResource() {
         return R.layout.fragment_camera_type;
-
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        data = new ArrayList<>();
         for (Integer i = 1; i < 8; i++) {
             if (i == 2) {
                 continue;
@@ -56,8 +55,8 @@ public class CameraTypeFragment extends BaseFragment {
         AppContext.getInstance().getDeviceHelper().getG2CameraList(new GetG2CameraList() {
             @Override
             public void onSuccess(ArrayList arrayList) {
-                ArrayList<Point> cameras = arrayList;
                 boolean isNotZh = !XuString.isZh(AppContext.getInstance());
+                ArrayList<Point> cameras = arrayList;
                 for (Point p : cameras) {
                     for (int i = 0; i < data.size(); i++) {
                         if (p.y == data.get(i)) {
@@ -126,15 +125,17 @@ public class CameraTypeFragment extends BaseFragment {
                 AppContext.getInstance().getDeviceHelper().setG2CameraType(new ResultListner() {
                     @Override
                     public void onSuccess() {
+                        XuToast.show(getActivity(), R.string.save_success);
+                        getActivity().finish();
                     }
 
                     @Override
                     public void onFail(int i) {
-
+                        XuToast.show(getActivity(), R.string.save_fail);
                     }
                 }, points);
 
-                pushToFragment(new CameraSettingsFragment());
+//                pushToFragment(new CameraSettingsFragment());
             }
         });
     }

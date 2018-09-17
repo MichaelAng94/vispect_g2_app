@@ -1,12 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_new">
+    android:background="@color/bg_new"
+    android:clickable="true">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y120"
+        android:background="@color/black"
+        app:contentInsetStart="5dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_back_main"
+                android:layout_width="@dimen/x120"
+                android:layout_height="@dimen/y120"
+                android:layout_gravity="center_vertical"
+                android:padding="@dimen/x30"
+                android:src="@mipmap/ico_back" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/setting"
+                android:textColor="@color/white"
+                android:textSize="@dimen/y45" />
+
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="@dimen/x110"
+                android:layout_height="@dimen/y70"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginRight="@dimen/x20"
+                android:background="@drawable/outside"
+                android:text="@string/adjustments_save"
+                android:textColor="@color/white"
+                android:textSize="@dimen/y35" />
+
+        </FrameLayout>
+
+    </android.support.v7.widget.Toolbar>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,8 +82,8 @@
                     <ImageView
                         android:layout_width="@dimen/x30"
                         android:layout_height="@dimen/y30"
-                        android:layout_marginTop="@dimen/y20"
                         android:layout_marginRight="@dimen/x20"
+                        android:layout_marginTop="@dimen/y20"
                         android:src="@mipmap/img_dot_bllue" />
 
                     <TextView
@@ -86,9 +132,9 @@
                         android:layout_height="@dimen/y100"
                         android:layout_marginLeft="@dimen/x10"
                         android:background="@mipmap/dialog_notconnect_cancel"
+                        android:gravity="center_vertical"
                         android:paddingLeft="@dimen/x10"
-                        android:paddingRight="@dimen/x10"
-                        android:gravity="center_vertical">
+                        android:paddingRight="@dimen/x10">
 
                         <TextView
                             android:id="@+id/edt_starspeed_ldw"
@@ -125,10 +171,10 @@
                         android:layout_width="@dimen/x150"
                         android:layout_height="@dimen/y100"
                         android:layout_marginLeft="@dimen/x10"
-                        android:paddingLeft="@dimen/x10"
-                        android:paddingRight="@dimen/x10"
                         android:background="@mipmap/dialog_notconnect_cancel"
-                        android:gravity="center_vertical">
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/x10"
+                        android:paddingRight="@dimen/x10">
 
                         <TextView
                             android:id="@+id/edt_sensitivity_ldw"
@@ -181,8 +227,8 @@
                     <ImageView
                         android:layout_width="@dimen/x30"
                         android:layout_height="@dimen/y30"
-                        android:layout_marginTop="@dimen/y20"
                         android:layout_marginRight="@dimen/x20"
+                        android:layout_marginTop="@dimen/y20"
                         android:src="@mipmap/img_dot_bllue" />
 
                     <TextView
@@ -231,9 +277,9 @@
                         android:layout_height="@dimen/y100"
                         android:layout_marginLeft="@dimen/x10"
                         android:background="@mipmap/dialog_notconnect_cancel"
+                        android:gravity="center_vertical"
                         android:paddingLeft="@dimen/x10"
-                        android:paddingRight="@dimen/x10"
-                        android:gravity="center_vertical">
+                        android:paddingRight="@dimen/x10">
 
                         <TextView
                             android:id="@+id/edt_starspeed_fcw"
@@ -277,9 +323,9 @@
                           android:layout_height="@dimen/y100"
                           android:layout_marginLeft="@dimen/x10"
                           android:background="@mipmap/dialog_notconnect_cancel"
+                          android:gravity="center_vertical"
                           android:paddingLeft="@dimen/x10"
-                          android:paddingRight="@dimen/x10"
-                          android:gravity="center_vertical">
+                          android:paddingRight="@dimen/x10">
 
                           <TextView
                               android:id="@+id/edt_sensitivity_fcw"
@@ -314,10 +360,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/x150"
-                            android:layout_marginLeft="@dimen/x50"
-                            android:text="@string/fcw_hmw"
                             android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/x50"
                             android:gravity="center"
+                            android:text="@string/fcw_hmw"
                             android:textColor="@color/text_color_default"
                             android:textSize="@dimen/x38" />
 
@@ -326,9 +372,9 @@
                             android:layout_height="@dimen/y100"
                             android:layout_marginLeft="@dimen/x10"
                             android:background="@mipmap/dialog_notconnect_cancel"
+                            android:gravity="center_vertical"
                             android:paddingLeft="@dimen/x10"
-                            android:paddingRight="@dimen/x10"
-                            android:gravity="center_vertical">
+                            android:paddingRight="@dimen/x10">
 
                             <TextView
                                 android:id="@+id/edt_hmw_fcw"
@@ -384,8 +430,8 @@
                     <ImageView
                         android:layout_width="@dimen/x30"
                         android:layout_height="@dimen/y30"
-                        android:layout_marginTop="@dimen/y20"
                         android:layout_marginRight="@dimen/x20"
+                        android:layout_marginTop="@dimen/y20"
                         android:src="@mipmap/img_dot_bllue" />
 
                     <TextView
@@ -438,9 +484,9 @@
                         android:layout_height="@dimen/y100"
                         android:layout_marginLeft="@dimen/x10"
                         android:background="@mipmap/dialog_notconnect_cancel"
+                        android:gravity="center_vertical"
                         android:paddingLeft="@dimen/x10"
-                        android:paddingRight="@dimen/x10"
-                        android:gravity="center_vertical">
+                        android:paddingRight="@dimen/x10">
 
                         <TextView
                             android:id="@+id/edt_starspeed_pcw"
@@ -467,8 +513,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/x100"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/x100"
                         android:gravity="center"
                         android:text="@string/warning_setting_sensivitivity_level"
                         android:textColor="@color/text_color_default"
@@ -479,9 +525,9 @@
                         android:layout_height="@dimen/y100"
                         android:layout_marginLeft="@dimen/x10"
                         android:background="@mipmap/dialog_notconnect_cancel"
+                        android:gravity="center_vertical"
                         android:paddingLeft="@dimen/x10"
-                        android:paddingRight="@dimen/x10"
-                        android:gravity="center_vertical">
+                        android:paddingRight="@dimen/x10">
 
                         <TextView
                             android:id="@+id/edt_sensitivity_pcw"
@@ -520,6 +566,6 @@
         android:layout_height="match_parent"
         android:background="@mipmap/bg_setting_volume_out"
         android:orientation="vertical"
-        android:visibility="gone"></LinearLayout>
+        android:visibility="gone" />
 
 </RelativeLayout>

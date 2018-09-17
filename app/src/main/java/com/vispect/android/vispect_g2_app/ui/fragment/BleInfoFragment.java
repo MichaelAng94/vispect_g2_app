@@ -45,14 +45,6 @@ public class BleInfoFragment extends BaseFragment {
     TextView odbVersion;
     @Bind(R.id.buzzer_version)
     TextView buzzerVersion;
-
-
-    @Override
-    public int getContentResource() {
-        // TODO Auto-generated method stub
-        return R.layout.fragment_checkversion;
-    }
-
     String[] names;
     private XuTimeOutUtil timeoutUtil = new XuTimeOutUtil(new XuTimeOutCallback() {
         @Override
@@ -60,13 +52,26 @@ public class BleInfoFragment extends BaseFragment {
 
         }
     });
+    private int clickCount = 0;
+    private Runnable clearClickCount = new Runnable() {
+        @Override
+        public void run() {
+            clickCount = 0;
+        }
+    };
+
+    @Override
+    public int getContentResource() {
+        // TODO Auto-generated method stub
+        return R.layout.fragment_checkversion;
+    }
 
     @Override
     protected void initView(View view) {
-        // TODO Auto-generated method stub
-        if (!AppContext.getInstance().getDeviceHelper().isConnectedDevice()) {
-            return;
-        }
+//        // TODO Auto-generated method stub
+//        if (!AppContext.getInstance().getDeviceHelper().isConnectedDevice()) {
+//            return;
+//        }
 
         AppContext.getInstance().getCachedThreadPool().execute(new Runnable() {
             @Override
@@ -75,7 +80,7 @@ public class BleInfoFragment extends BaseFragment {
                 timeoutUtil.startCheck(ARG.SET_VALUE_TIMEOUT);
                 AppContext.getInstance().getDeviceHelper().getDeviceVersion(new GetBleInfoVersionCallback() {
                     @Override
-                    public void onSuccess(String deviceHWver, String deviceOTAver, String deviceAPKver, final String obdver, final String buzzerver, String GPS) {
+                    public void onSuccess(String deviceHWver, String deviceOTAver, String deviceAPKver, String obdver, String buzzerver, String GPS) {
                         timeoutUtil.stopCheck();
 
                         hardwareVersion.setText(deviceHWver);
@@ -92,17 +97,13 @@ public class BleInfoFragment extends BaseFragment {
                 });
             }
         });
+        view.findViewById(R.id.img_back_main).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
-
-    private Runnable clearClickCount = new Runnable() {
-        @Override
-        public void run() {
-            clickCount = 0;
-        }
-    };
-
-    private int clickCount = 0;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

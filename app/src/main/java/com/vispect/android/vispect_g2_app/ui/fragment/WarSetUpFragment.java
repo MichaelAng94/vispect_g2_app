@@ -450,13 +450,7 @@ public class WarSetUpFragment extends BaseFragment {
                 }
             });
         }
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        getActivity().findViewById(R.id.btn_save).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.btn_save).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UIHelper.showAsk(getActivity(), STR(R.string.ask_save_data), true, new OnClickYesOrNoListener() {
@@ -471,6 +465,13 @@ public class WarSetUpFragment extends BaseFragment {
                 });
             }
         });
+        view.findViewById(R.id.img_back_main).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
     }
 
     @Override
