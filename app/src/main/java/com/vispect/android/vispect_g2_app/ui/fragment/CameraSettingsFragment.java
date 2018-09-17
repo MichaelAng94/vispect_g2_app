@@ -48,9 +48,7 @@ public class CameraSettingsFragment extends BaseFragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 listitem = cameras.get(i).x;
-//                Message msg = new Message();
-//                msg.arg2 = 50;
-//                SettingsActivity.transHandler.sendMessage(msg);
+                finish();
             }
         });
 

@@ -89,8 +89,8 @@ public class IndexFragment extends BaseFragment {
                     UIHelper.startActivity(getActivity(), InstallActivity.class);
                 break;
             case R.id.menu_settings:
-//                if (DeviceHelper.isG2Connected(getActivity(), EXTRA_TO_SETTING))
-                UIHelper.startActivity(getActivity(), SettingsActivity.class);
+                if (DeviceHelper.isG2Connected(getActivity(), EXTRA_TO_SETTING))
+                    UIHelper.startActivity(getActivity(), SettingsActivity.class);
                 break;
             case R.id.menu_live:
                 if (DeviceHelper.isG2Connected(getActivity(), null))
@@ -139,6 +139,7 @@ public class IndexFragment extends BaseFragment {
                 if (list != null && list.size() > 0) {
                     cameras.clear();
                     cameras.addAll(list);
+                    AppConfig.setCameras(list);
                     handler.removeMessages(MESSAGE_CODE_GET_CAMERA_LIST);
                     openLiveMode();
                 } else {
@@ -237,7 +238,7 @@ public class IndexFragment extends BaseFragment {
             }
         });
     }
-
+    
     public void cancelConnect() {
         //断开连接
         handler.removeMessages(MESSAGE_CODE_CONNECT_WIFI);

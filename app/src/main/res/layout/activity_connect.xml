@@ -93,4 +93,9 @@
 
     </com.vispect.android.vispect_g2_app.ui.widget.MoScroller>
 
+    <com.vispect.android.vispect_g2_app.ui.widget.CustomView
+        android:id="@+id/customView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </FrameLayout>

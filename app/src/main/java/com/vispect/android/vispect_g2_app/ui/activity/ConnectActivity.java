@@ -2,6 +2,7 @@ package com.vispect.android.vispect_g2_app.ui.activity;
 
 import android.bluetooth.BluetoothAdapter;
 import android.os.Handler;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -11,11 +12,14 @@ import com.vispect.android.vispect_g2_app.R;
 import com.vispect.android.vispect_g2_app.adapter.DevicesAdapter;
 import com.vispect.android.vispect_g2_app.app.AppConfig;
 import com.vispect.android.vispect_g2_app.app.AppContext;
+import com.vispect.android.vispect_g2_app.bean.Point;
 import com.vispect.android.vispect_g2_app.controller.DeviceHelper;
 import com.vispect.android.vispect_g2_app.controller.UIHelper;
+import com.vispect.android.vispect_g2_app.ui.widget.CustomView;
 import com.vispect.android.vispect_g2_app.ui.widget.DialogHelp;
 import com.vispect.android.vispect_g2_app.ui.widget.MoListView;
 import com.vispect.android.vispect_g2_app.utils.XuLog;
+import com.vispect.android.vispect_g2_app.utils.XuNetWorkUtils;
 import com.vispect.android.vispect_g2_app.utils.XuString;
 import com.vispect.android.vispect_g2_app.utils.XuToast;
 
@@ -35,6 +39,8 @@ import static android.view.View.VISIBLE;
 import static com.vispect.android.vispect_g2_app.app.AppConfig.EXTRA_TO_INSTALLATION;
 import static com.vispect.android.vispect_g2_app.app.AppConfig.EXTRA_TO_SETTING;
 import static com.vispect.android.vispect_g2_app.app.AppConfig.STRING_EXTRA;
+import static com.vispect.android.vispect_g2_app.controller.DeviceHelper.cancelConnectDevice;
+import static com.vispect.android.vispect_g2_app.controller.DeviceHelper.stopScanDevice;
 
 public class ConnectActivity extends BaseActivity {
 
@@ -220,10 +226,10 @@ public class ConnectActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-        DeviceHelper.stopScanDevice();
+        stopScanDevice();
         myHandler.removeCallbacks(cancelScanDevice);
         myHandler.removeCallbacks(connectFailed);
-        if (isConnecting) AppContext.getInstance().getDeviceHelper().disconnectDevice();
+        if (isConnecting) cancelConnectDevice();
         super.onDestroy();
     }
 

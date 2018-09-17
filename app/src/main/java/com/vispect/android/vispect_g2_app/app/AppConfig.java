@@ -1,6 +1,7 @@
 package com.vispect.android.vispect_g2_app.app;
 
 import android.content.Context;
+import android.graphics.Point;
 import android.os.Environment;
 
 import com.vispect.android.vispect_g2_app.utils.XuLog;
@@ -8,6 +9,8 @@ import com.vispect.android.vispect_g2_app.utils.XuSp;
 import com.vispect.android.vispect_g2_app.utils.XuString;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 
@@ -105,6 +108,7 @@ public class AppConfig {
     private static AppConfig xInstance;
     private static XuSp xSharedPreferences;
     private static String CARCORDER_DIR = EXTERNAL_DIR + "/" + DEVICE_NAME + File.separator;
+    private static List<Point> _cameras = new ArrayList<>();
     /**
      * 是否已连接BLE设备
      */
@@ -163,6 +167,14 @@ public class AppConfig {
 
     public static File getExternalStorageDir() {
         return Environment.getExternalStorageDirectory();
+    }
+
+    public static List<Point> getCameras() {
+        return _cameras;
+    }
+
+    public static void setCameras(List<Point> cameras) {
+        if (cameras != null && cameras.size() > 0) _cameras.addAll(cameras);
     }
 
     public boolean islogin() {

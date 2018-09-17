@@ -6,14 +6,17 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 
+import com.vispect.android.vispect_g2_app.R;
 import com.vispect.android.vispect_g2_app.controller.FragmentHelper;
 import com.vispect.android.vispect_g2_app.interf.OnSoftKeyboardChangeListener;
 import com.vispect.android.vispect_g2_app.interf.ProgressController;
@@ -380,6 +383,12 @@ public abstract class BaseFragment extends Fragment implements ProgressControlle
         if (entryCount > 1) {
             getFragmentManager().popBackStackImmediate();
         }
+    }
+
+    protected void pushToFragment(@NonNull Fragment fragment) {
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.content, fragment, BaseFragment.class.getSimpleName())
+                .addToBackStack(BaseFragment.class.getSimpleName()).commit();
     }
 
     public interface OnInputStatusChange {

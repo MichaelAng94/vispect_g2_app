@@ -165,6 +165,25 @@ public class CalibrateActivity extends BaseActivity {
     private boolean onStart = false;
     private OnGetShortVideoCallback onGetShortVideoCallback;
     private volatile int progress = -1;
+    Runnable changeProgress = new Runnable() {
+        @Override
+        public void run() {
+            if (progress != 100) {
+                if (linProgress != null && linProgress.getVisibility() == View.GONE) {
+                    linProgress.setVisibility(View.VISIBLE);
+                }
+                if (tvProgress != null) {
+                    tvProgress.setText(progress + "");
+                }
+
+                mhandler.postDelayed(getProgress, 2000);
+            } else {
+                mhandler.post(getcenterponintag);
+                i = -1;
+                linProgress.setVisibility(View.GONE);
+            }
+        }
+    };
     Runnable getProgress = new Runnable() {
         @Override
         public void run() {
@@ -268,25 +287,6 @@ public class CalibrateActivity extends BaseActivity {
             });
         }
     };
-    Runnable changeProgress = new Runnable() {
-        @Override
-        public void run() {
-            if (progress != 100) {
-                if (linProgress != null && linProgress.getVisibility() == View.GONE) {
-                    linProgress.setVisibility(View.VISIBLE);
-                }
-                if (tvProgress != null) {
-                    tvProgress.setText(progress + "");
-                }
-
-                mhandler.postDelayed(getProgress, 2000);
-            } else {
-                mhandler.post(getcenterponintag);
-                i = -1;
-                linProgress.setVisibility(View.GONE);
-            }
-        }
-    };
 //    //----------------------------------------
 //    BufferedOutputStream bo = null;
 //    //----------------------------------------
@@ -361,6 +361,11 @@ public class CalibrateActivity extends BaseActivity {
 
             ArrayList<ByteBuffer> bufflist = new ArrayList<ByteBuffer>();
 
+
+        }
+
+        @Override
+        public void onGetSideRecInfo(ArrayList arrayList) {
 
         }
 

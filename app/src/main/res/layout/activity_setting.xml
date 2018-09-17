@@ -52,6 +52,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/y120"
-        android:background="@color/background" />
+        android:background="@color/background"
+        android:clickable="true"
+        android:focusable="true" />
 
 </FrameLayout>

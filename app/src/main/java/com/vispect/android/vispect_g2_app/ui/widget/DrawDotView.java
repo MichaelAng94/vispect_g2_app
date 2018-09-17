@@ -21,6 +21,7 @@ import com.vispect.android.vispect_g2_app.app.AppContext;
 import com.vispect.android.vispect_g2_app.utils.XuLog;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by mo on 2018/5/29.
@@ -61,6 +62,10 @@ public class DrawDotView extends RelativeLayout {
         ct = context;
     }
 
+    public static int px2dp(Context context, float pxValue) {
+        float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (pxValue / scale + 0.5f);
+    }
 
     @SuppressLint("ResourceType")
     @Override
@@ -88,55 +93,6 @@ public class DrawDotView extends RelativeLayout {
         snag2.setOnTouchListener(listen);
         snag3.setOnTouchListener(listen);
         snag4.setOnTouchListener(listen);
-    }
-
-
-    class onTouch implements OnTouchListener {
-
-        @SuppressLint("ResourceType")
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            int rawX = (int) event.getRawX();
-            int rawY = (int) event.getRawY();
-            if (v.getId() == 1) {
-                if (line1 != null) {
-                    line1.setxy(rawX, rawY, rawX2, rawY2);
-                }
-                if (line4 != null) {
-                    line4.setxy(rawX, rawY, rawX4, rawY4);
-                }
-                rawX1 = rawX;
-                rawY1 = rawY;
-            } else if (v.getId() == 2) {
-                if (line1 != null) {
-                    line1.setxy(rawX, rawY, rawX1, rawY1);
-                }
-                if (line2 != null) {
-                    line2.setxy(rawX, rawY, rawX3, rawY3);
-                }
-                rawX2 = rawX;
-                rawY2 = rawY;
-            } else if (v.getId() == 3) {
-                if (line2 != null) {
-                    line2.setxy(rawX, rawY, rawX2, rawY2);
-                }
-                if (line3 != null) {
-                    line3.setxy(rawX, rawY, rawX4, rawY4);
-                }
-                rawX3 = rawX;
-                rawY3 = rawY;
-            } else if (v.getId() == 4) {
-                if (line3 != null) {
-                    line3.setxy(rawX, rawY, rawX3, rawY3);
-                }
-                if (line4 != null) {
-                    line4.setxy(rawX, rawY, rawX1, rawY1);
-                }
-                rawX4 = rawX;
-                rawY4 = rawY;
-            }
-            return false;
-        }
     }
 
     @SuppressLint("ResourceAsColor")
@@ -197,36 +153,36 @@ public class DrawDotView extends RelativeLayout {
         return false;
     }
 
-    public int getLinY(Activity ac){
+    public int getLinY(Activity ac) {
         Display display = ac.getWindowManager().getDefaultDisplay();
         float width = display.getHeight();
-        return (int) (lin.getY() *  720 / width);
+        return (int) (lin.getY() * 720 / width);
     }
 
 
-
-    public ArrayList<Point> getSnag(Activity ac){
+    public ArrayList<Point> getSnag(Activity ac) {
         ArrayList<Point> points = new ArrayList<>();
         Point p1 = new Point();
-        p1.set((int)view1.getX()+DEVIATION,(int)view1.getY()+DEVIATION);
+        p1.set((int) view1.getX() + DEVIATION, (int) view1.getY() + DEVIATION);
         Point p2 = new Point();
-        p2.set((int)view2.getX()+DEVIATION,(int)view2.getY()+DEVIATION);
+        p2.set((int) view2.getX() + DEVIATION, (int) view2.getY() + DEVIATION);
         Point p3 = new Point();
-        p3.set((int)view3.getX()+DEVIATION,(int)view3.getY()+DEVIATION);
+        p3.set((int) view3.getX() + DEVIATION, (int) view3.getY() + DEVIATION);
         Point p4 = new Point();
-        p4.set((int)view4.getX()+DEVIATION,(int)view4.getY()+DEVIATION);
-        points.add(changePoint(p1,ac));
-        points.add(changePoint(p2,ac));
-        points.add(changePoint(p3,ac));
-        points.add(changePoint(p4,ac));
+        p4.set((int) view4.getX() + DEVIATION, (int) view4.getY() + DEVIATION);
+        points.add(changePoint(p1, ac));
+        points.add(changePoint(p2, ac));
+        points.add(changePoint(p3, ac));
+        points.add(changePoint(p4, ac));
         return points;
     }
 
     @SuppressLint("ResourceType")
-    public void addSnag(ArrayList<Point> popints, Activity ac, Boolean withSnag) {
-        if (popints==null){
+    public void addSnag(List<Point> popints, Activity ac, Boolean withSnag) {
+        if (popints == null || popints.size() < 4) {
             return;
         }
+
         Pointf p1 = changeSize(popints.get(0), ac);
         Pointf p2 = changeSize(popints.get(1), ac);
         Pointf p3 = changeSize(popints.get(2), ac);
@@ -334,11 +290,6 @@ public class DrawDotView extends RelativeLayout {
         isCalibrate = b;
     }
 
-    public static int px2dp(Context context, float pxValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (pxValue / scale + 0.5f);
-    }
-
     public void hideSnag() {
         view1.setVisibility(GONE);
         view2.setVisibility(GONE);
@@ -356,7 +307,7 @@ public class DrawDotView extends RelativeLayout {
         return changep;
     }
 
-    public Point changePoint(Point p, Activity ac){
+    public Point changePoint(Point p, Activity ac) {
         Display display = ac.getWindowManager().getDefaultDisplay();
         float heigth = display.getWidth();
         float width = display.getHeight();
@@ -407,6 +358,54 @@ public class DrawDotView extends RelativeLayout {
                 removeView(line4);
                 viewnum--;
                 break;
+        }
+    }
+
+    class onTouch implements OnTouchListener {
+
+        @SuppressLint("ResourceType")
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            int rawX = (int) event.getRawX();
+            int rawY = (int) event.getRawY();
+            if (v.getId() == 1) {
+                if (line1 != null) {
+                    line1.setxy(rawX, rawY, rawX2, rawY2);
+                }
+                if (line4 != null) {
+                    line4.setxy(rawX, rawY, rawX4, rawY4);
+                }
+                rawX1 = rawX;
+                rawY1 = rawY;
+            } else if (v.getId() == 2) {
+                if (line1 != null) {
+                    line1.setxy(rawX, rawY, rawX1, rawY1);
+                }
+                if (line2 != null) {
+                    line2.setxy(rawX, rawY, rawX3, rawY3);
+                }
+                rawX2 = rawX;
+                rawY2 = rawY;
+            } else if (v.getId() == 3) {
+                if (line2 != null) {
+                    line2.setxy(rawX, rawY, rawX2, rawY2);
+                }
+                if (line3 != null) {
+                    line3.setxy(rawX, rawY, rawX4, rawY4);
+                }
+                rawX3 = rawX;
+                rawY3 = rawY;
+            } else if (v.getId() == 4) {
+                if (line3 != null) {
+                    line3.setxy(rawX, rawY, rawX3, rawY3);
+                }
+                if (line4 != null) {
+                    line4.setxy(rawX, rawY, rawX1, rawY1);
+                }
+                rawX4 = rawX;
+                rawY4 = rawY;
+            }
+            return false;
         }
     }
 

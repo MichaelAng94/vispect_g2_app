@@ -59,7 +59,7 @@
                 android:layout_height="@dimen/y80"
                 android:layout_gravity="right"
                 android:background="@drawable/solid"
-                android:padding="@dimen/x10">
+                android:paddingHorizontal="@dimen/x20">
 
                 <TextView
                     android:id="@+id/tv_start_speed"
@@ -73,7 +73,7 @@
                 <ImageView
                     android:layout_width="@dimen/x40"
                     android:layout_height="@dimen/x40"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center|right"
                     android:src="@drawable/remix" />
 
             </FrameLayout>
@@ -100,7 +100,7 @@
                 android:layout_height="@dimen/y80"
                 android:layout_gravity="right"
                 android:background="@drawable/solid"
-                android:padding="@dimen/x10">
+                android:paddingHorizontal="@dimen/x20">
 
                 <TextView
                     android:id="@+id/tv_end_speed"
@@ -114,7 +114,7 @@
                 <ImageView
                     android:layout_width="@dimen/x40"
                     android:layout_height="@dimen/x40"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center|right"
                     android:src="@drawable/remix" />
 
             </FrameLayout>

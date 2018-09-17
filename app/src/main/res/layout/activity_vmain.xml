@@ -13,9 +13,9 @@
         android:id="@+id/red_rectangle"
         android:layout_width="@dimen/x400"
         android:layout_height="match_parent"
+        android:layout_centerInParent="true"
         android:background="@drawable/bg_red_border"
-        android:visibility="gone"
-        android:layout_centerInParent="true"/>
+        android:visibility="gone" />
 
     <!--蓝色校准线-->
     <LinearLayout
@@ -55,7 +55,7 @@
         android:layout_centerInParent="true"
         android:background="#322a6ccc"
         android:orientation="horizontal"
-        android:visibility="gone"></LinearLayout>
+        android:visibility="gone" />
 
 
     <LinearLayout

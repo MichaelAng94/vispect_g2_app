@@ -28,7 +28,6 @@ public abstract class BaseFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         initView();
-        setTitle();
         return view;
     }
 
@@ -44,6 +43,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        setTitle();
     }
 
     @StringRes

@@ -7,8 +7,10 @@ import android.support.annotation.Nullable;
 import com.vispect.android.vispect_g2_app.R;
 import com.vispect.android.vispect_g2_app.app.AppConfig;
 import com.vispect.android.vispect_g2_app.app.AppContext;
+import com.vispect.android.vispect_g2_app.interf.Callback;
 import com.vispect.android.vispect_g2_app.interf.GetListCallback;
 import com.vispect.android.vispect_g2_app.ui.activity.ConnectActivity;
+import com.vispect.android.vispect_g2_app.utils.XuLog;
 import com.vispect.android.vispect_g2_app.utils.XuToast;
 
 import java.util.ArrayList;
@@ -16,10 +18,14 @@ import java.util.ArrayList;
 import bean.BLEDevice;
 import interf.BleLoginListener;
 import interf.GetG2CameraList;
+import interf.GetHorizontalLine;
 import interf.OnScanDeviceLisetener;
+import interf.PointOfAreaListener;
 import interf.ResultListner;
 
 public class DeviceHelper {
+    public static final String TAG = "DeviceHelper";
+
     public static boolean isConnected() {
         return AppContext.getInstance().getDeviceHelper().isConnectedDevice();
     }
@@ -60,6 +66,10 @@ public class DeviceHelper {
         AppContext.getInstance().getDeviceHelper().canCelLoginDevice();
     }
 
+    public static void cancelConnectDevice() {
+        AppContext.getInstance().getDeviceHelper().disconnectDevice();
+    }
+
     public static void stopScanDevice() {
         AppContext.getInstance().getDeviceHelper().stopScanDevice();
     }
@@ -76,5 +86,50 @@ public class DeviceHelper {
 
     public static void setSPMSpeedSpace(ResultListner resultListner, int start, int end) {
         AppContext.getInstance().getDeviceHelper().setSPMSpeedSpace(resultListner, 0, start, end);
+    }
+
+    //获取水平线
+    public static void getHorizontal(@NonNull final Callback<Integer> callback, int cameraId) {
+        AppContext.getInstance().getDeviceHelper().getHorizontal(new GetHorizontalLine() {
+
+            @Override
+            public void onSuccess(int i) {
+                callback.callback(i);
+            }
+
+            @Override
+            public void onFail() {
+
+            }
+        }, (byte) cameraId);
+    }
+
+    public static void setUDPCamera(@NonNull final Runnable callback, int cameraId, int cameraType) {
+        AppContext.getInstance().getDeviceHelper().setUDPCamera(new ResultListner() {
+            @Override
+            public void onSuccess() {
+                callback.run();
+            }
+
+            @Override
+            public void onFail(int i) {
+                XuLog.e(TAG, "setUDPCamera onFail");
+            }
+        }, cameraId, cameraType);
+    }
+
+    public static void getPointOfArea(@NonNull final GetListCallback callback, int cameraId) {
+        AppContext.getInstance().getDeviceHelper().getPointOfArea(new PointOfAreaListener() {
+
+            @Override
+            public void onSuccess(int i, ArrayList arrayList) {
+                callback.onGetListSuccess(arrayList);
+            }
+
+            @Override
+            public void onFail(int i) {
+                callback.onGetListFailed();
+            }
+        }, (byte) cameraId);
     }
 }
