@@ -100,6 +100,7 @@ public class WarSetUpFragment extends BaseFragment {
                 isallsuccess = true;
             } else {
                 XuToast.show(getActivity(), STR(R.string.save_success));
+                finish();
             }
 
         }
@@ -458,7 +459,6 @@ public class WarSetUpFragment extends BaseFragment {
                     public void isyes(boolean b, DialogInterface dialog) {
                         if (b) {
                             saveData();
-                            finish();
                         }
                         dialog.dismiss();
                     }

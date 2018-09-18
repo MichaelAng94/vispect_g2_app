@@ -230,7 +230,9 @@ public class VMainActivity extends BaseActivity {
 
         @Override
         public void onGetSideRecInfo(ArrayList arrayList) {
-            if (arrayList == null || arrayList.size() < 0) return;
+            if (arrayList == null || arrayList.size() < 0) {
+                return;
+            }
             ArrayList<SideAlarmEvent> sideAlarmEvents = arrayList;
             ArrayList<DrawShape> drawShapes = new ArrayList<>();
             for (SideAlarmEvent event : sideAlarmEvents) {
@@ -238,7 +240,7 @@ public class VMainActivity extends BaseActivity {
                 Point top = event.getLeftTop();
                 Point btm = event.getRightBtm();
                 drawShape.setType(1);
-                drawShape.setColor(Color.RED);
+                drawShape.setColor(event.getColor());
                 drawShape.setX0(top.x);
                 drawShape.setY0(top.y);
                 drawShape.setX1(btm.x);
@@ -350,9 +352,10 @@ public class VMainActivity extends BaseActivity {
         if (cameras == null || cameras.size() <= 0) finish();
         _currentCamera = cameras.get(0);
 
+        AppContext.getInstance().getDeviceHelper().setUDPCamera(resultListener, _currentCamera.x, _currentCamera.y);
+
         AppContext.getInstance().getDeviceHelper().initRealView(realViewCallback);
 
-        AppContext.getInstance().getDeviceHelper().setUDPCamera(resultListener, _currentCamera.x, _currentCamera.y);
 
         DialogHelp.getInstance().connectDialog(this, "Connecting");
         isShowConnecting = true;
@@ -438,7 +441,9 @@ public class VMainActivity extends BaseActivity {
         tvHorizontal.setVisibility(INVISIBLE);
         tvVertical.setVisibility(INVISIBLE);
         blueCenter.setVisibility(INVISIBLE);
-        customView.setVisibility(INVISIBLE);
+//        customView.setVisibility(INVISIBLE);
+        customView.setPointList(null);
+        customView.addRedLine(0);
     }
 
     private void showAdasInfo() {
@@ -448,7 +453,7 @@ public class VMainActivity extends BaseActivity {
     }
 
     private void drawSideInfo(final int cameraID) {
-        customView.setVisibility(VISIBLE);
+//        customView.setVisibility(VISIBLE);
 
         DeviceHelper.getPointOfArea(new GetListCallback() {
             @Override

@@ -25,7 +25,7 @@ import interf.ResultListner;
 
 /**
  * Created by mo on 2018/7/24.
- *
+ * <p>
  * 工程配置模式下的DSM配置
  */
 
@@ -57,6 +57,15 @@ public class DSMSettings extends BaseFragment {
     @Bind(R.id.et_looking_sen)
     EditText etLookingSen;
 
+    public static boolean isNumeric(String str) {
+        for (int i = str.length(); --i >= 0; ) {
+            if (!Character.isDigit(str.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     @Override
     public int getContentResource() {
         return R.layout.fragment_dsmsettings;
@@ -64,28 +73,33 @@ public class DSMSettings extends BaseFragment {
 
     @Override
     protected void initView(View view) throws IOException {
-
+        view.findViewById(R.id.img_back_main).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (!AppContext.getInstance().getDeviceHelper().isConnectedDevice()){
-            XuToast.show(getActivity(),STR(R.string.road_live_notconnect));
+        if (!AppContext.getInstance().getDeviceHelper().isConnectedDevice()) {
+            XuToast.show(getActivity(), STR(R.string.road_live_notconnect));
         }
 
         AppContext.getInstance().getDeviceHelper().getDSMShieldingTime(new GetDsmShieldingListener() {
             @Override
             public void onSuccess(int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
-                etDistracting.setText(""+i);
-                etDangerous.setText(""+i1);
-                etPhone.setText(""+i2);
-                etSmoking.setText(""+i3);
-                etLooking.setText(""+i4);
-                etYawning.setText(""+i5);
-                etFace.setText(""+i6);
-                etCamera.setText(""+i7);
-                etDrinking.setText(""+i8);
+                etDistracting.setText("" + i);
+                etDangerous.setText("" + i1);
+                etPhone.setText("" + i2);
+                etSmoking.setText("" + i3);
+                etLooking.setText("" + i4);
+                etYawning.setText("" + i5);
+                etFace.setText("" + i6);
+                etCamera.setText("" + i7);
+                etDrinking.setText("" + i8);
             }
 
             @Override
@@ -97,10 +111,10 @@ public class DSMSettings extends BaseFragment {
         AppContext.getInstance().getDeviceHelper().getDSMSensitivityLevel(new GetDsmSensitivityLevel() {
             @Override
             public void onSuccess(int i, int i1, int i2, int i3) {
-                etDistractingSen.setText(""+i);
-                etDangerousSen.setText(""+i1);
-                etYawningSen.setText(""+i2);
-                etLookingSen.setText(""+i3);
+                etDistractingSen.setText("" + i);
+                etDangerousSen.setText("" + i1);
+                etYawningSen.setText("" + i2);
+                etLookingSen.setText("" + i3);
             }
 
             @Override
@@ -115,8 +129,8 @@ public class DSMSettings extends BaseFragment {
                 UIHelper.showAsk(getContext(), STR(R.string.ask_save_data), false, new OnClickYesOrNoListener() {
                     @Override
                     public void isyes(boolean var1, DialogInterface dialog) {
-                        if (var1){
-                            if (isNumeric(etDistracting.getText().toString())&&isNumeric(etDangerous.getText().toString())&&isNumeric(etPhone.getText().toString())&&isNumeric(etSmoking.getText().toString())&&isNumeric(etLooking.getText().toString())&&isNumeric(etYawning.getText().toString())&&isNumeric(etFace.getText().toString())&&isNumeric(etCamera.getText().toString())&&isNumeric(etDrinking.getText().toString())&&isNumeric(etDistractingSen.getText().toString())&&isNumeric(etDangerousSen.getText().toString())&&isNumeric(etYawningSen.getText().toString())&&isNumeric(etLookingSen.getText().toString())) {
+                        if (var1) {
+                            if (isNumeric(etDistracting.getText().toString()) && isNumeric(etDangerous.getText().toString()) && isNumeric(etPhone.getText().toString()) && isNumeric(etSmoking.getText().toString()) && isNumeric(etLooking.getText().toString()) && isNumeric(etYawning.getText().toString()) && isNumeric(etFace.getText().toString()) && isNumeric(etCamera.getText().toString()) && isNumeric(etDrinking.getText().toString()) && isNumeric(etDistractingSen.getText().toString()) && isNumeric(etDangerousSen.getText().toString()) && isNumeric(etYawningSen.getText().toString()) && isNumeric(etLookingSen.getText().toString())) {
                                 int distracting = Integer.parseInt(etDistracting.getText().toString());
                                 int dangerous = Integer.parseInt(etDangerous.getText().toString());
                                 int phone = Integer.parseInt(etPhone.getText().toString());
@@ -130,9 +144,9 @@ public class DSMSettings extends BaseFragment {
                                 int dangerous_sen = Integer.parseInt(etDangerousSen.getText().toString());
                                 int yawn_sen = Integer.parseInt(etYawningSen.getText().toString());
                                 int look_sen = Integer.parseInt(etLookingSen.getText().toString());
-                                if (distracting<4||distracting>60||dangerous<4||dangerous>60||phone<4||phone>60||smoking<4||smoking>60||looking<4||looking>60||yawning<4||yawning>60||face<4||face>60||camera<4||camera>60||driking<4||driking>60||distracting_sen<1||distracting_sen>3||dangerous_sen<1||dangerous_sen>3||yawn_sen<1||yawn_sen>3||look_sen<1||look_sen>3){
-                                    XuToast.show(getActivity(),STR(R.string.input_illegal));
-                                }else {
+                                if (distracting < 4 || distracting > 60 || dangerous < 4 || dangerous > 60 || phone < 4 || phone > 60 || smoking < 4 || smoking > 60 || looking < 4 || looking > 60 || yawning < 4 || yawning > 60 || face < 4 || face > 60 || camera < 4 || camera > 60 || driking < 4 || driking > 60 || distracting_sen < 1 || distracting_sen > 3 || dangerous_sen < 1 || dangerous_sen > 3 || yawn_sen < 1 || yawn_sen > 3 || look_sen < 1 || look_sen > 3) {
+                                    XuToast.show(getActivity(), STR(R.string.input_illegal));
+                                } else {
                                     AppContext.getInstance().getDeviceHelper().setDSMShieldingTime(new ResultListner() {
                                         @Override
                                         public void onSuccess() {
@@ -143,12 +157,12 @@ public class DSMSettings extends BaseFragment {
                                         public void onFail(int i) {
 
                                         }
-                                    },distracting,dangerous,phone,smoking,looking,yawning,face,camera,driking);
+                                    }, distracting, dangerous, phone, smoking, looking, yawning, face, camera, driking);
 
                                     AppContext.getInstance().getDeviceHelper().setDSMSensitivityLevel(distracting_sen, dangerous_sen, yawn_sen, look_sen, new ResultListner() {
                                         @Override
                                         public void onSuccess() {
-                                            XuToast.show(getActivity(),"success");
+                                            XuToast.show(getActivity(), "success");
                                         }
 
                                         @Override
@@ -160,8 +174,8 @@ public class DSMSettings extends BaseFragment {
 //                                    msg.arg2 = -1;
 //                                    SettingsActivity.transHandler.sendMessage(msg);
                                 }
-                            }else {
-                                XuToast.show(getActivity(),STR(R.string.input_illegal));
+                            } else {
+                                XuToast.show(getActivity(), STR(R.string.input_illegal));
                             }
 
                         }
@@ -176,7 +190,7 @@ public class DSMSettings extends BaseFragment {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (!hidden){
+        if (!hidden) {
             onResume();
         }
     }
@@ -193,15 +207,6 @@ public class DSMSettings extends BaseFragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
-    }
-
-    public static boolean isNumeric(String str){
-        for (int i = str.length();--i>=0;){
-            if (!Character.isDigit(str.charAt(i))){
-                return false;
-            }
-        }
-        return true;
     }
 
 }

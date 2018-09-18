@@ -107,7 +107,6 @@ public class DriverStatusFragment extends BaseFragment {
                     public void isyes(boolean b, DialogInterface dialog) {
                         if (b) {
                             saveData();
-                            finish();
                         }
                         dialog.dismiss();
                     }
@@ -261,7 +260,8 @@ public class DriverStatusFragment extends BaseFragment {
         AppContext.getInstance().getDeviceHelper().setDSMStartSpeed(new ResultListner() {
             @Override
             public void onSuccess() {
-
+                XuToast.show(getActivity(), R.string.save_success);
+                finish();
             }
 
             @Override
@@ -279,12 +279,13 @@ public class DriverStatusFragment extends BaseFragment {
         AppContext.getInstance().getDeviceHelper().setDsmAlarmSensitivity(new ResultListner() {
             @Override
             public void onSuccess() {
-                XuToast.show(getActivity(),"success");
+                XuToast.show(getActivity(), R.string.save_success);
+                finish();
             }
 
             @Override
             public void onFail(int i) {
-
+                XuToast.show(getActivity(), R.string.save_fail);
             }
         },timeDis,timeDangerous,timePhone,timeSmoking,timeLooking,timeYawning,timeFace,timeCamera,timeDrink);
 

@@ -40,7 +40,7 @@ public class CameraSettingsFragment extends BaseFragment {
 
     @Override
     public int getContentResource() {
-        return R.layout.fragment_calibrate;
+        return R.layout.fragment_camera_setting;
     }
 
     @Override

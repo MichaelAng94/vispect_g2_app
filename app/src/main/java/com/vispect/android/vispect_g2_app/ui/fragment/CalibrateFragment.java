@@ -38,7 +38,7 @@ import interf.ResultListner;
  */
 
 public class CalibrateFragment extends BaseFragment {
-    public static Point selectCamera;
+    //    public static Point selectCamera;
     private final int REQUESRST_LIVE = 101;
     @Bind(R.id.list_select_camera)
     MoListView listSelectCamera;
@@ -130,7 +130,7 @@ public class CalibrateFragment extends BaseFragment {
         listSelectCamera.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                selectCamera = cameras.get(i);
+                AppContext.getInstance().setCalibrateCamera(cameras.get(i));
                 //设置摄像头ID
                 AppContext.getInstance().setCalivrateID(cameras.get(i).x);
 //                -1：镜头不可用

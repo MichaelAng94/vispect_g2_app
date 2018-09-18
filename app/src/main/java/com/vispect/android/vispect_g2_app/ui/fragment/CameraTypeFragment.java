@@ -13,6 +13,8 @@ import com.vispect.android.vispect_g2_app.R;
 import com.vispect.android.vispect_g2_app.adapter.CalibrateAdapter;
 import com.vispect.android.vispect_g2_app.app.AppContext;
 import com.vispect.android.vispect_g2_app.ui.activity.SettingsActivity;
+import com.vispect.android.vispect_g2_app.ui.widget.DialogHelp;
+import com.vispect.android.vispect_g2_app.utils.DialogUtils;
 import com.vispect.android.vispect_g2_app.utils.XuString;
 import com.vispect.android.vispect_g2_app.utils.XuToast;
 
@@ -111,6 +113,13 @@ public class CameraTypeFragment extends BaseFragment {
     @Override
     protected void initView(View view) throws IOException {
 
+        view.findViewById(R.id.img_back_main).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().finish();
+            }
+        });
+
         calibrateAdapter = new CalibrateAdapter(getContext());
         listCameraType.setAdapter(calibrateAdapter);
 
@@ -122,15 +131,18 @@ public class CameraTypeFragment extends BaseFragment {
                 p.y = data.get(i);
                 ArrayList<Point> points = new ArrayList<>();
                 points.add(p);
+                DialogHelp.getInstance().connectDialog(getActivity(), "Changing");
                 AppContext.getInstance().getDeviceHelper().setG2CameraType(new ResultListner() {
                     @Override
                     public void onSuccess() {
                         XuToast.show(getActivity(), R.string.save_success);
+                        DialogHelp.getInstance().hideDialog();
                         getActivity().finish();
                     }
 
                     @Override
                     public void onFail(int i) {
+                        DialogHelp.getInstance().hideDialog();
                         XuToast.show(getActivity(), R.string.save_fail);
                     }
                 }, points);

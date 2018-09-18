@@ -60,6 +60,9 @@ import interf.ResultListner;
 import interf.SetPointOfArea;
 import utils.Vispect_SDK_FileUtils;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 
 //import com.coremedia.iso.boxes.Container;
 //import com.googlecode.mp4parser.FileDataSourceImpl;
@@ -165,6 +168,25 @@ public class CalibrateActivity extends BaseActivity {
     private boolean onStart = false;
     private OnGetShortVideoCallback onGetShortVideoCallback;
     private volatile int progress = -1;
+    Runnable changeProgress = new Runnable() {
+        @Override
+        public void run() {
+            if (progress != 100) {
+                if (linProgress != null && linProgress.getVisibility() == GONE) {
+                    linProgress.setVisibility(VISIBLE);
+                }
+                if (tvProgress != null) {
+                    tvProgress.setText(progress + "");
+                }
+
+                mhandler.postDelayed(getProgress, 2000);
+            } else {
+                mhandler.post(getcenterponintag);
+                i = -1;
+                linProgress.setVisibility(GONE);
+            }
+        }
+    };
     Runnable getProgress = new Runnable() {
         @Override
         public void run() {
@@ -202,6 +224,7 @@ public class CalibrateActivity extends BaseActivity {
             }
         }
     };
+    private Point _currentCamera = null;
     private Boolean isCalibrate = false;
     private ArrayList<Point> points = null;
     private int cameraID = AppContext.getInstance().getCalivrateID();
@@ -244,8 +267,8 @@ public class CalibrateActivity extends BaseActivity {
     Runnable getcenterponintag = new Runnable() {
         @Override
         public void run() {
-            if (linProgress.getVisibility() == View.VISIBLE) {
-                linProgress.setVisibility(View.GONE);
+            if (linProgress.getVisibility() == VISIBLE) {
+                linProgress.setVisibility(GONE);
             }
             AppContext.getInstance().getDeviceHelper().getCenterPoint(new CorrectingCallback() {
                 @Override
@@ -266,25 +289,6 @@ public class CalibrateActivity extends BaseActivity {
                     canTranslation = true;
                 }
             });
-        }
-    };
-    Runnable changeProgress = new Runnable() {
-        @Override
-        public void run() {
-            if (progress != 100) {
-                if (linProgress != null && linProgress.getVisibility() == View.GONE) {
-                    linProgress.setVisibility(View.VISIBLE);
-                }
-                if (tvProgress != null) {
-                    tvProgress.setText(progress + "");
-                }
-
-                mhandler.postDelayed(getProgress, 2000);
-            } else {
-                mhandler.post(getcenterponintag);
-                i = -1;
-                linProgress.setVisibility(View.GONE);
-            }
         }
     };
 //    //----------------------------------------
@@ -499,16 +503,20 @@ public class CalibrateActivity extends BaseActivity {
 
         DialogHelp.getInstance().hideDialog();
 
+        _currentCamera = AppContext.getInstance().getCalibrateCamera();
+        XuLog.e(TAG, "_currentCamera： " + _currentCamera);
+        if (_currentCamera == null) finish();
+
         changeCameraType();
 
         hsrufaceview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!isCalibrate) {
-                    if (reTop.getVisibility() == View.VISIBLE) {
-                        reTop.setVisibility(View.GONE);
+                    if (reTop.getVisibility() == VISIBLE) {
+                        reTop.setVisibility(GONE);
                     } else {
-                        reTop.setVisibility(View.VISIBLE);
+                        reTop.setVisibility(VISIBLE);
                     }
                 }
             }
@@ -604,18 +612,18 @@ public class CalibrateActivity extends BaseActivity {
     }
 
     public void changeCameraType() {
-        ll_lin_center_d.setVisibility(View.GONE);
-        ll_center_x.setVisibility(View.GONE);
-        iv_lin_center.setVisibility(View.GONE);
-        imgChange.setVisibility(View.GONE);
-        ivLin.setVisibility(View.GONE);
+        ll_lin_center_d.setVisibility(GONE);
+        ll_center_x.setVisibility(GONE);
+        iv_lin_center.setVisibility(GONE);
+        imgChange.setVisibility(GONE);
+        ivLin.setVisibility(GONE);
 
         if (AppContext.getInstance().getCalibrateType() == 1) {
             tvReadyClick.post(new Runnable() {
                 @Override
                 public void run() {
-                    centerLine.setVisibility(View.VISIBLE);
-                    tvReadyClick.setVisibility(View.VISIBLE);
+                    centerLine.setVisibility(VISIBLE);
+                    tvReadyClick.setVisibility(VISIBLE);
                 }
             });
 
@@ -624,19 +632,25 @@ public class CalibrateActivity extends BaseActivity {
                 public void onSuccess(int i, ArrayList arrayList) {
                     XuLog.e(TAG, "获取到四个点的范围");
                     points = arrayList;
-                    drawdotView.post(new Runnable() {
+                    runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             drawdotView.addSnag(points, CalibrateActivity.this, false);
-                            drawdotView.setVisibility(View.VISIBLE);
+                            drawdotView.setVisibility(VISIBLE);
                         }
                     });
+//                    drawdotView.post(new Runnable() {
+//                        @Override
+//                        public void run() {
+//
+//                        }
+//                    });
 
                 }
 
                 @Override
                 public void onFail(int i) {
-
+                    XuLog.e(TAG, "获取四个点的范围失败");
                 }
             }, (byte) cameraID);
 
@@ -648,12 +662,18 @@ public class CalibrateActivity extends BaseActivity {
                         public void onSuccess(final int i) {
                             XuLog.e(TAG, "获取到水平线" + i + "Camera id : " + cameraID);
                             horizontal = i;
-                            drawdotView.post(new Runnable() {
+                            runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
                                     drawdotView.addHorizontal(CalibrateActivity.this, i);
                                 }
                             });
+//                            drawdotView.post(new Runnable() {
+//                                @Override
+//                                public void run() {
+//
+//                                }
+//                            });
                         }
 
                         @Override
@@ -664,16 +684,16 @@ public class CalibrateActivity extends BaseActivity {
                 }
             }, 500);
         } else if (AppContext.getInstance().getCalibrateType() == 3) {
-            redRectangle.setVisibility(View.VISIBLE);
-            ivLin.setVisibility(View.GONE);
+            redRectangle.setVisibility(VISIBLE);
+            ivLin.setVisibility(GONE);
 
             Display display = getWindowManager().getDefaultDisplay();
             ViewGroup.LayoutParams layoutParams = redRectangle.getLayoutParams();
             layoutParams.width = display.getHeight();
             redRectangle.setLayoutParams(layoutParams);
         } else {
-            centerLine.setVisibility(View.GONE);
-            drawdotView.setVisibility(View.GONE);
+            centerLine.setVisibility(GONE);
+            drawdotView.setVisibility(GONE);
         }
     }
 
@@ -694,44 +714,61 @@ public class CalibrateActivity extends BaseActivity {
 //                    }
 //                }, 2000);
 //                AppContext.getInstance().getDeviceHelper().closeDeviceRealViewMode();
-                DialogHelp.getInstance().connectDialog(CalibrateActivity.this, "");
-                AppContext.getInstance().getDeviceHelper().setPointOfArea(new SetPointOfArea() {
-                    @Override
-                    public void onSuccess() {
-                        DialogHelp.getInstance().hideDialog();
-                        XuLog.e(TAG, "写入四点范围成功");
-                    }
-
-                    @Override
-                    public void onFail(int i) {
-                        DialogHelp.getInstance().hideDialog();
-                        XuToast.show(CalibrateActivity.this, "save failed");
-                    }
-                }, CalibrateFragment.selectCamera.x, drawdotView.getSnag(CalibrateActivity.this));
-
-                AppContext.getInstance().getDeviceHelper().setHorizontal(new ResultListner() {
-                    @Override
-                    public void onSuccess() {
-                        XuLog.e(TAG, "写入水平线高度成功" + drawdotView.getLinY(CalibrateActivity.this));
-                        XuToast.show(CalibrateActivity.this, "save success");
-//                        finish();
-                    }
-
-                    @Override
-                    public void onFail(int i) {
-                        XuToast.show(CalibrateActivity.this, "save failed");
-                    }
-                }, CalibrateFragment.selectCamera.x, drawdotView.getLinY(CalibrateActivity.this));
+                saveCalibrationData();
                 break;
             case R.id.tv_cancle:
                 drawdotView.hideSnag();
                 drawdotView.setIsCalibrate(false);
-                findViewById(R.id.lin_click).setVisibility(View.GONE);
-                findViewById(R.id.tv_readyClick).setVisibility(View.VISIBLE);
+                findViewById(R.id.lin_click).setVisibility(GONE);
+                findViewById(R.id.tv_readyClick).setVisibility(VISIBLE);
                 break;
         }
     }
 
+    private void saveCalibrationData() {
+        DialogHelp.getInstance().connectDialog(CalibrateActivity.this, "Saving");
+        AppContext.getInstance().getDeviceHelper().setPointOfArea(new SetPointOfArea() {
+            @Override
+            public void onSuccess() {
+                XuLog.e(TAG, "写入四点范围成功");
+                AppContext.getInstance().getDeviceHelper().setHorizontal(new ResultListner() {
+                    @Override
+                    public void onSuccess() {
+                        XuLog.e(TAG, "写入水平线高度成功" + drawdotView.getLinY(CalibrateActivity.this));
+                        handleResult(true);
+                    }
+
+                    @Override
+                    public void onFail(int i) {
+                        XuLog.e(TAG, "写入水平线高度失败");
+                        handleResult(false);
+                    }
+                }, _currentCamera.x, drawdotView.getLinY(CalibrateActivity.this));
+            }
+
+            @Override
+            public void onFail(int i) {
+                XuLog.e(TAG, "写入四点范围失败");
+                handleResult(false);
+            }
+        }, _currentCamera.x, drawdotView.getSnag(CalibrateActivity.this));
+
+    }
+
+    private void handleResult(final boolean success) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                DialogHelp.getInstance().hideDialog();
+                if (success) {
+                    XuToast.show(CalibrateActivity.this, R.string.save_success);
+                    toViewMode();
+                } else {
+                    XuToast.show(CalibrateActivity.this, R.string.save_fail);
+                }
+            }
+        });
+    }
     private void setSimulateClick(View view, float x, float y) {
         long downTime = SystemClock.uptimeMillis();
         MotionEvent downEvent = MotionEvent.obtain(downTime, downTime,
@@ -806,12 +843,6 @@ public class CalibrateActivity extends BaseActivity {
 //        } catch (FileNotFoundException e) {
 //            e.printStackTrace();
 //        }
-        if (isShowBackgroud) {
-            AppContext.getInstance().getDeviceHelper().initCalibration(realViewCallback);
-        } else {
-            AppContext.getInstance().getDeviceHelper().initRealView(realViewCallback);
-        }
-
         AppContext.getInstance().getDeviceHelper().setUDPCamera(new ResultListner() {
             @Override
             public void onSuccess() {
@@ -822,7 +853,13 @@ public class CalibrateActivity extends BaseActivity {
             public void onFail(int i) {
                 XuLog.e(TAG, "setUDPCamera Failed");
             }
-        }, CalibrateFragment.selectCamera.x, CalibrateFragment.selectCamera.y);
+        }, _currentCamera.x, _currentCamera.y);
+
+        if (isShowBackgroud) {
+            AppContext.getInstance().getDeviceHelper().initCalibration(realViewCallback);
+        } else {
+            AppContext.getInstance().getDeviceHelper().initRealView(realViewCallback);
+        }
         speedHandler.post(showspeedRunnable);
     }
 
@@ -929,15 +966,35 @@ public class CalibrateActivity extends BaseActivity {
 
     @OnClick(R.id.tv_readyClick)
     public void onViewClicked() {
+        toCalibrateMode();
+    }
+
+    private void toCalibrateMode() {
         if (findViewById(R.id.tv_readyClick) != null) {
-            findViewById(R.id.tv_readyClick).setVisibility(View.GONE);
+            findViewById(R.id.tv_readyClick).setVisibility(GONE);
         }
         if (findViewById(R.id.lin_click) != null) {
-            findViewById(R.id.lin_click).setVisibility(View.VISIBLE);
+            findViewById(R.id.lin_click).setVisibility(VISIBLE);
         }
+        if (drawdotView != null) {
+            drawdotView.showSnag();
+            drawdotView.setIsCalibrate(true);
+            drawdotView.setVisibility(VISIBLE);
+        }
+    }
 
-        drawdotView.showSnag();
-        drawdotView.setIsCalibrate(true);
+    private void toViewMode() {
+        if (findViewById(R.id.tv_readyClick) != null) {
+            findViewById(R.id.tv_readyClick).setVisibility(VISIBLE);
+        }
+        if (findViewById(R.id.lin_click) != null) {
+            findViewById(R.id.lin_click).setVisibility(GONE);
+        }
+        if (drawdotView != null) {
+            drawdotView.hideSnag();
+            drawdotView.setIsCalibrate(false);
+//            drawdotView.setVisibility(GONE);
+        }
     }
 
 //    public int getID() {
@@ -998,13 +1055,6 @@ public class CalibrateActivity extends BaseActivity {
 //            }
 //        }
 //    }
-
-    @OnClick(R.id.tv_readyClick)
-    public void onViewClicke() {
-        findViewById(R.id.tv_readyClick).setVisibility(View.GONE);
-        findViewById(R.id.lin_click).setVisibility(View.VISIBLE);
-        drawdotView.setVisibility(View.VISIBLE);
-    }
 
     private class UpdateTask extends AsyncTask<byte[], Void, String> {
         @Override

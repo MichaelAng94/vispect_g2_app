@@ -175,7 +175,10 @@ public class AppConfig {
     }
 
     public static void setCameras(List<Point> cameras) {
-        if (cameras != null && cameras.size() > 0) _cameras.addAll(cameras);
+        _cameras.clear();
+        if (cameras != null && cameras.size() > 0) {
+            _cameras.addAll(cameras);
+        }
     }
 
     public boolean islogin() {

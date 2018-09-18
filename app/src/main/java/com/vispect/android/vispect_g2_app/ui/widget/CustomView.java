@@ -79,15 +79,15 @@ public class CustomView extends View {
         }
         canvas.drawPath(path, paint);
         if (_startX != 0 && _startY != 0)
-            canvas.drawLine(_startX, _startY, _startX + dp2px(_context, 100), 0, redPaint);
+            canvas.drawLine(_startX, _startY, _startX + dp2px(_context, 100), _startY, redPaint);
     }
 
-    public void setPointList(List<Point> points) {
+    public void setPointList(@Nullable List<Point> points) {
+        _points.clear();
         if (points != null && points.size() == 4) {
-            _points.clear();
             _points.addAll(points);
-            invalidate();
         }
+        invalidate();
     }
 
     public Point changeSize(Point p) {
@@ -115,5 +115,9 @@ public class CustomView extends View {
         _startY = y * _screenHeight / 720;
         _startX = _screenWidth / 2 - dp2px(_context, 50);
         invalidate();
+    }
+
+    public void clearView() {
+        postInvalidate();
     }
 }

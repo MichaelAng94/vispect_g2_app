@@ -23,27 +23,46 @@ import java.util.concurrent.Executors;
 import bean.DrawShape;
 
 
-
 /**
  * 在实时路况话ADAS的surfaceview
- *
+ * <p>
  * Created by xu on 2016/8/18.
  */
-public class DrawAdas extends SurfaceView implements SurfaceHolder.Callback,Runnable {
+public class DrawAdas extends SurfaceView implements SurfaceHolder.Callback, Runnable {
 
-
-    private final static String TAG = "DrawAdas";
-    private SurfaceViewWidthChangeCallback widthChangeCallback;
 
     public static final String RESETDISPALY = "RESETDISPALY";
-
+    private final static String TAG = "DrawAdas";
+    /**
+     * 视频分辨率
+     */
+    public static int width = 1280;
+    public static int height = 720;
+    public static int screenHeight;
+    private SurfaceViewWidthChangeCallback widthChangeCallback;
     private SurfaceHolder sfh;
     private Canvas canvas;
     private Paint paint;
     private Context context;
-
     private volatile Thread runner = null;
+    // 画线和矩形的集合
+    private ArrayList<DrawShape> drawList = new ArrayList<DrawShape>();
+    private int screenWidth;
+    private float scaleWidth = 1280;
+    private float scaleHeight = 720;
 
+    public DrawAdas(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        this.context = context;
+        setFocusable(true);
+        setZOrderOnTop(true);
+        setKeepScreenOn(true);
+        sfh = getHolder();
+        sfh.addCallback(this);
+        sfh.setFormat(PixelFormat.TRANSLUCENT);
+        paint = new Paint();
+        paint.setAntiAlias(true);
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -56,21 +75,6 @@ public class DrawAdas extends SurfaceView implements SurfaceHolder.Callback,Runn
         return super.onKeyDown(keyCode, event);
     }
 
-
-    public DrawAdas(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        this.context = context;
-        setFocusable(true);
-        setZOrderOnTop(true);
-        this.setKeepScreenOn(true);
-        sfh = this.getHolder();
-        sfh.addCallback(this);
-        sfh.setFormat(PixelFormat.TRANSLUCENT);
-        paint = new Paint();
-        paint.setAntiAlias(true);
-    }
-
-
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         //TODO 可以开始画
@@ -81,15 +85,16 @@ public class DrawAdas extends SurfaceView implements SurfaceHolder.Callback,Runn
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
         XuLog.d(TAG, "surfaceChanged");
-       if(widthChangeCallback != null){
-           widthChangeCallback.onWidthChange();
-      }
+        if (widthChangeCallback != null) {
+            widthChangeCallback.onWidthChange();
+        }
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-        XuLog.d(TAG,"surfaceDestroyed");
+        XuLog.d(TAG, "surfaceDestroyed");
     }
+
     public void PlayVideo() {
         if (runner == null) {
             runner = new Thread(this);
@@ -107,9 +112,6 @@ public class DrawAdas extends SurfaceView implements SurfaceHolder.Callback,Runn
 
     }
 
-    // 画线和矩形的集合
-    private ArrayList<DrawShape> drawList = new ArrayList<DrawShape>();
-
     public void setDrawList(ArrayList<DrawShape> drawList) {
         this.drawList.clear();
         this.drawList.addAll(drawList);
@@ -117,26 +119,17 @@ public class DrawAdas extends SurfaceView implements SurfaceHolder.Callback,Runn
         drawTask task = new drawTask();
         task.execute("drawtask");
     }
-    /**
-     * 视频分辨率
-     * */
-    public static int width = 1280;
-    public static int height = 720;
-    private int screenWidth;
-    public static int screenHeight;
-    private float scaleWidth = 1280;
-    private float scaleHeight = 720;
-
 
     public void setScreenWidth(int screenWidths) {
-        XuLog.d(TAG,"screenWidth被设定了："+screenWidths);
-        this.screenWidth = screenWidths;
+        XuLog.d(TAG, "screenWidth被设定了：" + screenWidths);
+        screenWidth = screenWidths;
         scaleWidth = (float) screenWidth / width;
         scaleHeight = (float) screenHeight / height;
     }
+
     public void setScreenHeight(int screenHeights) {
-        XuLog.d(TAG,"screenHeight被设定了："+screenHeights);
-        this.screenHeight = screenHeights;
+        XuLog.d(TAG, "screenHeight被设定了：" + screenHeights);
+        screenHeight = screenHeights;
         scaleWidth = (float) screenWidth / width;
         scaleHeight = (float) screenHeight / height;
     }
@@ -149,8 +142,8 @@ public class DrawAdas extends SurfaceView implements SurfaceHolder.Callback,Runn
         return scaleHeight;
     }
 
-    private void clear(Canvas mcanvas){
-        if(mcanvas == null){
+    private void clear(Canvas mcanvas) {
+        if (mcanvas == null) {
             return;
         }
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
@@ -159,55 +152,52 @@ public class DrawAdas extends SurfaceView implements SurfaceHolder.Callback,Runn
 
     }
 
-    synchronized  private void draw() {
-                    canvas = sfh.lockCanvas();
-                        // 画线条和矩形
-                    if (drawList.size() > 0 && canvas != null) {
-                            try{
-                                int lin = 0;
-                                int car = 0;
-                                int sens = 0;
-                                scaleWidth = (float) screenWidth / width;
-                                scaleHeight = (float) screenHeight / height;
-                                clear(canvas);
-                                for (int i = 0; i < drawList.size(); i++) {
-                                    DrawShape ds = drawList.get(i);
-                                    int type = ds.getType();
-                                    if(type == 0){
-                                        lin ++;
-                                    }
-                                    if(type == 1){
-                                        car ++;
-                                    }
-                                    if(type == 3){
-                                        sens ++;
-                                    }
-                                    float x0 = ds.getX0() * scaleWidth;
-                                    float y0 = ds.getY0() * scaleHeight;
-                                    float x1 = ds.getX1() * scaleWidth;
-                                    float y1 = ds.getY1() * scaleHeight;
-                                    float stroke_width = ds.getStroke_width();
-                                    int color = ds.getColor();
-                                    boolean isDashed = ds.isDashed();
-                                    XuLog.d(TAG,"x0:"+x0+"  y0:"+y0+"  x1:"+x1+"  y1:"+y1+"  TextStr:"+ds.getTextStr());
-
-                                    DrawUtil.drawLineOrRect(canvas, type, x0, y0, x1, y1, stroke_width, color, isDashed, XuString.isEmpty(ds.getTextStr())?"":ds.getTextStr()+",unknow", paint);
-                                    paint.reset();
-                                }
-                                XuLog.e(TAG, "收到了 线：" + lin + "       车：" + car+"    sensor:"+sens );
-                            }catch (Exception e){
-                                e.printStackTrace();
-                                XuLog.e(TAG,"收到错误的画框/线数据   e:"+e.getMessage());
-                            }
-                        }
-                    drawList.clear();
-                    if(canvas != null && sfh != null){
-                        sfh.unlockCanvasAndPost(canvas);
+    synchronized private void draw() {
+        canvas = sfh.lockCanvas();
+        // 画线条和矩形
+        if (drawList.size() > 0 && canvas != null) {
+            try {
+                int lin = 0;
+                int car = 0;
+                int sens = 0;
+                scaleWidth = (float) screenWidth / width;
+                scaleHeight = (float) screenHeight / height;
+                clear(canvas);
+                for (int i = 0; i < drawList.size(); i++) {
+                    DrawShape ds = drawList.get(i);
+                    int type = ds.getType();
+                    if (type == 0) {
+                        lin++;
                     }
+                    if (type == 1) {
+                        car++;
+                    }
+                    if (type == 3) {
+                        sens++;
+                    }
+                    float x0 = ds.getX0() * scaleWidth;
+                    float y0 = ds.getY0() * scaleHeight;
+                    float x1 = ds.getX1() * scaleWidth;
+                    float y1 = ds.getY1() * scaleHeight;
+                    float stroke_width = ds.getStroke_width();
+                    int color = ds.getColor();
+                    boolean isDashed = ds.isDashed();
+                    XuLog.d(TAG, "x0:" + x0 + "  y0:" + y0 + "  x1:" + x1 + "  y1:" + y1 + "  TextStr:" + ds.getTextStr());
+
+                    DrawUtil.drawLineOrRect(canvas, type, x0, y0, x1, y1, stroke_width, color, isDashed, XuString.isEmpty(ds.getTextStr()) ? "" : ds.getTextStr() + ",unknow", paint);
+                    paint.reset();
+                }
+                XuLog.e(TAG, "收到了 线：" + lin + "       车：" + car + "    sensor:" + sens);
+            } catch (Exception e) {
+                e.printStackTrace();
+                XuLog.e(TAG, "收到错误的画框/线数据   e:" + e.getMessage());
+            }
+        }
+        drawList.clear();
+        if (canvas != null && sfh != null) {
+            sfh.unlockCanvasAndPost(canvas);
+        }
     }
-
-
-
 
 
     @Override
@@ -229,9 +219,7 @@ public class DrawAdas extends SurfaceView implements SurfaceHolder.Callback,Runn
     }
 
 
-
-
-    private class drawTask extends AsyncTask<String,Void,String> {
+    private class drawTask extends AsyncTask<String, Void, String> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -241,14 +229,13 @@ public class DrawAdas extends SurfaceView implements SurfaceHolder.Callback,Runn
         protected String doInBackground(String... params) {
             try {
                 draw();
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
             return null;
         }
     }
-
 
 
 }

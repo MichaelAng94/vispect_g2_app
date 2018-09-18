@@ -126,10 +126,10 @@ public class MainActivity extends BaseActivity {
 
         if (isConnected() && isG2()) {
             imgRight.setImageResource(R.mipmap.connet_ble);
-            imgRight.setColorFilter(Color.parseColor("#00CCCC"));
+//            imgRight.setColorFilter(Color.parseColor("#00CCCC"));
         } else {
             imgRight.setImageResource(R.drawable.disconnect);
-            imgRight.clearColorFilter();
+//            imgRight.clearColorFilter();
         }
 
     }
@@ -229,7 +229,7 @@ public class MainActivity extends BaseActivity {
             case REQUEST_CODE_CONNECT_DEVICE:
                 if (resultCode == CONNECT_DEVICE_OK) {
                     imgRight.setImageResource(R.mipmap.connet_ble);
-                    imgRight.setColorFilter(Color.parseColor("#00CCCC"));
+//                    imgRight.setColorFilter(Color.parseColor("#00CCCC"));
                 }
                 break;
         }

@@ -291,10 +291,10 @@ public class DrawDotView extends RelativeLayout {
     }
 
     public void hideSnag() {
-        view1.setVisibility(GONE);
-        view2.setVisibility(GONE);
-        view3.setVisibility(GONE);
-        view4.setVisibility(GONE);
+        if (view1 != null) view1.setVisibility(GONE);
+        if (view2 != null) view2.setVisibility(GONE);
+        if (view3 != null) view3.setVisibility(GONE);
+        if (view4 != null) view4.setVisibility(GONE);
     }
 
     public Pointf changeSize(Point p, Activity ac) {

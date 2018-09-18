@@ -100,7 +100,7 @@ public class BleInfoFragment extends BaseFragment {
         view.findViewById(R.id.img_back_main).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                getActivity().finish();
             }
         });
     }

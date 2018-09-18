@@ -13,6 +13,7 @@ import com.vispect.android.vispect_g2_app.bean.Setting;
 import com.vispect.android.vispect_g2_app.controller.UIHelper;
 import com.vispect.android.vispect_g2_app.interf.DialogClickListener;
 import com.vispect.android.vispect_g2_app.interf.OnClickYesOrNoListener;
+import com.vispect.android.vispect_g2_app.ui.activity.BleInfoActivity;
 import com.vispect.android.vispect_g2_app.ui.activity.DeviceTestingActivity;
 import com.vispect.android.vispect_g2_app.ui.activity.DrivingBehaviorSettingActivity;
 import com.vispect.android.vispect_g2_app.ui.activity.EngineeringModelActivity;
@@ -38,7 +39,6 @@ import static android.view.View.GONE;
 public class SettingsFragment extends BaseFragment {
     @Bind(R.id.list_settings)
     MoListView settingsView;
-    //    private CameraSettingsFragment cameraSettingsFragment; //镜头类型设置
 //    private DSMSettings dsmSettings; //DSM相关设置
     private List<Setting> settings = new ArrayList<>();
     private boolean isZh = XuString.isZh(AppContext.getInstance());
@@ -83,7 +83,7 @@ public class SettingsFragment extends BaseFragment {
         view.findViewById(R.id.img_back_main).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                getActivity().finish();
             }
         });
     }
@@ -175,6 +175,8 @@ public class SettingsFragment extends BaseFragment {
                         }
                     }
                 });
+            } else if (position == 6) {
+                UIHelper.startActivity(getActivity(), BleInfoActivity.class);
             } else {
                 Setting setting = (Setting) adapterView.getAdapter().getItem(position);
                 pushToFragment(setting.getFragment());
