@@ -40,6 +40,7 @@ import com.vispect.android.vispect_g2_app.utils.XuToast;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import bean.DrawShape;
 import butterknife.Bind;
@@ -249,6 +250,12 @@ public class VMainActivity extends BaseActivity {
                 XuLog.d(TAG, "getG2SideAlarm " + "top.x : " + top.x + " top.y : " + top.y + " btm.x : " + btm.x + " btm.y : " + btm.y);
             }
             drawAdas.setDrawList(drawShapes);
+        }
+
+        @Override
+        public void onGetDSMAlarmInfo(Map map) {
+            XuLog.e(TAG, "onGetDSMAlarmInfo map.size() : " + map.size());
+            //TODO 20180919 绘制人脸点集
         }
 
         @Override

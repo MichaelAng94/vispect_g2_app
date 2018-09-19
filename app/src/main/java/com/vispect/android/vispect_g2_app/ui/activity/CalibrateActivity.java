@@ -46,6 +46,7 @@ import com.vispect.android.vispect_g2_app.utils.XuView;
 import java.nio.ByteBuffer;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Map;
 
 import bean.DrawShape;
 import butterknife.Bind;
@@ -168,25 +169,6 @@ public class CalibrateActivity extends BaseActivity {
     private boolean onStart = false;
     private OnGetShortVideoCallback onGetShortVideoCallback;
     private volatile int progress = -1;
-    Runnable changeProgress = new Runnable() {
-        @Override
-        public void run() {
-            if (progress != 100) {
-                if (linProgress != null && linProgress.getVisibility() == GONE) {
-                    linProgress.setVisibility(VISIBLE);
-                }
-                if (tvProgress != null) {
-                    tvProgress.setText(progress + "");
-                }
-
-                mhandler.postDelayed(getProgress, 2000);
-            } else {
-                mhandler.post(getcenterponintag);
-                i = -1;
-                linProgress.setVisibility(GONE);
-            }
-        }
-    };
     Runnable getProgress = new Runnable() {
         @Override
         public void run() {
@@ -291,6 +273,25 @@ public class CalibrateActivity extends BaseActivity {
             });
         }
     };
+    Runnable changeProgress = new Runnable() {
+        @Override
+        public void run() {
+            if (progress != 100) {
+                if (linProgress != null && linProgress.getVisibility() == GONE) {
+                    linProgress.setVisibility(VISIBLE);
+                }
+                if (tvProgress != null) {
+                    tvProgress.setText(progress + "");
+                }
+
+                mhandler.postDelayed(getProgress, 2000);
+            } else {
+                mhandler.post(getcenterponintag);
+                i = -1;
+                linProgress.setVisibility(GONE);
+            }
+        }
+    };
 //    //----------------------------------------
 //    BufferedOutputStream bo = null;
 //    //----------------------------------------
@@ -370,6 +371,11 @@ public class CalibrateActivity extends BaseActivity {
 
         @Override
         public void onGetSideRecInfo(ArrayList arrayList) {
+
+        }
+
+        @Override
+        public void onGetDSMAlarmInfo(Map map) {
 
         }
 

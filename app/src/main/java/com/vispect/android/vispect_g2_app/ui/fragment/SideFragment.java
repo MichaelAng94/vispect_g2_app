@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.vispect.android.vispect_g2_app.R;
 import com.vispect.android.vispect_g2_app.app.AppContext;
-import com.vispect.android.vispect_g2_app.base.BaseFragment;
 import com.vispect.android.vispect_g2_app.controller.DeviceHelper;
 import com.vispect.android.vispect_g2_app.controller.UIHelper;
 import com.vispect.android.vispect_g2_app.interf.Callback;
@@ -24,8 +23,6 @@ import butterknife.Bind;
 import butterknife.OnClick;
 import interf.GetSPMSpeedSpace;
 import interf.ResultListner;
-
-import static android.view.View.VISIBLE;
 
 /**
  * Created by mo on 2018/7/19.
@@ -87,7 +84,15 @@ public class SideFragment extends BaseFragment {
         save.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveData();
+                UIHelper.showAsk(getActivity(), STR(R.string.ask_save_data), true, new OnClickYesOrNoListener() {
+                    @Override
+                    public void isyes(boolean b, DialogInterface dialog) {
+                        if (b) {
+                            saveData();
+                        }
+                        dialog.dismiss();
+                    }
+                });
             }
         });
         view.findViewById(R.id.img_back_main).setOnClickListener(new View.OnClickListener() {

@@ -108,9 +108,8 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initView(View view) {
 
-        if (Build.VERSION.SDK_INT > 22) {
-            PermissionUtils.request(this, REQUEST_CODE_GLOBAL_PERMISSION, ACCESS_COARSE_LOCATION, READ_PHONE_STATE, READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE, CAMERA);
-        }
+        PermissionUtils.request(this, REQUEST_CODE_GLOBAL_PERMISSION, ACCESS_COARSE_LOCATION, READ_PHONE_STATE, READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE, CAMERA);
+
 //        setTitle("G2-ADAS");
         AppContext.getInstance().setNeeedCloseBluetooth(!BluetoothAdapter.getDefaultAdapter().isEnabled());
         //监听连接变化
@@ -125,7 +124,7 @@ public class MainActivity extends BaseActivity {
         super.onResume();
 
         if (isConnected() && isG2()) {
-            imgRight.setImageResource(R.mipmap.connet_ble);
+            imgRight.setImageResource(R.drawable.connet_ble);
 //            imgRight.setColorFilter(Color.parseColor("#00CCCC"));
         } else {
             imgRight.setImageResource(R.drawable.disconnect);
@@ -182,26 +181,6 @@ public class MainActivity extends BaseActivity {
         transaction.addToBackStack(IndexFragment.class.getSimpleName()).commit();
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        switch (requestCode) {
-            case REQUEST_CODE_CAMERA_PERMISSION:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    Intent intentFromCapture = new Intent(ACTION_IMAGE_CAPTURE);
-                    // 判断存储卡是否可以用，可用则进行存储
-                    if (SDcardTools.hasSdcard()) {
-                        intentFromCapture.putExtra(MediaStore.EXTRA_OUTPUT,
-                                Uri.fromFile(new File(Environment.getExternalStorageDirectory(), IMAGE_USER_AVATAR_NAME)));
-                    }
-                    startActivityForResult(intentFromCapture, REQUEST_CODE_CAMERA);
-                } else {
-                    XuToast.show(this, STR(R.string.allow_camera_permission));
-                }
-                break;
-        }
-    }
-
     @OnClick({R.id.img_left, R.id.img_right})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -228,7 +207,7 @@ public class MainActivity extends BaseActivity {
         switch (requestCode) {
             case REQUEST_CODE_CONNECT_DEVICE:
                 if (resultCode == CONNECT_DEVICE_OK) {
-                    imgRight.setImageResource(R.mipmap.connet_ble);
+                    imgRight.setImageResource(R.drawable.connet_ble);
 //                    imgRight.setColorFilter(Color.parseColor("#00CCCC"));
                 }
                 break;

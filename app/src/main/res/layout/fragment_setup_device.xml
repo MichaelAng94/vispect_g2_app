@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/setting"
+                android:text="@string/device_setting"
                 android:textColor="@color/white"
                 android:textSize="@dimen/y45" />
 
@@ -59,13 +59,14 @@
             android:orientation="vertical">
 
 
-           <!-- 设备名称和密码-->
+            <!-- 设备名称和密码-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/y50"
                 android:background="@color/white"
                 android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -73,12 +74,14 @@
                     android:layout_marginTop="@dimen/y50"
                     android:orientation="horizontal"
                     android:paddingRight="@dimen/x20">
+
                     <ImageView
                         android:layout_width="@dimen/x30"
                         android:layout_height="@dimen/y30"
                         android:layout_marginRight="@dimen/x20"
                         android:layout_marginTop="@dimen/y20"
                         android:src="@mipmap/img_dot_bllue" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -99,9 +102,11 @@
                     android:maxLines="1"
                     android:textColor="@color/text_color_default"
                     android:textSize="@dimen/x48" />
-                <View style="@style/h_divider"
+
+                <View
+                    style="@style/h_divider"
                     android:layout_marginBottom="1px"
-                    android:layout_marginLeft="@dimen/x50"/>
+                    android:layout_marginLeft="@dimen/x50" />
 
 
                 <LinearLayout
@@ -111,12 +116,14 @@
                     android:orientation="horizontal"
                     android:paddingLeft="@dimen/x50"
                     android:paddingRight="@dimen/x20">
+
                     <ImageView
                         android:layout_width="@dimen/x30"
                         android:layout_height="@dimen/y30"
                         android:layout_marginRight="@dimen/x20"
                         android:layout_marginTop="@dimen/y20"
                         android:src="@mipmap/img_dot_bllue" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -136,104 +143,104 @@
                     android:maxLines="1"
                     android:textColor="@color/text_color_default"
                     android:textSize="@dimen/x48" />
-                <View style="@style/h_divider"
+
+                <View
+                    style="@style/h_divider"
                     android:layout_marginBottom="1px"
-                    android:layout_marginLeft="@dimen/x50"/>
+                    android:layout_marginLeft="@dimen/x50" />
 
             </LinearLayout>
 
 
-
-       <!--     wifi名称和密码-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/y50"
-            android:background="@color/white"
-            android:orientation="vertical">
-
+            <!--     wifi名称和密码-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/y50"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/x50"
-                android:paddingRight="@dimen/x20">
-                <ImageView
-                    android:layout_width="@dimen/x30"
-                    android:layout_height="@dimen/y30"
-                    android:layout_marginRight="@dimen/x20"
-                    android:layout_marginTop="@dimen/y20"
-                    android:src="@mipmap/img_dot_bllue" />
-                <TextView
-                    android:layout_width="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/setting_parmater_edit_wifi_name"
-                    android:textColor="@color/text_color_calendar_number"
-                    android:textSize="@dimen/x50" />
-            </LinearLayout>
+                    android:layout_marginTop="@dimen/y50"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/x50"
+                    android:paddingRight="@dimen/x20">
 
-            <EditText
-                android:id="@+id/edit_parameters_wifi_name"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/y150"
-                android:layout_marginLeft="@dimen/x50"
-                android:layout_marginRight="@dimen/x50"
-                android:background="@null"
-                android:hint="@string/setting_drive_setting_hint"
-                android:maxLength="24"
-                android:maxLines="1"
-                android:textColor="@color/text_color_default"
-                android:textSize="@dimen/x48" />
+                    <ImageView
+                        android:layout_width="@dimen/x30"
+                        android:layout_height="@dimen/y30"
+                        android:layout_marginRight="@dimen/x20"
+                        android:layout_marginTop="@dimen/y20"
+                        android:src="@mipmap/img_dot_bllue" />
 
-            <View style="@style/h_divider"
-                android:layout_marginBottom="1px"
-                android:layout_marginLeft="@dimen/x50"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/setting_parmater_edit_wifi_name"
+                        android:textColor="@color/text_color_calendar_number"
+                        android:textSize="@dimen/x50" />
+                </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/y50"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/x50"
-                android:paddingRight="@dimen/x20">
-                <ImageView
-                    android:layout_width="@dimen/x30"
-                    android:layout_height="@dimen/y30"
-                    android:layout_marginRight="@dimen/x20"
-                    android:layout_marginTop="@dimen/y20"
-                    android:src="@mipmap/img_dot_bllue" />
-                <TextView
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/edit_parameters_wifi_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y150"
+                    android:layout_marginLeft="@dimen/x50"
+                    android:layout_marginRight="@dimen/x50"
+                    android:background="@null"
+                    android:hint="@string/setting_drive_setting_hint"
+                    android:maxLength="24"
+                    android:maxLines="1"
+                    android:textColor="@color/text_color_default"
+                    android:textSize="@dimen/x48" />
+
+                <View
+                    style="@style/h_divider"
+                    android:layout_marginBottom="1px"
+                    android:layout_marginLeft="@dimen/x50" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/setting_parmater_edit_wifi_pas"
-                    android:textColor="@color/text_color_calendar_number"
-                    android:textSize="@dimen/x50" />
+                    android:layout_marginTop="@dimen/y50"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/x50"
+                    android:paddingRight="@dimen/x20">
+
+                    <ImageView
+                        android:layout_width="@dimen/x30"
+                        android:layout_height="@dimen/y30"
+                        android:layout_marginRight="@dimen/x20"
+                        android:layout_marginTop="@dimen/y20"
+                        android:src="@mipmap/img_dot_bllue" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/setting_parmater_edit_wifi_pas"
+                        android:textColor="@color/text_color_calendar_number"
+                        android:textSize="@dimen/x50" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/edit_parameters_wifi_pas"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y150"
+                    android:layout_marginLeft="@dimen/x50"
+                    android:layout_marginRight="@dimen/x50"
+                    android:background="@null"
+                    android:hint="@string/setting_drive_setting_hint"
+                    android:maxLines="1"
+                    android:textColor="@color/text_color_default"
+                    android:textSize="@dimen/x48" />
+
+                <View
+                    style="@style/h_divider"
+                    android:layout_marginBottom="1px"
+                    android:layout_marginLeft="@dimen/x50" />
             </LinearLayout>
-
-            <EditText
-                android:id="@+id/edit_parameters_wifi_pas"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/y150"
-                android:layout_marginLeft="@dimen/x50"
-                android:layout_marginRight="@dimen/x50"
-                android:background="@null"
-                android:hint="@string/setting_drive_setting_hint"
-                android:maxLines="1"
-                android:textColor="@color/text_color_default"
-                android:textSize="@dimen/x48" />
-            <View style="@style/h_divider"
-                android:layout_marginBottom="1px"
-                android:layout_marginLeft="@dimen/x50"/>
-        </LinearLayout>
-
-
-
-            <LinearLayout
-                android:id="@+id/ll_buttom"
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:orientation="vertical"></LinearLayout>
 
         </LinearLayout>
     </ScrollView>

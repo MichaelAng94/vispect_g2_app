@@ -1,10 +1,12 @@
 package com.vispect.android.vispect_g2_app.ui.fragment;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -27,7 +29,7 @@ import com.vispect.android.vispect_g2_app.interf.OnSoftKeyboardChangeListener;
 
 /**
  * 设备参数设置
- *
+ * <p>
  * Created by xu on 2017/7/20.
  */
 public class DeviceSetUpFragment extends BaseFragment {
@@ -41,8 +43,8 @@ public class DeviceSetUpFragment extends BaseFragment {
     EditText edit_parameters_wifi_name;
     @Bind(R.id.edit_parameters_wifi_pas)
     EditText edit_parameters_wifi_pas;
-    @Bind(R.id.ll_buttom)
-    LinearLayout ll_buttom;
+    //    @Bind(R.id.ll_buttom)
+//    LinearLayout ll_buttom;
     boolean isallsuccess = true;
     Handler mHandler = new Handler();
     Runnable show = new Runnable() {
@@ -73,28 +75,6 @@ public class DeviceSetUpFragment extends BaseFragment {
     private AppConfig appconfig;
     private String ble_pas, ble_name, wifi_pas, wifi_name;
     private boolean canToSave = true;
-    private OnSoftKeyboardChangeListener onSoftKeyboardChangeListener = new OnSoftKeyboardChangeListener() {
-        @Override
-        public void onSoftKeyBoardChange(final int softKeybardHeight,final boolean visible) {
-            mHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    ViewGroup.LayoutParams tmep = null;
-                    if(visible){
-                        tmep =  ll_buttom.getLayoutParams();
-                        tmep.height = softKeybardHeight;
-                        ll_buttom.setLayoutParams(tmep);
-
-                    }else{
-                        tmep =  ll_buttom.getLayoutParams();
-                        tmep.height = 1;
-                        ll_buttom.setLayoutParams(tmep);
-                    }
-                }
-            });
-
-        }
-    };
 
     @Override
     public int getContentResource() {
@@ -114,7 +94,6 @@ public class DeviceSetUpFragment extends BaseFragment {
         } else {
             XuToast.show(getActivity(), STR(R.string.road_live_notconnect));
         }
-        observeSoftKeyboard(onSoftKeyboardChangeListener);
 
         view.findViewById(R.id.btn_save).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,7 +120,7 @@ public class DeviceSetUpFragment extends BaseFragment {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (!hidden){
+        if (!hidden) {
             onResume();
         }
     }
@@ -156,7 +135,7 @@ public class DeviceSetUpFragment extends BaseFragment {
                 ble_name = name;
                 wifi_name = appconfig.getWifi_name();
                 wifi_pas = appconfig.getWifi_paw();
-                if(mHandler != null){
+                if (mHandler != null) {
                     mHandler.post(new Runnable() {
                         @Override
                         public void run() {
@@ -173,19 +152,13 @@ public class DeviceSetUpFragment extends BaseFragment {
         });
 
 
-
-
-
-
-
-
     }
 
     public void saveData() {
         //保存设备信息
         if (AppContext.getInstance().getDeviceHelper().isConnectedDevice()) {
 
-            if(!canToSave){
+            if (!canToSave) {
                 XuLog.e("保存完一次了");
                 return;
             }
@@ -198,7 +171,7 @@ public class DeviceSetUpFragment extends BaseFragment {
                 return;
             }
 
-            if(XuString.isConSpeCharacters(ble_pas, 4, 4) || XuString.isConSpeCharacters(ble_name, 2, 15)  || XuString.isConSpeCharacters(wifi_name, 3, 32) || XuString.isConSpeCharacters(wifi_pas, 8, 8)){
+            if (XuString.isConSpeCharacters(ble_pas, 4, 4) || XuString.isConSpeCharacters(ble_name, 2, 15) || XuString.isConSpeCharacters(wifi_name, 3, 32) || XuString.isConSpeCharacters(wifi_pas, 8, 8)) {
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -229,14 +202,10 @@ public class DeviceSetUpFragment extends BaseFragment {
                 return;
             }
 
-            if(appconfig.getBle_paw().equals(ble_pas) && appconfig.getBle_name().equals(ble_name) && appconfig.getWifi_name().equals(wifi_name) && appconfig.getWifi_paw().equals(wifi_pas)){
+            if (appconfig.getBle_paw().equals(ble_pas) && appconfig.getBle_name().equals(ble_name) && appconfig.getWifi_name().equals(wifi_name) && appconfig.getWifi_paw().equals(wifi_pas)) {
                 return;
             }
 
-//            mHandler.post(show);
-//            Message msg = new Message();
-//            msg.arg2 = -1;
-//            SettingsActivity.transHandler.sendMessage(msg);
             AppContext.getInstance().getCachedThreadPool().execute(new Runnable() {
                 @Override
                 public void run() {
@@ -363,17 +332,19 @@ public class DeviceSetUpFragment extends BaseFragment {
             });
 
 
-
         }
     }
 
-
     @Override
     public void onDestroy() {
-        super.onDestroy();
-        if(mHandler != null){
+
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null && imm.isActive()) {
+            imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+        if (mHandler != null) {
             mHandler.removeCallbacksAndMessages(null);
         }
-
+        super.onDestroy();
     }
 }

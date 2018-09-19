@@ -1,14 +1,12 @@
 package com.vispect.android.vispect_g2_app.ui.fragment;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 
 import com.vispect.android.vispect_g2_app.R;
 import com.vispect.android.vispect_g2_app.adapter.SettingsAdapter;
 import com.vispect.android.vispect_g2_app.app.AppContext;
-import com.vispect.android.vispect_g2_app.base.BaseFragment;
 import com.vispect.android.vispect_g2_app.bean.Setting;
 import com.vispect.android.vispect_g2_app.controller.UIHelper;
 import com.vispect.android.vispect_g2_app.interf.DialogClickListener;

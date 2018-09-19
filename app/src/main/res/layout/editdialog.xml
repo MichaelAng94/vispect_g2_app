@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginVertical="@dimen/y35"
+        android:paddingHorizontal="@dimen/x30"
         android:text="Title"
         android:textColor="@color/dark_gray"
         android:textSize="@dimen/y50" />

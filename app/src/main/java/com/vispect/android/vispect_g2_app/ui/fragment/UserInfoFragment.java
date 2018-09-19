@@ -1,6 +1,7 @@
 package com.vispect.android.vispect_g2_app.ui.fragment;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.ImageView;
@@ -42,7 +44,7 @@ import butterknife.Bind;
 import butterknife.OnClick;
 import okhttp3.Request;
 
-import static android.Manifest.permission_group.CAMERA;
+import static android.Manifest.permission.CAMERA;
 import static android.app.Activity.RESULT_OK;
 import static android.provider.MediaStore.ACTION_IMAGE_CAPTURE;
 import static com.nostra13.universalimageloader.core.ImageLoader.TAG;
@@ -217,7 +219,7 @@ public class UserInfoFragment extends BaseFragment {
             @Override
             public void run() {
                 //判断是否已获取到摄像头权限
-                if (PermissionUtils.request(getActivity(), REQUEST_CODE_CAMERA_PERMISSION, CAMERA)) {
+                if (PermissionUtils.request(getActivity(), UserInfoFragment.this, REQUEST_CODE_CAMERA_PERMISSION, CAMERA)) {
                     Intent intentFromCapture = new Intent(ACTION_IMAGE_CAPTURE);
                     // 判断存储卡是否可以用，可用则进行存储
                     if (SDcardTools.hasSdcard()) {
@@ -261,6 +263,27 @@ public class UserInfoFragment extends BaseFragment {
                 startCropPhoto(Uri.parse(realPath));
                 break;
         }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_CODE_CAMERA_PERMISSION:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    Intent intentFromCapture = new Intent(ACTION_IMAGE_CAPTURE);
+                    // 判断存储卡是否可以用，可用则进行存储
+                    if (SDcardTools.hasSdcard()) {
+                        intentFromCapture.putExtra(MediaStore.EXTRA_OUTPUT,
+                                Uri.fromFile(new File(Environment.getExternalStorageDirectory(), IMAGE_USER_AVATAR_NAME)));
+                    }
+                    startActivityForResult(intentFromCapture, REQUEST_CODE_CAMERA);
+                } else {
+                    XuToast.show(getActivity(), STR(R.string.allow_camera_permission));
+                }
+                break;
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     /**

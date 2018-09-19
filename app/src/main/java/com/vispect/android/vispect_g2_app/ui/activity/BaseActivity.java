@@ -1,33 +1,24 @@
 package com.vispect.android.vispect_g2_app.ui.activity;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Rect;
 import android.net.Uri;
-import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.view.WindowManager;
 import android.widget.TextView;
-
 
 import com.vispect.android.vispect_g2_app.R;
 import com.vispect.android.vispect_g2_app.controller.ActivityHelper;
 import com.vispect.android.vispect_g2_app.interf.OnSoftKeyboardChangeListener;
-import com.vispect.android.vispect_g2_app.interf.ProgressController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +28,7 @@ import butterknife.ButterKnife;
 /**
  * Activity基类 Created by xu on 2016/03/11.
  */
-public abstract class BaseActivity extends FragmentActivity implements ActivityCompat.OnRequestPermissionsResultCallback {
+public abstract class BaseActivity extends FragmentActivity {
     /**
      * 6.0之后需要动态申请的权限
      * <p>
@@ -284,16 +275,16 @@ public abstract class BaseActivity extends FragmentActivity implements ActivityC
         return true;
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String[] permissions, int[] paramArrayOfInt) {
-        if (requestCode == PERMISSON_REQUESTCODE) {
-            if (!verifyPermissions(paramArrayOfInt)) {
-                //showMissingPermissionDialog();
-                isNeedCheck = false;
-            }
-        }
-    }
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode,
+//                                           String[] permissions, int[] paramArrayOfInt) {
+//        if (requestCode == PERMISSON_REQUESTCODE) {
+//            if (!verifyPermissions(paramArrayOfInt)) {
+//                //showMissingPermissionDialog();
+//                isNeedCheck = false;
+//            }
+//        }
+//    }
 
     /**
      * 启动应用的设置

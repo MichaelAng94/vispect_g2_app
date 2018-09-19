@@ -449,6 +449,7 @@ Vispect Team</string>
     <string name="set_side_camera">Side Camera Setting</string>
     <string name="check_update">Check Update</string>
     <string name="set_camera">Set Camera Type</string>
+    <string name="device_setting">Device Setting</string>
 
     <string name="recommended_login">Recommend login method</string>
     <string name="login_by_eamil">Login by email</string>
