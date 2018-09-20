@@ -564,8 +564,8 @@ public class CalibrateActivity extends BaseActivity {
                 resetDisplay();
             }
         });
-        if (AppContext.getInstance().getCalibrateType() != 1) {
-            XuView.setViewVisible(findViewById(R.id.iv_lin), isShowBackgroud);
+        if (AppContext.getInstance().getCalibrateType() == 2) {
+            XuView.setViewVisible(findViewById(R.id.iv_lin), true);
         }
 
         hsrufaceview.setListener(new OnGetPicLisetener() {
@@ -645,12 +645,6 @@ public class CalibrateActivity extends BaseActivity {
                             drawdotView.setVisibility(VISIBLE);
                         }
                     });
-//                    drawdotView.post(new Runnable() {
-//                        @Override
-//                        public void run() {
-//
-//                        }
-//                    });
 
                 }
 
@@ -674,12 +668,6 @@ public class CalibrateActivity extends BaseActivity {
                                     drawdotView.addHorizontal(CalibrateActivity.this, i);
                                 }
                             });
-//                            drawdotView.post(new Runnable() {
-//                                @Override
-//                                public void run() {
-//
-//                                }
-//                            });
                         }
 
                         @Override

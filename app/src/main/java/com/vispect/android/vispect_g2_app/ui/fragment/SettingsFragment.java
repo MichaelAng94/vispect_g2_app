@@ -175,6 +175,8 @@ public class SettingsFragment extends BaseFragment {
                 });
             } else if (position == 6) {
                 UIHelper.startActivity(getActivity(), BleInfoActivity.class);
+            } else if (position == 10) {
+                pushToFragment(new DSMSettings());
             } else {
                 Setting setting = (Setting) adapterView.getAdapter().getItem(position);
                 pushToFragment(setting.getFragment());

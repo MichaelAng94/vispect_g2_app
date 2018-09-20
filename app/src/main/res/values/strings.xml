@@ -276,6 +276,7 @@ Vispect Team</string>
 
     <string name="save_success">Successful Operation</string>
     <string name="save_fail">Operation Failed</string>
+    <string name="no_change">Nothing Changed</string>
 
     <string name="user_info_edit_tips1">The following information may influence the ADAS performance. Please fill in carefully. </string>
     <string name="required">Required item</string>

@@ -104,34 +104,29 @@ public class SideFragment extends BaseFragment {
     }
 
     public void saveData() {
-        final int start = Integer.parseInt(startSpeed.getText().toString());
-        final int end = Integer.parseInt(endSpeed.getText().toString());
+        int start = Integer.parseInt(startSpeed.getText().toString());
+        int end = Integer.parseInt(endSpeed.getText().toString());
         if (start == _startSpeed && end == _endSpeed) {
-            XuToast.show(getActivity(), R.string.save_success);
-            finish();
+            XuToast.show(getActivity(), R.string.no_change);
             return;
         }
         if (!DeviceHelper.isG2Connected()) {
             XuToast.show(getActivity(), R.string.device_disconnected);
             return;
         }
-        DialogUtils.confirmDialog(getActivity(), STR(R.string.ask_save_data), new Runnable() {
+        DeviceHelper.setSPMSpeedSpace(new ResultListner() {
             @Override
-            public void run() {
-                DeviceHelper.setSPMSpeedSpace(new ResultListner() {
-                    @Override
-                    public void onSuccess() {
-                        XuToast.show(getActivity(), R.string.save_success);
-                        finish();
-                    }
-
-                    @Override
-                    public void onFail(int i) {
-                        XuToast.show(getActivity(), R.string.save_fail);
-                    }
-                }, start, end);
+            public void onSuccess() {
+                XuToast.show(getActivity(), R.string.save_success);
+                finish();
             }
-        }, null);
+
+            @Override
+            public void onFail(int i) {
+                XuToast.show(getActivity(), R.string.save_fail);
+            }
+        }, start, end);
+
     }
 
     @OnClick({R.id.fl_start_speed, R.id.fl_end_speed})

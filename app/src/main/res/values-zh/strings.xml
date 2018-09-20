@@ -1203,6 +1203,7 @@
 
     <string name="save_success">保存成功</string>
     <string name="save_fail">保存失败</string>
+    <string name="no_change">数据无变化</string>
 
     <string name="left_camera_back">左侧摄像头（向后看） - 盲区行人监测</string>
     <string name="left_camera_forward">左侧摄像头（向前看） - 盲区行人监测（正式版本中文没有这页）</string>
