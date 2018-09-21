@@ -13,15 +13,19 @@ import android.view.View;
 import android.view.WindowManager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.vispect.android.vispect_g2_app.controller.UIHelper.dp2px;
 
 public class CustomView extends View {
 
     private List<Point> _points = new ArrayList<>();
+    private Map<Integer, List<Point>> _map = new HashMap<>();
     private Paint paint = new Paint();
     private Paint redPaint = new Paint();
+    private Paint facePaint = new Paint();
     private Context _context;
     private int _screenWidth;
     private int _screenHeight;
@@ -37,6 +41,10 @@ public class CustomView extends View {
         redPaint.setStyle(Paint.Style.STROKE);
         redPaint.setStrokeWidth(20);
         redPaint.setAntiAlias(true);
+        facePaint.setColor(Color.GREEN);
+        facePaint.setStyle(Paint.Style.STROKE);
+        facePaint.setStrokeWidth(3);
+        facePaint.setAntiAlias(true);
     }
 
     public CustomView(Context context) {
@@ -78,8 +86,19 @@ public class CustomView extends View {
             path.lineTo(point0.x, point0.y);
         }
         canvas.drawPath(path, paint);
-        if (_startX != 0 && _startY != 0)
+        if (_startX != 0 && _startY != 0) {
             canvas.drawLine(_startX, _startY, _startX + dp2px(_context, 100), _startY, redPaint);
+        }
+        if (_map != null && _map.size() > 0) {
+            for (int i = 0; i < _map.size(); i++) {
+                if (_map.containsKey(i)) {
+                    List<Point> points = _map.get(i);
+                    for (Point point : points) {
+                        canvas.drawPoint(point.x, point.y, facePaint);
+                    }
+                }
+            }
+        }
     }
 
     public void setPointList(@Nullable List<Point> points) {
@@ -118,6 +137,18 @@ public class CustomView extends View {
     }
 
     public void clearView() {
-        postInvalidate();
+        _points.clear();
+        _map.clear();
+        _startY = 0;
+        _startX = 0;
+        invalidate();
+    }
+
+    public void setPointMap(@Nullable Map map) {
+        _map.clear();
+        if (map != null && map.size() > 0) {
+            _map.putAll(map);
+        }
+        invalidate();
     }
 }

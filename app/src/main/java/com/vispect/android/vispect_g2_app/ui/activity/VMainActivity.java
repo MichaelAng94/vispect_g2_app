@@ -253,9 +253,14 @@ public class VMainActivity extends BaseActivity {
         }
 
         @Override
-        public void onGetDSMAlarmInfo(Map map) {
+        public void onGetDSMAlarmInfo(final Map map) {
             XuLog.e(TAG, "onGetDSMAlarmInfo map.size() : " + map.size());
-            //TODO 20180919 绘制人脸点集
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    customView.setPointMap(map);
+                }
+            });
         }
 
         @Override
@@ -449,8 +454,7 @@ public class VMainActivity extends BaseActivity {
         tvVertical.setVisibility(INVISIBLE);
         blueCenter.setVisibility(INVISIBLE);
 //        customView.setVisibility(INVISIBLE);
-        customView.setPointList(null);
-        customView.addRedLine(0);
+        customView.clearView();
     }
 
     private void showAdasInfo() {
