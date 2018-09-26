@@ -466,6 +466,12 @@ public class CalibrateActivity extends BaseActivity {
         }
     };
 
+    private Runnable saveCalibrateData = new Runnable() {
+        @Override
+        public void run() {
+        }
+    };
+
     /**
      * 当浮点型数据位数超过10位之后，数据变成科学计数法显示。用此方法可以使其正常显示。
      *
@@ -511,7 +517,9 @@ public class CalibrateActivity extends BaseActivity {
 
         _currentCamera = AppContext.getInstance().getCalibrateCamera();
         XuLog.e(TAG, "_currentCamera： " + _currentCamera);
-        if (_currentCamera == null) finish();
+        if (_currentCamera == null) {
+            finish();
+        }
 
         changeCameraType();
 
@@ -701,14 +709,13 @@ public class CalibrateActivity extends BaseActivity {
                 drawdotView.removeAll();
                 break;
             case R.id.tv_sure:
-//                mhandler.postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        DialogHelp.getInstance().hideDialog();
-//                    }
-//                }, 2000);
-//                AppContext.getInstance().getDeviceHelper().closeDeviceRealViewMode();
-                saveCalibrationData();
+                DialogHelp.getInstance().connectDialog(CalibrateActivity.this, "Saving");
+                new Thread() {
+                    @Override
+                    public void run() {
+                        saveCalibrationData();
+                    }
+                }.start();
                 break;
             case R.id.tv_cancle:
                 drawdotView.hideSnag();
@@ -720,7 +727,6 @@ public class CalibrateActivity extends BaseActivity {
     }
 
     private void saveCalibrationData() {
-        DialogHelp.getInstance().connectDialog(CalibrateActivity.this, "Saving");
         AppContext.getInstance().getDeviceHelper().setPointOfArea(new SetPointOfArea() {
             @Override
             public void onSuccess() {
@@ -746,7 +752,6 @@ public class CalibrateActivity extends BaseActivity {
                 handleResult(false);
             }
         }, _currentCamera.x, drawdotView.getSnag(CalibrateActivity.this));
-
     }
 
     private void handleResult(final boolean success) {
@@ -763,6 +768,7 @@ public class CalibrateActivity extends BaseActivity {
             }
         });
     }
+
     private void setSimulateClick(View view, float x, float y) {
         long downTime = SystemClock.uptimeMillis();
         MotionEvent downEvent = MotionEvent.obtain(downTime, downTime,

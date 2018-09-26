@@ -361,7 +361,9 @@ public class VMainActivity extends BaseActivity {
     protected void initView(View view) {
         cameras = AppConfig.getCameras();
 
-        if (cameras == null || cameras.size() <= 0) finish();
+        if (cameras == null || cameras.size() <= 0) {
+            finish();
+        }
         _currentCamera = cameras.get(0);
 
         AppContext.getInstance().getDeviceHelper().setUDPCamera(resultListener, _currentCamera.x, _currentCamera.y);

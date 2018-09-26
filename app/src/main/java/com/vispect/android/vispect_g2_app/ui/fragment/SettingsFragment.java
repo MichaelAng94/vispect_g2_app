@@ -37,7 +37,7 @@ import static android.view.View.GONE;
 public class SettingsFragment extends BaseFragment {
     @Bind(R.id.list_settings)
     MoListView settingsView;
-//    private DSMSettings dsmSettings; //DSM相关设置
+    //    private DSMSettings dsmSettings; //DSM相关设置
     private List<Setting> settings = new ArrayList<>();
     private boolean isZh = XuString.isZh(AppContext.getInstance());
     private boolean developerMode = false;
@@ -173,7 +173,7 @@ public class SettingsFragment extends BaseFragment {
                         }
                     }
                 });
-            } else if (position == 6) {
+            } else if ((!isZh && position == 6) || isZh && position == 5) {
                 UIHelper.startActivity(getActivity(), BleInfoActivity.class);
             } else if (position == 10) {
                 pushToFragment(new DSMSettings());
