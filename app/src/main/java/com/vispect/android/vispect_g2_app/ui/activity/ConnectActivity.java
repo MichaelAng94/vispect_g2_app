@@ -39,6 +39,9 @@ import static com.vispect.android.vispect_g2_app.app.AppConfig.STRING_EXTRA;
 import static com.vispect.android.vispect_g2_app.controller.DeviceHelper.cancelConnectDevice;
 import static com.vispect.android.vispect_g2_app.controller.DeviceHelper.stopScanDevice;
 
+/**
+ * 蓝牙连接设备
+ */
 public class ConnectActivity extends BaseActivity {
 
     ArrayList<BLEDevice> deviceList = new ArrayList<>();

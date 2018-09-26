@@ -20,13 +20,23 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * 安装与标定
+ */
 public class InstallActivity extends BaseActivity {
 
+    public final static int VEHICLE = 0;    //车辆信息
+    public final static int CALIBRATE = 1;   //标定
+    public final static int ENTER_SIZE = 2;  //尺寸
+    public final static int TELK_WITH_CAR = 3; //与车通讯
+    public final static int AUTOMATICALLY = 4; //自动校正
+    public final static int INSTALLLIST = 5;  //Installation列表
+    public final static int COUNTRY = 20;  //SelectCountry的回调
+    public static Handler transHandler;
     @Bind(R.id.frame_install)
     FrameLayout frameInstall;
     @Bind(R.id.btn_save)
     Button btnSave;
-
     private CalibrateFragment calibrateFragment;
     private AutomaticallyFragment automaticallyFragment;
     private EnterSizeFragment enterSizeFragment;
@@ -34,19 +44,7 @@ public class InstallActivity extends BaseActivity {
     private VehicleInfoFragment vehicleInfoFragment;
     private InstallListFragment installListFragment;
     private FragmentTransaction transaction;
-
-    public static Handler transHandler;
-
     private int nowFragment = 5;
-    public final static int VEHICLE = 0;    //车辆信息
-    public final static int CALIBRATE = 1;   //标定
-    public final static int ENTER_SIZE = 2;  //尺寸
-    public final static int TELK_WITH_CAR = 3; //与车通讯
-    public final static int AUTOMATICALLY = 4; //自动校正
-    public final static int INSTALLLIST = 5;  //Installation列表
-
-    public final static int COUNTRY = 20;  //SelectCountry的回调
-
 
     @Override
     public int getContentResource() {
@@ -69,22 +67,6 @@ public class InstallActivity extends BaseActivity {
     @OnClick(R.id.img_back_main)
     public void onViewClicked() {
         onBackPressed();
-    }
-
-    class myHandler extends Handler {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            if (msg.arg2 > 5) {
-                switch (msg.arg2) {
-                    case COUNTRY:
-                        vehicleInfoFragment.changeCountry(msg.obj.toString());
-                        break;
-                }
-            } else {
-                switchFragment(msg.arg2);
-            }
-        }
     }
 
     public void switchFragment(int position) {
@@ -179,6 +161,22 @@ public class InstallActivity extends BaseActivity {
         }
         if (installListFragment != null) {
             transaction.hide(installListFragment);
+        }
+    }
+
+    class myHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (msg.arg2 > 5) {
+                switch (msg.arg2) {
+                    case COUNTRY:
+                        vehicleInfoFragment.changeCountry(msg.obj.toString());
+                        break;
+                }
+            } else {
+                switchFragment(msg.arg2);
+            }
         }
     }
 

@@ -47,14 +47,14 @@ import butterknife.OnClick;
 
 /**
  * Created by mo on 2018/3/27.
+ * 车辆信息
  */
 
 
 public class VehicleInfoFragment extends BaseFragment {
     private static final String TAG = "VehicleInfoFragment";
-
+    public static Handler mHandler = new Handler();
     ArrayList<String> arrayList;
-
     @Bind(R.id.tv_mine_userifo_tips1)
     TextView tvMineUserifoTips1;
     @Bind(R.id.tv_region)
@@ -75,13 +75,10 @@ public class VehicleInfoFragment extends BaseFragment {
     LinearLayout selectYear;
     @Bind(R.id.calibration4fragment)
     FrameLayout calibration4fragment;
+    PopupWindow popupWindow;
     private Button save;
     private TextView title;
     private TextView titleFinish;
-    PopupWindow popupWindow;
-    public static Handler mHandler = new Handler();
-
-
     private Runnable requiredIsEmpty = new Runnable() {
         @Override
         public void run() {
@@ -114,27 +111,10 @@ public class VehicleInfoFragment extends BaseFragment {
         return R.layout.fragment_calibration4step1;
     }
 
-    class onclick implements View.OnClickListener{
-        @Override
-        public void onClick(View view) {
-            UIHelper.showAsk(getActivity(), STR(R.string.ask_save_data), true, new OnClickYesOrNoListener() {
-                @Override
-                public void isyes(boolean b, DialogInterface dialog) {
-                    if (b) {
-                        saveData();
-                    }
-                    dialog.dismiss();
-                }
-            });
-        }
-    }
-
     @Override
     public void onStart() {
         super.onStart();
     }
-
-
 
     @Override
     protected void initView(View view) {
@@ -209,7 +189,6 @@ public class VehicleInfoFragment extends BaseFragment {
         ButterKnife.unbind(this);
     }
 
-
     void showPopupWindowbyShowActivity(String a, String b, String c) {
         final View contentView = LayoutInflater.from(AppContext.getInstance()).inflate(R.layout.popupwindow_select_activity_menu, null);
         popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -265,7 +244,6 @@ public class VehicleInfoFragment extends BaseFragment {
         popupWindow.showAtLocation(getActivity().findViewById(R.id.calibration4fragment), Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
 
     }
-
 
     void saveData() {
         if (AppConfig.getInstance(AppContext.getInstance()).getUserId().isEmpty()) {
@@ -340,6 +318,21 @@ public class VehicleInfoFragment extends BaseFragment {
                 selectYear.setVisibility(View.VISIBLE);
                 ll_mask.setVisibility(View.VISIBLE);
                 break;
+        }
+    }
+
+    class onclick implements View.OnClickListener{
+        @Override
+        public void onClick(View view) {
+            UIHelper.showAsk(getActivity(), STR(R.string.ask_save_data), true, new OnClickYesOrNoListener() {
+                @Override
+                public void isyes(boolean b, DialogInterface dialog) {
+                    if (b) {
+                        saveData();
+                    }
+                    dialog.dismiss();
+                }
+            });
         }
     }
 }

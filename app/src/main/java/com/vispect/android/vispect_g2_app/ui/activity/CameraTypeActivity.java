@@ -12,7 +12,7 @@ import com.vispect.android.vispect_g2_app.ui.fragment.SettingsFragment;
 import butterknife.OnClick;
 
 /**
- * Created by mo on 2018/7/12.
+ * 选择镜头类型
  */
 
 public class CameraTypeActivity extends BaseActivity {

@@ -54,6 +54,9 @@ import static com.vispect.android.vispect_g2_app.app.AppConfig.REQUEST_CODE_CAME
 import static com.vispect.android.vispect_g2_app.app.AppConfig.REQUEST_CODE_CAMERA_PERMISSION;
 import static com.vispect.android.vispect_g2_app.app.AppConfig.REQUEST_CODE_CROP_IMAGE;
 
+/**
+ * 用户信息
+ */
 public class UserInfoFragment extends BaseFragment {
 
     @Bind(R.id.img_head)

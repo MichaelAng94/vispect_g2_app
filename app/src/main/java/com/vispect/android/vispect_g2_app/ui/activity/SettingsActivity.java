@@ -11,7 +11,7 @@ import com.vispect.android.vispect_g2_app.ui.fragment.SettingsFragment;
 import butterknife.OnClick;
 
 /**
- * Created by mo on 2018/7/12.
+ * 设置
  */
 
 public class SettingsActivity extends BaseActivity {
@@ -27,7 +27,8 @@ public class SettingsActivity extends BaseActivity {
     protected void initView(View view) {
         _fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = _fragmentManager.beginTransaction();
-        transaction.add(R.id.content, new SettingsFragment(), SettingsFragment.class.getSimpleName()).commit();
+        transaction.add(R.id.content, new
+                SettingsFragment(), SettingsFragment.class.getSimpleName()).commit();
     }
 
     private void handleBack() {

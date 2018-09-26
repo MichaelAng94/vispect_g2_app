@@ -479,7 +479,6 @@ public class VMainActivity extends BaseActivity {
                             customView.setPointList(list);
                         }
                     });
-
                 }
             }
 

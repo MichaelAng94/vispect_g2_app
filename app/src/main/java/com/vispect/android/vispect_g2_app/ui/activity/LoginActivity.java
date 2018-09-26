@@ -24,6 +24,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.Request;
 
+/**
+ * 登录
+ */
 public class LoginActivity extends BaseActivity {
 
     @Bind(R.id.et_login_userid)

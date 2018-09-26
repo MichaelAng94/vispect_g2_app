@@ -48,18 +48,17 @@ import okhttp3.Request;
 
 /**
  * Created by mo on 2018/3/27.
+ * 与车交流
  */
 
 
 public class TalkWithCarFragment extends BaseFragment {
 
-    Handler mHandler = new Handler();
     private final int BLE_CONNECT = 406;
     private final int REQUST_CONNECT = 306;
-    private String nowOBDValue;
+    Handler mHandler = new Handler();
     SpannableStringBuilder builder;
     ForegroundColorSpan redSpan;
-
     boolean cantoget = false;
     @Bind(R.id.tv_rataionrate_number_1)
     TextView tv_rataionrate_number_1;
@@ -73,10 +72,82 @@ public class TalkWithCarFragment extends BaseFragment {
     ImageView iv_left_turn_light;
     @Bind(R.id.iv_right_turn_light)
     ImageView iv_right_turn_light;
-
-
+    Runnable leftTurnLightOff = new Runnable() {
+        @Override
+        public void run() {
+            iv_left_turn_light.setImageResource(R.mipmap.ico_left_turn_light_off);
+        }
+    };
+    Runnable leftTurnLightOn = new Runnable() {
+        @Override
+        public void run() {
+            iv_left_turn_light.setImageResource(R.mipmap.ico_left_turn_light_on);
+            //900毫秒后恢复
+            mHandler.postDelayed(leftTurnLightOff, 900);
+        }
+    };
+    Runnable rightTurnLightOff = new Runnable() {
+        @Override
+        public void run() {
+            iv_right_turn_light.setImageResource(R.mipmap.ico_right_turn_light_off);
+        }
+    };
+    Runnable rightTurnLightOn = new Runnable() {
+        @Override
+        public void run() {
+            iv_right_turn_light.setImageResource(R.mipmap.ico_right_turn_light_on);
+            XuLog.d("左转了");
+            //900毫秒后恢复
+            mHandler.postDelayed(rightTurnLightOff, 900);
+        }
+    };
+    Runnable brakeOn = new Runnable() {
+        @Override
+        public void run() {
+            iv_right_turn_light.setImageResource(R.mipmap.ico_brake_on);
+            XuLog.d("左转了");
+            //900毫秒后恢复
+            mHandler.postDelayed(rightTurnLightOff, 900);
+        }
+    };
+    Runnable brakeOff = new Runnable() {
+        @Override
+        public void run() {
+            iv_right_turn_light.setImageResource(R.mipmap.ico_brake_off);
+        }
+    };
+    Runnable wiperOn = new Runnable() {
+        @Override
+        public void run() {
+            iv_right_turn_light.setImageResource(R.mipmap.ico_wiper_on);
+            XuLog.d("左转了");
+            //900毫秒后恢复
+            mHandler.postDelayed(rightTurnLightOff, 900);
+        }
+    };
+    Runnable wiperOff = new Runnable() {
+        @Override
+        public void run() {
+            iv_right_turn_light.setImageResource(R.mipmap.ico_wiper_off);
+        }
+    };
+    private String nowOBDValue;
     private TextView title;
     private TextView titleFinish;
+    private String rotationRate = "0000";
+    private boolean canGetRotationRate = false;
+    Runnable setNumber = new Runnable() {
+        @Override
+        public void run() {
+            if (canGetRotationRate && tv_rataionrate_number_1 != null && tv_rataionrate_number_2 != null && tv_rataionrate_number_3 != null && tv_rataionrate_number_4 != null) {
+                tv_rataionrate_number_1.setText(rotationRate.substring(0, 1));
+                tv_rataionrate_number_2.setText(rotationRate.substring(1, 2));
+                tv_rataionrate_number_3.setText(rotationRate.substring(2, 3));
+                tv_rataionrate_number_4.setText(rotationRate.substring(3, 4));
+            }
+
+        }
+    };
 
     @Override
     public int getContentResource() {
@@ -163,9 +234,6 @@ public class TalkWithCarFragment extends BaseFragment {
         }
     }
 
-    private String rotationRate = "0000";
-    private boolean canGetRotationRate = false;
-
     @Override
     public void onStart() {
         super.onStart();
@@ -179,9 +247,6 @@ public class TalkWithCarFragment extends BaseFragment {
             }
         });
     }
-
-
-
 
     @Override
     public void onStop() {
@@ -285,7 +350,6 @@ public class TalkWithCarFragment extends BaseFragment {
         super.onDestroy();
     }
 
-
     private void formatRotationRate(String value) {
         if (value.length() == 4) {
             rotationRate = value;
@@ -307,20 +371,6 @@ public class TalkWithCarFragment extends BaseFragment {
 
     }
 
-
-    Runnable setNumber = new Runnable() {
-        @Override
-        public void run() {
-            if (canGetRotationRate && tv_rataionrate_number_1 != null && tv_rataionrate_number_2 != null && tv_rataionrate_number_3 != null && tv_rataionrate_number_4 != null) {
-                tv_rataionrate_number_1.setText(rotationRate.substring(0, 1));
-                tv_rataionrate_number_2.setText(rotationRate.substring(1, 2));
-                tv_rataionrate_number_3.setText(rotationRate.substring(2, 3));
-                tv_rataionrate_number_4.setText(rotationRate.substring(3, 4));
-            }
-
-        }
-    };
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO: inflate a fragment view
@@ -334,70 +384,6 @@ public class TalkWithCarFragment extends BaseFragment {
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
-
-    Runnable leftTurnLightOn = new Runnable() {
-        @Override
-        public void run() {
-            iv_left_turn_light.setImageResource(R.mipmap.ico_left_turn_light_on);
-            //900毫秒后恢复
-            mHandler.postDelayed(leftTurnLightOff, 900);
-        }
-    };
-    Runnable leftTurnLightOff = new Runnable() {
-        @Override
-        public void run() {
-            iv_left_turn_light.setImageResource(R.mipmap.ico_left_turn_light_off);
-        }
-    };
-
-    Runnable rightTurnLightOn = new Runnable() {
-        @Override
-        public void run() {
-            iv_right_turn_light.setImageResource(R.mipmap.ico_right_turn_light_on);
-            XuLog.d("左转了");
-            //900毫秒后恢复
-            mHandler.postDelayed(rightTurnLightOff, 900);
-        }
-    };
-    Runnable rightTurnLightOff = new Runnable() {
-        @Override
-        public void run() {
-            iv_right_turn_light.setImageResource(R.mipmap.ico_right_turn_light_off);
-        }
-    };
-
-
-    Runnable brakeOn = new Runnable() {
-        @Override
-        public void run() {
-            iv_right_turn_light.setImageResource(R.mipmap.ico_brake_on);
-            XuLog.d("左转了");
-            //900毫秒后恢复
-            mHandler.postDelayed(rightTurnLightOff, 900);
-        }
-    };
-    Runnable brakeOff = new Runnable() {
-        @Override
-        public void run() {
-            iv_right_turn_light.setImageResource(R.mipmap.ico_brake_off);
-        }
-    };
-
-    Runnable wiperOn = new Runnable() {
-        @Override
-        public void run() {
-            iv_right_turn_light.setImageResource(R.mipmap.ico_wiper_on);
-            XuLog.d("左转了");
-            //900毫秒后恢复
-            mHandler.postDelayed(rightTurnLightOff, 900);
-        }
-    };
-    Runnable wiperOff = new Runnable() {
-        @Override
-        public void run() {
-            iv_right_turn_light.setImageResource(R.mipmap.ico_wiper_off);
-        }
-    };
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

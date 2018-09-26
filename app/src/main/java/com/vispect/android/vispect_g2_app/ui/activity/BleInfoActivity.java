@@ -9,7 +9,7 @@ import com.vispect.android.vispect_g2_app.ui.fragment.BleInfoFragment;
 import com.vispect.android.vispect_g2_app.ui.fragment.CameraTypeFragment;
 
 /**
- * Created by mo on 2018/7/12.
+ * 检查当前版本
  */
 
 public class BleInfoActivity extends BaseActivity {

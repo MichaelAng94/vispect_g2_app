@@ -22,6 +22,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.Request;
 
+/**
+ * 注册
+ */
 public class RegisterActivity extends BaseActivity {
 
     private final static String TAG = "RegisterActivity";

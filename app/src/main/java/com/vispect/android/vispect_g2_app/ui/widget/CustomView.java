@@ -73,8 +73,8 @@ public class CustomView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Path path = new Path();
         if (_points.size() == 4) {
+            Path path = new Path();
             Point point0 = changeSize(_points.get(0));
             Point point1 = changeSize(_points.get(1));
             Point point2 = changeSize(_points.get(2));
@@ -84,8 +84,8 @@ public class CustomView extends View {
             path.lineTo(point2.x, point2.y);
             path.lineTo(point3.x, point3.y);
             path.lineTo(point0.x, point0.y);
+            canvas.drawPath(path, paint);
         }
-        canvas.drawPath(path, paint);
         if (_startX != 0 && _startY != 0) {
             canvas.drawLine(_startX, _startY, _startX + dp2px(_context, 100), _startY, redPaint);
         }

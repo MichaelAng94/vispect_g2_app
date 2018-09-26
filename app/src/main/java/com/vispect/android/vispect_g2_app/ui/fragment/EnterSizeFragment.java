@@ -38,9 +38,8 @@ import interf.SetDeviceInfoCallback;
 
 
 /**
- * Created by mo on 2018/3/27.
+ * 车辆信息
  */
-
 
 public class EnterSizeFragment extends BaseFragment {
 
@@ -69,7 +68,37 @@ public class EnterSizeFragment extends BaseFragment {
     private boolean canToSave = true;
 
     private Context mContext;
-
+    private XuTimeOutUtil timeoutUtil = new XuTimeOutUtil(new XuTimeOutCallback() {
+        @Override
+        public void onTimeOut() {
+            hideProgress();
+        }
+    });
+    private Runnable successrunnable = new Runnable() {
+        @Override
+        public void run() {
+            //发送完成
+            XuToast.show(mContext, STR(R.string.save_success));
+        }
+    };
+    private Runnable failrunnable = new Runnable() {
+        @Override
+        public void run() {
+            //发送完成
+            XuToast.show(getActivity(), STR(R.string.save_fail));
+        }
+    };
+    private Runnable mRunnable = new Runnable() {
+        @Override
+        public void run() {
+            //发送完成
+            hideProgress();
+            timeoutUtil.stopCheck();
+            Message msg = new Message();
+            msg.arg2 = 5;
+            InstallActivity.transHandler.sendMessage(msg);
+        }
+    };
 
     @Override
     public int getContentResource() {
@@ -105,7 +134,7 @@ public class EnterSizeFragment extends BaseFragment {
 
     @Override
     protected void initView(View view) {
-        this.mContext = getActivity();
+        mContext = getActivity();
     }
 
     @Override
@@ -121,13 +150,6 @@ public class EnterSizeFragment extends BaseFragment {
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
-
-    private XuTimeOutUtil timeoutUtil = new XuTimeOutUtil(new XuTimeOutCallback() {
-        @Override
-        public void onTimeOut() {
-            hideProgress();
-        }
-    });
 
     @Override
     public void onStart() {
@@ -210,7 +232,6 @@ public class EnterSizeFragment extends BaseFragment {
             }
         });
     }
-
 
     void save() {
         //TODO 保存数据
@@ -325,35 +346,6 @@ public class EnterSizeFragment extends BaseFragment {
         }
         return Integer.parseInt(str) >= -250 && Integer.parseInt(str) <= 250;
     }
-
-
-    private Runnable successrunnable = new Runnable() {
-        @Override
-        public void run() {
-            //发送完成
-            XuToast.show(mContext, STR(R.string.save_success));
-        }
-    };
-
-    private Runnable failrunnable = new Runnable() {
-        @Override
-        public void run() {
-            //发送完成
-            XuToast.show(getActivity(), STR(R.string.save_fail));
-        }
-    };
-
-    private Runnable mRunnable = new Runnable() {
-        @Override
-        public void run() {
-            //发送完成
-            hideProgress();
-            timeoutUtil.stopCheck();
-            Message msg = new Message();
-            msg.arg2 = 5;
-            InstallActivity.transHandler.sendMessage(msg);
-        }
-    };
 
 }
 

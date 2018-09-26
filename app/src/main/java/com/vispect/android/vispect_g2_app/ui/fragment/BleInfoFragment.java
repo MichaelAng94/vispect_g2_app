@@ -23,8 +23,7 @@ import interf.GetBleInfoVersionCallback;
 
 
 /**
- * 当前版本
- * <p>
+ * 检查当前版本
  * Created by xu on 2015/12/26.
  */
 public class BleInfoFragment extends BaseFragment {

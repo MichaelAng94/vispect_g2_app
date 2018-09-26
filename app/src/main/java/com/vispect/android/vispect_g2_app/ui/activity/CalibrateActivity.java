@@ -72,7 +72,7 @@ import static android.view.View.VISIBLE;
 //import com.googlecode.mp4parser.authoring.tracks.h264.H264TrackImpl;
 
 /**
- * 实时视频播放入口
+ * 设备标定页面
  */
 public class CalibrateActivity extends BaseActivity {
 
@@ -169,6 +169,25 @@ public class CalibrateActivity extends BaseActivity {
     private boolean onStart = false;
     private OnGetShortVideoCallback onGetShortVideoCallback;
     private volatile int progress = -1;
+    Runnable changeProgress = new Runnable() {
+        @Override
+        public void run() {
+            if (progress != 100) {
+                if (linProgress != null && linProgress.getVisibility() == GONE) {
+                    linProgress.setVisibility(VISIBLE);
+                }
+                if (tvProgress != null) {
+                    tvProgress.setText(progress + "");
+                }
+
+                mhandler.postDelayed(getProgress, 2000);
+            } else {
+                mhandler.post(getcenterponintag);
+                i = -1;
+                linProgress.setVisibility(GONE);
+            }
+        }
+    };
     Runnable getProgress = new Runnable() {
         @Override
         public void run() {
@@ -271,25 +290,6 @@ public class CalibrateActivity extends BaseActivity {
                     canTranslation = true;
                 }
             });
-        }
-    };
-    Runnable changeProgress = new Runnable() {
-        @Override
-        public void run() {
-            if (progress != 100) {
-                if (linProgress != null && linProgress.getVisibility() == GONE) {
-                    linProgress.setVisibility(VISIBLE);
-                }
-                if (tvProgress != null) {
-                    tvProgress.setText(progress + "");
-                }
-
-                mhandler.postDelayed(getProgress, 2000);
-            } else {
-                mhandler.post(getcenterponintag);
-                i = -1;
-                linProgress.setVisibility(GONE);
-            }
         }
     };
 //    //----------------------------------------
