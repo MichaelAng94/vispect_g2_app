@@ -440,6 +440,7 @@ public class VMainActivity extends BaseActivity {
 
         hiddenViews();
 
+        //可能存在切换镜头时 有新的报警信息过来，所以延迟清空画布
         mhandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -465,9 +466,8 @@ public class VMainActivity extends BaseActivity {
         tvHorizontal.setVisibility(INVISIBLE);
         tvVertical.setVisibility(INVISIBLE);
         blueCenter.setVisibility(INVISIBLE);
-//        customView.setVisibility(INVISIBLE);
-//        customView.clearView();
-//        drawAdas.clearView();
+        customView.clearView();
+        drawAdas.clearView();
     }
 
     private void showAdasInfo() {

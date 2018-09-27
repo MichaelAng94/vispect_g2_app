@@ -73,7 +73,7 @@ public class CustomView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (_points.size() == 4) {
+        if (_points != null && _points.size() == 4) {
             Path path = new Path();
             Point point0 = changeSize(_points.get(0));
             Point point1 = changeSize(_points.get(1));
