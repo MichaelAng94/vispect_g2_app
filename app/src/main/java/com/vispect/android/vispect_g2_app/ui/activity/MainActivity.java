@@ -53,6 +53,7 @@ import static com.vispect.android.vispect_g2_app.app.AppConfig.REQUEST_CODE_CONN
 import static com.vispect.android.vispect_g2_app.app.AppConfig.REQUEST_CODE_GLOBAL_PERMISSION;
 import static com.vispect.android.vispect_g2_app.controller.DeviceHelper.isConnected;
 import static com.vispect.android.vispect_g2_app.controller.DeviceHelper.isG2;
+import static com.vispect.android.vispect_g2_app.controller.DeviceHelper.isG2Connected;
 
 public class MainActivity extends BaseActivity {
 
@@ -67,6 +68,7 @@ public class MainActivity extends BaseActivity {
     private DoubleClickExit doubleClick = new DoubleClickExit(this);
     private String TAG = "MainActivity";
     private int lastConnectionState = 0;
+    private boolean _deviceConnect = false;
     OnDeviceConnectionStateChange deviceConnectionStateListener = new OnDeviceConnectionStateChange() {
         //TODO 监听蓝牙的连接状态
         @Override
@@ -76,10 +78,10 @@ public class MainActivity extends BaseActivity {
                 lastConnectionState = i;
                 if (i == 0) {
 //                    imgConnect.setColorFilter(null);
-                    XuToast.show(MainActivity.this, "Disconnect");
+                    XuToast.show(MainActivity.this, R.string.device_disconnected);
                     if (imgRight != null) {
                         imgRight.setImageResource(R.drawable.disconnect);
-                        imgRight.clearColorFilter();
+                        _deviceConnect = false;
                     }
                     XuLog.e(TAG, "需要退回到首页");
                     AppContext.getInstance().getDeviceHelper().closeWIFIMode();
@@ -122,15 +124,8 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        if (isConnected() && isG2()) {
-            imgRight.setImageResource(R.drawable.connet_ble);
-//            imgRight.setColorFilter(Color.parseColor("#00CCCC"));
-        } else {
-            imgRight.setImageResource(R.drawable.disconnect);
-//            imgRight.clearColorFilter();
-        }
-
+        XuLog.e(TAG, "onResume：isG2Connected() : " + isG2Connected());
+        imgRight.setImageResource((_deviceConnect || isG2Connected()) ? R.drawable.connet_ble : R.drawable.disconnect);
     }
 
     @Override
@@ -192,6 +187,7 @@ public class MainActivity extends BaseActivity {
             case R.id.img_right:
                 if (isConnected()) {
                     DeviceHelper.cancelConnect();
+                    _deviceConnect = false;
                     imgRight.setImageResource(R.drawable.disconnect);
                     imgRight.clearColorFilter();
                     XuToast.show(this, R.string.device_disconnected);
@@ -207,8 +203,9 @@ public class MainActivity extends BaseActivity {
         switch (requestCode) {
             case REQUEST_CODE_CONNECT_DEVICE:
                 if (resultCode == CONNECT_DEVICE_OK) {
+                    XuLog.e(TAG, "onActivityResult imgRight.setImageResource ");
+                    _deviceConnect = true;
                     imgRight.setImageResource(R.drawable.connet_ble);
-//                    imgRight.setColorFilter(Color.parseColor("#00CCCC"));
                 }
                 break;
         }

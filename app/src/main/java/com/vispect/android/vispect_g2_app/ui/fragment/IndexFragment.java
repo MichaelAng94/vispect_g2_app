@@ -1,6 +1,7 @@
 package com.vispect.android.vispect_g2_app.ui.fragment;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Handler;
 import android.os.Message;
@@ -85,16 +86,19 @@ public class IndexFragment extends BaseFragment {
                 UIHelper.startActivity(getActivity(), DocActivity.class);
                 break;
             case R.id.menu_installation:
-                if (DeviceHelper.isG2Connected(getActivity(), EXTRA_TO_INSTALLATION))
+                if (DeviceHelper.isG2Connected(getActivity(), EXTRA_TO_INSTALLATION)) {
                     UIHelper.startActivity(getActivity(), InstallActivity.class);
+                }
                 break;
             case R.id.menu_settings:
-                if (DeviceHelper.isG2Connected(getActivity(), EXTRA_TO_SETTING))
+                if (DeviceHelper.isG2Connected(getActivity(), EXTRA_TO_SETTING)) {
                     UIHelper.startActivity(getActivity(), SettingsActivity.class);
+                }
                 break;
             case R.id.menu_live:
-                if (DeviceHelper.isG2Connected(getActivity(), null))
+                if (DeviceHelper.isG2Connected(getActivity(), null)) {
                     getCameraList();
+                }
                 break;
             case R.id.menu_video:
                 showBottomSheetDialog();
@@ -237,7 +241,7 @@ public class IndexFragment extends BaseFragment {
             }
         });
     }
-    
+
     public void cancelConnect() {
         //断开连接
         handler.removeMessages(MESSAGE_CODE_CONNECT_WIFI);

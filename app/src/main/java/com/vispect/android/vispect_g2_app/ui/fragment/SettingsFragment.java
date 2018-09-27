@@ -152,7 +152,7 @@ public class SettingsFragment extends BaseFragment {
                     @Override
                     public void clickYes(String editText) {
                         DialogHelp.getInstance().hideDialog();
-                        if (isNumeric(editText)) {
+                        if (!XuString.isEmpty(editText) && isNumeric(editText)) {
                             int num = Integer.parseInt(editText);
                             if (num < 0 || num > 255) {
                                 XuToast.show(getActivity(), STR(R.string.input_illegal));

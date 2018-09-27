@@ -94,7 +94,8 @@ public class CustomView extends View {
                 if (_map.containsKey(i)) {
                     List<Point> points = _map.get(i);
                     for (Point point : points) {
-                        canvas.drawPoint(point.x, point.y, facePaint);
+                        Point pointCS = changeSize(point);
+                        canvas.drawPoint(pointCS.x, pointCS.y, facePaint);
                     }
                 }
             }

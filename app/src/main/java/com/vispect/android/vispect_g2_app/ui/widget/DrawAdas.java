@@ -2,6 +2,7 @@ package com.vispect.android.vispect_g2_app.ui.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
@@ -216,6 +217,21 @@ public class DrawAdas extends SurfaceView implements SurfaceHolder.Callback, Run
 
     public void setWidthChangeCallback(SurfaceViewWidthChangeCallback widthChangeCallback) {
         this.widthChangeCallback = widthChangeCallback;
+    }
+
+    public void clearView() {
+        drawList.clear();
+        DrawShape ds = new DrawShape();
+        ds.setX0(-1);
+        ds.setY0(-1);
+        ds.setX1(-1);
+        ds.setY1(-1);
+        ds.setType(0);
+        ds.setDashed(false);
+        ds.setStroke_width(0);
+        ds.setColor(Color.TRANSPARENT);
+        drawList.add(ds);
+        draw();
     }
 
 

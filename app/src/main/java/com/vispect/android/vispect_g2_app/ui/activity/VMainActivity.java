@@ -437,7 +437,17 @@ public class VMainActivity extends BaseActivity {
 
     public void drawAlarmInfo() {
         XuLog.e(TAG, "改变了镜头,镜头ID:" + _currentCamera.x + "镜头类型:" + _currentCamera.y);
+
         hiddenViews();
+
+        mhandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                customView.clearView();
+                drawAdas.clearView();
+            }
+        }, 1500);
+
         switch (_currentCamera.y) {
             case 1:
                 showAdasInfo();
@@ -456,7 +466,8 @@ public class VMainActivity extends BaseActivity {
         tvVertical.setVisibility(INVISIBLE);
         blueCenter.setVisibility(INVISIBLE);
 //        customView.setVisibility(INVISIBLE);
-        customView.clearView();
+//        customView.clearView();
+//        drawAdas.clearView();
     }
 
     private void showAdasInfo() {

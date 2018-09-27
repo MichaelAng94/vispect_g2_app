@@ -190,7 +190,7 @@ public class VehicleInfoFragment extends BaseFragment {
     }
 
     void showPopupWindowbyShowActivity(String a, String b, String c) {
-        final View contentView = LayoutInflater.from(AppContext.getInstance()).inflate(R.layout.popupwindow_select_activity_menu, null);
+        View contentView = LayoutInflater.from(AppContext.getInstance()).inflate(R.layout.popupwindow_select_activity_menu, null);
         popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT, true);
 
